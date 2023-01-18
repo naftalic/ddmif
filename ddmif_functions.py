@@ -1,9 +1,9 @@
-#!pip install yfinance
+!pip install yfinance
 
 import pandas as pd
 import numpy as np
-#import yfinance as yf
-#yf.pdr_override()
+import yfinance as yf
+yf.pdr_override()
 
 def get_universe(data_dir, universe_file):
     
