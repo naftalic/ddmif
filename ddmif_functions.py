@@ -1,4 +1,5 @@
-!pip install yfinance
+
+pip install yfinance
 
 import pandas as pd
 import numpy as np
