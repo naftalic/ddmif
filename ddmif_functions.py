@@ -63,3 +63,46 @@ def forecast_performance(f,q):
   f = np.cumsum(f, axis=1) 
   fp = np.sum((q-f)**2, axis=1)/f.shape[1] #forecast performance
   return np.mean(fp) #mean forecast performance 
+
+def eval_submission_file(filename, universe_df):
+  symbols = universe_df.sort_values(by=['symbol'])['symbol']
+  eps = 1e-3
+  try:
+    df = pd.read_csv(filename, sep=",", header=0, index_col=0).sort_values(by=['id'])
+    assert np.all(list(df['id'])==list(symbols))
+    assert len(df)==110
+    assert len(df.columns)==7
+    f = df[['rank1', 'rank2', 'rank3', 'rank4','rank5']].to_numpy()
+    w = np.reshape(df['decision'].to_numpy(),(-1,1))
+    assert np.all(f >= 0) 
+    assert np.all(np.abs(np.sum(f,axis=1)-1)<eps) 
+    assert 1+eps>np.sum(np.abs(w)) 
+    assert np.sum(np.abs(w)) >= 0.25
+    return print("submission file",filename,"is okay")
+  except:
+    print('******************')
+    print("**Problem** with file", filename)
+    print("list of symbols:", np.all(list(df['id'])==list(symbols)))
+    print("len of df:", len(df))
+    print("len of columns:", len(df.columns))
+    print("dimensions:", f.shape, q.shape, S.shape, w.shape)
+    print("sum of abs decisions:", df.iloc[:,-1].abs().sum())
+    print("sum of ranks equals 1:", np.all(np.abs(df.loc[:,['rank1',	'rank2',	'rank3',	'rank4',	'rank5']].sum(axis=1)-1)<eps) )
+    print("all ranks are non negative:", np.all(df.loc[:,['rank1',	'rank2',	'rank3',	'rank4',	'rank5']]>=0) )
+    print('******************')
+  return print("file is NOT ready for submission")
+  
+def quintile_rank_with_average_tie(vector):
+  data = pd.DataFrame({'value':vector, 'dense_rank':np.argsort(np.argsort(vector))})
+  data['quintile'] = pd.qcut(data['dense_rank'], q=5, labels=range(1, 6)).astype('float32')
+  data['quintile_rank'] = data.groupby('value')['quintile'].transform(lambda x: x.mean())
+  return data['quintile_rank'].values
+
+def map_to_vector(vector):
+    quintile_vector = np.zeros((len(vector), 5))
+    for i in range(len(vector)):
+        quintile_vector[i, int(vector[i])-1] = 1
+        if np.abs(int(vector[i])-vector[i])>0:
+          quintile_vector[i, int(np.ceil(vector[i]))-1]  = vector[i]-np.floor(vector[i])
+          quintile_vector[i, int(np.floor(vector[i]))-1] = np.ceil(vector[i])-vector[i]
+    return quintile_vector
