@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 #import yfinance as yf
 #yf.pdr_override()
-    
+
 def get_universe(data_dir, universe_file):
     
     return pd.read_csv(data_dir + universe_file)
