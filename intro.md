@@ -2,9 +2,9 @@
 
 ## Introduction:
 
-There are two major categories of quantitative equity portfolio management: active and passive. Passive equity portfolio management, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active equity portfolio management aims to outperform a benchmark or provide an absolute return without any reference to an index.
+There are two major categories of quantitative equity portfolio management: active and passive. Passive approach, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active approach aims to outperform a benchmark or provide an absolute return without any reference to an index.
 
-Investors can access active or passive portfolios through mutual funds, ETFs, hedge funds, or building their own portfolios. Major equity benchmarks for portfolio managers include S&P 500, Russell 3000, Wilshire 5000, NASDAQ-100, and MSCI USA.
+Investors can access active or passive portfolios through mutual funds, ETFs, or building their own portfolios. Major equity benchmarks for portfolio managers include S&P 500, Russell 3000, Wilshire 5000, NASDAQ-100, and MSCI USA.
 
 Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include Peter Lynch and Warren Buffett. Quantitative portfolio management is usually associated with large institutions or hedge funds, such as Barclays Global Investors, Goldman Sachs Asset Management, and Parametric Associates.
 
@@ -15,6 +15,15 @@ Alpha refers to three types of returns:
 - Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk. Formula: $r_P = α + βr_B + ϵ$.
 - CAPM Alpha: Return of a portfolio not linked to the market portfolio's risk. Formula: $r_P = α + βr_M + ϵ$.
 - Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
+
+A few remarks: 
+- $βr_B$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark
+- $α + ϵ$ is the residual return
+- The residual return is all that matters to the quantitative portfolio manager
+- If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value. 
+- The residual return is the part that represents an increase in return independent of increased direct benchmark exposure. 
+- $α$ is the expected value of the residual return
+- $ϵ$, is the deviation of the residual return from its mean (it is assumed that $ϵ$ averages zero). 
 
 Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.
 
