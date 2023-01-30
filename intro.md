@@ -11,9 +11,8 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 
 ## Fundamentals
 
-Alpha refers to three types of returns:
-- Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk. Formula: $r_P = α + βr_B + ϵ$.
-- CAPM Alpha: Return of a portfolio not linked to the market portfolio's risk. Formula: $r_P = α + βr_M + ϵ$.
+Alpha refers, generaly, to two types of returns:
+- Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk or market portfolio's risk. Formula: $r_P = α + βr_B + ϵ$.
 - Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
 
 A few remarks: 
@@ -38,6 +37,18 @@ An active portfolio manager aims for high alpha and high information ratio.
 - Quantitative Analysis (QA) seeks profit through statistical arbitrage by using all available information.
 - QA must be based on solid economic theories and reflect persistent patterns.
 - Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
+
+## There are three forms of market efficiency:
+
+- Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.
+- Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.
+- Strong form - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.
+
+Can we test for market efficiency?
+
+- Weak-Form Efficiency: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.
+- Semi-Strong Form Efficiency: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).
+- Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
 
 ## Brief history of financial theory
 
