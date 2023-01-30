@@ -38,7 +38,7 @@ An active portfolio manager aims for high alpha and high information ratio.
 - QA must be based on solid economic theories and reflect persistent patterns.
 - Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
 
-## There are three forms of market efficiency:
+## Market efficiency:
 
 - Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.
 - Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.
@@ -51,13 +51,14 @@ Can we test for market efficiency?
 - Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
 
 
-How do we test for market anomalies:
+## Market Anomaly:
 
 - Defining "Normal" Returns: To determine if a strategy violates market efficiency, it's necessary to define what is considered a "normal" or "expected" return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).
 
 - Testing Strategy Returns: Using historical data, a strategy can be created and tested for excess returns that are statistically significant. For example, creating an equal-weight portfolio of stocks whose analyst ratings improved in the last month and running a regression analysis.
 
 When testing for anomalies, it's important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.
+
 
 
 ## Brief history of financial theory
