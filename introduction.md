@@ -1,4 +1,4 @@
-## Introduction:
+## Introduction
 
 There are two major categories of quantitative equity portfolio management: active and passive. Passive approach, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active approach aims to outperform a benchmark or provide an absolute return without any reference to an index.
 
@@ -28,7 +28,7 @@ Ex-Post Information Ratio is the excess performance of a portfolio manager in te
 
 An active portfolio manager aims for high alpha and high information ratio.
 
-### The Market Rules:
+### The Market Rules
 
 - Efficiency prevails in markets with profits only possible through taking risk.
 - Risk-free arbitrage does not exist.
@@ -36,7 +36,7 @@ An active portfolio manager aims for high alpha and high information ratio.
 - QA must be based on solid economic theories and reflect persistent patterns.
 - Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
 
-## Market efficiency:
+## Market efficiency
 
 - Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.
 - Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.
@@ -49,7 +49,7 @@ Can we test for market efficiency?
 - Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
 
 
-## Market Anomalies:
+## Market Anomalies
 
 - Defining "Normal" Returns: To determine if a strategy violates market efficiency, it's necessary to define what is considered a "normal" or "expected" return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).
 
@@ -57,7 +57,7 @@ Can we test for market efficiency?
 
 When testing for anomalies, it's important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.
 
-## Documented Market Anomalies and Features:
+## Documented Market Anomalies and Features
 
 - Value Effect: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
 Features: P/E, P/B, P/S, and P/D ratio.
