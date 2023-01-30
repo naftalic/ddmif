@@ -22,6 +22,14 @@ Ex-Post Information Ratio is the excess performance of a portfolio manager in te
 
 An active portfolio manager aims for high alpha and high information ratio.
 
+### The Market Rules:
+
+- Efficiency prevails in markets with profits only possible through taking risk.
+- Risk-free arbitrage does not exist.
+- Quantitative Analysis (QA) seeks profit through statistical arbitrage by using all available information.
+- QA must be based on solid economic theories and reflect persistent patterns.
+- Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
+
 ## Brief history of financial theory
 
 The modern financial theory has a history of over 100 years, starting from Bachelier's work in 1900 to today's portfolio risk measurement. The growth of quantitative equity portfolio management was accelerated by technological and theoretical advances in the late 20th century, but it's based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here's a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.
