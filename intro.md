@@ -12,12 +12,14 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 ## Fundamentals
 
 Alpha refers to three types of returns:
-(1) Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk. Formula: $r_P = α + βr_B + ϵ$.
-(2) CAPM Alpha: Return of a portfolio not linked to the market portfolio's risk. Formula: $r_P = α + βr_M + ϵ$.
-(3) Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
+- Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk. Formula: $r_P = α + βr_B + ϵ$.
+- CAPM Alpha: Return of a portfolio not linked to the market portfolio's risk. Formula: $r_P = α + βr_M + ϵ$.
+- Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
 
 Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.
+
 Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as $IR = α_B / 𝜔$, where 𝜔 is the residual risk or excess risk.
+
 An active portfolio manager aims for high alpha and high information ratio.
 
 ## Brief history of financial theory
