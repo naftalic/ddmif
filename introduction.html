@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction: &#8212; Data-Driven Methods in Finance</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data-Driven Methods in Finance" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/big-data-finance.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Data-Driven Methods in Finance
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction:
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/naftalic/ddmif"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fintroduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/introduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fundamentals">
+   Fundamentals
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-market-rules">
+     The Market Rules:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#market-efficiency">
+   Market efficiency:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#market-anomalies">
+   Market Anomalies:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documented-market-anomalies-and-features">
+   Documented Market Anomalies and Features:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#behavioral-anomalies">
+   Behavioral Anomalies
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-is-market-efficiency-imperfect">
+   Why is market efficiency imperfect?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brief-history-of-financial-theory">
+     Brief history of financial theory
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction:</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fundamentals">
+   Fundamentals
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-market-rules">
+     The Market Rules:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#market-efficiency">
+   Market efficiency:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#market-anomalies">
+   Market Anomalies:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documented-market-anomalies-and-features">
+   Documented Market Anomalies and Features:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#behavioral-anomalies">
+   Behavioral Anomalies
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-is-market-efficiency-imperfect">
+   Why is market efficiency imperfect?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brief-history-of-financial-theory">
+     Brief history of financial theory
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="section" id="introduction">
+<h1>Introduction:<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>There are two major categories of quantitative equity portfolio management: active and passive. Passive approach, also known as indexing, aims to track a well-known index, such as the S&amp;P 500, and minimize the tracking error. Active approach aims to outperform a benchmark or provide an absolute return without any reference to an index.</p>
+<p>Investors can access active or passive portfolios through mutual funds, ETFs, or building their own portfolios. Major equity benchmarks for portfolio managers include S&amp;P 500, Russell 3000, Wilshire 5000, NASDAQ-100, and MSCI USA.</p>
+<p>Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include Peter Lynch and Warren Buffett. Quantitative portfolio management is usually associated with large institutions or hedge funds, such as Barclays Global Investors, Goldman Sachs Asset Management, and Parametric Associates.</p>
+</div>
+<div class="section" id="fundamentals">
+<h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this headline">#</a></h1>
+<p>Alpha refers, generaly, to two types of returns:</p>
+<ul class="simple">
+<li><p>Benchmark Alpha: Return of a portfolio not linked to its benchmark’s risk or market portfolio’s risk. Formula: <span class="math notranslate nohighlight">\(r_P = α + βr_B + ϵ\)</span>.</p></li>
+<li><p>Multi-Factor Alpha: Return of a portfolio not linked to multi-factors’ risk. Formula: <span class="math notranslate nohighlight">\(r_P = α + β_1f_1 +...+β_Kf_K +ϵ\)</span>.</p></li>
+</ul>
+<p>A few remarks:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(βr_B\)</span> is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark</p></li>
+<li><p><span class="math notranslate nohighlight">\(α + ϵ\)</span> is the residual return</p></li>
+<li><p>The residual return is all that matters to the quantitative portfolio manager</p></li>
+<li><p>If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value.</p></li>
+<li><p>The residual return is the part that represents an increase in return independent of increased direct benchmark exposure.</p></li>
+<li><p><span class="math notranslate nohighlight">\(α\)</span> is the expected value of the residual return</p></li>
+<li><p><span class="math notranslate nohighlight">\(ϵ\)</span>, is the deviation of the residual return from its mean (it is assumed that <span class="math notranslate nohighlight">\(ϵ\)</span> averages zero).</p></li>
+</ul>
+<p>Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.</p>
+<p>Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as <span class="math notranslate nohighlight">\(IR = α_B / 𝜔\)</span>, where 𝜔 is the residual risk or excess risk.</p>
+<p>An active portfolio manager aims for high alpha and high information ratio.</p>
+<div class="section" id="the-market-rules">
+<h2>The Market Rules:<a class="headerlink" href="#the-market-rules" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Efficiency prevails in markets with profits only possible through taking risk.</p></li>
+<li><p>Risk-free arbitrage does not exist.</p></li>
+<li><p>Quantitative Analysis (QA) seeks profit through statistical arbitrage by using all available information.</p></li>
+<li><p>QA must be based on solid economic theories and reflect persistent patterns.</p></li>
+<li><p>Deviations from the benchmark are acceptable only if they come with manageable uncertainty.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="market-efficiency">
+<h1>Market efficiency:<a class="headerlink" href="#market-efficiency" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.</p></li>
+<li><p>Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.</p></li>
+<li><p>Strong form - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.</p></li>
+</ul>
+<p>Can we test for market efficiency?</p>
+<ul class="simple">
+<li><p>Weak-Form Efficiency: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.</p></li>
+<li><p>Semi-Strong Form Efficiency: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).</p></li>
+<li><p>Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.</p></li>
+</ul>
+</div>
+<div class="section" id="market-anomalies">
+<h1>Market Anomalies:<a class="headerlink" href="#market-anomalies" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Defining “Normal” Returns: To determine if a strategy violates market efficiency, it’s necessary to define what is considered a “normal” or “expected” return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).</p></li>
+<li><p>Testing Strategy Returns: Using historical data, a strategy can be created and tested for excess returns that are statistically significant. For example, creating an equal-weight portfolio of stocks whose analyst ratings improved in the last month and running a regression analysis.</p></li>
+</ul>
+<p>When testing for anomalies, it’s important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.</p>
+</div>
+<div class="section" id="documented-market-anomalies-and-features">
+<h1>Documented Market Anomalies and Features:<a class="headerlink" href="#documented-market-anomalies-and-features" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Value Effect: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
+Features: P/E, P/B, P/S, and P/D ratio.</p></li>
+<li><p>Size Effect: Small-cap stocks outperform large-cap stocks.
+Feature: Market capitalization.</p></li>
+<li><p>January Effect: Small-cap and poor-performing stocks tend to outperform in January.
+Features: Low market capitalization and low returns in previous year.</p></li>
+<li><p>Calendar Effect: Outperformance is observed on specific days of the week, Halloween, weather events, etc.
+Features: Day of the week, Halloween, weather, daylight savings, etc.</p></li>
+<li><p>Neglected-Firm Effect: Low analyst coverage stocks have risk-adjusted excess returns.
+Features: Number of analysts following the stock.</p></li>
+<li><p>PEG Ratio Effect: Inverse relationship between PEG ratio and stock performance.
+Feature: PEG ratio.</p></li>
+<li><p>IPO Effect: IPOs underperform on a risk-adjusted basis in first 3-5 years.
+Feature: IPO status.</p></li>
+<li><p>Index-Change Effect: Stocks included in an index have positive returns, while those dropped have negative returns.
+Feature: Index-inclusion status.</p></li>
+<li><p>Momentum: Stocks that perform well in one period tend to continue performing well.
+Feature: Prior period return.</p></li>
+<li><p>Technical Indicators: Certain technical indicators provide excess returns.
+Features: Volume, RSI, Bollinger Bands, moving average, etc.</p></li>
+<li><p>Analyst Forecasts: Stocks with buy ratings outperform, though effect has weakened. Changes in ratings and earnings surprises predict returns.
+Features: Analyst recommendations.</p></li>
+<li><p>Insider Trading: Recent insider-bought stocks have excess returns and recent insider-sold stocks have negative returns.
+Features: Insider trades.</p></li>
+<li><p>Overreaction: Investors overreact to both good and bad news. Loser stocks tend to outperform winners over 3-5 years.
+Features: Returns based on news events.</p></li>
+<li><p>Stock Buybacks: Companies that buy back stock have positive risk-adjusted returns.
+Feature: Change in treasury stock.</p></li>
+<li><p>Stock Splits and Reverse Splits: Stock splits are followed by positive returns.
+Feature: Signals of a stock split.</p></li>
+<li><p>Spin-offs: Parent companies have excess returns after spin-off of subsidiary.
+Feature: Signals of spin-off.</p></li>
+<li><p>Accruals: Low accrual companies perform better than high accrual companies.
+Feature: Accruals in prior period.</p></li>
+<li><p>Low Volatility: Low historical volatility stocks outperform high volatility stocks.
+Feature: Historical volatility.</p></li>
+<li><p>Low Beta: Low beta stocks outperform high beta stocks on a risk-adjusted basis.
+Feature: Historical beta.</p></li>
+<li><p>Liquidity: Less liquid stocks have higher returns than more liquid stocks.
+Features: Share turnover and Amihud liquidity.</p></li>
+<li><p>Crowding: Stocks invested in by many money managers underperform less invested-in stocks.
+Features: Holdings-based measure and return-based measure of saturation by managers.</p></li>
+</ul>
+</div>
+<div class="section" id="behavioral-anomalies">
+<h1>Behavioral Anomalies<a class="headerlink" href="#behavioral-anomalies" title="Permalink to this headline">#</a></h1>
+<p>Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors’ behavior.</p>
+<p>Anomalies:</p>
+<ul class="simple">
+<li><p>Anchoring: Over-reliance on past reference or single piece of information in decision making.</p></li>
+<li><p>Ambiguity Aversion: Avoidance of unfamiliar stocks, preference for familiar ones.</p></li>
+<li><p>Availability Bias: Over-estimation of likelihood of future event due to a distorted memory.</p></li>
+<li><p>Confirmation Bias: Overweighting information that confirms beliefs, underweighting that contradicts.</p></li>
+<li><p>Disposition Effect: Holding on to losers too long, selling winners too soon.</p></li>
+<li><p>Endowment Effect: Demanding more to give up an object than willing to pay to acquire it.</p></li>
+<li><p>Escalation Bias: Compounding losses by putting more money into a bad investment.</p></li>
+<li><p>Herding Mentality: Following others even in investing.</p></li>
+<li><p>Illusion of Knowledge: Overreliance on data to understand a stock.</p></li>
+<li><p>Narrow Framing: Considering individual investments in isolation.</p></li>
+<li><p>Overconfidence: Over-estimation of abilities, leading to frequent trades and transaction costs.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="why-is-market-efficiency-imperfect">
+<h1>Why is market efficiency imperfect?<a class="headerlink" href="#why-is-market-efficiency-imperfect" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Information is costly to obtain, not everyone can afford or wants to pay for it.</p></li>
+<li><p>Public information takes time to spread through the market.</p></li>
+<li><p>Not all investors have the capacity to process large amounts of information.</p></li>
+<li><p>Filtering public information creates private information.</p></li>
+<li><p>Investors may make decisions based on emotions rather than data.</p></li>
+<li><p>Efforts to exploit irrationality can cause inefficiencies.</p></li>
+<li><p>Economic conditions, including technology, constantly change and take time to adjust to.</p></li>
+<li><p>Transactions costs can diverge from economic models.</p></li>
+<li><p>Taxes affect market performance.</p></li>
+<li><p>Government regulations create deviations from ideal economic models.</p></li>
+</ul>
+<div class="section" id="brief-history-of-financial-theory">
+<h2>Brief history of financial theory<a class="headerlink" href="#brief-history-of-financial-theory" title="Permalink to this headline">#</a></h2>
+<p>The modern financial theory has a history of over 100 years, starting from Bachelier’s work in 1900 to today’s portfolio risk measurement. The growth of quantitative equity portfolio management was accelerated by technological and theoretical advances in the late 20th century, but it’s based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here’s a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.</p>
+<p>Louis Bachelier, a French mathematician, wrote “The Theory of Speculation” in 1900 and laid the foundation for dynamic security pricing. He showed that prices fluctuate randomly, making predictions impossible. In the 1930s, Alfred Cowles III found no evidence of professionals’ ability to outperform the market after examining thousands of stock selections. This supports the notion that trying to predict the market was no better than flipping a coin.</p>
+<p>In 1949, Benjamin Graham published “The Intelligent Investor” and introduced value investing. He believed that investors could pick stocks and beat the market by following certain rules, and his student, Warren Buffett, was successful in outperforming the S&amp;P 500 Index. The concept of security analysis still exists today, although it was more prevalent in the past. John Maynard Keynes also managed the Cambridge Trust fund with a small portfolio of stocks he knew, reflecting the world of investing before modern portfolio theory.</p>
+<p>Before Warren Buffett started his first investment fund, Harry Markowitz, a PhD student in economics from Chicago, published “Portfolio Selection” in 1952 in the Journal of Finance. The paper discussed combining different assets to reduce risk without lowering return. The idea was initially overlooked, with Markowitz’s advisor, Nobel Prize winner Milton Friedman, even jokingly suggesting the University of Chicago wouldn’t award Markowitz a PhD in economics for his topic. A similar article by A.D. Roy, “Safety First and the Holding of Assets,” received even less attention. This marked the start of modern portfolio theory, where Markowitz emphasized the importance of considering risk in addition to return and showed that holding many stocks instead of just a few could reduce risk while maintaining expected return.</p>
+<p>In the early 1960s, the first theory of asset prices, the Capital Asset Pricing Model (CAPM), emerged. William F. Sharpe, who would later win a Nobel Prize for his work, was the most well-known name associated with the CAPM’s development, but other authors including Jan Mossin, Jack Treynor, and John Linter also wrote about asset pricing during this time. The CAPM concluded that all investors should invest in the market portfolio, consisting of all existing securities in proportion to their market capitalization. Investors seeking more or less risk should place part of their wealth in money market or risk-free instruments and the rest in the market portfolio or borrow money at the risk-free rate and invest more in the market portfolio.</p>
+<p>The concept of beta (β) was introduced in 1964, which relates the expected return and risk of a security or portfolio to the entire stock market. A stock with a high beta will outperform the market when it does well, but underperform when the market does poorly. The CAPM provided a simple way to understand investment behavior, but there was the issue of stock-specific risk that could alter the relationship between the security and the market. The solution was to hold a group of securities in a portfolio, eliminating company-specific risk and leaving only market-related risk, allowing the investor to have a portfolio of desired risk level with respect to the market and a higher return than any individual stock.</p>
+<p>The CAPM theory claimed that stock returns could be predicted based on market risk exposure, but Paul Samuelson’s “Proof that Properly Anticipated Prices Fluctuate Randomly” (1965) showed that prices couldn’t be forecasted if properly anticipated. Michael Jensen’s 1968 study found that actively managed mutual funds underperformed the market, and past performance didn’t predict future performance. Eugene Fama defined and found evidence for market efficiency in 1970, with weak form efficiency meaning past prices can’t predict future prices, semistrong meaning publicly available information can’t forecast stock prices, and strong meaning even private information can’t predict stock prices. Fama found extensive evidence for the semistrong and strong forms of market efficiency, but recent evidence suggests deviations from efficiency exist (market anomalies).</p>
+<p>The greatest invention in financial theory was the Black-Scholes options pricing model, developed by Fischer Black and Myron Scholes in the 1960s. They based the formula on the Capital Asset Pricing Model (CAPM), but found that the price of an option didn’t depend on the expected return of a stock. Robert Merton provided a more elegant derivation of Black-Scholes, which is now widely used to value options. The Arbitrage Theory of Capital Asset Pricing (APT) proposed by Stephen Ross in 1976 was an alternative to the CAPM that allowed for multiple factors instead of one and took into account non-diversifiable risk. In 1992, Eugene Fama and Kenneth French published a three-factor APT model for stock returns that explained 95% of the variability in stock returns (market risk, company size, and book-to-market ratio). Researchers later added a fourth factor, momentum, to the Fama-French model. Today, many academics and practitioners use either a three- or four-factor APT model to explain stock returns.</p>
+<p>The growth of QEPM since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it’s becoming a more influential tool in performance measurement. However, financial theory also defines the limits of QEPM’s use and raises questions about its effectiveness. For example, if the market is weak-form efficient, QEPM’s arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data-Driven Methods in Finance</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Naftali Cohen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
