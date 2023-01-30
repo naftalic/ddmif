@@ -59,7 +59,70 @@ Can we test for market efficiency?
 
 When testing for anomalies, it's important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.
 
+## Documented Market Anomalies and Features:
 
+Value Effect: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
+Features: P/E, P/B, P/S, and P/D ratio.
+
+Size Effect: Small-cap stocks outperform large-cap stocks.
+Feature: Market capitalization.
+
+January Effect: Small-cap and poor-performing stocks tend to outperform in January.
+Features: Low market capitalization and low returns in previous year.
+
+Calendar Effect: Outperformance is observed on specific days of the week, Halloween, weather events, etc.
+Features: Day of the week, Halloween, weather, daylight savings, etc.
+
+Neglected-Firm Effect: Low analyst coverage stocks have risk-adjusted excess returns.
+Features: Number of analysts following the stock.
+
+PEG Ratio Effect: Inverse relationship between PEG ratio and stock performance.
+Feature: PEG ratio.
+
+IPO Effect: IPOs underperform on a risk-adjusted basis in first 3-5 years.
+Feature: IPO status.
+
+Index-Change Effect: Stocks included in an index have positive returns, while those dropped have negative returns.
+Feature: Index-inclusion status.
+
+Momentum: Stocks that perform well in one period tend to continue performing well.
+Feature: Prior period return.
+
+Technical Indicators: Certain technical indicators provide excess returns.
+Features: Volume, RSI, Bollinger Bands, moving average, etc.
+
+Analyst Forecasts: Stocks with buy ratings outperform, though effect has weakened. Changes in ratings and earnings surprises predict returns.
+Features: Analyst recommendations.
+
+Insider Trading: Recent insider-bought stocks have excess returns and recent insider-sold stocks have negative returns.
+Features: Insider trades.
+
+Overreaction: Investors overreact to both good and bad news. Loser stocks tend to outperform winners over 3-5 years.
+Features: Returns based on news events.
+
+Stock Buybacks: Companies that buy back stock have positive risk-adjusted returns.
+Feature: Change in treasury stock.
+
+Stock Splits and Reverse Splits: Stock splits are followed by positive returns.
+Feature: Signals of a stock split.
+
+Spin-offs: Parent companies have excess returns after spin-off of subsidiary.
+Feature: Signals of spin-off.
+
+Accruals: Low accrual companies perform better than high accrual companies.
+Feature: Accruals in prior period.
+
+Low Volatility: Low historical volatility stocks outperform high volatility stocks.
+Feature: Historical volatility.
+
+Low Beta: Low beta stocks outperform high beta stocks on a risk-adjusted basis.
+Feature: Historical beta.
+
+Liquidity: Less liquid stocks have higher returns than more liquid stocks.
+Features: Share turnover and Amihud liquidity.
+
+Crowding: Stocks invested in by many money managers underperform less invested-in stocks.
+Features: Holdings-based measure and return-based measure of saturation by managers.
 
 ## Brief history of financial theory
 
