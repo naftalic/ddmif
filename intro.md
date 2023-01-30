@@ -1,4 +1,10 @@
-# Data-Driven Methods in Finance (DDMIF)
+# Data-Driven Methods in Finance
+
+The following material is a short summary of the content of the course Data-Driven Methods in Finance (DDMIF) that aims to provide students with a comprehensive overview of using data to answer quantitative research questions in finance. The course aims to equip students with a strategic perspective and practical tools for leveraging data to add value to their research and products.
+
+The course content is based on multiple sources, but with a primary focus on the book "Quantitative Equity Portfolio Management, Second Edition: An Active Approach to Portfolio Construction and Management" by Ludwig B. Chincarini and Daehwan Kim. This book offers a systematic approach to portfolio construction and management using data-driven methods, making it an ideal foundation for the DDMIF course.
+In addition to the primary textbook, the course also draws on resources from "An Introduction to Statistical Learning" by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. This book provides an in-depth introduction to statistical learning techniques and their applications in various fields, including finance.
+Finally, the DDMIF course also leverages resources from "Introduction to Computational Finance and Financial Econometrics" by Eric Zivot. This book covers the basics of computational finance and financial econometrics, and provides students with a solid foundation in these fields.
 
 ## Introduction:
 
