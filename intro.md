@@ -6,6 +6,8 @@ The course content is based on multiple sources, but with a primary focus on the
 In addition to the primary textbook, the course also draws on resources from "An Introduction to Statistical Learning" by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. This book provides an in-depth introduction to statistical learning techniques and their applications in various fields, including finance.
 Finally, the DDMIF course also leverages resources from "Introduction to Computational Finance and Financial Econometrics" by Eric Zivot. This book covers the basics of computational finance and financial econometrics, and provides students with a solid foundation in these fields.
 
+This course does not provide investment advice or pre-made trading algorithms and does not reflect the views of the author affiliated entities and agencies. The primary goal is to highlight the challenges that Data Science and Machine Learning methods face when working with financial data. These challenges include a short history, non-stationarity, regime change, and low signal content, which make it difficult to achieve robust results. The topics we discuss serve as a guide to using these methods to inform an investment decision through a systematic and scientific workflow.
+
 ## Introduction:
 
 There are two major categories of quantitative equity portfolio management: active and passive. Passive approach, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active approach aims to outperform a benchmark or provide an absolute return without any reference to an index.
