@@ -1,6 +1,13 @@
 # Data-Driven Methods in Finance (DDMIF)
 
 
+Introduction:
+
+There are two major categories of quantitative equity portfolio management: active and passive. Passive equity portfolio management, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active equity portfolio management aims to outperform a benchmark or provide an absolute return without any reference to an index.
+
+Investors can access active or passive portfolios through mutual funds, ETFs, hedge funds, or building their own portfolios. Major equity benchmarks for portfolio managers include S&P 500, Russell 3000, Wilshire 5000, NASDAQ-100, and MSCI USA.
+
+Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include Peter Lynch and Warren Buffett. Quantitative portfolio management is usually associated with large institutions or hedge funds, such as Barclays Global Investors, Goldman Sachs Asset Management, and Parametric Associates.
 
 ## Brief history of financial theory
 
