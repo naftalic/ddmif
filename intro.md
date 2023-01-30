@@ -8,6 +8,18 @@ Investors can access active or passive portfolios through mutual funds, ETFs, he
 
 Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include Peter Lynch and Warren Buffett. Quantitative portfolio management is usually associated with large institutions or hedge funds, such as Barclays Global Investors, Goldman Sachs Asset Management, and Parametric Associates.
 
+
+## Fundamentals
+
+Alpha refers to three types of returns:
+(1) Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk. Formula: $r_P = α + βr_B + ϵ#.
+(2) CAPM Alpha: Return of a portfolio not linked to the market portfolio's risk. Formula: $r_P = α + βr_M + ϵ.
+(3) Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
+
+Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.
+Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as $IR = α_B / 𝜔$, where 𝜔 is the residual risk or excess risk.
+An active portfolio manager aims for high alpha and high information ratio.
+
 ## Brief history of financial theory
 
 The modern financial theory has a history of over 100 years, starting from Bachelier's work in 1900 to today's portfolio risk measurement. The growth of quantitative equity portfolio management was accelerated by technological and theoretical advances in the late 20th century, but it's based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here's a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.
