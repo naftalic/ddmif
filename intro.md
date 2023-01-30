@@ -1,7 +1,6 @@
 # Data-Driven Methods in Finance (DDMIF)
 
-
-Introduction:
+# Introduction:
 
 There are two major categories of quantitative equity portfolio management: active and passive. Passive equity portfolio management, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active equity portfolio management aims to outperform a benchmark or provide an absolute return without any reference to an index.
 
