@@ -1,6 +1,6 @@
 # Data-Driven Methods in Finance (DDMIF)
 
-# Introduction:
+## Introduction:
 
 There are two major categories of quantitative equity portfolio management: active and passive. Passive equity portfolio management, also known as indexing, aims to track a well-known index, such as the S&P 500, and minimize the tracking error. Active equity portfolio management aims to outperform a benchmark or provide an absolute return without any reference to an index.
 
@@ -10,7 +10,7 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 
 ## Brief history of financial theory
 
-The modern financial theory has a history of over 100 years, starting from Bachelier's work in 1900 to today's portfolio risk measurement. The growth of quantitative equity portfolio management (QEPM) was accelerated by technological and theoretical advances in the late 20th century, but it's based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here's a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.
+The modern financial theory has a history of over 100 years, starting from Bachelier's work in 1900 to today's portfolio risk measurement. The growth of quantitative equity portfolio management was accelerated by technological and theoretical advances in the late 20th century, but it's based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here's a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.
 
 Louis Bachelier, a French mathematician, wrote "The Theory of Speculation" in 1900 and laid the foundation for dynamic security pricing. He showed that prices fluctuate randomly, making predictions impossible. In the 1930s, Alfred Cowles III found no evidence of professionals' ability to outperform the market after examining thousands of stock selections. This supports the notion that trying to predict the market was no better than flipping a coin.
 
@@ -26,7 +26,7 @@ The CAPM theory claimed that stock returns could be predicted based on market ri
 
 The greatest invention in financial theory was the Black-Scholes options pricing model, developed by Fischer Black and Myron Scholes in the 1960s. They based the formula on the Capital Asset Pricing Model (CAPM), but found that the price of an option didn't depend on the expected return of a stock. Robert Merton provided a more elegant derivation of Black-Scholes, which is now widely used to value options. The Arbitrage Theory of Capital Asset Pricing (APT) proposed by Stephen Ross in 1976 was an alternative to the CAPM that allowed for multiple factors instead of one and took into account non-diversifiable risk. In 1992, Eugene Fama and Kenneth French published a three-factor APT model for stock returns that explained 95% of the variability in stock returns (market risk, company size, and book-to-market ratio). Researchers later added a fourth factor, momentum, to the Fama-French model. Today, many academics and practitioners use either a three- or four-factor APT model to explain stock returns.
 
-The growth of quantitative equity portfolio management (QEPM) since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it's becoming a more influential tool in performance measurement. However, financial theory also defines the limits of QEPM's use and raises questions about its effectiveness. For example, if the market is weak-form efficient, QEPM's arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.
+The growth of QEPM since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it's becoming a more influential tool in performance measurement. However, financial theory also defines the limits of QEPM's use and raises questions about its effectiveness. For example, if the market is weak-form efficient, QEPM's arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.
 
 
 
