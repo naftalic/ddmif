@@ -35,15 +35,20 @@ An active portfolio manager aims for both high alpha and high information ratio.
 # The Market Rules
 Investing in financial markets is a complex and challenging task that requires a deep understanding of various market rules and principles. The market rules, as stated here, are widely accepted and followed by investors, portfolio managers, and traders around the world. These rules help provide a framework for making informed investment decisions and maximizing returns while mitigating risk. 
 
-- Efficiency prevails in markets with profits only possible through taking risk.
-- Risk-free arbitrage does not exist.
-- Quantitative Analysis seeks profit through statistical arbitrage by using all available information.
-- Quantitative Analysis must be based on solid economic theories and reflect persistent patterns.
-- Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
+- Efficiency prevails in markets with profits only possible through taking risk: This rule states that in markets where investors can only make profits by taking risk, prices reflect all available information and future price movements are unpredictable. The only way to generate returns is to take on greater risk, and therefore profits can only be achieved by making better-informed decisions than others in the market.
+
+- Risk-free arbitrage does not exist: The concept of risk-free arbitrage refers to a situation where an investor can take advantage of market inefficiencies to make a profit with zero risk. This is not possible in real-world financial markets, as all investments carry some level of risk.
+
+- Quantitative Analysis seeks profit through statistical arbitrage by using all available information: Quantitative analysis is a systematic approach to investing that uses mathematical and statistical methods to analyze market data and identify profitable investment opportunities. It seeks to exploit market inefficiencies and generate returns through statistical arbitrage, which is the process of taking advantage of price discrepancies between two or more securities.
+
+- Quantitative Analysis must be based on solid economic theories and reflect persistent patterns: To be effective, quantitative analysis must be based on solid economic theories and reflect persistent patterns in the data. This means that the investment strategies used must be backed by research and analysis and be able to withstand changing market conditions.
+
+- Deviations from the benchmark are acceptable only if they come with manageable uncertainty: Investors often use benchmark portfolios as a reference point for their own investments. Deviations from the benchmark are acceptable only if they are accompanied by manageable levels of uncertainty and the potential for a higher return. This is because investors are willing to take on additional risk if they believe that the reward is worth it.
 
 # Market efficiency
 
 We generaly distingish between three forms of market efficiencies:
+
 - Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.
 - Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.
 - Strong form - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.
@@ -53,7 +58,6 @@ Can we test for market efficiency?
 - Weak-Form Efficiency: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.
 - Semi-Strong Form Efficiency: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).
 - Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
-
 
 # Market Anomalies
 
@@ -112,7 +116,7 @@ The Analyst Forecasts Effect refers to the observation that stocks with "buy" ra
 
 Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors' behavior.
 
-Documented nomalies:
+Documented anomalies:
 
 - Anchoring: Investors tend to rely too heavily on a single piece of information or reference point when making investment decisions, leading to a bias in their assessments. This often results in a lack of flexibility in decision making, as investors may be anchored to certain expectations or past market experiences.
 
