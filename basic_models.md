@@ -54,3 +54,6 @@ $r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}$, $ε_{B,t+1}\sim N(0,10)$.
 ε represents the random component of the stock return. The covariance between the random errors of the two stocks is zero.
 For period T, the P/E ratio of Stock A is 20 and of Stock B is 10. Assume stationarity over time and across stocks.
 Calculate the Z-scores of the above equations using cross-sectional analysis and calculate the weights of a portfolio comprising Stock A and Stock B that maximizes the Sharpe ratio using a graphical method.
+
+<img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png">
+
