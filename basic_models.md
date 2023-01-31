@@ -1,22 +1,23 @@
-# Basic Models in Financial Economics
+# Basic Models
 
-Quantitative research in finance uses mathematical models to predict stock returns and volatility, which form the basis for stock selection. 
-The central concept in financial economics is that a stock's average return reflects the reward for taking on risk.
+The Fundamental Factor Model aims to explain a stock's expected return based on its fundamental characteristics, such as price-to-earnings ratio, market capitalization, and other financial metrics. The idea is that these characteristics are proxies for the underlying risk and growth prospects of a company, which in turn determines the expected return.
 
-Factor models express this risk-reward relationship by showing that a stock's average return is proportional to its exposure to different types 
-of risk represented by factors, and the reward for each unit of exposure to the risk.
+The Economic Factor Model, on the other hand, uses macroeconomic variables such as gross domestic product (GDP) and inflation as factors to explain expected returns. The premise is that macroeconomic conditions drive the performance of the overall economy, and in turn, affect the expected return of individual stocks. This type of model can also incorporate other factors, such as sector-specific variables, to provide a more comprehensive view of a stock's expected return.
 
-There are two main types of factor models:
-
-- The Fundamental Factor Model: uses stock characteristics such as P/E ratio and market capitalization as factors.
-- The Economic Factor Model: uses macroeconomic variables such as GDP and inflation, but it can also incorporate other types of factors.
+Both types of factor models are used by quantitative investors to help inform investment decisions. The models provide a systematic way to analyze risk and reward and identify which stocks are likely to outperform based on their factor exposures. However, it's important to note that factor models are not perfect, and past performance does not guarantee future returns. Additionally, changes in economic conditions and company fundamentals can impact the expected return of a stock, and the factor model must be updated to reflect these changes.
 
 # Modeling Stock Returns
 
-Stock returns can be modeled as:
-$r_i = α_i + β_{i1}f_1 + β_{i2}f_2+··· + β_{iK}f_K +ϵ_i$.
-This equation can be used to determine the expected return and risk of each stock and portfolio, 
-and then choose the optimal portfolio based on the results.
+The equation for modeling stock returns is known as the Capital Asset Pricing Model (CAPM), which is a widely used model in finance for explaining the relationship between stock returns and systematic risk. The model assumes that each stock's return can be decomposed into two components:
+
+A stock-specific component ($α_i$) which is uncorrelated with the market and represents the expected return of the stock that is not related to systematic risk factors.
+
+A market-related component ($β_{i1}f_1 + β_{i2}f_2 + ... + β_{iK}f_K$) that represents the stock's exposure to systematic risk factors ($f_1, f_2, ..., f_K$). Each factor's return contributes to the stock's return in proportion to the factor's sensitivity to the stock, represented by $β_i$.
+
+The term $ϵ_i$ represents the residual, which is the difference between the actual stock return and the expected return given by the model. The residual represents the unsystematic risk, which is unique to each stock and can be diversified away by holding a well-diversified portfolio.
+
+The CAPM can be used to determine the expected return and risk of each stock and portfolio, and then choose the optimal portfolio based on the results. The optimal portfolio is the one that maximizes expected returns for a given level of risk or minimizes risk for a given level of expected returns. This process is known as Modern Portfolio Theory (MPT) and it is a cornerstone of quantitative investing.
+
 
 Steps to Form a Model and Make a Portfolio:
 
