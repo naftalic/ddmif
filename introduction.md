@@ -16,12 +16,12 @@ Alpha refers, generaly, to two types of returns:
 - Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
 
 A few important remarks: 
-- $βr_B$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark
+- $βr_B$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.
 - $α + ϵ$ is the residual return
-- The residual return is all that matters to the quantitative portfolio manager
+- The residual return is all that matters to the quantitative portfolio manager.
 - If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value. 
 - The residual return is the part that represents an increase in return independent of increased direct benchmark exposure. 
-- $α$ is the expected value of the residual return
+- $α$ is the expected value of the residual return ($E(α + ϵ) = α$).
 - $ϵ$, is the deviation of the residual return from its mean (it is assumed that $ϵ$ averages zero). 
 
 In general, we distingish between Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas:
