@@ -9,11 +9,13 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 
 # Fundamentals
 
+What is alpha and why it's important?
+
 Alpha refers, generaly, to two types of returns:
 - Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk or market portfolio's risk. Formula: $r_P = α + βr_B + ϵ$.
 - Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
 
-A few remarks: 
+A few important remarks: 
 - $βr_B$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark
 - $α + ϵ$ is the residual return
 - The residual return is all that matters to the quantitative portfolio manager
@@ -22,22 +24,25 @@ A few remarks:
 - $α$ is the expected value of the residual return
 - $ϵ$, is the deviation of the residual return from its mean (it is assumed that $ϵ$ averages zero). 
 
+In general, we distingish between Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas:
+
 Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.
 
 Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as $IR = α_B / 𝜔$, where 𝜔 is the residual risk or excess risk.
 
-An active portfolio manager aims for high alpha and high information ratio.
+An active portfolio manager aims for both high alpha and high information ratio.
 
 # The Market Rules
 
 - Efficiency prevails in markets with profits only possible through taking risk.
 - Risk-free arbitrage does not exist.
-- Quantitative Analysis (QA) seeks profit through statistical arbitrage by using all available information.
-- QA must be based on solid economic theories and reflect persistent patterns.
+- Quantitative Analysis seeks profit through statistical arbitrage by using all available information.
+- Quantitative Analysis must be based on solid economic theories and reflect persistent patterns.
 - Deviations from the benchmark are acceptable only if they come with manageable uncertainty.
 
 # Market efficiency
 
+We generaly distingish between three forms of market efficiencies:
 - Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.
 - Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.
 - Strong form - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.
@@ -59,19 +64,21 @@ When testing for anomalies, it's important to be aware of data limitations and t
 
 # Documented Market Anomalies and Features
 
-- Value Effect: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
+Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:
+
+- [Value Effect](https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp): Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
 Features: P/E, P/B, P/S, and P/D ratio.
 
-- Size Effect: Small-cap stocks outperform large-cap stocks.
+- [Size Effect](https://www.investopedia.com/terms/s/smallfirmeffect.asp): Small-cap stocks outperform large-cap stocks.
 Feature: Market capitalization.
 
-- January Effect: Small-cap and poor-performing stocks tend to outperform in January.
+- [January Effect[(https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp): Small-cap and poor-performing stocks tend to outperform in January.
 Features: Low market capitalization and low returns in previous year.
 
 - Calendar Effect: Outperformance is observed on specific days of the week, Halloween, weather events, etc.
 Features: Day of the week, Halloween, weather, daylight savings, etc.
 
-- Neglected-Firm Effect: Low analyst coverage stocks have risk-adjusted excess returns.
+- [Neglected-Firm Effect](https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp): Low analyst coverage stocks have risk-adjusted excess returns.
 Features: Number of analysts following the stock.
 
 - PEG Ratio Effect: Inverse relationship between PEG ratio and stock performance.
@@ -126,7 +133,7 @@ Features: Holdings-based measure and return-based measure of saturation by manag
 
 Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors' behavior.
 
-Anomalies:
+Documented nomalies:
 
 - Anchoring: Over-reliance on past reference or single piece of information in decision making.
 - Ambiguity Aversion: Avoidance of unfamiliar stocks, preference for familiar ones.
