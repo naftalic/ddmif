@@ -43,11 +43,13 @@ Many portfolio managers opt for a stock screening technique instead of a formal 
 
 # Exercise:
 
-Consider a world with only two stocks, Stock A and Stock B. The current stock returns, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by the end-of-period price-to-earnings (P/E) ratios of the previous period. The equation for Stock A is:
+Consider a world with only two stocks, Stock A and Stock B. The current stock returns, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by the end-of-period price-to-earnings (P/E) ratios of the previous period. 
 
-$r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}, ε_{A,t+1}\sim N(0,20)$
+The equation for Stock A is:
+$r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}$, $ε_{A,t+1}\sim N(0,20)$.
+
 The equation for Stock B is:
-$r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}, ε_{B,t+1}\sim N(0,10)$
+$r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}$, $ε_{B,t+1}\sim N(0,10)$.
 
 ε represents the random component of the stock return. The covariance between the random errors of the two stocks is zero.
 For period T, the P/E ratio of Stock A is 20 and of Stock B is 10. Assume stationarity over time and across stocks.
