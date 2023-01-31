@@ -41,7 +41,7 @@ The Fundamental Factor Model and the Economic Factor Model are equivalent if the
 
 Many portfolio managers opt for a stock screening technique instead of a formal model for selecting stocks. Others use Z-scores to screen and rank stocks.
 
-# Exercise:
+# Exercise
 
 Consider a world with only two stocks, Stock A and Stock B. The current stock returns, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by the end-of-period price-to-earnings (P/E) ratios of the previous period. 
 
