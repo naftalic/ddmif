@@ -420,37 +420,40 @@ title="Print to PDF"
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="fundamentals">
 <h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this headline">#</a></h1>
+<p>What is alpha and why it’s important?</p>
 <p>Alpha refers, generaly, to two types of returns:</p>
 <ul class="simple">
 <li><p>Benchmark Alpha: Return of a portfolio not linked to its benchmark’s risk or market portfolio’s risk. Formula: <span class="math notranslate nohighlight">\(r_P = α + βr_B + ϵ\)</span>.</p></li>
 <li><p>Multi-Factor Alpha: Return of a portfolio not linked to multi-factors’ risk. Formula: <span class="math notranslate nohighlight">\(r_P = α + β_1f_1 +...+β_Kf_K +ϵ\)</span>.</p></li>
 </ul>
-<p>A few remarks:</p>
+<p>A few important remarks:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(βr_B\)</span> is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark</p></li>
+<li><p><span class="math notranslate nohighlight">\(βr_B\)</span> is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.</p></li>
 <li><p><span class="math notranslate nohighlight">\(α + ϵ\)</span> is the residual return</p></li>
-<li><p>The residual return is all that matters to the quantitative portfolio manager</p></li>
+<li><p>The residual return is all that matters to the quantitative portfolio manager.</p></li>
 <li><p>If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value.</p></li>
 <li><p>The residual return is the part that represents an increase in return independent of increased direct benchmark exposure.</p></li>
-<li><p><span class="math notranslate nohighlight">\(α\)</span> is the expected value of the residual return</p></li>
+<li><p><span class="math notranslate nohighlight">\(α\)</span> is the expected value of the residual return (<span class="math notranslate nohighlight">\(E(α + ϵ) = α\)</span>).</p></li>
 <li><p><span class="math notranslate nohighlight">\(ϵ\)</span>, is the deviation of the residual return from its mean (it is assumed that <span class="math notranslate nohighlight">\(ϵ\)</span> averages zero).</p></li>
 </ul>
+<p>In general, we distingish between Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas:</p>
 <p>Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.</p>
 <p>Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as <span class="math notranslate nohighlight">\(IR = α_B / 𝜔\)</span>, where 𝜔 is the residual risk or excess risk.</p>
-<p>An active portfolio manager aims for high alpha and high information ratio.</p>
+<p>An active portfolio manager aims for both high alpha and high information ratio.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="the-market-rules">
 <h1>The Market Rules<a class="headerlink" href="#the-market-rules" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Efficiency prevails in markets with profits only possible through taking risk.</p></li>
 <li><p>Risk-free arbitrage does not exist.</p></li>
-<li><p>Quantitative Analysis (QA) seeks profit through statistical arbitrage by using all available information.</p></li>
-<li><p>QA must be based on solid economic theories and reflect persistent patterns.</p></li>
+<li><p>Quantitative Analysis seeks profit through statistical arbitrage by using all available information.</p></li>
+<li><p>Quantitative Analysis must be based on solid economic theories and reflect persistent patterns.</p></li>
 <li><p>Deviations from the benchmark are acceptable only if they come with manageable uncertainty.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="market-efficiency">
 <h1>Market efficiency<a class="headerlink" href="#market-efficiency" title="Permalink to this headline">#</a></h1>
+<p>We generaly distingish between three forms of market efficiencies:</p>
 <ul class="simple">
 <li><p>Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.</p></li>
 <li><p>Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.</p></li>
@@ -473,16 +476,17 @@ title="Print to PDF"
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="documented-market-anomalies-and-features">
 <h1>Documented Market Anomalies and Features<a class="headerlink" href="#documented-market-anomalies-and-features" title="Permalink to this headline">#</a></h1>
+<p>Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:</p>
 <ul class="simple">
-<li><p>Value Effect: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
+<li><p><a class="reference external" href="https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp">Value Effect</a>: Low P/E stocks outperform high P/E stocks, as well as P/B, P/S, and P/D ratio stocks.
 Features: P/E, P/B, P/S, and P/D ratio.</p></li>
-<li><p>Size Effect: Small-cap stocks outperform large-cap stocks.
+<li><p><a class="reference external" href="https://www.investopedia.com/terms/s/smallfirmeffect.asp">Size Effect</a>: Small-cap stocks outperform large-cap stocks.
 Feature: Market capitalization.</p></li>
-<li><p>January Effect: Small-cap and poor-performing stocks tend to outperform in January.
+<li><p>[January Effect[(<a class="reference external" href="https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp">https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp</a>): Small-cap and poor-performing stocks tend to outperform in January.
 Features: Low market capitalization and low returns in previous year.</p></li>
 <li><p>Calendar Effect: Outperformance is observed on specific days of the week, Halloween, weather events, etc.
 Features: Day of the week, Halloween, weather, daylight savings, etc.</p></li>
-<li><p>Neglected-Firm Effect: Low analyst coverage stocks have risk-adjusted excess returns.
+<li><p><a class="reference external" href="https://www.investopedia.com/articles/financial-theory/11/trading-with-market-anomalies.asp">Neglected-Firm Effect</a>: Low analyst coverage stocks have risk-adjusted excess returns.
 Features: Number of analysts following the stock.</p></li>
 <li><p>PEG Ratio Effect: Inverse relationship between PEG ratio and stock performance.
 Feature: PEG ratio.</p></li>
@@ -521,7 +525,7 @@ Features: Holdings-based measure and return-based measure of saturation by manag
 <div class="tex2jax_ignore mathjax_ignore section" id="behavioral-anomalies">
 <h1>Behavioral Anomalies<a class="headerlink" href="#behavioral-anomalies" title="Permalink to this headline">#</a></h1>
 <p>Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors’ behavior.</p>
-<p>Anomalies:</p>
+<p>Documented nomalies:</p>
 <ul class="simple">
 <li><p>Anchoring: Over-reliance on past reference or single piece of information in decision making.</p></li>
 <li><p>Ambiguity Aversion: Avoidance of unfamiliar stocks, preference for familiar ones.</p></li>
@@ -561,7 +565,7 @@ Features: Holdings-based measure and return-based measure of saturation by manag
 <p>The concept of beta (β) was introduced in 1964, which relates the expected return and risk of a security or portfolio to the entire stock market. A stock with a high beta will outperform the market when it does well, but underperform when the market does poorly. The CAPM provided a simple way to understand investment behavior, but there was the issue of stock-specific risk that could alter the relationship between the security and the market. The solution was to hold a group of securities in a portfolio, eliminating company-specific risk and leaving only market-related risk, allowing the investor to have a portfolio of desired risk level with respect to the market and a higher return than any individual stock.</p>
 <p>The CAPM theory claimed that stock returns could be predicted based on market risk exposure, but Paul Samuelson’s “Proof that Properly Anticipated Prices Fluctuate Randomly” (1965) showed that prices couldn’t be forecasted if properly anticipated. Michael Jensen’s 1968 study found that actively managed mutual funds underperformed the market, and past performance didn’t predict future performance. Eugene Fama defined and found evidence for market efficiency in 1970, with weak form efficiency meaning past prices can’t predict future prices, semistrong meaning publicly available information can’t forecast stock prices, and strong meaning even private information can’t predict stock prices. Fama found extensive evidence for the semistrong and strong forms of market efficiency, but recent evidence suggests deviations from efficiency exist (market anomalies).</p>
 <p>The greatest invention in financial theory was the Black-Scholes options pricing model, developed by Fischer Black and Myron Scholes in the 1960s. They based the formula on the Capital Asset Pricing Model (CAPM), but found that the price of an option didn’t depend on the expected return of a stock. Robert Merton provided a more elegant derivation of Black-Scholes, which is now widely used to value options. The Arbitrage Theory of Capital Asset Pricing (APT) proposed by Stephen Ross in 1976 was an alternative to the CAPM that allowed for multiple factors instead of one and took into account non-diversifiable risk. In 1992, Eugene Fama and Kenneth French published a three-factor APT model for stock returns that explained 95% of the variability in stock returns (market risk, company size, and book-to-market ratio). Researchers later added a fourth factor, momentum, to the Fama-French model. Today, many academics and practitioners use either a three- or four-factor APT model to explain stock returns.</p>
-<p>The growth of QEPM since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it’s becoming a more influential tool in performance measurement. However, financial theory also defines the limits of QEPM’s use and raises questions about its effectiveness. For example, if the market is weak-form efficient, QEPM’s arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.</p>
+<p>The growth of financial quantitative research since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it’s becoming a more influential tool in performance measurement. However, financial theory also defines the limits of quantitative research’s use and raises questions about its effectiveness. For example, if the market is weak-form efficient, quantitative research’s arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.</p>
 </div>
 
     <script type="text/x-thebe-config">
