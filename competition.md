@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Forecasting Competition
+# Investment Competition
 
 
 # Some Code
