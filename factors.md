@@ -41,6 +41,20 @@ Economic factors refer to variables that impact the overall macroeconomy and can
 ## Alternative Factors
 Alternative factors are a group of factors used in financial analysis and modeling that do not fit into the traditional categories of fundamental, technical, and economic factors. There are three subcategories of alternative factors: analyst factors, captivus factors, and social responsibility factors. Analyst factors include information from Wall Street analysts such as earnings forecasts, buy-sell recommendations, and other relevant information that can be used to predict stock returns. Captivus factors include data captured through GPS, satellite, social media, or news feeds, often captured through sophisticated programs and with a higher frequency than traditional data sources, making it available earlier. Web scraping is a common method of obtaining captivus data. Lastly, social responsibility factors involve quantifying the relationships between management and employees, corporate governance, and issues related to diversity, including the composition of the board and discrimination practices.
 
+# Factor choices
+The building of investment models is a combination of science and art. However, in quantitative portfolio management, the manager must have a deep understanding of financial and economic theory to choose and combine factors appropriately. There are two types of quantitative stock return models: the fundamental factor model and the economic factor model. To choose factors for the former, univariate and multiple regression techniques can be used, while for the latter, unidimensional and multidimensional zero-investment portfolio techniques are suggested. Additionally, a simple correlation statistic or rank-correlation statistic can be used to determine the correlation among factor choices, helping in combining and grouping factors.
+
+## Univariate Regression Tests
+
+## Multiple Regression Tests
+
+## Unidimensional Zero-Investment Portfolio
+
+## Multidimensional Zero-Investment Portfolio
+
+## Techniques to Reduce the Number of Factors
+
+
 # Some Code
 ```{code-cell}
 ---
