@@ -57,10 +57,32 @@ However, univariate regressions have a drawback in that they may lead to finding
 Despite these limitations, simple regressions are still used by many portfolio managers because they are easy to perform and provide an early idea of what might be relevant and what might not be. If there are too many potential factors, simple regressions can be used to make the first round of cuts. 
 
 ## Multiple Regression Tests
+Multiple regression is a statistical method used to analyze the relationship between multiple explanatory factors and a response variable. It helps determine which factors impact the return and how significant that impact is. In this context, the portfolio manager is using multiple regression to identify the factors that impact stock returns.
+
+The method starts with a reasonable number of factors, typically less than 10, and estimates a multivariate panel regression where each factor is analyzed for its exposure to the stock over time. Any factors that are found to be insignificant are dropped, while the significant factors are included in the final factor model.
+
+However, there are several dangers associated with this method, including misspecification bias, data mining, and sequential specification search. Misspecification bias occurs when too many factors are included in the regression, leading to misleading statistical inference. Data mining is the process of searching for the best model that explains past stock returns, but it provides no guarantee that these factors will work in the future and does not provide any theoretical explanation for why these factors were chosen. Sequential specification search is the process of starting with a list of factors, dropping and adding variables based on significance, and eventually obtaining a desired level of significance in explaining stock returns. This can also lead to exaggerated statistical significance and make it difficult for the investment committee to evaluate the truth of the final model.
+
+To avoid these dangers, the best advice is to start with a strong theoretical explanation for why a certain model with certain factors will work. The model should be tested over a variety of time periods for robustness and the portfolio manager should be cautious about adding and dropping variables.
 
 ## Unidimensional Zero-Investment Portfolio
+The Unidimensional Zero-Investment Portfolio method is a technique used by portfolio managers to assess the impact of a specific factor on stock returns. The objective is to determine whether the factor has a significant effect on the returns of a portfolio and to measure the benefits of using this factor for stock selection.
+
+The method involves dividing the universe of stocks based on a specific factor exposure, such as the P/B ratio, into equal portions, such as quintiles. A portfolio is then constructed from the first quintile and another from the fifth quintile. The returns of the first quintile are subtracted from those of the fifth quintile to obtain the returns of the hypothetical zero-investment portfolio. The term "zero investment" refers to the fact that theoretically no capital is required to create the portfolio.
+
+The procedure involves ranking the stocks based on the factor exposure, constructing portfolios from the first and fifth quintile, computing the returns of the portfolios, and then calculating statistics on the historical returns of the first-quintile portfolio minus the fifth-quintile portfolio.
+
+To determine the significance of the results, a statistical test is performed using the t-statistic. The t-statistic is calculated as the ratio of the sample average of the portfolio returns to the standard error of the mean. If the absolute value of the t-statistic is greater than 2, the average portfolio return is considered to be significantly different from zero and the factor is considered to be statistically significant.
 
 ## Multidimensional Zero-Investment Portfolio
+
+Multidimensional Zero-Investment Portfolio is a method of constructing portfolios that examines the joint impact of multiple factors on stock returns. It is a more rigorous approach than the unidimensional approach, which only looks at the effect of one factor at a time.
+
+To create a multidimensional zero-investment portfolio, the portfolio manager first ranks all stocks based on each factor of interest, such as size and price-to-book ratio. The stocks are then grouped into joint quintiles or deciles based on these rankings. For example, if the portfolio manager wants to create 10 groups out of each factor, there will be 100 groups in total (10 portfolios based on size and 10 portfolios based on P/B ratio). The portfolio manager can obtain these 100 portfolios by taking the intersections of these portfolios.
+
+The method of creating the zero-investment portfolios depends on the objective of the portfolio manager. If the manager is interested in the joint impact of small size and low P/B ratio on stock returns, they can construct a zero-investment portfolio by taking a long position on the small-low portfolio and a short position on the large-high portfolio. T-statistics can then be calculated to determine the significance of the joint effect of the factors.
+
+Alternatively, the manager can apply a multiple regression analysis. For each factor considered, an indicator variable is defined that takes the value of 1 if the stock belongs to the top division (e.g., quintile), −1 if the stock belongs to the bottom division, and 0 otherwise. Running a regression of stock returns on these indicator variables will result in coefficients that can be interpreted as the returns to suitably constructed zero-investment portfolios. The significance of the multiple regression can then be taken as an indicator of the joint significance of the selected factors.
 
 ## Techniques to Reduce the Number of Factors
 
