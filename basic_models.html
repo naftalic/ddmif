@@ -440,36 +440,20 @@ title="Print to PDF"
 <h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h1>
 <p>You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, <span class="math notranslate nohighlight">\(r_{A,t+1}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t+1}\)</span>, are determined by their current Price-to-Earnings (P/E) ratios.
 The equations for Stock A and Stock B’s returns are given as</p>
-<p><span class="math notranslate nohighlight">\(r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{A,t+1}\sim N(0,20)\)</span>, and
-<span class="math notranslate nohighlight">\(r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{B,t+1}\sim N(0,10)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(r_{A,t+1} = 0.1\times(P/E)_{A,t} +ε_{A,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{A,t+1}\sim N(0,20)\)</span>, and
+<span class="math notranslate nohighlight">\(r_{B,t+1} = 0.1\times(P/E)_{B,t} +ε_{B,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{B,t+1}\sim N(0,10)\)</span>.</p>
 <p>As seen, the returns are influenced by the P/E ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.</p>
 <p>Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/E ratios is stationary over time and across stocks.</p>
 <p>Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -477,7 +461,17 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
 </pre></div>
 </div>
-<img alt="_images/basic_models_2_1.png" src="_images/basic_models_2_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/basic_models_2_0.png" src="_images/basic_models_2_0.png" />
 </div>
 </div>
 <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png"></div>

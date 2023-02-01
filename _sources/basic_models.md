@@ -64,18 +64,14 @@ While these techniques are quick and convenient, they may not provide a complete
 You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by their current Price-to-Earnings (P/E) ratios. 
 The equations for Stock A and Stock B's returns are given as 
 
-$r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}$, $ε_{A,t+1}\sim N(0,20)$, and
-$r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}$, $ε_{B,t+1}\sim N(0,10)$.
+$r_{A,t+1} = 0.1\times(P/E)_{A,t} +ε_{A,t+1}$, $ε_{A,t+1}\sim N(0,20)$, and
+$r_{B,t+1} = 0.1\times(P/E)_{B,t} +ε_{B,t+1}$, $ε_{B,t+1}\sim N(0,10)$.
 
 As seen, the returns are influenced by the P/E ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.
 
 Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/E ratios is stationary over time and across stocks.
 
 Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
-
-```{code-cell}
-print(2 + 2)
-```
 
 ```{code-cell}
 ---
@@ -85,7 +81,6 @@ mystnb:
     caption_before: true
     caption: This is my table caption, above the table
 ---
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -93,7 +88,9 @@ w = np.linspace(0,1,100)
 sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
 
 print( w[np.argmax(sr)], np.max(sr) )
+```
 
+```{code-cell}
 plt.plot(w,sr)
 plt.show()
 ```
