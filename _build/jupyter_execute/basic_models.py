@@ -1,21 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-print(2 + 2)
-
-
-# In[2]:
-
-
-import pandas
-df = pandas.DataFrame({"column 1": [1, 2, 3]})
-df = df.style.set_table_attributes('class="dataframe align-center"')
-df
-
-
 # # Basic Models
 # 
 # The Fundamental Factor Model aims to explain a stock's expected return based on its fundamental characteristics, such as price-to-earnings ratio, market capitalization, and other financial metrics. The idea is that these characteristics are proxies for the underlying risk and growth prospects of a company, which in turn determines the expected return.
@@ -76,13 +61,23 @@ df
 # 
 # Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
 
-# In[3]:
+# In[1]:
 
 
-import pandas
-df = pandas.DataFrame({"column 1": [1, 2, 3]})
-df = df.style.set_table_attributes('class="dataframe align-center"')
-df
+print(2 + 2)
+
+
+# In[2]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+w = np.linspace(0,1,100)
+sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
+print( w[np.argmax(sr), np.max(sr) )
+plt.plot(w,sr)
 
 
 # <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png">

@@ -408,55 +408,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;column 1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_table_attributes</span><span class="p">(</span><span class="s1">&#39;class=&quot;dataframe align-center&quot;&#39;</span><span class="p">)</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style type="text/css">
-</style>
-<table id="T_6e2bf" class="dataframe align-center">
-  <thead>
-    <tr>
-      <th class="blank level0" >&nbsp;</th>
-      <th id="T_6e2bf_level0_col0" class="col_heading level0 col0" >column 1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_6e2bf_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_6e2bf_row0_col0" class="data row0 col0" >1</td>
-    </tr>
-    <tr>
-      <th id="T_6e2bf_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_6e2bf_row1_col0" class="data row1 col0" >2</td>
-    </tr>
-    <tr>
-      <th id="T_6e2bf_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_6e2bf_row2_col0" class="data row2 col0" >3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="basic-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="basic-models">
 <h1>Basic Models<a class="headerlink" href="#basic-models" title="Permalink to this headline">#</a></h1>
 <p>The Fundamental Factor Model aims to explain a stock’s expected return based on its fundamental characteristics, such as price-to-earnings ratio, market capitalization, and other financial metrics. The idea is that these characteristics are proxies for the underlying risk and growth prospects of a company, which in turn determines the expected return.</p>
 <p>The Economic Factor Model, on the other hand, uses macroeconomic variables such as gross domestic product (GDP) and inflation as factors to explain expected returns. The premise is that macroeconomic conditions drive the performance of the overall economy, and in turn, affect the expected return of individual stocks. This type of model can also incorporate other factors, such as sector-specific variables, to provide a more comprehensive view of a stock’s expected return.</p>
@@ -495,39 +447,37 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <p>Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;column 1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_table_attributes</span><span class="p">(</span><span class="s1">&#39;class=&quot;dataframe align-center&quot;&#39;</span><span class="p">)</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style type="text/css">
-</style>
-<table id="T_f9ae9" class="dataframe align-center">
-  <thead>
-    <tr>
-      <th class="blank level0" >&nbsp;</th>
-      <th id="T_f9ae9_level0_col0" class="col_heading level0 col0" >column 1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_f9ae9_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_f9ae9_row0_col0" class="data row0 col0" >1</td>
-    </tr>
-    <tr>
-      <th id="T_f9ae9_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_f9ae9_row1_col0" class="data row1 col0" >2</td>
-    </tr>
-    <tr>
-      <th id="T_f9ae9_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_f9ae9_row2_col0" class="data row2 col0" >3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
+                                       <span class="o">^</span>
+<span class="ne">SyntaxError</span>: closing parenthesis &#39;)&#39; does not match opening parenthesis &#39;[&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png"></div>
 
