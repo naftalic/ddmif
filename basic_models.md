@@ -67,5 +67,9 @@ ax.grid()
 plt.close()
 ```
 
+```{eval} myplot
+```
+
+
 <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png">
 
