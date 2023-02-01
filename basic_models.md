@@ -1,10 +1,3 @@
----
-file_format: mystnb
-kernelspec:
-  name: python3
-mystnb:
-    execution_mode: 'inline'
----
 
 # Basic Models
 
