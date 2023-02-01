@@ -9,6 +9,21 @@
 # 
 # Both types of factor models are used by quantitative investors to help inform investment decisions. The models provide a systematic way to analyze risk and reward and identify which stocks are likely to outperform based on their factor exposures. However, it's important to note that factor models are not perfect, and past performance does not guarantee future returns. Additionally, changes in economic conditions and company fundamentals can impact the expected return of a stock, and the factor model must be updated to reflect these changes.
 # 
+# # Fundamental and economic factor models
+# The fundamental factor model and the economic factor model are two models that aim to explain the average stock return as the product of the factor premium ($f_k$) and the factor exposure ($β_{ik}$). However, there are some similarities and differences between the two models.
+# 
+# - Similarities:
+# Both models are based on the principle that the average stock return is determined by the factor premium ($f_k$) and factor exposure ($β_{ik}$).
+# The factor premium measures the amount that investors are willing to pay for each factor, while the factor exposure measures the sensitivity of the stock return to a factor.
+# 
+# - Differences:
+# Factor exposures are directly observable in the fundamental factor model, while they must be estimated in the economic factor model. In the fundamental factor model, exposures to fundamental factors can be obtained from financial statements and other data sources, while in the economic factor model, exposures to economic or other factors must be estimated from the historical relationship between stock returns and factor premiums.
+# The factor premium operates differently in the two models. In the fundamental factor model, the factor premium must be estimated from the historical relationship between stock returns and the factor exposures. In the economic factor model, the factor premium can be determined through methods such as zero-investment portfolios or principal-component analysis, or in some cases, it can be determined up to a proportionality without statistical estimation.
+# 
+# The economic factor model is considered better than the fundamental factor model because it measures the sensitivity of stocks to various economic risk factors, rather than relying on exposures as proxies for risk. The fundamental factor model, while it may be equivalent to the economic factor model if the relationship between stock returns and fundamental factor exposures is linear, is lacking in theoretical backing and econometric justification if the relationship is not linear, leading to a misspecified cross-sectional regression and incorrect estimation of the relationship. The economic factor model is therefore seen as a more accurate measure of underlying stock risk.
+# 
+# Both the fundamental factor model and the economic factor model attempt to explain stock returns by the product of the factor premium and exposure. However, the two models differ in the way factor exposures and premiums are determined and estimated.
+# 
 # # Modeling Stock Returns
 # 
 # The equation for modeling stock returns is known as the Capital Asset Pricing Model (CAPM), which is a widely used model in finance for explaining the relationship between stock returns and systematic risk. The model assumes that each stock's return can be decomposed into two components:
@@ -21,20 +36,20 @@
 # 
 # The CAPM can be used to determine the expected return and risk of each stock and portfolio, and then choose the optimal portfolio based on the results. The optimal portfolio is the one that maximizes expected returns for a given level of risk or minimizes risk for a given level of expected returns. This process is known as Modern Portfolio Theory (MPT) and it is a cornerstone of quantitative investing.
 # 
-# 
+# # Modeling process
 # The steps to form a model and make a portfolio are a process of choosing and analyzing various factors to estimate the expected return and risk of each stock and portfolio. The goal is to make informed investment decisions based on data and mathematical models.
 # 
-# The first step is to choose factors. This involves considering what type of factors to include in the model and how many factors to use. The most commonly used factors in quantitative finance are the Fundamental Factor Model, which uses stock characteristics such as P/E ratio and market capitalization, and the Economic Factor Model, which uses macroeconomic variables such as GDP and inflation.
+# - The first step is to choose factors. This involves considering what type of factors to include in the model and how many factors to use. The most commonly used factors in quantitative finance are the Fundamental Factor Model, which uses stock characteristics such as P/E ratio and market capitalization, and the Economic Factor Model, which uses macroeconomic variables such as GDP and inflation.
 # 
-# The next step is to choose the type of data to use. There are three main types of data used in quantitative finance: cross-sectional, time series, and panel data. Cross-sectional data provides a snapshot of all stocks in the market at a given point in time, while time series data provides a historical view of a single stock. Panel data combines both cross-sectional and time series data.
+# - The next step is to choose the type of data to use. There are three main types of data used in quantitative finance: cross-sectional, time series, and panel data. Cross-sectional data provides a snapshot of all stocks in the market at a given point in time, while time series data provides a historical view of a single stock. Panel data combines both cross-sectional and time series data.
 # 
-# Once the factors and data have been selected, the next step is to determine the factor exposures, which is the relationship between the stock and the factors. This information is used to determine the expected return and risk of each stock and portfolio.
+# - Once the factors and data have been selected, the next step is to determine the factor exposures, which is the relationship between the stock and the factors. This information is used to determine the expected return and risk of each stock and portfolio.
 # 
-# The reward for each unit of exposure to a risk factor is known as the factor premium and can be estimated using a zero-investment portfolio. This portfolio involves shorting one stock and using the proceeds to buy another stock. The difference in return between these two stocks represents the factor premium.
+# - The reward for each unit of exposure to a risk factor is known as the factor premium and can be estimated using a zero-investment portfolio. This portfolio involves shorting one stock and using the proceeds to buy another stock. The difference in return between these two stocks represents the factor premium.
 # 
-# Expected return and risk are estimated by considering the total risk of each stock, including both diversifiable and non-diversifiable risks. Diversifiable risks are stock-specific and can be removed by diversifying holdings, while non-diversifiable risks are market risks that can't be removed from the portfolio.
+# - Expected return and risk are estimated by considering the total risk of each stock, including both diversifiable and non-diversifiable risks. Diversifiable risks are stock-specific and can be removed by diversifying holdings, while non-diversifiable risks are market risks that can't be removed from the portfolio.
 # 
-# Finally, the portfolio is weighted based on the investment objective and the forecast for future performance. This includes considering past data versus future data, factor exposure stability, and changes in factor premiums.
+# - Finally, the portfolio is weighted based on the investment objective and the forecast for future performance. This includes considering past data versus future data, factor exposure stability, and changes in factor premiums.
 # 
 # In conclusion, the steps to form a model and make a portfolio involve a systematic process of choosing and analyzing factors, selecting data, and estimating expected returns and risks to make informed investment decisions.
 # 
