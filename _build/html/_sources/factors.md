@@ -46,7 +46,10 @@ The building of investment models is a combination of science and art. However, 
 
 ## Univariate Regression Tests
 Portfolio managers often use simple regressions as a way to simplify the process of searching for relevant factors in stock returns. They start by identifying a group of factors ($\beta_{i,t}$) that they believe could explain stock returns ($r_{i,t}$) and then run panel regressions on each factor versus the stock returns in the universe. The panel regression provides an estimate of the relationship between the factor and stock returns, and if a factor ($f$) has a significant value, it is considered useful in explaining stock returns.
-For example, $$r_{i,t}=\alpha +f\beta_{i,t}+\epsilon_{i,t}$$
+For example, 
+
+$$r_{i,t}=\alpha +f\beta_{i,t}+\epsilon_{i,t}$$,
+
 where $\beta_{i,t}$ is the factor exposure of stock $i$ at time $t$, and the estimate of $f$ from this panel regression will show the relationship between the factor and stock returns.
 
 However, univariate regressions have a drawback in that they may lead to finding many variables that are significant in explaining stock returns but are actually surrogates for each other. For example, the P/E and P/B ratios may both explain stock returns, but they represent the same idea, so only one of them may be needed in the model. The ideal situation is to find factors that explain stock returns without being highly correlated with each other.
