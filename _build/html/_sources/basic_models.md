@@ -11,15 +11,13 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-mystnb:
-    execution_mode: 'inline'
 ---
 
 ```{code-cell}
 print(2 + 2)
 ```
 
-```
+```{code-cell}
 ---
 mystnb:
   figure:

@@ -7,20 +7,15 @@
 print(2 + 2)
 
 
-# ```
-# ---
-# mystnb:
-#   figure:
-#     align: center
-#     caption_before: true
-#     caption: This is my table caption, above the table
-# ---
-# import pandas
-# df = pandas.DataFrame({"column 1": [1, 2, 3]})
-# df = df.style.set_table_attributes('class="dataframe align-center"')
-# df
-# ```
-# 
+# In[2]:
+
+
+import pandas
+df = pandas.DataFrame({"column 1": [1, 2, 3]})
+df = df.style.set_table_attributes('class="dataframe align-center"')
+df
+
+
 # # Basic Models
 # 
 # The Fundamental Factor Model aims to explain a stock's expected return based on its fundamental characteristics, such as price-to-earnings ratio, market capitalization, and other financial metrics. The idea is that these characteristics are proxies for the underlying risk and growth prospects of a company, which in turn determines the expected return.
@@ -81,7 +76,7 @@ print(2 + 2)
 # 
 # Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
 
-# In[2]:
+# In[3]:
 
 
 import pandas
