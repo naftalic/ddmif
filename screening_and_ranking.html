@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock screening and ranking &#8212; Data-Driven Methods in Finance</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Investment Competition" href="competition.html" />
+    <link rel="prev" title="Factors" href="factors.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="home.html">
+                    Data-Driven Methods in Finance
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_models.html">
+   Basic Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors.html">
+   Factors
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Stock screening and ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="competition.html">
+   Investment Competition
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/screening_and_ranking.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/naftalic/ddmif"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fscreening_and_ranking.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/screening_and_ranking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/screening_and_ranking.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Stock screening and ranking
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequential-screening">
+   Sequential screening
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simultaneous-screening">
+   Simultaneous screening
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#z-score">
+   z-score
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-z-score-combination">
+   Simple z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ad-hoc-z-score-combination">
+   Ad hoc z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimized-z-score-combination">
+   Optimized z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#by-group-combination">
+   By-group combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-return-implied-by-the-z-scores">
+   Expected return implied by the z-scores
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-code">
+   Some Code
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Stock screening and ranking</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Stock screening and ranking
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequential-screening">
+   Sequential screening
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simultaneous-screening">
+   Simultaneous screening
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#z-score">
+   z-score
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-z-score-combination">
+   Simple z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ad-hoc-z-score-combination">
+   Ad hoc z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimized-z-score-combination">
+   Optimized z-score combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#by-group-combination">
+   By-group combination
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-return-implied-by-the-z-scores">
+   Expected return implied by the z-scores
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-code">
+   Some Code
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="stock-screening-and-ranking">
+<h1>Stock screening and ranking<a class="headerlink" href="#stock-screening-and-ranking" title="Permalink to this headline">#</a></h1>
+<p>The goal of systematic teams is to make investing more reliable, repeatable, and quantitative by avoiding the biases and errors of traditional stock picking. There are two types of stock screening methods: sequential and simultaneous. In sequential screening, criteria are applied one after the other to eliminate stocks from the investment universe. In simultaneous screening, all criteria are applied at once, and all stocks receive a ranking based on their overall scores. The most popular simultaneous screening method is the z-score approach, which involves choosing factors that explain stock returns and aggregating them into one score to rank stocks. The z-score ranking can be used as the basis for a stock returns model or added to an existing model.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="sequential-screening">
+<h1>Sequential screening<a class="headerlink" href="#sequential-screening" title="Permalink to this headline">#</a></h1>
+<p>Sequential Stock Screening is a simple and straightforward method for portfolio managers to select stocks for investment. It involves ranking stocks according to their favorable and unfavorable attributes and eliminating those that don’t meet the criteria set by the portfolio manager. The process starts by defining the investment goals and selecting relevant factors, such as P/B ratio or profit margins, to screen the stocks. The screens are then applied in order of importance, starting with the most critical factor. An example of a sequential stock screening process would be selecting the top 25% of stocks with the highest profit margins and then selecting the top 10 of those with the highest B/P ratios. A good stock screen should be easy to automate, replicate, and accurately reflect the portfolio manager’s preferences.</p>
+<p>The key to a portfolio manager’s success is the ability to determine factors that drive exceptional stock returns. Managers often have a guiding investment style or philosophy, but it can be quantified through stock screening methods. Here, we specify three successful equity managers’ strategies, which can be qualitative or fundamental, and translates them into quantifiable screens.</p>
+<ul class="simple">
+<li><p>Lynch Screen: This is a combination of growth-and-value strategy that seeks a P/E ratio below the industry average but also a PEG ratio below 1.0. Other criteria include a P/E to dividend yield ratio less than 4.0, earnings growth between 0% and 50%, insider buying-to-selling ratio greater than 1.5, long-term debt ratio below industry median, market capitalization less than $5 billion, and institutional ownership less than 50%.</p></li>
+<li><p>Buffett Screen: This screen is based on Warren Buffett’s buy-and-hold strategy and focuses on companies with a strong competitive advantage, efficient management, high free cash flow, return on equity greater than or equal to 15%, net profit margins exceeding industry averages, D/E ratio in line with or lower than industry median, and forecasted free cash flow for the next five years greater than the current market price of the stock when discounted back to the present. The screen restricts investments to the top 30% market capitalization of listed equities on the NYSE, AMEX, and NASDAQ.</p></li>
+<li><p>Lakonishok Screen: This is a value screen based on the work of Josef Lakonishok, CEO and founder of LSV Asset Management. The screen focuses on identifying undervalued companies with market capitalizations in the top 30% of the NYSE, AMEX, and NASDAQ. The screen seeks companies with a P/E ratio and P/B ratio below their respective industry median values, consensus earnings estimate for the next fiscal year greater than the current year’s estimate, and a forecasted earnings growth rate greater than 5%.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="simultaneous-screening">
+<h1>Simultaneous screening<a class="headerlink" href="#simultaneous-screening" title="Permalink to this headline">#</a></h1>
+<p>In simultaneous screening, a portfolio manager evaluates all stocks based on a set of criteria, considering all the factors at once instead of one at a time. This eliminates the risk of eliminating a good stock due to its poor performance in an early round of screening and ensures a larger pool of stocks to choose from. To aggregate the factors, the portfolio manager needs to standardize or normalize them by transforming them into a standard unit of measurement, such as the z-score method. This ensures that the variables are comparable and prevents any single factor from dominating the stock ranking.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="z-score">
+<h1>z-score<a class="headerlink" href="#z-score" title="Permalink to this headline">#</a></h1>
+<p>The z-score is a statistical method used to standardize the values of a variable within a population of data. It measures how far away a particular observation is from the population mean. To calculate the z-score, the difference between the observed value and the mean of the population is divided by the standard deviation of the population. This results in a normalized score that shows how far the observation is from the norm in terms of standard deviations. Z-scores allow comparison of two different variables, as they are expressed in the same units. If the original data distribution is normal, the z-score can be used to make statements about the rarity or probability of a particular observation. To assign z-scores, the mean and standard deviation of the factor must be calculated for all stocks in the investment universe, and the z-score calculation must be performed for each stock. It is important to make sure that the factors being used are expressed such that high values are good and low values are bad, as the z-scores must match the underlying factor values.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="simple-z-score-combination">
+<h1>Simple z-score combination<a class="headerlink" href="#simple-z-score-combination" title="Permalink to this headline">#</a></h1>
+<p>When dealing with multiple factors, we can aggregate z-scores by combining the z-scores for each factor of a stock into a single screening value. The aggregate z-score is calculated by adding the z-scores for each factor of a stock, as z-scores are scale independent. The weighting of each factor in the aggregate z-score can be equal or determined through a sophisticated weighting scheme, with equal weighting being a common method used by portfolio managers due to its stable results. Extreme values in individual factors or stock aggregate z-scores can be handled through winsorizing or throwing out stocks with extreme values, but this may result in the loss of important information.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="ad-hoc-z-score-combination">
+<h1>Ad hoc z-score combination<a class="headerlink" href="#ad-hoc-z-score-combination" title="Permalink to this headline">#</a></h1>
+<p>Ad Hoc Aggregate Z-Score is a method of weighting the individual factor z-scores within the aggregate z-score. Portfolio managers use their own judgement and personal preferences to assign weights to the factors. This method can be influenced by past research or past reading and may not be entirely based on a systematic and quantitative approach. There are several variations of this method, including weighting factors according to their perceived importance, weighting based on the factors’ information ratios, and weighting based on the portfolio manager’s own investing style. The latter is done by amplifying the importance of the factor that is preferred over others. The method of weighting based on information ratios involves computing the historical information ratio of each factor by creating decile or quintile portfolios. Factors with higher information ratios are assigned more weight. However, this method also fails to take into account the correlation between factors.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="optimized-z-score-combination">
+<h1>Optimized z-score combination<a class="headerlink" href="#optimized-z-score-combination" title="Permalink to this headline">#</a></h1>
+<p>The traditional approach of equally weighting the z-scores is simple, but it ignores important information contained in the data and fails to account for the correlation between factors. On the other hand, ad hoc methods of weighting, which assign weights based on the perceived importance of the factors, are highly subjective.</p>
+<p>An alternative approach is to use econometrics to estimate the optimal exposures using a historical sample data set. The portfolio manager takes a series of monthly returns on all the stocks in the universe, combined with the factor z-score values for each stock at the beginning of the month, and runs a set of cross-sectional regressions to find the optimal Z-score weights.</p>
+<p>The optimal combination of z-scores can be estimated through regression analysis using the historical data. This regression uses the variance-covariance matrix of z-scores and returns to estimate the parameter exposures of each factor. The portfolio manager can run this regression over different time periods and horizons to ensure the robustness of the results.</p>
+<p>Another variation on the optimal weighting scheme is to determine the optimal weights for various economic scenarios. The portfolio manager creates several hypothetical economic environments and calculates a set of optimal z-score weights for each. This method is more subjective as it involves more judgment, but it allows the manager to consider the direction of the economic winds and weight the factors accordingly.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="by-group-combination">
+<h1>By-group combination<a class="headerlink" href="#by-group-combination" title="Permalink to this headline">#</a></h1>
+<p>Quantitative portfolio managers may divide their K factors into M factor groups to organize and simplify the screening process. By creating factor groups that represent different aspects of stock returns, the manager can change the relative importance of each factor group according to changing economic conditions. The procedure for computing aggregate z-scores using factor groups is almost identical to the procedure for computing aggregate z-scores. The only difference is that the individual factors are classified into specific factor groups. To compute the aggregate z-score, the z-scores of each factor group are weighted and summed, and the resulting sum represents the aggregate z-score for each stock in the investment universe. The weighting scheme for the factors within and across groups can be determined using similar methods as the normal z-score aggregation without groups.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="expected-return-implied-by-the-z-scores">
+<h1>Expected return implied by the z-scores<a class="headerlink" href="#expected-return-implied-by-the-z-scores" title="Permalink to this headline">#</a></h1>
+<p>The expected return of a stock can be estimated by regressing actual stock returns on the aggregate z-scores. This can be done using a panel series regression of stock returns on the z-score of the prior periods (e.g., of the previous months)
+The regression takes the form of
+$<span class="math notranslate nohighlight">\(r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}\)</span><span class="math notranslate nohighlight">\(
+where \)</span>a<span class="math notranslate nohighlight">\( is a constant term, \)</span>b<span class="math notranslate nohighlight">\( is the coefficient that relates the aggregate z-score to the stock return, and \)</span>\epsilon<span class="math notranslate nohighlight">\( is the error term. With the estimated values of \)</span>a<span class="math notranslate nohighlight">\( and \)</span>b<span class="math notranslate nohighlight">\(, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums (\)</span>b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="some-code">
+<h1>Some Code<a class="headerlink" href="#some-code" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/screening_and_ranking_2_0.png" src="_images/screening_and_ranking_2_0.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="factors.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Factors</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="competition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Investment Competition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Naftali Cohen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
