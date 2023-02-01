@@ -95,6 +95,7 @@ sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
 print( w[np.argmax(sr)], np.max(sr) )
 
 plt.plot(w,sr)
+plt.show()
 ```
 
 <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png">
