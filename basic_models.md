@@ -46,17 +46,14 @@ While these techniques are quick and convenient, they may not provide a complete
 
 # Exercise
 
-Consider a world with only two stocks, Stock A and Stock B. The current stock returns, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by the end-of-period price-to-earnings (P/E) ratios of the previous period. 
-
-The equation for Stock A is:
-$r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}$, $ε_{A,t+1}\sim N(0,20)$.
-
-The equation for Stock B is:
+You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, $r_{A,t+1}$ and $r_{B,t+1}$, are determined by their current Price-to-Earnings (P/E) ratios. 
+The equations for Stock A and Stock B's returns are given as $r_{A,t+1} = 0.1\times(P/E)\_{A,t} +ε_{A,t+1}$, $ε_{A,t+1}\sim N(0,20)$, and
 $r_{B,t+1} = 0.1\times(P/E)\_{B,t} +ε_{B,t+1}$, $ε_{B,t+1}\sim N(0,10)$.
+As seen, the returns are influenced by the P/E ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.
 
-ε represents the random component of the stock return. The covariance between the random errors of the two stocks is zero.
-For period T, the P/E ratio of Stock A is 20 and of Stock B is 10. Assume stationarity over time and across stocks.
-Calculate the Z-scores of the above equations using cross-sectional analysis and calculate the weights of a portfolio comprising Stock A and Stock B that maximizes the Sharpe ratio using a graphical method.
+Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/E ratios is stationary over time and across stocks.
+
+Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
 
 <img width="367" alt="Screenshot 2023-01-31 at 12 20 37 AM" src="https://user-images.githubusercontent.com/16545021/215672394-8e55458c-fbf4-47a2-8d31-dd5f894de9c1.png">
 
