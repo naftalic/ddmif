@@ -7,6 +7,7 @@ chapters:
  - file: introduction
  - file: basic_models
  - file: factors
+ - file: competition
  # - file: markdown
  # - file: notebooks
  # - file: markdown-notebooks
