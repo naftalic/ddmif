@@ -58,16 +58,18 @@ Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20
 
 Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
 
-```{code-cell}
-import matplotlib.pyplot as plt
-myplot, ax = plt.subplots(figsize=(6, 2))
-mean = 2.0
-ax.plot([1,2,3])
-ax.grid()
-plt.close()
-```
-
-```{eval} myplot
+```{code-cell} ipython3
+---
+mystnb:
+  figure:
+    align: center
+    caption_before: true
+    caption: This is my table caption, above the table
+---
+import pandas
+df = pandas.DataFrame({"column 1": [1, 2, 3]})
+df = df.style.set_table_attributes('class="dataframe align-center"')
+df
 ```
 
 
