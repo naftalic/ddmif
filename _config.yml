@@ -3,7 +3,8 @@
 
 title: Data-Driven Methods in Finance
 author: Naftali Cohen
-logo: 
+year: 2023
+# logo: 
 # big-data-finance.png
 
 # Force re-execution of notebooks on each build.
