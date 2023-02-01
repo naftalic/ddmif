@@ -1,16 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Notebooks with MyST Markdown
-# 
-# Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-# See [the Notebooks with MyST Markdown documentation](https://jupyterbook.org/file-types/myst-notebooks.html) for more detailed instructions.
-# This page shows off a notebook written in MyST Markdown.
-# 
-# ## An example cell
-# 
-# With MyST Markdown, you can define code cells with a directive like so:
-
 # In[1]:
 
 
