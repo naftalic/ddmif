@@ -110,7 +110,7 @@ The Analyst Forecasts Effect refers to the observation that stocks with "buy" ra
 
 - The Liquidity Effect refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.
 
-- *The Crowding Effect* refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.
+- The Crowding Effect refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.
 
 # Behavioral Anomalies 
 
