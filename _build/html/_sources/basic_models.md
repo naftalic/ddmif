@@ -91,7 +91,9 @@ import matplotlib.pyplot as plt
 
 w = np.linspace(0,1,100)
 sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
-print( w[np.argmax(sr), np.max(sr) )
+
+print( w[np.argmax(sr)], np.max(sr) )
+
 plt.plot(w,sr)
 ```
 
