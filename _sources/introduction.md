@@ -67,7 +67,7 @@ Can we test for market efficiency?
 
 When testing for anomalies, it's important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.
 
-# Documented Market Anomalies and Features
+# Documented Market Anomalies
 
 Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:
 
