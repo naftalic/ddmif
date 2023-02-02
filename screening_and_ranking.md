@@ -61,7 +61,7 @@ where $a$ is a constant term, $b$ is the coefficient that relates the aggregate 
 
 # The Forecasting Rule of Thumb
 The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate Z-scores. The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns, and the cross-sectional volatility of the returns of the securities.
-Specifically, assuming simple linear regression of the form $y=a+bx$:
+Specifically, assuming simple linear regression of the form $y=a+bx$ and denoting z-score as z=(x-E(x))/S(x):
 
 $$
 \begin{align}
@@ -69,15 +69,24 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 & =b(x-E(x)) \newline
 & =\frac{C(y,x)}{V(x)}(x-E(x)) \newline
 & =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
-& =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
-& =\frac{C(y,x)}{S(x)}z 
+& =\frac{\rho(y,x)S(x)S(y)}{S(x)}z \newline
+& =\rho(y,x)S(y)z 
 \end{align}
 $$
 
-$$
-E(y|x)-E(y)=(a+bx)-[a+bE(x)]
-=b(x-E(x))=\frac{C(y,x)}{V(x)}(x-E(x))=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}z
-$$
+The relationship $E(y|x)-E(y)=\frac{C(y,x)}{S(x)}z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast or alpha, the covariance between y and x, $C(y,x)$, is the 
+$$Refined forecast = Volatility * IC * Score$$
+
+basic insight is the rule of thumb
+ALPHA = VOLATILITY*IC*SCORE
+that allows us to relate a standardized (zero mean and unit standard deviation)
+          2
+Notes: Active Portfolio Management By Zhipeng Yan
+ score to a forecast of residual return (an alpha). The volatility is the residual volatility. IC is the correlation between the scores and the returns.
+ 
+ 
+This The forecasting rule of thumb
+Refined forecast = Volatility * IC * Score
 
 Refined forecast = the change in expected return due to observing g
 # Some Code
