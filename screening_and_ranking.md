@@ -70,15 +70,17 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 & =b(x-E(x)) \newline
 & =\frac{C(y,x)}{V(x)}(x-E(x)) \newline
 & =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
-& =\frac{\rho(y,x)S(x)S(y)}{S(x)}z \newline
-& =\rho(y,x)S(y)z. 
+& =\frac{S(x)S(y)\rho(y,x)}{S(x)}z \newline
+& =S(y)\rho(y,x)z. 
 \end{align}
 $$
 
 In the above, $E$ is the expected value, $\rho$ the Pearson correlation, $C$ the covariance, $V$ the variance, and $S$ the standard deviation.
+The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
+Hence,
 
-The relationship $E(y|x)-E(y)=\frac{C(y,x)}{S(x)}z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast or alpha, the covariance between y and x, $C(y,x)$, is the 
-$$Refined forecast = Volatility * IC * Score$$
+$$ALPHA = VOLATILITY*IC*SCORE$$
+
 
 basic insight is the rule of thumb
 ALPHA = VOLATILITY*IC*SCORE
