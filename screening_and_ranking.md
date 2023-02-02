@@ -76,10 +76,12 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 $$
 
 In the above, $E$ is the expected value, $\rho$ the Pearson correlation, $C$ the covariance, $V$ the variance, and $S$ the standard deviation.
+
 The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
 Hence,
 
-$$ALPHA = VOLATILITY*IC*SCORE$$
+$$\text{Alpha} = Volatility\times IC\times score$$
+
 
 
 basic insight is the rule of thumb
