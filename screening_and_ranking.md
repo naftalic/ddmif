@@ -77,6 +77,17 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 $$
 
 In the above, $E$ is the expected value, $\rho$ the Pearson correlation, $C$ the covariance, $V$ the variance, and $S$ the standard deviation.
+Note that $E(y|x)$ is the expected value of $y$ given a specific value of $x$, while $E(y)$ is the expected value of $y$ over all possible values of $x$. Thus, $E(y|x)$ represents the average or expected value of $y$ for a given value of $x$, taking into account the uncertainty in the estimates of the regression coefficients $a$ and $b$. Mathematically, here, $E(y|x)$ is expressed as $E(y|x) = a + bx$ where $a$ and $b$ are the estimated intercept and slope coefficients, respectively, and $x$ is a specific value of the predictor variable.
+$E(y)$ is the overall average or expected value of $y$ over all possible values of $x$. It can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y)$ can be expressed as:
+$E(y) = ∫ E(y|x) * p(x) dx$ where $p(x)$ is the probability distribution of $x$.
+
+
+
+
+
+
+
+
 
 The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast (the change in the expected value of y due to observing x) or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
 Hence,
