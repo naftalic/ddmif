@@ -50,7 +50,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Investment Competition" href="competition.html" />
+    <link rel="next" title="Stock screening and ranking" href="screening_and_ranking.html" />
     <link rel="prev" title="Basic Models" href="basic_models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -120,6 +120,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Factors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screening_and_ranking.html">
+   Stock screening and ranking
   </a>
  </li>
  <li class="toctree-l1">
@@ -403,8 +408,25 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#techniques-to-reduce-the-number-of-factors">
-     Techniques to Reduce the Number of Factors
+    <a class="reference internal nav-link" href="#reducing-the-number-of-factors">
+     Reducing the Number of Factors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adjusting-the-significance-of-factors">
+   Adjusting the Significance of Factors
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bonferroni-adjustment">
+     Bonferroni adjustment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-adjustment">
+     Bayesian adjustment
     </a>
    </li>
   </ul>
@@ -486,8 +508,25 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#techniques-to-reduce-the-number-of-factors">
-     Techniques to Reduce the Number of Factors
+    <a class="reference internal nav-link" href="#reducing-the-number-of-factors">
+     Reducing the Number of Factors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adjusting-the-significance-of-factors">
+   Adjusting the Significance of Factors
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bonferroni-adjustment">
+     Bonferroni adjustment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-adjustment">
+     Bayesian adjustment
     </a>
    </li>
   </ul>
@@ -568,8 +607,24 @@ For example,</p>
 <p>The method of creating the zero-investment portfolios depends on the objective of the portfolio manager. If the manager is interested in the joint impact of small size and low P/B ratio on stock returns, they can construct a zero-investment portfolio by taking a long position on the small-low portfolio and a short position on the large-high portfolio. T-statistics can then be calculated to determine the significance of the joint effect of the factors.</p>
 <p>Alternatively, the manager can apply a multiple regression analysis. For each factor considered, an indicator variable is defined that takes the value of 1 if the stock belongs to the top division (e.g., quintile), −1 if the stock belongs to the bottom division, and 0 otherwise. Running a regression of stock returns on these indicator variables will result in coefficients that can be interpreted as the returns to suitably constructed zero-investment portfolios. The significance of the multiple regression can then be taken as an indicator of the joint significance of the selected factors.</p>
 </div>
-<div class="section" id="techniques-to-reduce-the-number-of-factors">
-<h2>Techniques to Reduce the Number of Factors<a class="headerlink" href="#techniques-to-reduce-the-number-of-factors" title="Permalink to this headline">#</a></h2>
+<div class="section" id="reducing-the-number-of-factors">
+<h2>Reducing the Number of Factors<a class="headerlink" href="#reducing-the-number-of-factors" title="Permalink to this headline">#</a></h2>
+<p>The main techniques to reduce the number of factors are based on the correlation among factors, and the three most commonly used statistics to determine this correlation are the Pearson correlation coefficient, the Spearman rank correlation coefficient, and Kendall’s τ. It is important to note that all three methods need to be adjusted for the panel structure of the data to provide accurate results.</p>
+<p>The Pearson correlation coefficient measures the linear relationship between two variables. It ranges from -1 to 1, with -1 indicating a strong negative linear relationship, 1 indicating a strong positive linear relationship, and 0 indicating no linear relationship. The Pearson correlation coefficient is calculated by subtracting the mean from each variable, and calculating the sample covariance and standard deviation.</p>
+<p>The Spearman rank correlation coefficient is a non-parametric measure of the monotonic relationship between two variables. Unlike the Pearson coefficient, which measures the linear relationship, the Spearman coefficient measures the strength and direction of the relationship between two variables while taking into account the ordering of their values, rather than the actual values themselves. The Spearman coefficient also ranges from -1 to 1, with -1 indicating a strong negative monotonic relationship, 1 indicating a strong positive monotonic relationship, and 0 indicating no monotonic relationship.</p>
+<p>Kendall’s τ is a measure of rank correlation that determines the probability that the ranking by one variable is identical to the ranking by another. It ranges from -1 to 1, with -1 indicating a strong negative rank correlation, 1 indicating a strong positive rank correlation, and 0 indicating no rank correlation. Kendall’s τ is calculated by aggregating the number of pairs for which the rankings by two variables are the same minus the number of pairs for which the rankings by two variables are opposite, over the total number of pairs, for each period.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="adjusting-the-significance-of-factors">
+<h1>Adjusting the Significance of Factors<a class="headerlink" href="#adjusting-the-significance-of-factors" title="Permalink to this headline">#</a></h1>
+<p>Data mining can be dangerous as it may result in overstating the statistical evidence. This occurs when a factor is considered statistically significant based solely on a large t-statistic compared to the conventional critical value of 1.96. However, this approach can lead to a high probability of false discovery as it does not take into account other factors that may have been considered. To mitigate these risks, two approaches have been proposed in the academic literature. The first, the Bonferroni-type adjustment, is a frequentist statistical approach that considers the distribution of all possible t-statistics under the assumption of the null hypothesis. The second approach is based on Bayesian statistical theory, which incorporates both data and personal beliefs to determine the subjective probability of the null hypothesis being true. Both methods can help reduce the danger of data mining, but cannot completely eliminate it.</p>
+<div class="section" id="bonferroni-adjustment">
+<h2>Bonferroni adjustment<a class="headerlink" href="#bonferroni-adjustment" title="Permalink to this headline">#</a></h2>
+<p>The Bonferroni adjustment is a statistical method used to control the false discovery rate when considering multiple factors. It involves adjusting the significance level based on the total number of factors being tested. The critical p-value is calculated as the significance level divided by the number of factors (α/M). The critical t-value is then determined from the critical p-value using the standard normal distribution function. A variation of the Bonferroni adjustment is the Holm adjustment, which involves ordering the factors based on their t-values and determining the number of significant factors based on the entire set of p-values. However, the challenge with both the Bonferroni and Holm adjustments is determining the number of factors being considered. Some researchers have suggested using the number of published and unpublished research articles, but this number is constantly changing and is not always easily accessible.</p>
+</div>
+<div class="section" id="bayesian-adjustment">
+<h2>Bayesian adjustment<a class="headerlink" href="#bayesian-adjustment" title="Permalink to this headline">#</a></h2>
+<p>The Bayesian adjustment method uses Bayes’ rule to determine the probability of a null hypothesis being true based on prior beliefs and observed data. The critical value of a t-test is then determined using the minimum Bayes factor (MBF), which is the minimum value of the likelihood ratio calculated from all alternative hypotheses. The critical t-value at a significance level of 5% corresponds to the 95% posterior probability of the null hypothesis being true.</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="some-code">
@@ -639,10 +694,10 @@ For example,</p>
             <p class="prev-next-title">Basic Models</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="competition.html" title="next page">
+    <a class='right-next' id="next-link" href="screening_and_ranking.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Investment Competition</p>
+        <p class="prev-next-title">Stock screening and ranking</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
