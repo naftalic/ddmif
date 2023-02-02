@@ -72,7 +72,7 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 & =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
 & =\frac{S(x)S(y)\rho(y,x)}{S(x)}z \newline
 & =S(y)\rho(y,x)z \newline
-& =\text{Volatility}\times \text{IC}\times \text{score} \newline
+& =\text{Volatility}\times \text{IC}\times \text{score} 
 \end{align}
 $$
 
