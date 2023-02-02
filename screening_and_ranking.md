@@ -40,7 +40,7 @@ When dealing with multiple factors, we can aggregate z-scores by combining the z
 # Ad Hoc Z-Score Combination
 Ad Hoc Aggregate Z-Score is a method of weighting the individual factor z-scores within the aggregate z-score. Portfolio managers use their own judgement and personal preferences to assign weights to the factors. This method can be influenced by past research or past reading and may not be entirely based on a systematic and quantitative approach. There are several variations of this method, including weighting factors according to their perceived importance, weighting based on the factors' information ratios, and weighting based on the portfolio manager's own investing style. The latter is done by amplifying the importance of the factor that is preferred over others. The method of weighting based on information ratios involves computing the historical information ratio of each factor by creating decile or quintile portfolios. Factors with higher information ratios are assigned more weight. However, this method also fails to take into account the correlation between factors.
 
-# Optimized Z-Score cCmbination
+# Optimized Z-Score Combination
 The traditional approach of equally weighting the z-scores is simple, but it ignores important information contained in the data and fails to account for the correlation between factors. On the other hand, ad hoc methods of weighting, which assign weights based on the perceived importance of the factors, are highly subjective.
 
 An alternative approach is to use econometrics to estimate the optimal exposures using a historical sample data set. The portfolio manager takes a series of monthly returns on all the stocks in the universe, combined with the factor z-score values for each stock at the beginning of the month, and runs a set of cross-sectional regressions to find the optimal Z-score weights.
@@ -61,8 +61,8 @@ where $a$ is a constant term, $b$ is the coefficient that relates the aggregate 
 
 # The Forecasting Rule of Thumb
 The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate Z-scores. The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns, and the cross-sectional volatility of the returns of the securities.
-Specifically,
-$$E(r_{i,t}|z_{i,t-1})-E(r_t)=[a+bz_{i,t-1}]-[a+bE(z_{i,t-1})]$$
+Specifically, assuming simple linear regression of the form $r=a+bz$:
+$$E(r|z)-E(r)=(a+bz)-[a+bE(z)]=b(z-E(z))=C(r,z)/V(z)(z-E(z)$$
 
 # Some Code
 ```{code-cell}
