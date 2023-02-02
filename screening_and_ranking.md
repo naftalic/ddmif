@@ -77,12 +77,12 @@ $$
 
 In the above, $E$ is the expected value, $\rho$ the Pearson correlation, $C$ the covariance, $V$ the variance, and $S$ the standard deviation.
 
-The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
+The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast (the change in the expected value of y due to observing x) or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
 Hence,
 
-$$\text{Alpha} = Volatility\times IC\times score$$
+$$\text{Alpha} = \text{Volatility}\times \text{IC}\times \text{score}$$
 
-
+In qunatitative finance, $E(y|x)-E(y)$ refers to $b(r_T-r_B)=b(r_{res})$ which is the slope times the residual return which is the differnece between the total return and the baseline. 
 
 basic insight is the rule of thumb
 ALPHA = VOLATILITY*IC*SCORE
