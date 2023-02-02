@@ -95,7 +95,7 @@ Specifically, the expected return of a stock conditional on the z-score is given
 $$
 \begin{align}
 E[r_{i,t}|z_{i,t−1}] &= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
-&= E[rt] + ρ(r_t, z_{t−1})S(r_t)z_{i,t−1}. 
+&= E[r_t] + ρ(r_t, z_{t−1})S(r_t)z_{i,t−1}. 
 \end{align}
 $$
 
