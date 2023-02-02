@@ -103,7 +103,7 @@ When estimated as a cross-sectional regression (or a panel regression), the esti
 
 $$
 \begin{align}
-\hat r_{i,t}=\bar{\hat r_t}
+\hat r_{i,t}=\hat{\bar{r}_t}
 \end{align}
 $$
 
