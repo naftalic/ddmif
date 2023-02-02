@@ -64,7 +64,7 @@ The Forecasting Rule of Thumb is a formula derived from a regression equation us
 Specifically, assuming simple linear regression of the form $y=a+bx$:
 $$
 E(y|x)-E(y)=(a+bx)-[a+bE(x)]
-\\\\=b(x-E(x))=\frac{C(y,x)}{V(x)}(x-E(x))=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}z
+=b(x-E(x))=\frac{C(y,x)}{V(x)}(x-E(x))=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}z
 $$
 
 Refined forecast = the change in expected return due to observing g
