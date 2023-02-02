@@ -118,7 +118,24 @@ The forecasting rule of thumb says that the difference between the expected retu
 
 - When the score is 0, it implies that the previous period's z-score value of the stock is 0. This would result in a conditional expected return of 0, as the conditioning variable, the z-score, has no signal. The regression coefficient, $\hat{b}$, could take on various values depending on the relationship between z-scores and stock returns.
 
+# Practical comments
+## Ranking
+The aggregate Z-score ranks the expected returns or risks of various stocks, but it cannot be relied on solely to manage a portfolio's risk and return in comparison to a benchmark, except through basic techniques.
 
+## Alpha
+There are three methods to convert an aggregate Z-score of a stock into an expected return or alpha for portfolio construction, each with their own strengths and weaknesses. 
+- The first method involves using the Z-score as the alpha value, which can then be combined with the expected returns calculated by another stock return model. This approach is simple for portfolio managers to implement, but the Z-score doesn't reflect the expected excess returns or relative risks of stocks.
+
+- The second method is to perform a regression analysis of the aggregate Z-score against the cross-section of stock returns. This will provide estimates of expected stock returns, as well as relative risk, but does not give a direct estimate of alpha.
+
+- The third method involves running a regression of excess stock returns not explained by another stock return model against the Z-scores. This approach focuses on a form of alpha, but is more complex to calculate and combines information from two different stock return models, potentially violating the information criterion.
+
+## Outliers
+To mitigate the risk of including data outliers in a portfolio, portfolio managers may choose to remove stocks with z-scores greater than 3. These z-scores may represent data points that are significantly different from the rest of the data and could have resulted from data errors or a true deviation of the stock from typical stocks. To prevent the distortion of the portfolio, portfolio managers will often exclude z-scores greater than 3.
+
+Another approach to managing extreme z-scores is to round them off. This technique, known as windsorization, involves rounding values greater than 3 to 3 and values less than -3 to -3. This method can be useful when the data is not faulty but the portfolio manager wants to place limits on the extreme values.
+
+A third option is to trim the z-scores. This involves eliminating a certain number of z-scores or stocks, with half of them being removed from the high side and half from the low side. The remaining z-scores are then recalculated and used in portfolio construction.
 
 # Some Code
 ```{code-cell}
