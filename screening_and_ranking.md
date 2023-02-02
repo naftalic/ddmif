@@ -59,10 +59,9 @@ The regression takes the form of
 $$r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}$$
 where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
 
-# The Forecasting Rule of Thumb
-The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate Z-scores. The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns, and the cross-sectional volatility of the returns of the securities.
+# The Forecasting Rule of Thumb: derivation
 
-Specifically, assuming a simple linear regression of the form $y=a+bx$, we get that
+Assuming a simple linear regression of the form $y=a+bx$, the equation can be expressed as follows:
 
 $$
 \begin{align}
@@ -76,16 +75,28 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 \end{align}
 $$
 
-In the above, $E$ is the expected value, $\rho$ the Pearson correlation, $C$ the covariance, $V$ the variance, and $S$ the standard deviation.
+In the equation, $E$ represents the expected value, $\rho$ represents the Pearson correlation, $C$ represents the covariance, $V$ represents the variance, and $S$ represents the standard deviation.
 
-Note that $E(y|x)$ is the expected value of $y$ given a specific value of $x$, while $E(y)$ is the expected value of $y$ over all possible values of $x$. 
+$E(y|x)$ is the expected value of $y$ given a specific value of $x$, while $E(y)$ is the expected value of $y$ over all possible values of $x$.
 
-Thus, $E(y|x)$ represents the average or expected value of $y$ for a given value of $x$, taking into account the uncertainty in the estimates of the regression coefficients $a$ and $b$. Mathematically, here, $E(y|x)$ is expressed as $E(y|x) = a + bx$ where $a$ and $b$ are the estimated intercept and slope coefficients, respectively, and $x$ is a specific value of the predictor variable.
+$E(y|x)$ represents the average or expected value of $y$ for a given value of $x$, taking into account the uncertainty in the estimates of the regression coefficients $a$ and $b$. Mathematically, $E(y|x) = a + bx$, where $a$ and $b$ are the estimated intercept and slope coefficients, respectively, and $x$ is a specific value of the predictor variable.
 
-$E(y)$ is the overall average or expected value of $y$ over all possible values of $x$. It can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y)$ can be expressed as:
-$E(y) = ∫ E(y|x) p(x) dx$ where $p(x)$ is the probability distribution of $x$.
+$E(y)$ is the overall average or expected value of $y$ over all possible values of $x$ and can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y) = ∫ E(y|x) p(x) dx$, where $p(x)$ is the probability distribution of $x$.
 
-## Interpretation
+## The Forecasting Rule of Thumb: interpretation
+The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate z-scores:
+$$r_{i,t} = a+bz_{i,t−1} + ε_{i,t}$$.
+The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns and the cross-sectional volatility of the returns of the securities.
+
+Specifically, the expected return of a stock conditional on the z-score is given by 
+$$
+\begin{align}
+E[r_{i,t}|z{i,t−1}] &= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
+&= E[rt] + ρ(rt, zt−1)S(rt)zi,t−1. 
+\end{align}
+$$
+the regression equation ri,t = γ+δzi,t−1 + εi,t as
+something called the forecasting rule of thumb, which states that the expected return of the stock conditional on the Z-score information minus the unconditional return of the stock is equal to IC · volatility · score.
 
 The term $E(y|x)-E(y)$ is the called the alpha or refined forecast as it represents the change in the expected value of y due to observing x. $S(y)$ is the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
 
