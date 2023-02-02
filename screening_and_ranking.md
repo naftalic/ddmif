@@ -99,6 +99,14 @@ E[r_{i,t}|z_{i,t−1}] &= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
 \end{align}
 $$
 
+When estimated as a cross-sectional regression (or a panel regression), the estimates will be the best predictor of the realized return, that is,
+
+$$
+\begin{align}
+\hat r_{i,t}=\bar{\hat r_t}
+\end{align}
+$$
+
 the regression equation ri,t = γ+δzi,t−1 + εi,t as
 something called the forecasting rule of thumb, which states that the expected return of the stock conditional on the Z-score information minus the unconditional return of the stock is equal to IC · volatility · score.
 
