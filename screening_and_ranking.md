@@ -62,7 +62,7 @@ where $a$ is a constant term, $b$ is the coefficient that relates the aggregate 
 # The Forecasting Rule of Thumb
 The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate Z-scores. The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns, and the cross-sectional volatility of the returns of the securities.
 Specifically, assuming simple linear regression of the form $y=a+bx$:
-$$E(y|x)-E(y)=(a+bx)-[a+bE(x)]=\\
+$$E(y|x)-E(y)=(a+bx)-[a+bE(x)]=\newline
 b(x-E(x))=\frac{C(y,x)}{V(x)}(x-E(x))=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)}=\frac{C(y,x)}{S(x)}z$$
 
 Refined forecast = the change in expected return due to observing g
