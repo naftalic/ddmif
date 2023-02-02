@@ -65,8 +65,12 @@ Specifically, assuming simple linear regression of the form $y=a+bx$:
 
 $$
 \begin{align}
-E(y|x)-E(y)& =(a+bx)-[a+bE(x)]\newline
-& =b(x-E(x))
+E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
+& =b(x-E(x)) \newline
+& =\frac{C(y,x)}{V(x)}(x-E(x)) \newline
+& =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
+& =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
+& =\frac{C(y,x)}{S(x)}z 
 \end{align}
 $$
 
