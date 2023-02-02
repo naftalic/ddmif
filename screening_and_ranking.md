@@ -82,7 +82,11 @@ Hence,
 
 $$\text{Alpha} = \text{Volatility}\times \text{IC}\times \text{score}$$
 
-In qunatitative finance, $E(y|x)-E(y)$ refers to $b(r_T-r_B)=b(r_{res})$ which is the slope times the residual return which is the differnece between the total return and the baseline. 
+In qunatitative finance, 
+- $E(y)=br_B$ is the naïve forecast or the consensus expected return. It is the informationless
+forecast which leads to the benchmark holdings. 
+- $E(y|x)=br_T$ is the informed expected return, conditional on x. 
+- Thus, $E(y|x)-E(y)=b(r_T-r_B)=br_{res}$ is the change in expected return due to observing x.
 
 basic insight is the rule of thumb
 ALPHA = VOLATILITY*IC*SCORE
