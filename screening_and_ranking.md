@@ -59,7 +59,7 @@ The regression takes the form of
 $$r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}$$
 where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
 
-# The Forecasting Rule of Thumb: derivation
+# Forecasting Rule of Thumb: derivation
 
 Assuming a simple linear regression of the form $y=a+bx$, the equation can be expressed as follows:
 
@@ -71,7 +71,7 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 & =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
 & =\frac{\rho(y,x)S(x)S(y)}{S(x)}z \newline
 & =\rho(y,x) S(y) z \newline
-& =\text{IC}\times \text{Volatility}\times \text{score} 
+& =\text{IC}\times \text{Volatility}\times \text{score}. 
 \end{align}
 $$
 
@@ -83,9 +83,11 @@ $E(y|x)$ represents the average or expected value of $y$ for a given value of $x
 
 $E(y)$ is the overall average or expected value of $y$ over all possible values of $x$ and can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y) = ∫ E(y|x) p(x) dx$, where $p(x)$ is the probability distribution of $x$.
 
-## The Forecasting Rule of Thumb: interpretation
-The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate z-scores:
-$$r_{i,t} = a+bz_{i,t−1} + ε_{i,t}$$.
+## Forecasting Rule of Thumb: interpretation
+The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate z-scores
+
+$$r_{i,t} = a+bz_{i,t−1} + ε_{i,t}.$$
+
 The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns and the cross-sectional volatility of the returns of the securities.
 
 Specifically, the expected return of a stock conditional on the z-score is given by 
