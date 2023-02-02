@@ -89,12 +89,14 @@ $$r_{i,t} = a+bz_{i,t−1} + ε_{i,t}$$.
 The equation manipulates the correlation (IC) between the aggregate Z-score and the actual security returns and the cross-sectional volatility of the returns of the securities.
 
 Specifically, the expected return of a stock conditional on the z-score is given by 
+
 $$
 \begin{align}
 E[r_{i,t}|z{i,t−1}] &= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
 &= E[rt] + ρ(rt, zt−1)S(rt)zi,t−1. 
 \end{align}
 $$
+
 the regression equation ri,t = γ+δzi,t−1 + εi,t as
 something called the forecasting rule of thumb, which states that the expected return of the stock conditional on the Z-score information minus the unconditional return of the stock is equal to IC · volatility · score.
 
