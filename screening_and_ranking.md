@@ -83,6 +83,8 @@ $E(y|x)$ represents the average or expected value of $y$ for a given value of $x
 
 $E(y)$ is the overall average or expected value of $y$ over all possible values of $x$ and can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y) = ∫ E(y|x) p(x) dx$, where $p(x)$ is the probability distribution of $x$.
 
+The term $E(y|x)-E(y)$ is the called the alpha or refined forecast as it represents the change in the expected value of y due to observing x. $\rho(y,x)$ the information coefficient (IC), $S(y)$ is the volatility, and $z$ the score. 
+
 # Forecasting Rule of Thumb: interpretation
 The forecasting rule of thumb is a formula derived from a regression equation used to predict stock returns based on aggregate (cross-sectional) z-scores
 
@@ -107,33 +109,17 @@ $$
 \end{align}
 $$
 
-the regression equation ri,t = γ+δzi,t−1 + εi,t as
-something called the forecasting rule of thumb, which states that the expected return of the stock conditional on the Z-score information minus the unconditional return of the stock is equal to IC · volatility · score.
+# Forecasting Rule of Thumb: examples
+The forecasting rule of thumb says that the difference between the expected return of a stock based on its previous z-score and its unconditional return is equal to the product of Information Coefficient (IC), volatility, and score. IC represents the correlation between a stock's return and its previous z-score, while volatility refers to the variability of returns across stocks. The score, in this context, refers to the value of the stock's z-score in the previous period.
 
-The term $E(y|x)-E(y)$ is the called the alpha or refined forecast as it represents the change in the expected value of y due to observing x. $S(y)$ is the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
+- If IC is equal to 0, it means that there is no correlation between a stock's return and its previous z-score. This results in a conditional expected return of 0, implying that the regression coefficient, $\hat{b}$, would also be equal to 0.
 
-In our case where $r_{i,t+1}=a+bz_{i,t}$, IC is the correlation between the aggregate z-score or raw signal and the actual security returns, the volatility in this particular case represents the cross-sectional volatility of the returns of the securities, and score refers to the aggregate Z-score
+- If volatility is equal to 0, it indicates that there is no variation in stock returns across stocks. In this case, there would be no way to forecast stock returns based on the variation in z-scores, which would result in a conditional expected return of 0 and a regression coefficient of 0.
 
-$$\text{Alpha} = \text{Volatility}\times \text{IC}\times \text{score}$$
+- When the score is 0, it implies that the previous period's z-score value of the stock is 0. This would result in a conditional expected return of 0, as the conditioning variable, the z-score, has no signal. The regression coefficient, $\hat{b}$, could take on various values depending on the relationship between z-scores and stock returns.
 
-In qunatitative finance, 
-- $E(y)=br_B$ is the naïve forecast or the consensus expected return. It is the informationless
-forecast which leads to the benchmark holdings. 
-- $E(y|x)=br_T$ is the informed expected return, conditional on information as x. 
-- Thus, $E(y|x)-E(y)=b(r_T-r_B)=br_{res}$ is the refined forecast, the change in expected return due to observing x.
 
-basic insight is the rule of thumb
-ALPHA = VOLATILITY*IC*SCORE
-that allows us to relate a standardized (zero mean and unit standard deviation)
-          2
-Notes: Active Portfolio Management By Zhipeng Yan
- score to a forecast of residual return (an alpha). The volatility is the residual volatility. IC is the correlation between the scores and the returns.
- 
- 
-This The forecasting rule of thumb
-Refined forecast = Volatility * IC * Score
 
-Refined forecast = the change in expected return due to observing g
 # Some Code
 ```{code-cell}
 ---
