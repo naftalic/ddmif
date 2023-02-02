@@ -83,7 +83,7 @@ $E(y|x)$ represents the average or expected value of $y$ for a given value of $x
 
 $E(y)$ is the overall average or expected value of $y$ over all possible values of $x$ and can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y) = ∫ E(y|x) p(x) dx$, where $p(x)$ is the probability distribution of $x$.
 
-## Forecasting Rule of Thumb: interpretation
+# Forecasting Rule of Thumb: interpretation
 The Forecasting Rule of Thumb is a formula derived from a regression equation used to predict stock returns based on aggregate z-scores
 
 $$r_{i,t} = a+bz_{i,t−1} + ε_{i,t}.$$
