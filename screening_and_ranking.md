@@ -65,8 +65,8 @@ Specifically, assuming simple linear regression of the form $y=a+bx$:
 
 $$
 \begin{align}
-a_{11}& =b_{11}\newline
-a_{22}& =b_{22}+c_{22}
+E(y|x)-E(y)& =(a+bx)-[a+bE(x)]\newline
+& =b(x-E(x))
 \end{align}
 $$
 
