@@ -70,9 +70,9 @@ E(y|x)-E(y)& =(a+bx)-[a+bE(x)] \newline
 & =b(x-E(x)) \newline
 & =\frac{C(y,x)}{V(x)}(x-E(x)) \newline
 & =\frac{C(y,x)}{S(x)}\frac{x-E(x)}{S(x)} \newline
-& =\frac{S(x)S(y)\rho(y,x)}{S(x)}z \newline
-& =S(y)\rho(y,x)z \newline
-& =\text{Volatility}\times \text{IC}\times \text{score} 
+& =\frac{\rho(y,x)S(x)S(y)}{S(x)}z \newline
+& =\rho(y,x) S(y) z \newline
+& =\text{IC}\times \text{Volatility}\times \text{score} 
 \end{align}
 $$
 
@@ -83,18 +83,13 @@ Note that $E(y|x)$ is the expected value of $y$ given a specific value of $x$, w
 Thus, $E(y|x)$ represents the average or expected value of $y$ for a given value of $x$, taking into account the uncertainty in the estimates of the regression coefficients $a$ and $b$. Mathematically, here, $E(y|x)$ is expressed as $E(y|x) = a + bx$ where $a$ and $b$ are the estimated intercept and slope coefficients, respectively, and $x$ is a specific value of the predictor variable.
 
 $E(y)$ is the overall average or expected value of $y$ over all possible values of $x$. It can be calculated as the weighted average of $E(y|x)$ for all possible $x$ values, weighted by the probability distribution of $x$. Mathematically, $E(y)$ can be expressed as:
-$E(y) = ∫ E(y|x) * p(x) dx$ where $p(x)$ is the probability distribution of $x$.
+$E(y) = ∫ E(y|x) p(x) dx$ where $p(x)$ is the probability distribution of $x$.
 
+## Interpretation
 
+The term $E(y|x)-E(y)$ is the called the alpha or refined forecast as it represents the change in the expected value of y due to observing x. $S(y)$ is the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
 
-
-
-
-
-
-
-The term $E(y|x)-E(y)=S(y)\rho(y,x)z$ is typically called the "forecasting rule of thumb," where $E(y|x)-E(y)$ is the refined forecast (the change in the expected value of y due to observing x) or alpha, $S(y)$ the volatility, $\rho(y,x)$ the information coefficient (IC), and $z$ the score. 
-Hence,
+In our case where $r_{i,t+1}=a+bz_{i,t}$, IC is the correlation between the aggregate z-score or raw signal and the actual security returns, the volatility in this particular case represents the cross-sectional volatility of the returns of the securities, and score refers to the aggregate Z-score
 
 $$\text{Alpha} = \text{Volatility}\times \text{IC}\times \text{score}$$
 
