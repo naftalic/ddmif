@@ -139,6 +139,10 @@ $$
 z_{i,t}^{rank} = \frac{ rank(f_{i,j})-\sum_{i=1}^{N} rank(f_{i,j})/N }{\sigma_{rank}(f_{i,j}}
 $$
 
+$$
+\sum\limits_{i}^{N}
+$$
+
 where rank represents the numerical rank of each stock in the universe, from highest to lowest, based on the factor value.
 
 ## The Percentile Ranking Method
