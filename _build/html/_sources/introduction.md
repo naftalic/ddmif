@@ -9,13 +9,16 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 
 # Fundamentals
 
-One of the basic concepts in quantitative finance is [Alpha](https://en.wikipedia.org/wiki/Alpha_(finance)). Alpha is a metric used in quantitative portfolio management to measure the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the return of the benchmark, after adjusting for risk. Alpha is important because it helps investors assess the value added by a portfolio manager or investment strategy, and determine whether the manager has generated returns through skill or luck.
+Alpha is a fundamental concept in quantitative finance, used to measure the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark, adjusted for risk. Alpha helps investors determine if a portfolio manager or investment strategy has generated returns through skill or luck.
 
-Alpha refers, generaly, to two types of returns:
-- Benchmark Alpha: Return of a portfolio not linked to its benchmark's risk or market portfolio's risk. Formula: $r_P = α + βr_B + ϵ$.
-- Multi-Factor Alpha: Return of a portfolio not linked to multi-factors' risk. Formula: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ$.
+There are two types of Alpha: Benchmark Alpha and Multi-Factor Alpha. Benchmark Alpha measures the return of a portfolio not linked to the benchmark's risk, while Multi-Factor Alpha measures the return not linked to multiple factors' risk.
+- Benchmark Alpha: $r_P = α + βr_B + ϵ$.
+- Multi-Factor Alpha: $r_P = α + β_1f_1 +...+β_Kf_K +ϵ.$
 
-A few important remarks: 
+Where, α is the benchmark alpha, $r_p$ the return of the portfolio, $β$ the beta of the portfolio, $r_b$ the return of the benchmark. In the multi-factor case, α is the multi-factor alpha, $f_1, f_2, ..., f_K$ the returns of the K factors, and $β_1, β_2, ..., β_K$ the factor exposures or sensitivities of the portfolio to the K factors.
+
+
+The important aspect of Alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, as they aim for high Alpha and high Information Ratio, which is the excess performance in terms of risk units. Specifically,
 - $βr_B$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.
 - $α + ϵ$ is the residual return
 - The residual return is all that matters to the quantitative portfolio manager.

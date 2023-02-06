@@ -74,7 +74,7 @@
 # 
 # Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/E ratios is stationary over time and across stocks.
 # 
-# Calculate the Z-scores of Stock A and Stock B using cross-sectional analysis (for period T) and then calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
+# Calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.
 # 
 # # Solution
 
