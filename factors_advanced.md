@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# The fundamental factor model
+# The Fundamental Factor Model
 
 In financial economics, the average return of a stock is believed to be the reward for taking on risk. In a factor model, the risk exposure of a stock is represented by its factor exposure vector $\beta_i = (\beta_{i,1},...,\beta_{i,K})$. The factor premium vector $f = (f_1,...,f_K)$ represents the reward to an investor who takes on the risk by buying the stock.
 
@@ -47,10 +47,13 @@ Nondiversifiable risk = factor exposure^2 x factor risk
 
 Within the framework of the fundamental factor model, the total risk of a stock (nondiversifiable risk plus diversifiable risk) can be measured by the variance:
 
+
 $$
-V(r_i) &= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\\
-&= V( \alpha) + V(β_1f_1 + β_2f_2 + ... + β_Kf_K) + V(\epsilon_i)\\
+\begin{align}
+V(r_i) &= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newline
+&= V( \alpha) + V(β_1f_1 + β_2f_2 + ... + β_Kf_K) + V(\epsilon_i)\newline
 &= V(β_1f_1 + β_2f_2 + ... + β_Kf_K)
+\end{align}
 $$
 
 # Some Code
