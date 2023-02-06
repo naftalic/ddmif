@@ -8,5 +8,6 @@ chapters:
  - file: basic_models
  - file: factors
  - file: screening_and_ranking
+ - file: factors_advanced
  - file: competition
- - file: factors_advanced.md
+
