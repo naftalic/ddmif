@@ -52,7 +52,8 @@ $$
 \begin{align}
 V(r_i) &= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newline
 &= V( \alpha) + V(β_1f_1 + β_2f_2 + ... + β_Kf_K) + V(\epsilon_i)\newline
-&= V(β_1f_1 + β_2f_2 + ... + β_Kf_K)
+&= V(β_1f_1 + β_2f_2 + ... + β_Kf_K)+ V(\epsilon_i)\newline
+&= \beta_i^TV(f)\beta_i+ V(\epsilon_i)
 \end{align}
 $$
 
