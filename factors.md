@@ -102,6 +102,35 @@ The Bonferroni adjustment is a statistical method used to control the false disc
 ## Bayesian adjustment
 The Bayesian adjustment method uses Bayes' rule to determine the probability of a null hypothesis being true based on prior beliefs and observed data. The critical value of a t-test is then determined using the minimum Bayes factor (MBF), which is the minimum value of the likelihood ratio calculated from all alternative hypotheses. The critical t-value at a significance level of 5% corresponds to the 95% posterior probability of the null hypothesis being true. 
 
+# Outliers
+An outlier is a data point in a distribution that is significantly different from the rest of the data and appears to be inconsistent with it. The reason for this discrepancy could be due to errors in data collection or measurement, or it could reflect legitimate new information. In the case of data errors, it is common for the portfolio manager to remove the outlier entirely. If the outlier is accurate and represents novel information, it should be kept. However, in practice, the portfolio manager may not be able to determine the cause of the outlier and may choose to modify its value for safety. This does not diminish its significance compared to other stocks.
+
+There are two possibilities in the theoretical framework for outliers. 
+- The first (null hypothesis) assumes that all observations come from distribution A and there are no outliers. 
+- The second (alternative hypothesis) assumes that most observations come from distribution A, but some come from distribution B, and these are considered outliers. 
+To apply this categorization in real-life data, we need to know or make assumptions about distribution A. If we are uncertain about distribution A, detecting outliers becomes challenging and excluding these observations from the analysis may not be justified.
+
+Common techniques for outlier detection assume that the underlying distribution is normal, but there are also methods for non-normal distributions.
+Handling outliers involves two steps. 
+- In the first step, outliers are identified and labeled. 
+- In the second step, a decision is made on how to deal with the outliers. This could include removing them (trimming or truncation), replacing their values with a less extreme value (winsorization), or using a different approach.
+
+## The Z-Score Approach
+To address potential outliers, one approach is to label stocks with Z-scores greater than 3 in absolute value as outliers. However, this method is not reliable as it relies on the extreme values used to calculate means and standard deviations. 
+A more robust method is the modified Z-score method, where the median, instead of the standard deviation, is used to calculate the Z-score. Any observations with a modified Z-score greater than or equal to 3 are considered outliers. After identifying the outliers, they can be removed or their values can be modified.
+
+Winsorization involves replacing outliers with alternative values to prevent them from having a disproportionate impact on the results. One form of winsorization is to replace Z-scores greater than 3 with the value 3 and Z-scores less than -3 with -3.
+
+Trimming is the process of removing n/2 of the largest and n/2 of the smallest values, and then recalculating the Z-scores for the remaining data. Another variation of trimming involves simply removing Z-scores with absolute values greater than a certain value, such as 3, 4, or 5.
+
+## The Interquartile Approach
+The interquartile method is a useful technique for handling outliers when developing qunatitative models. To apply this method, calculate the interquartile range (IQR) of each factor across the stock universe. This value represents the middle 50% of factor values and is determined by subtracting the first-quartile (Q1) from the third-quartile (Q3) of each factor. Next, a decision must be made on what deviation from the 75th and 25th percentiles constitutes an outlier, which is known as the IQR coefficient. For instance, if the IQR coefficient is set at 3, the upper and lower bounds of the factor can be calculated as:
+$$
+UB = Q3+3IQR,\quad and LB = Q1-3IQR
+$$
+
+All stocks with factor values above the upper bound or below the lower bound are considered outliers and their values are set to missing. The Z-scores for the remaining stocks are then calculated. The Z-scores for the outlier stocks are fixed at the minimum and maximum of the non-outlier stocks' Z-scores.
+
 # Some Code
 ```{code-cell}
 ---
