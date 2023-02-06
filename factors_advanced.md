@@ -15,22 +15,43 @@ kernelspec:
 
 # The fundamental factor model
 
-The central concept of modern financial economics is that the average return of a stock represents the reward for taking on risk. 
-In a factor model, the factor exposure, represented by the vector $\beta_i = (\beta_{i,1},...,\beta_{i,K})$, 
-represents the exposure of a stock to some kind of risk. The factor premium, represented by the vector $f = (f_1,...,f_K)$, 
-quantifies the payoff to an investor who takes on that risk by buying the stock. 
-The average stock return therefore equals the product of the factor exposure and the factor premium:
+In financial economics, the average return of a stock is believed to be the reward for taking on risk. In a factor model, the risk exposure of a stock is represented by its factor exposure vector $\beta_i = (\beta_{i,1},...,\beta_{i,K})$. The factor premium vector $f = (f_1,...,f_K)$ represents the reward to an investor who takes on the risk by buying the stock.
 
-$r_i = \beta_i^T f + \alpha + \epsilon_i$
+The return on stock i can be expressed as:
 
-where $\alpha$ is the constant term and $\epsilon_i$ is the error term (i.e., the part of the stock return that does not depend
-on the K factors). Note that the average of $\epsilon_i$ is zero.
+$r_i = \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i = \alpha + \beta_i^T f + \epsilon_i$
 
-In a factor model, a stock's factor exposure is a measure of its exposure to a specific type of risk, 
-while the factor premium quantifies the reward to an investor who takes on that risk by buying the stock. 
-The average stock return is the product of the factor exposure and the factor premium, which can be calculated using the following formula:
+where $\alpha$ is the constant term, $\beta_i$ and $f$ are the vector notations for the factor exposure and premium, and $\epsilon_i$ is the error term, representing the part of the stock return that does not depend on the K factors.
 
+The fundamental factor model assumes that a stock's factor exposure, which is a measure of its exposure to a specific type of risk, can be represented by an observable characteristic such as market capitalization or book-to-market ratio. However, the factor premium, which represents the reward for taking on that risk, must be estimated through observation of the relationship between the average stock return and the factor exposure.
 
+## The average stock return 
+
+Using the assumption that the average $\epsilon_i$ is zero, we calculate the average stock return as
+
+$$E(r_i) = E(\alpha) + E(β_if)+E(\epsilon_i)=\alpha + β_iE(f)$$
+
+as $\alpha$, and $β_i$ are constants and $E(\epsilon_i)=0$. Hence, the average stock return is simply the product of the factor exposure and the factor premium.
+
+The average stock return is the payoff for taking risk—but what is this risk exactly? The risk of a stock has two components, diversifiable risk and nondiversifiable risk.
+
+Total risk  = Nondiversifiable risk + Diversifiable risk
+
+Since investors can eliminate diversifiable risk from their portfolios through diversification, the market only rewards exposure to nondiversifiable risk. Thus we may restate the central idea of modern financial economics as: 
+
+The average stock return is the payoff for taking nondiversifiable risk.
+
+The nondiversifiable risk can be expressed as the product of the factor exposure squared and the risk included in one unit of exposure. We will call the risk of one unit of exposure the factor risk. Then we may write
+
+Nondiversifiable risk = factor exposure^2 x factor risk
+
+Within the framework of the fundamental factor model, the total risk of a stock (nondiversifiable risk plus diversifiable risk) can be measured by the variance:
+
+$$
+V(r_i) &= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\\
+&= V( \alpha) + V(β_1f_1 + β_2f_2 + ... + β_Kf_K) + V(\epsilon_i)\\
+&= V(β_1f_1 + β_2f_2 + ... + β_Kf_K)
+$$
 
 # Some Code
 ```{code-cell}
