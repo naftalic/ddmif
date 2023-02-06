@@ -142,7 +142,12 @@ $$
 
 where rank represents the numerical rank of each stock in the universe, from highest to lowest, based on the factor value.
 
-## The Percentile Ranking Method
+## The Percentile Method
+A similar approach to the ranking method is the percentile method. After the N stocks are ordered from highest to lowest, each stock's percentile rank is calculated as in the following:
+
+$$
+z_{i,t}^{percentile} = \frac{ N-rank(f_{i,t}) }{N}.
+$$
 
 
 # Some Code
