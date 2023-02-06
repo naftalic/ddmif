@@ -136,7 +136,7 @@ All stocks with factor values above the upper bound (UB) or below the lower boun
 A different approach to addressing outliers is by using a ranking method. Instead of using Z-scores based on the individual factors, the portfolio manager can use cross-sectional rankings. To do this, they would order the stocks by their factor value at each evaluation period and assign them a rank based on the value, with the highest value getting a rank of 1 and the lowest a rank of n (where n is the number of stocks). The Z-scores are then calculated using these ranks instead of the factor values. This eliminates the issue of outliers, but it also means that information about the difference in values between the stocks is lost and only the relative Z-score value between the stocks is retained. The Z-score for each stock in a given month can be determined using the following formula:
 
 $$
-z_{i,t}^{rank} = \frac{rank(f_{i,j}-\sum_{i=1}^N rank(f_{i,j})/N }{\sigma_{rank}(f_i,j}}
+z_{i,t}^{rank} = \frac{rank(f_{i,j}-\sum_{i=1}^{N} rank(f_{i,j})/N }{\sigma_{rank}(f_{i,j}}
 $$
 
 where rank represents the numerical rank of each stock in the universe, from highest to lowest, based on the factor value.
