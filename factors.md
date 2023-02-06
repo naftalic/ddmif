@@ -125,11 +125,24 @@ Trimming is the process of removing n/2 of the largest and n/2 of the smallest v
 
 ## The Interquartile Approach
 The interquartile method is a useful technique for handling outliers when developing qunatitative models. To apply this method, calculate the interquartile range (IQR) of each factor across the stock universe. This value represents the middle 50% of factor values and is determined by subtracting the first-quartile (Q1) from the third-quartile (Q3) of each factor. Next, a decision must be made on what deviation from the 75th and 25th percentiles constitutes an outlier, which is known as the IQR coefficient. For instance, if the IQR coefficient is set at 3, the upper and lower bounds of the factor can be calculated as:
+
 $$
 UB = Q3+3IQR,\quad and LB = Q1-3IQR
 $$
 
-All stocks with factor values above the upper bound or below the lower bound are considered outliers and their values are set to missing. The Z-scores for the remaining stocks are then calculated. The Z-scores for the outlier stocks are fixed at the minimum and maximum of the non-outlier stocks' Z-scores.
+All stocks with factor values above the upper bound (UB) or below the lower bound (LB) are considered outliers and their values are set to missing. The Z-scores for the remaining stocks are then calculated. The Z-scores for the outlier stocks are fixed at the minimum and maximum of the non-outlier stocks' Z-scores.
+
+## The Ranking Approach
+A different approach to addressing outliers is by using a ranking method. Instead of using Z-scores based on the individual factors, the portfolio manager can use cross-sectional rankings. To do this, they would order the stocks by their factor value at each evaluation period and assign them a rank based on the value, with the highest value getting a rank of 1 and the lowest a rank of n (where n is the number of stocks). The Z-scores are then calculated using these ranks instead of the factor values. This eliminates the issue of outliers, but it also means that information about the difference in values between the stocks is lost and only the relative Z-score value between the stocks is retained. The Z-score for each stock in a given month can be determined using the following formula:
+
+$$
+z_[i,t}^{rank} = \frac{rank(f_{i,j}-\sum_{i=1}^N rank(f_{i,j})/N }{\sigma_{rank}(f_i,j}}
+$$
+
+where rank represents the numerical rank of each stock in the universe, from highest to lowest, based on the factor value.
+
+## The Percentile Ranking Method
+
 
 # Some Code
 ```{code-cell}
