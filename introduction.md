@@ -4,11 +4,11 @@ There are two major categories of quantitative equity portfolio management: acti
 
 Investors can access active or passive portfolios through mutual funds, ETFs, or building their own portfolios. Major equity benchmarks for portfolio managers include [S&P 500](https://en.wikipedia.org/wiki/S%26P_500), [Russell 3000](https://en.wikipedia.org/wiki/Russell_3000_Index), [Wilshire 5000](https://en.wikipedia.org/wiki/Wilshire_5000), [NASDAQ-100](https://en.wikipedia.org/wiki/Nasdaq-100), and MSCI USA.
 
-Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include [Peter Lynch](https://en.wikipedia.org/wiki/Peter_Lynch) and [Warren Buffett](https://en.wikipedia.org/wiki/Warren_Buffett). Quantitative portfolio management is usually associated with large institutions or hedge funds, such as Barclays Global Investors, Goldman Sachs Asset Management, and Parametric Associates.
+Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include [Peter Lynch](https://en.wikipedia.org/wiki/Peter_Lynch) and [Warren Buffett](https://en.wikipedia.org/wiki/Warren_Buffett). Quantitative portfolio management is usually associated with large institutions or hedge funds, such as [Two Sigma](https://www.twosigma.com/), [Citadel](https://www.citadel.com/), and [Schonfeld](https://www.schonfeld.com/).
 
 
 # Fundamentals
-Alpha is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.
+[Alpha](https://en.wikipedia.org/wiki/Alpha_(finance)) is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.
 
 There are two types of Alpha: Benchmark Alpha and Multi-Factor Alpha. Benchmark Alpha measures the return of a portfolio not linked to the benchmark's risk, while Multi-Factor Alpha measures the return not linked to multiple factors' risk. The equations for Benchmark Alpha and Multi-Factor Alpha are: $r_p = α + β_pr_b + ϵ$ and $r_p = α + β_1f_1 +...+β_kf_k +ϵ = α + β\cdot f +ϵ$ respectively.
 
