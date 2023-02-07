@@ -59,7 +59,9 @@ The regression takes the form of
 
 $$r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}$$
 
-where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
+where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. 
+
+However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
 
 # Forecasting Rule of Thumb: derivation
 
