@@ -128,6 +128,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="competition.html">
    Investment Competition
   </a>
@@ -325,8 +330,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#market-efficiency">
-   Market efficiency
+  <a class="reference internal nav-link" href="#market-efficiencies">
+   Market Efficiencies
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -389,8 +394,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#market-efficiency">
-   Market efficiency
+  <a class="reference internal nav-link" href="#market-efficiencies">
+   Market Efficiencies
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -439,56 +444,56 @@ title="Print to PDF"
 <p>Alpha is a fundamental concept in quantitative finance, used to measure the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark, adjusted for risk. Alpha helps investors determine if a portfolio manager or investment strategy has generated returns through skill or luck.</p>
 <p>There are two types of Alpha: Benchmark Alpha and Multi-Factor Alpha. Benchmark Alpha measures the return of a portfolio not linked to the benchmark’s risk, while Multi-Factor Alpha measures the return not linked to multiple factors’ risk.</p>
 <ul class="simple">
-<li><p>Benchmark Alpha: <span class="math notranslate nohighlight">\(r_P = α + βr_B + ϵ\)</span>.</p></li>
-<li><p>Multi-Factor Alpha: <span class="math notranslate nohighlight">\(r_P = α + β_1f_1 +...+β_Kf_K +ϵ.\)</span></p></li>
+<li><p>Benchmark Alpha: <span class="math notranslate nohighlight">\(r_p = α + βr_b + ϵ\)</span>.</p></li>
+<li><p>Multi-Factor Alpha: <span class="math notranslate nohighlight">\(r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ\)</span></p></li>
 </ul>
-<p>Where, α is the benchmark alpha, <span class="math notranslate nohighlight">\(r_p\)</span> the return of the portfolio, <span class="math notranslate nohighlight">\(β\)</span> the beta of the portfolio, <span class="math notranslate nohighlight">\(r_b\)</span> the return of the benchmark. In the multi-factor case, α is the multi-factor alpha, <span class="math notranslate nohighlight">\(f_1, f_2, ..., f_K\)</span> the returns of the K factors, and <span class="math notranslate nohighlight">\(β_1, β_2, ..., β_K\)</span> the factor exposures or sensitivities of the portfolio to the K factors.</p>
+<p>Where, α is the benchmark alpha, <span class="math notranslate nohighlight">\(r_p\)</span> the return of the portfolio, <span class="math notranslate nohighlight">\(β\)</span> the beta of the portfolio, <span class="math notranslate nohighlight">\(r_b\)</span> the return of the benchmark. In the multi-factor case, α is the multi-factor alpha, <span class="math notranslate nohighlight">\(f=f_1, f_2, ..., f_K\)</span> the returns of the K factors, and <span class="math notranslate nohighlight">\(β = β_1, β_2, ..., β_K\)</span> the factor exposures or sensitivities of the portfolio to the K factors.</p>
 <p>The important aspect of Alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, as they aim for high Alpha and high Information Ratio, which is the excess performance in terms of risk units. Specifically,</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(βr_B\)</span> is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.</p></li>
-<li><p><span class="math notranslate nohighlight">\(α + ϵ\)</span> is the residual return</p></li>
+<li><p><span class="math notranslate nohighlight">\(βr_b\)</span> or <span class="math notranslate nohighlight">\(β\cdot f\)</span> is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.</p></li>
+<li><p><span class="math notranslate nohighlight">\(α + ϵ\)</span> is the residual return.</p></li>
 <li><p>The residual return is all that matters to the quantitative portfolio manager.</p></li>
 <li><p>If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value.</p></li>
 <li><p>The residual return is the part that represents an increase in return independent of increased direct benchmark exposure.</p></li>
-<li><p><span class="math notranslate nohighlight">\(α\)</span> is the expected value of the residual return (<span class="math notranslate nohighlight">\(E(α + ϵ) = α\)</span>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(ϵ\)</span>, is the deviation of the residual return from its mean (it is assumed that <span class="math notranslate nohighlight">\(ϵ\)</span> averages zero).</p></li>
+<li><p><span class="math notranslate nohighlight">\(α\)</span> is the expected value of the residual return: <span class="math notranslate nohighlight">\(E(α + ϵ) = α\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(ϵ\)</span> is the deviation of the residual return from its mean (it is assumed that <span class="math notranslate nohighlight">\(ϵ\)</span> averages zero).</p></li>
 </ul>
 <p>In general, we distingish between Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas:</p>
 <p>Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.</p>
-<p>Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as <span class="math notranslate nohighlight">\(IR = α_B / 𝜔\)</span>, where 𝜔 is the residual risk or excess risk.</p>
+<p>Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as <span class="math notranslate nohighlight">\(IR = α_b / 𝜔\)</span>, where 𝜔 is the residual risk or excess risk.</p>
 <p>An active portfolio manager aims for both high alpha and high information ratio.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="the-market-rules">
 <h1>The Market Rules<a class="headerlink" href="#the-market-rules" title="Permalink to this headline">#</a></h1>
 <p>Investing in financial markets is a complex and challenging task that requires a deep understanding of various market rules and principles. The market rules, as stated here, are widely accepted and followed by investors, portfolio managers, and traders around the world. These rules help provide a framework for making informed investment decisions and maximizing returns while mitigating risk.</p>
 <ul class="simple">
-<li><p>Efficiency prevails in markets with profits only possible through taking risk: This rule states that in markets where investors can only make profits by taking risk, prices reflect all available information and future price movements are unpredictable. The only way to generate returns is to take on greater risk, and therefore profits can only be achieved by making better-informed decisions than others in the market.</p></li>
-<li><p>Risk-free arbitrage does not exist: The concept of risk-free arbitrage refers to a situation where an investor can take advantage of market inefficiencies to make a profit with zero risk. This is not possible in real-world financial markets, as all investments carry some level of risk.</p></li>
-<li><p>Quantitative Analysis seeks profit through statistical arbitrage by using all available information: Quantitative analysis is a systematic approach to investing that uses mathematical and statistical methods to analyze market data and identify profitable investment opportunities. It seeks to exploit market inefficiencies and generate returns through statistical arbitrage, which is the process of taking advantage of price discrepancies between two or more securities.</p></li>
-<li><p>Quantitative Analysis must be based on solid economic theories and reflect persistent patterns: To be effective, quantitative analysis must be based on solid economic theories and reflect persistent patterns in the data. This means that the investment strategies used must be backed by research and analysis and be able to withstand changing market conditions.</p></li>
-<li><p>Deviations from the benchmark are acceptable only if they come with manageable uncertainty: Investors often use benchmark portfolios as a reference point for their own investments. Deviations from the benchmark are acceptable only if they are accompanied by manageable levels of uncertainty and the potential for a higher return. This is because investors are willing to take on additional risk if they believe that the reward is worth it.</p></li>
+<li><p><strong>Efficiency prevails in markets with profits only possible through taking risk</strong>: This rule states that in markets where investors can only make profits by taking risk, prices reflect all available information and future price movements are unpredictable. The only way to generate returns is to take on greater risk, and therefore profits can only be achieved by making better-informed decisions than others in the market.</p></li>
+<li><p><strong>Risk-free arbitrage does not exist</strong>: The concept of risk-free arbitrage refers to a situation where an investor can take advantage of market inefficiencies to make a profit with zero risk. This is not possible in real-world financial markets, as all investments carry some level of risk.</p></li>
+<li><p><strong>Quantitative Analysis seeks profit through statistical arbitrage by using all available information</strong>: Quantitative analysis is a systematic approach to investing that uses mathematical and statistical methods to analyze market data and identify profitable investment opportunities. It seeks to exploit market inefficiencies and generate returns through statistical arbitrage, which is the process of taking advantage of price discrepancies between two or more securities.</p></li>
+<li><p><strong>Quantitative Analysis must be based on solid economic theories and reflect persistent patterns</strong>: To be effective, quantitative analysis must be based on solid economic theories and reflect persistent patterns in the data. This means that the investment strategies used must be backed by research and analysis and be able to withstand changing market conditions.</p></li>
+<li><p><strong>Deviations from the benchmark are acceptable only if they come with manageable uncertainty</strong>: Investors often use benchmark portfolios as a reference point for their own investments. Deviations from the benchmark are acceptable only if they are accompanied by manageable levels of uncertainty and the potential for a higher return. This is because investors are willing to take on additional risk if they believe that the reward is worth it.</p></li>
 </ul>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="market-efficiency">
-<h1>Market efficiency<a class="headerlink" href="#market-efficiency" title="Permalink to this headline">#</a></h1>
+<div class="tex2jax_ignore mathjax_ignore section" id="market-efficiencies">
+<h1>Market Efficiencies<a class="headerlink" href="#market-efficiencies" title="Permalink to this headline">#</a></h1>
 <p>We generaly distingish between three forms of market efficiencies:</p>
 <ul class="simple">
-<li><p>Weak form - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.</p></li>
-<li><p>Semi-strong form - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.</p></li>
-<li><p>Strong form - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.</p></li>
+<li><p><strong>Weak form</strong> - security prices fully reflect all past market information. Hence, technical analysis is not expected to produce superior stock picks.</p></li>
+<li><p><strong>Semi-strong form</strong> - security prices reflect all publicly available information, including macroeconomic fundamentals and analyst reports. Hence, relying on publicly available information for stock picking is not likely to be effective.</p></li>
+<li><p><strong>Strong form</strong> - security prices reflect all publicly and privately held information, including inside information. Hence, using any form of privileged information is not expected to result in superior stock selection.</p></li>
 </ul>
 <p>Can we test for market efficiency?</p>
 <ul class="simple">
-<li><p>Weak-Form Efficiency: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.</p></li>
-<li><p>Semi-Strong Form Efficiency: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).</p></li>
-<li><p>Strong Form Efficiency: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.</p></li>
+<li><p><strong>Weak-Form Efficiency</strong>: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.</p></li>
+<li><p><strong>Semi-Strong Form Efficiency</strong>: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).</p></li>
+<li><p><strong>Strong Form Efficiency</strong>: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="market-anomalies">
 <h1>Market Anomalies<a class="headerlink" href="#market-anomalies" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p>Defining “Normal” Returns: To determine if a strategy violates market efficiency, it’s necessary to define what is considered a “normal” or “expected” return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).</p></li>
-<li><p>Testing Strategy Returns: Using historical data, a strategy can be created and tested for excess returns that are statistically significant. For example, creating an equal-weight portfolio of stocks whose analyst ratings improved in the last month and running a regression analysis.</p></li>
+<li><p><strong>Defining “normal” returns</strong>: To determine if a strategy violates market efficiency, it’s necessary to define what is considered a “normal” or “expected” return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).</p></li>
+<li><p><strong>Testing strategy returns</strong>: Using historical data, a strategy can be created and tested for excess returns that are statistically significant. For example, creating an equal-weight portfolio of stocks whose analyst ratings improved in the last month and running a regression analysis.</p></li>
 </ul>
 <p>When testing for anomalies, it’s important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.</p>
 </div>
@@ -496,27 +501,27 @@ title="Print to PDF"
 <h1>Documented Market Anomalies<a class="headerlink" href="#documented-market-anomalies" title="Permalink to this headline">#</a></h1>
 <p>Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:</p>
 <ul class="simple">
-<li><p>The Value Effect refers to the observation that stocks with low price-to-earnings (P/E), price-to-book (P/B), price-to-sales (P/S), and price-to-dividend (P/D) ratios tend to outperform stocks with high ratios in the long run. This anomaly suggests that investors can potentially achieve higher returns by investing in undervalued stocks.</p></li>
-<li><p>The Size Effect refers to the observation that small-cap stocks tend to outperform large-cap stocks over time. This anomaly suggests that small companies may offer higher growth potential, but also come with higher risks compared to large established companies.</p></li>
-<li><p>The January Effect refers to the observation that small-cap and poor-performing stocks tend to outperform in the month of January. This anomaly may be driven by tax-loss selling at the end of the year and window dressing by fund managers at the start of the new year.</p></li>
-<li><p>The Calendar Effect refers to the observation of outperformance on specific days of the week, such as Halloween, or in response to weather events. This anomaly may be driven by investor behavior and psychological factors.</p></li>
-<li><p>The Neglected-Firm Effect refers to the observation that stocks with low analyst coverage tend to have higher risk-adjusted returns compared to stocks with high analyst coverage. This anomaly suggests that stocks with low analyst attention may be overlooked and undervalued, offering potential opportunities for higher returns.</p></li>
-<li><p>The PEG Ratio Effect refers to the inverse relationship between a stock’s price-to-earnings-to-growth (PEG) ratio and its performance. A low PEG ratio suggests that a stock is undervalued compared to its growth potential, while a high PEG ratio suggests that a stock is overvalued compared to its growth potential. The PEG ratio effect suggests that investing in stocks with low PEG ratios can lead to higher returns.</p></li>
-<li><p>The IPO Effect refers to the observation that initial public offerings (IPOs) underperform on a risk-adjusted basis in the first 3-5 years after going public. This anomaly may be due to several factors, including high underwriter fees, lock-up periods, and a lack of analyst coverage.</p></li>
-<li><p>The Index-Change Effect refers to the observation that stocks included in an index tend to have positive returns, while those dropped from an index tend to have negative returns. This anomaly may be driven by passive investing strategies, as investors buy stocks in newly included companies and sell stocks in companies that are dropped from an index.</p></li>
-<li><p>The Momentum Effect refers to the observation that stocks that perform well in one period tend to continue performing well in the next period. This anomaly suggests that investors may achieve higher returns by investing in stocks with high momentum.</p></li>
-<li><p>The Technical Indicators Effect refers to the observation that certain technical indicators, such as volume, relative strength index (RSI), Bollinger Bands, and moving average, provide excess returns. This anomaly may be driven by investor behavior and technical analysis. However, it’s important to note that technical indicators are only one piece of information and should be used in conjunction with other analysis methods for investment decisions.
+<li><p><strong>The Value Effect</strong> refers to the observation that stocks with low price-to-earnings (P/E), price-to-book (P/B), price-to-sales (P/S), and price-to-dividend (P/D) ratios tend to outperform stocks with high ratios in the long run. This anomaly suggests that investors can potentially achieve higher returns by investing in undervalued stocks.</p></li>
+<li><p><strong>The Size Effect</strong> refers to the observation that small-cap stocks tend to outperform large-cap stocks over time. This anomaly suggests that small companies may offer higher growth potential, but also come with higher risks compared to large established companies.</p></li>
+<li><p><strong>The January Effect</strong> refers to the observation that small-cap and poor-performing stocks tend to outperform in the month of January. This anomaly may be driven by tax-loss selling at the end of the year and window dressing by fund managers at the start of the new year.</p></li>
+<li><p><strong>The Calendar Effect</strong> refers to the observation of outperformance on specific days of the week, such as Halloween, or in response to weather events. This anomaly may be driven by investor behavior and psychological factors.</p></li>
+<li><p><strong>The Neglected-Firm Effect</strong> refers to the observation that stocks with low analyst coverage tend to have higher risk-adjusted returns compared to stocks with high analyst coverage. This anomaly suggests that stocks with low analyst attention may be overlooked and undervalued, offering potential opportunities for higher returns.</p></li>
+<li><p><strong>The PEG Ratio Effect</strong> refers to the inverse relationship between a stock’s price-to-earnings-to-growth (PEG) ratio and its performance. A low PEG ratio suggests that a stock is undervalued compared to its growth potential, while a high PEG ratio suggests that a stock is overvalued compared to its growth potential. The PEG ratio effect suggests that investing in stocks with low PEG ratios can lead to higher returns.</p></li>
+<li><p><strong>The IPO Effect refers</strong> to the observation that initial public offerings (IPOs) underperform on a risk-adjusted basis in the first 3-5 years after going public. This anomaly may be due to several factors, including high underwriter fees, lock-up periods, and a lack of analyst coverage.</p></li>
+<li><p><strong>The Index-Change Effect</strong> refers to the observation that stocks included in an index tend to have positive returns, while those dropped from an index tend to have negative returns. This anomaly may be driven by passive investing strategies, as investors buy stocks in newly included companies and sell stocks in companies that are dropped from an index.</p></li>
+<li><p><strong>The Momentum Effect</strong> refers to the observation that stocks that perform well in one period tend to continue performing well in the next period. This anomaly suggests that investors may achieve higher returns by investing in stocks with high momentum.</p></li>
+<li><p><strong>The Technical Indicators Effect</strong> refers to the observation that certain technical indicators, such as volume, relative strength index (RSI), Bollinger Bands, and moving average, provide excess returns. This anomaly may be driven by investor behavior and technical analysis. However, it’s important to note that technical indicators are only one piece of information and should be used in conjunction with other analysis methods for investment decisions.
 The Analyst Forecasts Effect refers to the observation that stocks with “buy” ratings from analysts tend to outperform, though this effect has weakened over time. Changes in analyst ratings and earnings surprises also tend to predict stock returns. This anomaly may be driven by the collective actions of investors following analyst recommendations, as well as by the potential for analyst conflicts of interest.</p></li>
-<li><p>The Insider Trading Effect refers to the observation that recent insider-bought stocks tend to have excess returns, while recent insider-sold stocks tend to have negative returns. This anomaly may be driven by the actions of corporate insiders who have access to information not available to the general public.</p></li>
-<li><p>The Overreaction Effect refers to the observation that investors tend to overreact to both good and bad news. In particular, stocks that have underperformed in the past tend to outperform over the next 3-5 years. This anomaly may be driven by investor overconfidence, overreaction to news events, and behavioral biases.</p></li>
-<li><p>The Stock Buybacks Effect refers to the observation that companies that buy back their own stock tend to have positive risk-adjusted returns. This anomaly may be driven by the belief that stock buybacks indicate a company’s confidence in its own prospects, or by the impact of buybacks on earnings per share.</p></li>
-<li><p>The Stock Splits and Reverse Splits Effect refers to the observation that stock splits are followed by positive returns. This anomaly may be driven by investor perceptions that stock splits signal a company’s financial health and growth prospects.</p></li>
-<li><p>The Spin-Offs Effect refers to the observation that parent companies tend to have excess returns after the spin-off of a subsidiary. This anomaly may be driven by increased focus on the operations of the subsidiary and improved management efficiency at the parent company.</p></li>
-<li><p>The Accruals Effect refers to the observation that low accrual companies tend to perform better than high accrual companies. Accruals refer to the amount of non-cash expenses recorded in a company’s financial statements, and low accrual companies are generally considered to be of higher quality than high accrual companies.</p></li>
-<li><p>The Low Volatility Effect refers to the observation that low historical volatility stocks tend to outperform high volatility stocks. This anomaly may be driven by the tendency of investors to avoid stocks with high volatility, as well as by the belief that low volatility stocks are less risky.</p></li>
-<li><p>The Low Beta Effect refers to the observation that low beta stocks tend to outperform high beta stocks on a risk-adjusted basis. Beta is a measure of a stock’s volatility relative to the overall market, and low beta stocks are generally considered to be less risky than high beta stocks.</p></li>
-<li><p>The Liquidity Effect refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.</p></li>
-<li><p>The Crowding Effect refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.</p></li>
+<li><p><strong>The Insider Trading Effect</strong> refers to the observation that recent insider-bought stocks tend to have excess returns, while recent insider-sold stocks tend to have negative returns. This anomaly may be driven by the actions of corporate insiders who have access to information not available to the general public.</p></li>
+<li><p><strong>The Overreaction Effect</strong> refers to the observation that investors tend to overreact to both good and bad news. In particular, stocks that have underperformed in the past tend to outperform over the next 3-5 years. This anomaly may be driven by investor overconfidence, overreaction to news events, and behavioral biases.</p></li>
+<li><p><strong>The Stock Buybacks Effect</strong> refers to the observation that companies that buy back their own stock tend to have positive risk-adjusted returns. This anomaly may be driven by the belief that stock buybacks indicate a company’s confidence in its own prospects, or by the impact of buybacks on earnings per share.</p></li>
+<li><p><strong>The Stock Splits and Reverse Splits Effect</strong> refers to the observation that stock splits are followed by positive returns. This anomaly may be driven by investor perceptions that stock splits signal a company’s financial health and growth prospects.</p></li>
+<li><p><strong>The Spin-Offs Effect</strong> refers to the observation that parent companies tend to have excess returns after the spin-off of a subsidiary. This anomaly may be driven by increased focus on the operations of the subsidiary and improved management efficiency at the parent company.</p></li>
+<li><p><strong>The Accruals Effect</strong> refers to the observation that low accrual companies tend to perform better than high accrual companies. Accruals refer to the amount of non-cash expenses recorded in a company’s financial statements, and low accrual companies are generally considered to be of higher quality than high accrual companies.</p></li>
+<li><p><strong>The Low Volatility Effect</strong> refers to the observation that low historical volatility stocks tend to outperform high volatility stocks. This anomaly may be driven by the tendency of investors to avoid stocks with high volatility, as well as by the belief that low volatility stocks are less risky.</p></li>
+<li><p><strong>The Low Beta Effect</strong> refers to the observation that low beta stocks tend to outperform high beta stocks on a risk-adjusted basis. Beta is a measure of a stock’s volatility relative to the overall market, and low beta stocks are generally considered to be less risky than high beta stocks.</p></li>
+<li><p><strong>The Liquidity Effect</strong> refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.</p></li>
+<li><p><strong>The Crowding Effect</strong> refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="behavioral-anomalies">
@@ -524,32 +529,32 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
 <p>Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors’ behavior.</p>
 <p>Documented anomalies:</p>
 <ul class="simple">
-<li><p>Anchoring: Investors tend to rely too heavily on a single piece of information or reference point when making investment decisions, leading to a bias in their assessments. This often results in a lack of flexibility in decision making, as investors may be anchored to certain expectations or past market experiences.</p></li>
-<li><p>Ambiguity Aversion: Investors tend to avoid stocks or investments that are unfamiliar to them and have a preference for familiar investments, even if they are not necessarily the best choice. This is because they are more comfortable with what they know, even if it is not the most rational choice.</p></li>
-<li><p>Availability Bias: Investors tend to over-estimate the likelihood of future events based on memories that are easily accessible to them, such as recent events or information that is top of mind. This can result in an overestimation of risks and opportunities, leading to poor investment decisions.</p></li>
-<li><p>Confirmation Bias: Investors tend to give more weight to information that confirms their beliefs or expectations, and less weight to information that contradicts them. This can lead to a failure to consider new information and an unwillingness to adapt to changing circumstances.</p></li>
-<li><p>Disposition Effect: Investors tend to hold on to losing investments for too long, and sell winning investments too soon. This is often due to a belief that the losing investment will eventually recover, or that the winner has reached its peak.</p></li>
-<li><p>Endowment Effect: Investors tend to demand more to give up an investment than they are willing to pay to acquire it. This can result in suboptimal decisions, as they may hold on to underperforming investments or sell winning investments too early.</p></li>
-<li><p>Escalation Bias: Investors tend to compound losses by putting more money into a losing investment, rather than cutting their losses and moving on. This is often due to a belief that the investment will eventually recover, or a failure to admit to a bad decision.</p></li>
-<li><p>Herding Mentality: Investors tend to follow the actions of others, even in investing. This can result in poor investment decisions, as investors may not be considering the reasons behind the actions of others.</p></li>
-<li><p>Illusion of Knowledge: Investors may have an overreliance on data and analysis when evaluating stocks, leading to an over-confidence in their abilities. This can result in frequent trading, high transaction costs, and poor investment decisions.</p></li>
-<li><p>Narrow Framing: Investors may consider investments in isolation, rather than considering them in the context of a portfolio or broader market trends. This can result in suboptimal decisions and a failure to consider risk and diversification.</p></li>
-<li><p>Overconfidence: Investors may overestimate their abilities and have an over-confidence in their investment decisions, leading to frequent trades and high transaction costs. This can result in poor investment outcomes, as they may be acting on emotions rather than rational analysis.</p></li>
+<li><p><strong>Anchoring</strong>: Investors tend to rely too heavily on a single piece of information or reference point when making investment decisions, leading to a bias in their assessments. This often results in a lack of flexibility in decision making, as investors may be anchored to certain expectations or past market experiences.</p></li>
+<li><p><strong>Ambiguity Aversion</strong>: Investors tend to avoid stocks or investments that are unfamiliar to them and have a preference for familiar investments, even if they are not necessarily the best choice. This is because they are more comfortable with what they know, even if it is not the most rational choice.</p></li>
+<li><p><strong>Availability Bias</strong>: Investors tend to over-estimate the likelihood of future events based on memories that are easily accessible to them, such as recent events or information that is top of mind. This can result in an overestimation of risks and opportunities, leading to poor investment decisions.</p></li>
+<li><p><strong>Confirmation Bias</strong>: Investors tend to give more weight to information that confirms their beliefs or expectations, and less weight to information that contradicts them. This can lead to a failure to consider new information and an unwillingness to adapt to changing circumstances.</p></li>
+<li><p><strong>Disposition Effect</strong>: Investors tend to hold on to losing investments for too long, and sell winning investments too soon. This is often due to a belief that the losing investment will eventually recover, or that the winner has reached its peak.</p></li>
+<li><p><strong>Endowment Effect</strong>: Investors tend to demand more to give up an investment than they are willing to pay to acquire it. This can result in suboptimal decisions, as they may hold on to underperforming investments or sell winning investments too early.</p></li>
+<li><p><strong>Escalation Bias</strong>: Investors tend to compound losses by putting more money into a losing investment, rather than cutting their losses and moving on. This is often due to a belief that the investment will eventually recover, or a failure to admit to a bad decision.</p></li>
+<li><p><strong>Herding Mentality</strong>: Investors tend to follow the actions of others, even in investing. This can result in poor investment decisions, as investors may not be considering the reasons behind the actions of others.</p></li>
+<li><p><strong>Illusion of Knowledge</strong>: Investors may have an overreliance on data and analysis when evaluating stocks, leading to an over-confidence in their abilities. This can result in frequent trading, high transaction costs, and poor investment decisions.</p></li>
+<li><p><strong>Narrow Framing</strong>: Investors may consider investments in isolation, rather than considering them in the context of a portfolio or broader market trends. This can result in suboptimal decisions and a failure to consider risk and diversification.</p></li>
+<li><p><strong>Overconfidence</strong>: Investors may overestimate their abilities and have an over-confidence in their investment decisions, leading to frequent trades and high transaction costs. This can result in poor investment outcomes, as they may be acting on emotions rather than rational analysis.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="why-is-market-efficiency-imperfect">
 <h1>Why is market efficiency imperfect?<a class="headerlink" href="#why-is-market-efficiency-imperfect" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p>Information Asymmetry: Information is not equally accessible to all market participants. Some investors have more resources or expertise to obtain or analyze information. This can lead to a difference in opinion and cause market inefficiencies.</p></li>
-<li><p>Slow information diffusion: The process of information spreading across the market can be slow, and prices may not immediately reflect new information. This creates opportunities for some investors to act faster and exploit the lag.</p></li>
-<li><p>Limited capacity: Not all investors have the ability to process large amounts of information, and some may not have the skills to interpret the data correctly. This can lead to mispricings that create opportunities for informed investors.</p></li>
-<li><p>Private information: Information filtering and interpretation can create private information, giving some investors an advantage over others. This can lead to market inefficiencies as private information holders trade on their knowledge.</p></li>
-<li><p>Emotional decisions: Investors’ emotions can influence their investment decisions, leading to market inefficiencies. For example, overreaction to news events, overconfidence, and herding mentality are emotional biases that can cause prices to deviate from fair value.</p></li>
-<li><p>Market manipulation: Efforts to exploit irrational behavior can create market inefficiencies. For example, insider trading or market manipulation by large traders can cause prices to deviate from their fair value.</p></li>
-<li><p>Technological change: Technological advancements, shifts in consumer preferences, and changes in economic conditions can impact market performance and create inefficiencies.</p></li>
-<li><p>Transactions costs: In real-world markets, transactions costs, such as bid-ask spreads, can diverge from economic models, affecting market performance and creating inefficiencies.</p></li>
-<li><p>Taxation: Taxation policies can affect market performance and create inefficiencies. For example, taxes on capital gains can impact the decisions of investors and create price differences between taxed and untaxed markets.</p></li>
-<li><p>Government regulations: Government regulations, such as market manipulation laws, can create deviations from ideal economic models. For example, regulations can reduce the information available to market participants and increase transactions costs, leading to market inefficiencies.</p></li>
+<li><p><strong>Information Asymmetry</strong>: Information is not equally accessible to all market participants. Some investors have more resources or expertise to obtain or analyze information. This can lead to a difference in opinion and cause market inefficiencies.</p></li>
+<li><p><strong>Slow information diffusion</strong>: The process of information spreading across the market can be slow, and prices may not immediately reflect new information. This creates opportunities for some investors to act faster and exploit the lag.</p></li>
+<li><p><strong>Limited capacity</strong>: Not all investors have the ability to process large amounts of information, and some may not have the skills to interpret the data correctly. This can lead to mispricings that create opportunities for informed investors.</p></li>
+<li><p><strong>Private information</strong>: Information filtering and interpretation can create private information, giving some investors an advantage over others. This can lead to market inefficiencies as private information holders trade on their knowledge.</p></li>
+<li><p><strong>Emotional decisions</strong>: Investors’ emotions can influence their investment decisions, leading to market inefficiencies. For example, overreaction to news events, overconfidence, and herding mentality are emotional biases that can cause prices to deviate from fair value.</p></li>
+<li><p><strong>Market manipulation</strong>: Efforts to exploit irrational behavior can create market inefficiencies. For example, insider trading or market manipulation by large traders can cause prices to deviate from their fair value.</p></li>
+<li><p><strong>Technological change</strong>: Technological advancements, shifts in consumer preferences, and changes in economic conditions can impact market performance and create inefficiencies.</p></li>
+<li><p><strong>Transactions costs</strong>: In real-world markets, transactions costs, such as bid-ask spreads, can diverge from economic models, affecting market performance and creating inefficiencies.</p></li>
+<li><p><strong>Taxation</strong>: Taxation policies can affect market performance and create inefficiencies. For example, taxes on capital gains can impact the decisions of investors and create price differences between taxed and untaxed markets.</p></li>
+<li><p><strong>Government regulations</strong>: Government regulations, such as market manipulation laws, can create deviations from ideal economic models. For example, regulations can reduce the information available to market participants and increase transactions costs, leading to market inefficiencies.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="brief-history-of-financial-theory">
