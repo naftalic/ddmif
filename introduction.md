@@ -8,32 +8,15 @@ Qualitative portfolio managers focus on intangibles and study company fundamenta
 
 
 # Fundamentals
+Alpha is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.
 
-Alpha is a fundamental concept in quantitative finance, used to measure the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark, adjusted for risk. Alpha helps investors determine if a portfolio manager or investment strategy has generated returns through skill or luck.
+There are two types of Alpha: Benchmark Alpha and Multi-Factor Alpha. Benchmark Alpha measures the return of a portfolio not linked to the benchmark's risk, while Multi-Factor Alpha measures the return not linked to multiple factors' risk. The equations for Benchmark Alpha and Multi-Factor Alpha are: $r_p = α + β_pr_b + ϵ$ and $r_p = α + β_1f_1 +...+β_kf_k +ϵ = α + β\cdot f +ϵ$ respectively.
 
-There are two types of Alpha: Benchmark Alpha and Multi-Factor Alpha. Benchmark Alpha measures the return of a portfolio not linked to the benchmark's risk, while Multi-Factor Alpha measures the return not linked to multiple factors' risk.
-- Benchmark Alpha: $r_p = α + βr_b + ϵ$.
-- Multi-Factor Alpha: $r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ$
+In these equations, α is the benchmark or multi-factor alpha, $r_p$ is the return of the portfolio, $β_p$ is the beta of the portfolio, $r_b$ is the return of the benchmark, $f=(f_1,f_2,...,f_k)^T$ is the returns of the K factors, and $β=(β_1,β_2,...,β_k)^T$ is the factor exposures or sensitivities of the portfolio to the k=K factors.
 
-Where, α is the benchmark alpha, $r_p$ the return of the portfolio, $β$ the beta of the portfolio, $r_b$ the return of the benchmark. In the multi-factor case, α is the multi-factor alpha, $f=f_1, f_2, ..., f_K$ the returns of the K factors, and $β = β_1, β_2, ..., β_K$ the factor exposures or sensitivities of the portfolio to the K factors.
+The important aspect of Alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, who aims for high Alpha and high Information Ratio (the excess performance in terms of risk units). The expected or consensus return ($βr_b$ or $β\cdot f$) is the part of the portfolio's return related to the benchmark, while the residual return ($α + ϵ$) represents an increase in return independent of increased direct benchmark exposure. $α$ is the expected value of the residual return, while $ϵ$ is the deviation of the residual return from its mean.
 
-
-The important aspect of Alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, as they aim for high Alpha and high Information Ratio, which is the excess performance in terms of risk units. Specifically,
-- $βr_b$ or $β\cdot f$ is the expected or consensus return, which is the part of the portfolio’s return related to the benchmark.
-- $α + ϵ$ is the residual return.
-- The residual return is all that matters to the quantitative portfolio manager.
-- If the benchmark return is positive, it is easy enough to generate higher returns simply by increasing the portfolio’s exposure to the benchmark, but the portfolio manager has not added value. 
-- The residual return is the part that represents an increase in return independent of increased direct benchmark exposure. 
-- $α$ is the expected value of the residual return: $E(α + ϵ) = α$.
-- $ϵ$ is the deviation of the residual return from its mean (it is assumed that $ϵ$ averages zero). 
-
-In general, we distingish between Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas:
-
-Ex-ante Alpha is the expected alpha, and ex-post Alpha is the realized one, obtained through regression of portfolio and benchmark returns.
-
-Ex-Post Information Ratio is the excess performance of a portfolio manager in terms of risk units, calculated as $IR = α_b / 𝜔$, where 𝜔 is the residual risk or excess risk.
-
-An active portfolio manager aims for both high alpha and high information ratio.
+Alpha can be divided into Ex-ante (in-sample) and Ex-Post (out-of-sample) alphas, where Ex-ante Alpha is the expected alpha and Ex-post Alpha is the realized one obtained through regression of portfolio and benchmark returns. The Information Ratio is the excess performance of a portfolio manager in terms of risk units and is calculated as IR = residual return / residual risk. An active portfolio manager aims for both high Ex-Post alpha and high Ex-Post Information Ratio.
 
 # The Market Rules
 Investing in financial markets is a complex and challenging task that requires a deep understanding of various market rules and principles. The market rules, as stated here, are widely accepted and followed by investors, portfolio managers, and traders around the world. These rules help provide a framework for making informed investment decisions and maximizing returns while mitigating risk. 
@@ -58,9 +41,9 @@ We generaly distingish between three forms of market efficiencies:
 
 Can we test for market efficiency?
 
-- **Weak-Form Efficiency**: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.
-- **Semi-Strong Form Efficiency**: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).
-- **Strong Form Efficiency**: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
+- **Weak-form efficiency**: This can be tested by examining the autocorrelation of stock returns and the presence of momentum and reversal effects.
+- **Semi-strong form efficiency**: This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).
+- **Strong form efficiency**: This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.
 
 # Market Anomalies
 
@@ -74,46 +57,46 @@ When testing for anomalies, it's important to be aware of data limitations and t
 
 Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:
 
-- **The Value Effect** refers to the observation that stocks with low price-to-earnings (P/E), price-to-book (P/B), price-to-sales (P/S), and price-to-dividend (P/D) ratios tend to outperform stocks with high ratios in the long run. This anomaly suggests that investors can potentially achieve higher returns by investing in undervalued stocks.
+- **The value effect** refers to the observation that stocks with low price-to-earnings (P/E), price-to-book (P/B), price-to-sales (P/S), and price-to-dividend (P/D) ratios tend to outperform stocks with high ratios in the long run. This anomaly suggests that investors can potentially achieve higher returns by investing in undervalued stocks.
 
-- **The Size Effect** refers to the observation that small-cap stocks tend to outperform large-cap stocks over time. This anomaly suggests that small companies may offer higher growth potential, but also come with higher risks compared to large established companies.
+- **The size effect** refers to the observation that small-cap stocks tend to outperform large-cap stocks over time. This anomaly suggests that small companies may offer higher growth potential, but also come with higher risks compared to large established companies.
 
-- **The January Effect** refers to the observation that small-cap and poor-performing stocks tend to outperform in the month of January. This anomaly may be driven by tax-loss selling at the end of the year and window dressing by fund managers at the start of the new year.
+- **The January effect** refers to the observation that small-cap and poor-performing stocks tend to outperform in the month of January. This anomaly may be driven by tax-loss selling at the end of the year and window dressing by fund managers at the start of the new year.
 
-- **The Calendar Effect** refers to the observation of outperformance on specific days of the week, such as Halloween, or in response to weather events. This anomaly may be driven by investor behavior and psychological factors.
+- **The calendar effect** refers to the observation of outperformance on specific days of the week, such as Halloween, or in response to weather events. This anomaly may be driven by investor behavior and psychological factors.
 
-- **The Neglected-Firm Effect** refers to the observation that stocks with low analyst coverage tend to have higher risk-adjusted returns compared to stocks with high analyst coverage. This anomaly suggests that stocks with low analyst attention may be overlooked and undervalued, offering potential opportunities for higher returns.
+- **The neglected-firm effect** refers to the observation that stocks with low analyst coverage tend to have higher risk-adjusted returns compared to stocks with high analyst coverage. This anomaly suggests that stocks with low analyst attention may be overlooked and undervalued, offering potential opportunities for higher returns.
 
-- **The PEG Ratio Effect** refers to the inverse relationship between a stock's price-to-earnings-to-growth (PEG) ratio and its performance. A low PEG ratio suggests that a stock is undervalued compared to its growth potential, while a high PEG ratio suggests that a stock is overvalued compared to its growth potential. The PEG ratio effect suggests that investing in stocks with low PEG ratios can lead to higher returns.
+- **The PEG ratio effect** refers to the inverse relationship between a stock's price-to-earnings-to-growth (PEG) ratio and its performance. A low PEG ratio suggests that a stock is undervalued compared to its growth potential, while a high PEG ratio suggests that a stock is overvalued compared to its growth potential. The PEG ratio effect suggests that investing in stocks with low PEG ratios can lead to higher returns.
 
-- **The IPO Effect refers** to the observation that initial public offerings (IPOs) underperform on a risk-adjusted basis in the first 3-5 years after going public. This anomaly may be due to several factors, including high underwriter fees, lock-up periods, and a lack of analyst coverage.
+- **The IPO effect** refers to the observation that initial public offerings (IPOs) underperform on a risk-adjusted basis in the first 3-5 years after going public. This anomaly may be due to several factors, including high underwriter fees, lock-up periods, and a lack of analyst coverage.
 
-- **The Index-Change Effect** refers to the observation that stocks included in an index tend to have positive returns, while those dropped from an index tend to have negative returns. This anomaly may be driven by passive investing strategies, as investors buy stocks in newly included companies and sell stocks in companies that are dropped from an index.
+- **The index-change effect** refers to the observation that stocks included in an index tend to have positive returns, while those dropped from an index tend to have negative returns. This anomaly may be driven by passive investing strategies, as investors buy stocks in newly included companies and sell stocks in companies that are dropped from an index.
 
-- **The Momentum Effect** refers to the observation that stocks that perform well in one period tend to continue performing well in the next period. This anomaly suggests that investors may achieve higher returns by investing in stocks with high momentum.
+- **The momentum effect** refers to the observation that stocks that perform well in one period tend to continue performing well in the next period. This anomaly suggests that investors may achieve higher returns by investing in stocks with high momentum.
 
-- **The Technical Indicators Effect** refers to the observation that certain technical indicators, such as volume, relative strength index (RSI), Bollinger Bands, and moving average, provide excess returns. This anomaly may be driven by investor behavior and technical analysis. However, it's important to note that technical indicators are only one piece of information and should be used in conjunction with other analysis methods for investment decisions.
+- **The technical indicators effect** refers to the observation that certain technical indicators, such as volume, relative strength index (RSI), Bollinger Bands, and moving average, provide excess returns. This anomaly may be driven by investor behavior and technical analysis. However, it's important to note that technical indicators are only one piece of information and should be used in conjunction with other analysis methods for investment decisions.
 The Analyst Forecasts Effect refers to the observation that stocks with "buy" ratings from analysts tend to outperform, though this effect has weakened over time. Changes in analyst ratings and earnings surprises also tend to predict stock returns. This anomaly may be driven by the collective actions of investors following analyst recommendations, as well as by the potential for analyst conflicts of interest.
 
-- **The Insider Trading Effect** refers to the observation that recent insider-bought stocks tend to have excess returns, while recent insider-sold stocks tend to have negative returns. This anomaly may be driven by the actions of corporate insiders who have access to information not available to the general public.
+- **The insider trading effect** refers to the observation that recent insider-bought stocks tend to have excess returns, while recent insider-sold stocks tend to have negative returns. This anomaly may be driven by the actions of corporate insiders who have access to information not available to the general public.
 
-- **The Overreaction Effect** refers to the observation that investors tend to overreact to both good and bad news. In particular, stocks that have underperformed in the past tend to outperform over the next 3-5 years. This anomaly may be driven by investor overconfidence, overreaction to news events, and behavioral biases.
+- **The overreaction effect** refers to the observation that investors tend to overreact to both good and bad news. In particular, stocks that have underperformed in the past tend to outperform over the next 3-5 years. This anomaly may be driven by investor overconfidence, overreaction to news events, and behavioral biases.
 
-- **The Stock Buybacks Effect** refers to the observation that companies that buy back their own stock tend to have positive risk-adjusted returns. This anomaly may be driven by the belief that stock buybacks indicate a company's confidence in its own prospects, or by the impact of buybacks on earnings per share.
+- **The stock buybacks effect** refers to the observation that companies that buy back their own stock tend to have positive risk-adjusted returns. This anomaly may be driven by the belief that stock buybacks indicate a company's confidence in its own prospects, or by the impact of buybacks on earnings per share.
 
-- **The Stock Splits and Reverse Splits Effect** refers to the observation that stock splits are followed by positive returns. This anomaly may be driven by investor perceptions that stock splits signal a company's financial health and growth prospects.
+- **The stock splits and reverse splits effect** refers to the observation that stock splits are followed by positive returns. This anomaly may be driven by investor perceptions that stock splits signal a company's financial health and growth prospects.
 
-- **The Spin-Offs Effect** refers to the observation that parent companies tend to have excess returns after the spin-off of a subsidiary. This anomaly may be driven by increased focus on the operations of the subsidiary and improved management efficiency at the parent company.
+- **The spin-offs effect** refers to the observation that parent companies tend to have excess returns after the spin-off of a subsidiary. This anomaly may be driven by increased focus on the operations of the subsidiary and improved management efficiency at the parent company.
 
-- **The Accruals Effect** refers to the observation that low accrual companies tend to perform better than high accrual companies. Accruals refer to the amount of non-cash expenses recorded in a company's financial statements, and low accrual companies are generally considered to be of higher quality than high accrual companies.
+- **The accruals effect** refers to the observation that low accrual companies tend to perform better than high accrual companies. Accruals refer to the amount of non-cash expenses recorded in a company's financial statements, and low accrual companies are generally considered to be of higher quality than high accrual companies.
 
-- **The Low Volatility Effect** refers to the observation that low historical volatility stocks tend to outperform high volatility stocks. This anomaly may be driven by the tendency of investors to avoid stocks with high volatility, as well as by the belief that low volatility stocks are less risky.
+- **The low volatility effect** refers to the observation that low historical volatility stocks tend to outperform high volatility stocks. This anomaly may be driven by the tendency of investors to avoid stocks with high volatility, as well as by the belief that low volatility stocks are less risky.
 
-- **The Low Beta Effect** refers to the observation that low beta stocks tend to outperform high beta stocks on a risk-adjusted basis. Beta is a measure of a stock's volatility relative to the overall market, and low beta stocks are generally considered to be less risky than high beta stocks.
+- **The low beta effect** refers to the observation that low beta stocks tend to outperform high beta stocks on a risk-adjusted basis. Beta is a measure of a stock's volatility relative to the overall market, and low beta stocks are generally considered to be less risky than high beta stocks.
 
-- **The Liquidity Effect** refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.
+- **The liquidity effect** refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.
 
-- **The Crowding Effect** refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.
+- **The crowding effect** refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.
 
 # Behavioral Anomalies 
 
@@ -123,30 +106,30 @@ Documented anomalies:
 
 - **Anchoring**: Investors tend to rely too heavily on a single piece of information or reference point when making investment decisions, leading to a bias in their assessments. This often results in a lack of flexibility in decision making, as investors may be anchored to certain expectations or past market experiences.
 
-- **Ambiguity Aversion**: Investors tend to avoid stocks or investments that are unfamiliar to them and have a preference for familiar investments, even if they are not necessarily the best choice. This is because they are more comfortable with what they know, even if it is not the most rational choice.
+- **Ambiguity aversion**: Investors tend to avoid stocks or investments that are unfamiliar to them and have a preference for familiar investments, even if they are not necessarily the best choice. This is because they are more comfortable with what they know, even if it is not the most rational choice.
 
-- **Availability Bias**: Investors tend to over-estimate the likelihood of future events based on memories that are easily accessible to them, such as recent events or information that is top of mind. This can result in an overestimation of risks and opportunities, leading to poor investment decisions.
+- **Availability bias**: Investors tend to over-estimate the likelihood of future events based on memories that are easily accessible to them, such as recent events or information that is top of mind. This can result in an overestimation of risks and opportunities, leading to poor investment decisions.
 
-- **Confirmation Bias**: Investors tend to give more weight to information that confirms their beliefs or expectations, and less weight to information that contradicts them. This can lead to a failure to consider new information and an unwillingness to adapt to changing circumstances.
+- **Confirmation bias**: Investors tend to give more weight to information that confirms their beliefs or expectations, and less weight to information that contradicts them. This can lead to a failure to consider new information and an unwillingness to adapt to changing circumstances.
 
-- **Disposition Effect**: Investors tend to hold on to losing investments for too long, and sell winning investments too soon. This is often due to a belief that the losing investment will eventually recover, or that the winner has reached its peak.
+- **Disposition effect**: Investors tend to hold on to losing investments for too long, and sell winning investments too soon. This is often due to a belief that the losing investment will eventually recover, or that the winner has reached its peak.
 
-- **Endowment Effect**: Investors tend to demand more to give up an investment than they are willing to pay to acquire it. This can result in suboptimal decisions, as they may hold on to underperforming investments or sell winning investments too early.
+- **Endowment effect**: Investors tend to demand more to give up an investment than they are willing to pay to acquire it. This can result in suboptimal decisions, as they may hold on to underperforming investments or sell winning investments too early.
 
-- **Escalation Bias**: Investors tend to compound losses by putting more money into a losing investment, rather than cutting their losses and moving on. This is often due to a belief that the investment will eventually recover, or a failure to admit to a bad decision.
+- **Escalation bias**: Investors tend to compound losses by putting more money into a losing investment, rather than cutting their losses and moving on. This is often due to a belief that the investment will eventually recover, or a failure to admit to a bad decision.
 
-- **Herding Mentality**: Investors tend to follow the actions of others, even in investing. This can result in poor investment decisions, as investors may not be considering the reasons behind the actions of others.
+- **Herding mentality**: Investors tend to follow the actions of others, even in investing. This can result in poor investment decisions, as investors may not be considering the reasons behind the actions of others.
 
-- **Illusion of Knowledge**: Investors may have an overreliance on data and analysis when evaluating stocks, leading to an over-confidence in their abilities. This can result in frequent trading, high transaction costs, and poor investment decisions.
+- **Illusion of knowledge**: Investors may have an overreliance on data and analysis when evaluating stocks, leading to an over-confidence in their abilities. This can result in frequent trading, high transaction costs, and poor investment decisions.
 
-- **Narrow Framing**: Investors may consider investments in isolation, rather than considering them in the context of a portfolio or broader market trends. This can result in suboptimal decisions and a failure to consider risk and diversification.
+- **Narrow framing**: Investors may consider investments in isolation, rather than considering them in the context of a portfolio or broader market trends. This can result in suboptimal decisions and a failure to consider risk and diversification.
 
 - **Overconfidence**: Investors may overestimate their abilities and have an over-confidence in their investment decisions, leading to frequent trades and high transaction costs. This can result in poor investment outcomes, as they may be acting on emotions rather than rational analysis.
 
 
 # Why is market efficiency imperfect?
 
-- **Information Asymmetry**: Information is not equally accessible to all market participants. Some investors have more resources or expertise to obtain or analyze information. This can lead to a difference in opinion and cause market inefficiencies.
+- **Information asymmetry**: Information is not equally accessible to all market participants. Some investors have more resources or expertise to obtain or analyze information. This can lead to a difference in opinion and cause market inefficiencies.
 
 - **Slow information diffusion**: The process of information spreading across the market can be slow, and prices may not immediately reflect new information. This creates opportunities for some investors to act faster and exploit the lag.
 
