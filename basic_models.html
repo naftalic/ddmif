@@ -128,6 +128,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="competition.html">
    Investment Competition
   </a>
@@ -503,12 +508,12 @@ The factor premium operates differently in the two models. In the fundamental fa
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="exercise">
 <h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h1>
-<p>You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, <span class="math notranslate nohighlight">\(r_{A,t+1}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t+1}\)</span>, are determined by their current Price-to-Earnings (P/E) ratios.
+<p>You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, <span class="math notranslate nohighlight">\(r_{A,t+1}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t+1}\)</span>, are determined by their current Price-to-Book (P/B) ratios.
 The equations for Stock A and Stock B’s returns are given as</p>
-<p><span class="math notranslate nohighlight">\(r_{A,t+1} = 0.1\times(P/E)_{A,t} +ε_{A,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{A,t+1}\sim N(0,20)\)</span>, and
-<span class="math notranslate nohighlight">\(r_{B,t+1} = 0.1\times(P/E)_{B,t} +ε_{B,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{B,t+1}\sim N(0,10)\)</span>.</p>
-<p>As seen, the returns are influenced by the P/E ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.</p>
-<p>Now, it is given that for period T, the P/E ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/E ratios is stationary over time and across stocks.</p>
+<p><span class="math notranslate nohighlight">\(r_{A,t+1} = 0.3\times(P/B)_{A,t} +ε_{A,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{A,t+1}\sim N(0,9)\)</span>, and
+<span class="math notranslate nohighlight">\(r_{B,t+1} = 0.2\times(P/B)_{B,t} +ε_{B,t+1}\)</span>, <span class="math notranslate nohighlight">\(ε_{B,t+1}\sim N(0,16)\)</span>.</p>
+<p>As seen, the returns are influenced by the P/B ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.</p>
+<p>Now, it is given that for period T, the P/B ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/B ratios is stationary over time and across stocks.</p>
 <p>Calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="solution">
@@ -519,14 +524,38 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mf">0.2</span><span class="o">*</span><span class="mi">10</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+&lt;&gt;:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/7g/0mhn561929v4m3ljwjf_r_0c0000gn/T/ipykernel_65376/1768619870.py:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+  sr = (0.3*20*w+0.2*10(1-w))/np.sqrt(9*w**2+16*(1-w)**2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/7g/0mhn561929v4m3ljwjf_r_0c0000gn/T/ipykernel_65376/1768619870.py:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+  sr = (0.3*20*w+0.2*10(1-w))/np.sqrt(9*w**2+16*(1-w)**2)
+/var/folders/7g/0mhn561929v4m3ljwjf_r_0c0000gn/T/ipykernel_65376/1768619870.py:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+  sr = (0.3*20*w+0.2*10(1-w))/np.sqrt(9*w**2+16*(1-w)**2)
+/var/folders/7g/0mhn561929v4m3ljwjf_r_0c0000gn/T/ipykernel_65376/1768619870.py:5: SyntaxWarning: &#39;int&#39; object is not callable; perhaps you missed a comma?
+  sr = (0.3*20*w+0.2*10(1-w))/np.sqrt(9*w**2+16*(1-w)**2)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mf">0.2</span><span class="o">*</span><span class="mi">10</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="ne">TypeError</span>: &#39;int&#39; object is not callable
 </pre></div>
 </div>
 </div>
@@ -537,9 +566,6 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/basic_models_2_0.png" src="_images/basic_models_2_0.png" />
 </div>
 </div>
 </div>

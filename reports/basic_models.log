@@ -17,20 +17,23 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 w = np.linspace(0,1,100)
-sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
-print( w[np.argmax(sr), np.max(sr) )
-plt.plot(w,sr)
+sr = (0.3*20*w+0.2*10(1-w))/np.sqrt(9*w**2+16*(1-w)**2)
+
+print( w[np.argmax(sr)], np.max(sr) )
 ------------------
 
-[0;36m  Input [0;32mIn [2][0;36m[0m
-[0;31m    print( w[np.argmax(sr), np.max(sr) )[0m
-[0m                                       ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m closing parenthesis ')' does not match opening parenthesis '['
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<cell line: 5>[0;34m()[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      4[0m w [38;5;241m=[39m np[38;5;241m.[39mlinspace([38;5;241m0[39m,[38;5;241m1[39m,[38;5;241m100[39m)
+[0;32m----> 5[0m sr [38;5;241m=[39m ([38;5;241m0.3[39m[38;5;241m*[39m[38;5;241m20[39m[38;5;241m*[39mw[38;5;241m+[39m[38;5;241m0.2[39m[38;5;241m*[39m[38;5;241;43m10[39;49m[43m([49m[38;5;241;43m1[39;49m[38;5;241;43m-[39;49m[43mw[49m[43m)[49m)[38;5;241m/[39mnp[38;5;241m.[39msqrt([38;5;241m9[39m[38;5;241m*[39mw[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39m[38;5;241m16[39m[38;5;241m*[39m([38;5;241m1[39m[38;5;241m-[39mw)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)
+[1;32m      7[0m [38;5;28mprint[39m( w[np[38;5;241m.[39margmax(sr)], np[38;5;241m.[39mmax(sr) )
 
-SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' (173958072.py, line 7)
+[0;31mTypeError[0m: 'int' object is not callable
+TypeError: 'int' object is not callable
 
