@@ -50,7 +50,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Investment Competition" href="competition.html" />
+    <link rel="next" title="The Fundamental Factor Model" href="factors_advanced.html" />
     <link rel="prev" title="Factors" href="factors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -125,6 +125,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Stock Screening and Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
   </a>
  </li>
  <li class="toctree-l1">
@@ -437,11 +442,6 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -543,11 +543,6 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -567,9 +562,9 @@ title="Print to PDF"
 <p>Sequential Stock Screening is a simple and straightforward method for portfolio managers to select stocks for investment. It involves ranking stocks according to their favorable and unfavorable attributes and eliminating those that don’t meet the criteria set by the portfolio manager. The process starts by defining the investment goals and selecting relevant factors, such as P/B ratio or profit margins, to screen the stocks. The screens are then applied in order of importance, starting with the most critical factor. An example of a sequential stock screening process would be selecting the top 25% of stocks with the highest profit margins and then selecting the top 10 of those with the highest B/P ratios. A good stock screen should be easy to automate, replicate, and accurately reflect the portfolio manager’s preferences.</p>
 <p>The key to a portfolio manager’s success is the ability to determine factors that drive exceptional stock returns. Managers often have a guiding investment style or philosophy, but it can be quantified through stock screening methods. Here, we specify three successful equity managers’ strategies, which can be qualitative or fundamental, and translates them into quantifiable screens.</p>
 <ul class="simple">
-<li><p>Lynch Screen: This is a combination of growth-and-value strategy that seeks a P/E ratio below the industry average but also a PEG ratio below 1.0. Other criteria include a P/E to dividend yield ratio less than 4.0, earnings growth between 0% and 50%, insider buying-to-selling ratio greater than 1.5, long-term debt ratio below industry median, market capitalization less than $5 billion, and institutional ownership less than 50%.</p></li>
-<li><p>Buffett Screen: This screen is based on Warren Buffett’s buy-and-hold strategy and focuses on companies with a strong competitive advantage, efficient management, high free cash flow, return on equity greater than or equal to 15%, net profit margins exceeding industry averages, D/E ratio in line with or lower than industry median, and forecasted free cash flow for the next five years greater than the current market price of the stock when discounted back to the present. The screen restricts investments to the top 30% market capitalization of listed equities on the NYSE, AMEX, and NASDAQ.</p></li>
-<li><p>Lakonishok Screen: This is a value screen based on the work of Josef Lakonishok, CEO and founder of LSV Asset Management. The screen focuses on identifying undervalued companies with market capitalizations in the top 30% of the NYSE, AMEX, and NASDAQ. The screen seeks companies with a P/E ratio and P/B ratio below their respective industry median values, consensus earnings estimate for the next fiscal year greater than the current year’s estimate, and a forecasted earnings growth rate greater than 5%.</p></li>
+<li><p><a class="reference external" href="https://www.stockopedia.com/screens/peter-lynch-growth-screen-29/"><strong>Lynch Screen</strong></a>: This is a combination of growth-and-value strategy that seeks a P/E ratio below the industry average but also a PEG ratio below 1.0. Other criteria include a P/E to dividend yield ratio less than 4.0, earnings growth between 0% and 50%, insider buying-to-selling ratio greater than 1.5, long-term debt ratio below industry median, market capitalization less than $5 billion, and institutional ownership less than 50%.</p></li>
+<li><p><a class="reference external" href="https://www.stockopedia.com/screens/warren-buffett-hagstrom-screen-40/"><strong>Buffett Screen</strong></a>: This screen is based on Warren Buffett’s buy-and-hold strategy and focuses on companies with a strong competitive advantage, efficient management, high free cash flow, return on equity greater than or equal to 15%, net profit margins exceeding industry averages, D/E ratio in line with or lower than industry median, and forecasted free cash flow for the next five years greater than the current market price of the stock when discounted back to the present. The screen restricts investments to the top 30% market capitalization of listed equities on the NYSE, AMEX, and NASDAQ.</p></li>
+<li><p><a class="reference external" href="https://www.stockopedia.com/screens/josef-lakonishok-momentum-screen-20/"><strong>Lakonishok Screen</strong></a>: This is a value screen based on the work of Josef Lakonishok, CEO and founder of LSV Asset Management. The screen focuses on identifying undervalued companies with market capitalizations in the top 30% of the NYSE, AMEX, and NASDAQ. The screen seeks companies with a P/E ratio and P/B ratio below their respective industry median values, consensus earnings estimate for the next fiscal year greater than the current year’s estimate, and a forecasted earnings growth rate greater than 5%.</p></li>
 </ul>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="simultaneous-screening">
@@ -605,7 +600,8 @@ title="Print to PDF"
 The regression takes the form of</p>
 <div class="math notranslate nohighlight">
 \[r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}\]</div>
-<p>where <span class="math notranslate nohighlight">\(a\)</span> is a constant term, <span class="math notranslate nohighlight">\(b\)</span> is the coefficient that relates the aggregate z-score to the stock return, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term. With the estimated values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums (<span class="math notranslate nohighlight">\(b\)</span>) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.</p>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is a constant term, <span class="math notranslate nohighlight">\(b\)</span> is the coefficient that relates the aggregate z-score to the stock return, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term. With the estimated values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the expected return of the stock for the next period can be calculated.</p>
+<p>However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums (<span class="math notranslate nohighlight">\(b\)</span>) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.</p>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="forecasting-rule-of-thumb-derivation">
 <h1>Forecasting Rule of Thumb: derivation<a class="headerlink" href="#forecasting-rule-of-thumb-derivation" title="Permalink to this headline">#</a></h1>
@@ -681,38 +677,6 @@ E[r_{i,t}|z_{i,t−1}] &amp;= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
 <p>A third option is to trim the z-scores. This involves eliminating a certain number of z-scores or stocks, with half of them being removed from the high side and half from the low side. The remaining z-scores are then recalculated and used in portfolio construction.</p>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="some-code">
-<h1>Some Code<a class="headerlink" href="#some-code" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/screening_and_ranking_2_0.png" src="_images/screening_and_ranking_2_0.png" />
-</div>
-</div>
-</div>
 
     <script type="text/x-thebe-config">
     {
@@ -748,10 +712,10 @@ E[r_{i,t}|z_{i,t−1}] &amp;= E[r_t] + b [z_{i,t−1} − E(z_{t−1})]\newline
             <p class="prev-next-title">Factors</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="competition.html" title="next page">
+    <a class='right-next' id="next-link" href="factors_advanced.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Investment Competition</p>
+        <p class="prev-next-title">The Fundamental Factor Model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
