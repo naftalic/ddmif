@@ -10,11 +10,11 @@
 # 
 # The key to a portfolio manager's success is the ability to determine factors that drive exceptional stock returns. Managers often have a guiding investment style or philosophy, but it can be quantified through stock screening methods. Here, we specify three successful equity managers' strategies, which can be qualitative or fundamental, and translates them into quantifiable screens.
 # 
-# - Lynch Screen: This is a combination of growth-and-value strategy that seeks a P/E ratio below the industry average but also a PEG ratio below 1.0. Other criteria include a P/E to dividend yield ratio less than 4.0, earnings growth between 0% and 50%, insider buying-to-selling ratio greater than 1.5, long-term debt ratio below industry median, market capitalization less than $5 billion, and institutional ownership less than 50%.
+# - [**Lynch Screen**](https://www.stockopedia.com/screens/peter-lynch-growth-screen-29/): This is a combination of growth-and-value strategy that seeks a P/E ratio below the industry average but also a PEG ratio below 1.0. Other criteria include a P/E to dividend yield ratio less than 4.0, earnings growth between 0% and 50%, insider buying-to-selling ratio greater than 1.5, long-term debt ratio below industry median, market capitalization less than $5 billion, and institutional ownership less than 50%.
 # 
-# - Buffett Screen: This screen is based on Warren Buffett's buy-and-hold strategy and focuses on companies with a strong competitive advantage, efficient management, high free cash flow, return on equity greater than or equal to 15%, net profit margins exceeding industry averages, D/E ratio in line with or lower than industry median, and forecasted free cash flow for the next five years greater than the current market price of the stock when discounted back to the present. The screen restricts investments to the top 30% market capitalization of listed equities on the NYSE, AMEX, and NASDAQ.
+# - [**Buffett Screen**](https://www.stockopedia.com/screens/warren-buffett-hagstrom-screen-40/): This screen is based on Warren Buffett's buy-and-hold strategy and focuses on companies with a strong competitive advantage, efficient management, high free cash flow, return on equity greater than or equal to 15%, net profit margins exceeding industry averages, D/E ratio in line with or lower than industry median, and forecasted free cash flow for the next five years greater than the current market price of the stock when discounted back to the present. The screen restricts investments to the top 30% market capitalization of listed equities on the NYSE, AMEX, and NASDAQ.
 # 
-# - Lakonishok Screen: This is a value screen based on the work of Josef Lakonishok, CEO and founder of LSV Asset Management. The screen focuses on identifying undervalued companies with market capitalizations in the top 30% of the NYSE, AMEX, and NASDAQ. The screen seeks companies with a P/E ratio and P/B ratio below their respective industry median values, consensus earnings estimate for the next fiscal year greater than the current year's estimate, and a forecasted earnings growth rate greater than 5%.
+# - [**Lakonishok Screen**](https://www.stockopedia.com/screens/josef-lakonishok-momentum-screen-20/): This is a value screen based on the work of Josef Lakonishok, CEO and founder of LSV Asset Management. The screen focuses on identifying undervalued companies with market capitalizations in the top 30% of the NYSE, AMEX, and NASDAQ. The screen seeks companies with a P/E ratio and P/B ratio below their respective industry median values, consensus earnings estimate for the next fiscal year greater than the current year's estimate, and a forecasted earnings growth rate greater than 5%.
 # 
 # # Simultaneous Screening
 # In simultaneous screening, a portfolio manager evaluates all stocks based on a set of criteria, considering all the factors at once instead of one at a time. This eliminates the risk of eliminating a good stock due to its poor performance in an early round of screening and ensures a larger pool of stocks to choose from. To aggregate the factors, the portfolio manager needs to standardize or normalize them by transforming them into a standard unit of measurement, such as the z-score method. This ensures that the variables are comparable and prevents any single factor from dominating the stock ranking.
@@ -47,7 +47,9 @@
 # 
 # $$r_{i,t+1}=a+bz_{i,t}+\epsilon_{i,t+1}$$
 # 
-# where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
+# where $a$ is a constant term, $b$ is the coefficient that relates the aggregate z-score to the stock return, and $\epsilon$ is the error term. With the estimated values of $a$ and $b$, the expected return of the stock for the next period can be calculated. 
+# 
+# However, this methodology has some limitations. Firstly, the z-scores may not change much over time but factor premiums ($b$) may change, leading to unstable or unreliable coefficients. Secondly, there may be a weak correlation between the z-score and subsequent returns, as the equation is not based on a rigorous theory. Lastly, this method adds complexity to the process, which is a drawback as the biggest advantage of the aggregate z-score model is its simplicity.
 # 
 # # Forecasting Rule of Thumb: derivation
 # 
@@ -126,24 +128,3 @@
 # Another approach to managing extreme z-scores is to round them off. This technique, known as windsorization, involves rounding values greater than 3 to 3 and values less than -3 to -3. This method can be useful when the data is not faulty but the portfolio manager wants to place limits on the extreme values.
 # 
 # A third option is to trim the z-scores. This involves eliminating a certain number of z-scores or stocks, with half of them being removed from the high side and half from the low side. The remaining z-scores are then recalculated and used in portfolio construction.
-# 
-# # Some Code
-
-# In[1]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-w = np.linspace(0,1,100)
-sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
-
-print( w[np.argmax(sr)], np.max(sr) )
-
-
-# In[2]:
-
-
-plt.plot(w,sr)
-plt.show()
-

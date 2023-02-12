@@ -128,6 +128,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="competition.html">
    Investment Competition
   </a>
@@ -458,11 +463,6 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -585,11 +585,6 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -605,10 +600,10 @@ title="Print to PDF"
 <p>factors are crucial for financial modeling, and selecting the right ones is important for achieving outperformance. Good factors have a persistent and stable relationship with stock returns that can be explained by economic theory. The best way to find good factors is by using well-reasoned quantitative techniques rather than relying on superficial correlations produced by data mining.</p>
 <p>A factor in stock market analysis refers to any variable that has the ability to impact or predict stock returns. We can identify four broad types of factors:</p>
 <ul class="simple">
-<li><p>Fundamental Factors: Fundamental factors describe a company’s financial condition and are calculated using data from the company’s financial statements, such as the balance sheet, income statement, and cash flow statement. These factors are considered the most common in predicting stock returns and may include financial ratios, such as the price-to-earnings ratio, debt-to-equity ratio, or the return on assets ratio, among others. By analyzing these financial metrics, investors can gain insight into a company’s financial health, earnings potential, and growth prospects.</p></li>
-<li><p>Technical Factors: Technical factors, on the other hand, are based on technical analysis and focus on the historical price and volume data of a stock. Technical analysts believe that patterns in the stock’s price and volume movements can be used to predict future price movements. Technical factors include chart patterns, moving averages, trend lines, and momentum indicators, among others. These factors are used to make predictions about future price movements and to identify potential buying or selling opportunities.</p></li>
-<li><p>Economic Factors: Economic factors refer to broad macroeconomic trends and events that impact the stock market as a whole. For example, interest rates, inflation, gross domestic product (GDP), and unemployment are some of the most significant economic factors that can impact stock prices. Economic factors can have a direct effect on companies’ earnings and can therefore affect the stock prices of individual companies and the overall stock market.</p></li>
-<li><p>Alternative Factors: Alternative factors refer to any factors that don’t fall into the three categories mentioned above. They include a wide range of variables, such as sentiment indicators, news events, and company-specific events, among others. Alternative factors can be difficult to quantify and measure, but they can have a significant impact on stock prices, particularly in the short term. Alternative factors can help investors better understand the market sentiment and provide a complementary perspective to traditional fundamental and technical analysis.</p></li>
+<li><p><strong>Fundamental Factors:</strong> Fundamental factors describe a company’s financial condition and are calculated using data from the company’s financial statements, such as the balance sheet, income statement, and cash flow statement. These factors are considered the most common in predicting stock returns and may include financial ratios, such as the price-to-earnings ratio, debt-to-equity ratio, or the return on assets ratio, among others. By analyzing these financial metrics, investors can gain insight into a company’s financial health, earnings potential, and growth prospects.</p></li>
+<li><p><strong>Technical Factors:</strong> Technical factors, on the other hand, are based on technical analysis and focus on the historical price and volume data of a stock. Technical analysts believe that patterns in the stock’s price and volume movements can be used to predict future price movements. Technical factors include chart patterns, moving averages, trend lines, and momentum indicators, among others. These factors are used to make predictions about future price movements and to identify potential buying or selling opportunities.</p></li>
+<li><p><strong>Economic Factors:</strong> Economic factors refer to broad macroeconomic trends and events that impact the stock market as a whole. For example, interest rates, inflation, gross domestic product (GDP), and unemployment are some of the most significant economic factors that can impact stock prices. Economic factors can have a direct effect on companies’ earnings and can therefore affect the stock prices of individual companies and the overall stock market.</p></li>
+<li><p><strong>Alternative Factors:</strong> Alternative factors refer to any factors that don’t fall into the three categories mentioned above. They include a wide range of variables, such as sentiment indicators, news events, and company-specific events, among others. Alternative factors can be difficult to quantify and measure, but they can have a significant impact on stock prices, particularly in the short term. Alternative factors can help investors better understand the market sentiment and provide a complementary perspective to traditional fundamental and technical analysis.</p></li>
 </ul>
 <div class="section" id="fundamental-factors">
 <h2>Fundamental Factors<a class="headerlink" href="#fundamental-factors" title="Permalink to this headline">#</a></h2>
@@ -729,38 +724,6 @@ z_{i,t}^{rank} = \frac{ rank(f_{i,j})-\sum\limits_{i=1}^{N} rank(f_{i,j})/N }{\s
 \[
 z_{i,t}^{percentile} = \frac{ N-rank(f_{i,t}) }{N}.
 \]</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="some-code">
-<h1>Some Code<a class="headerlink" href="#some-code" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/factors_2_0.png" src="_images/factors_2_0.png" />
-</div>
 </div>
 </div>
 
