@@ -48,7 +48,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction:" href="introduction.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -85,11 +85,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="#">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/big-data-finance.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
@@ -111,7 +106,32 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="introduction.html">
-   Introduction:
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_models.html">
+   Basic Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors.html">
+   Factors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screening_and_ranking.html">
+   Stock Screening and Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="competition.html">
+   Investment Competition
   </a>
  </li>
 </ul>
@@ -269,12 +289,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disclaimer">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -286,6 +330,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disclaimer">
+   Disclaimer
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -295,11 +352,14 @@ title="Print to PDF"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="data-driven-methods-in-finance">
 <h1>Data-Driven Methods in Finance<a class="headerlink" href="#data-driven-methods-in-finance" title="Permalink to this headline">#</a></h1>
-<p>The following material is a short summary of the content of the course Data-Driven Methods in Finance (DDMIF) that aims to provide students with a comprehensive overview of using data to answer quantitative research questions in finance. The course aims to equip students with a strategic perspective and practical tools for leveraging data to add value to their research and products.</p>
-<p>The course content is based on multiple sources, but with a primary focus on the book “Quantitative Equity Portfolio Management, Second Edition: An Active Approach to Portfolio Construction and Management” by Ludwig B. Chincarini and Daehwan Kim. This book offers a systematic approach to portfolio construction and management using data-driven methods, making it an ideal foundation for the DDMIF course.
-In addition to the primary textbook, the course also draws on resources from “An Introduction to Statistical Learning” by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. This book provides an in-depth introduction to statistical learning techniques and their applications in various fields, including finance.
-Finally, the DDMIF course also leverages resources from “Introduction to Computational Finance and Financial Econometrics” by Eric Zivot. This book covers the basics of computational finance and financial econometrics, and provides students with a solid foundation in these fields.</p>
-<p>This course does not provide investment advice or pre-made trading algorithms and does not reflect the views of the author affiliated entities and agencies. The primary goal is to highlight the challenges that Data Science and Machine Learning methods face when working with financial data. These challenges include a short history, non-stationarity, regime change, and low signal content, which make it difficult to achieve robust results. The topics we discuss serve as a guide to using these methods to inform an investment decision through a systematic and scientific workflow.</p>
+<p>The Data-Driven Methods in Finance (DDMIF) course provides a comprehensive education in using data for quantitative research in finance and trading. It aims to equip students with the systematic and statistical skills to analyze and make informed data-driven decisions. Upon completion, students will have the practical skills and strategic viewpoint to optimize information and make data-driven decisions in finance. The curriculum includes hands-on experience and prepares students to apply their learning in real-world financial situations.</p>
+<p>The course content is based on multiple sources, but with a primary focus on the book <a class="reference external" href="https://www.amazon.com/Quantitative-Equity-Portfolio-Management-Second/dp/1264268920">Quantitative Equity Portfolio Management, Second Edition: An Active Approach to Portfolio Construction and Management</a> by Ludwig B. Chincarini and Daehwan Kim. This book offers a systematic approach to portfolio construction and management using data-driven methods, making it an ideal foundation for the DDMIF course.
+In addition to the primary textbook, the course also draws on resources from <a class="reference external" href="https://www.amazon.com/Introduction-Statistical-Learning-Applications-Statistics/dp/1071614177/ref=sr_1_1?crid=1YYMKPXF419FM&amp;keywords=An+Introduction+to+Statistical+Learning&amp;qid=1675135896&amp;s=books&amp;sprefix=an+introduction+to+statistical+learning%2Cstripbooks%2C718&amp;sr=1-1">An Introduction to Statistical Learning</a> by Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani. This book provides an in-depth introduction to statistical learning techniques and their applications in various fields, including finance.
+Finally, the DDMIF course also leverages resources from <a class="reference external" href="https://bookdown.org/compfinezbook/introcompfinr/">Introduction to Computational Finance and Financial Econometrics</a> by Eric Zivot. This book covers the basics of computational finance and financial econometrics, and provides students with a solid foundation in these fields.</p>
+<div class="section" id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">#</a></h2>
+<p>The course material relies exclusively on the aforementioned textbooks. It does not offer investment advice or pre-constructed trading algorithms and does not represent the views of the author, associated entities, or agencies. The objective is to emphasize the challenges that Data Science and Machine Learning methods encounter when working with financial data. These difficulties, such as a brief history, non-stationarity, shifts in market conditions, and low signal content, make it challenging to attain robust outcomes. The topics covered serve as a reference for using these methods to make informed investment decisions through a systematic and scientific approach.</p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -334,7 +394,7 @@ Finally, the DDMIF course also leverages resources from “Introduction to Compu
     <a class='right-next' id="next-link" href="introduction.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction:</p>
+        <p class="prev-next-title">Introduction</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
