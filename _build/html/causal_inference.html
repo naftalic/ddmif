@@ -46,6 +46,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Investment Competition" href="competition.html" />
@@ -417,39 +419,35 @@ title="Print to PDF"
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="math-background">
 <h1>Math background<a class="headerlink" href="#math-background" title="Permalink to this headline">#</a></h1>
-<p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.
+<p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align}
-E(X) &amp; = x_1p(x_1)+x_2p(x_2)+\dots+x_kp(x_k) \
-&amp; = \sum_{j=1}^k x_jp(x_j)<br />
-\end{align}</p>
-<p>The variance of a random variable in the population is defined as
-\begin{align}
-V(X)=\sigma^2=E\Big[\big(X-E(X)\big)^2\Big]\ =E(X^2) - E(X)^2
+  E(X) &amp; = x_1p(x_1)+x_2p(x_2)+\dots+x_kp(x_k) \\
+  &amp; = \sum_{j=1}^k x_jp(x_j).             
 \end{align}
-The last identity follows from the fact that
+\end{split}\]</div>
+<p>The variance of a random variable in the population is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   V(X)=\sigma^2=E\Big[\big(X-E(X)\big)^2\Big]\ =E(X^2) - E(X)^2
+\end{align}
+The last identity follows from the fact that 
 \begin{align}
 E\Big[\big(X-E(X)\big)^2\Big]\  =
-&amp; = E\Big[\big(X^2-2XE(X)+E^2(X)\big)\Big]<br />
-&amp; = E(X^2)-2E(X)E(X)+E^2(X)<br />
-&amp; = E(X^2)-E^2(X)<br />
-\end{align}</p>
-<p>\begin{align}
-\sum_{i=1}^n(x_i-\overline{x})^2 &amp; =<br />
-\sum_{i=1}^n (x_i^2-2x_i\overline{x}+\overline{x}^2)
-\
-&amp; = \sum x_i^2 - 2\overline{x} \sum x_i +n\overline{x}^2                                          \
-&amp; = \sum x_i^2 - 2 \dfrac{1}{n} \sum x_i \sum x_i +n\overline{x}^2                                \
-&amp; = \sum x_i^2 +n\overline{x}^2 - \dfrac{2}{n} \bigg (\sum x_i \bigg )^2                          \
-&amp; = \sum x_i^2+n\bigg (\dfrac{1}{n} \sum x_i \bigg)^2 - 2n \bigg (\dfrac{1}{n} \sum x_i \bigg )^2 \
-&amp; = \sum x_i^2 - n \bigg (\dfrac{1}{n} \sum x_i \bigg )^2                                         \
-&amp; = \sum x_i^2 - n \overline{x}^2<br />
-\end{align}</p>
-<p>A more general version of this result is:
+&amp; = E\Big[\big(X^2-2XE(X)+E^2(X)\big)\Big]\
+&amp; = E(X^2)-2E(X)E(X)+E^2(X)
+&amp; = E(X^2)-E^2(X).
+\end{align}
+\]</div>
+<p>The variance of the sum of two random variables is equal to:
+$<span class="math notranslate nohighlight">\(
 \begin{align}
-\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y}) &amp; = \sum_{i=1}^n x_i(y_i - \overline{y}) \
-&amp; = \sum_{i=1}^n (x_i - \overline{x})y_i \
-&amp; = \sum_{i=1}^n x_iy_i - n(\overline{xy}) \
-\end{align}</p>
+   V(X+Y)=V(X)+V(Y)+2C(X,Y)
+\end{align}
+\)</span>$
+where C(X,Y) is the covariance measuring the amount of linear dependence between two random variables X and Y.</p>
 </div>
 
     <script type="text/x-thebe-config">
