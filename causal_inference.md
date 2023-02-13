@@ -80,3 +80,24 @@ $$
 is based on the assumption that it holds true for the population. The equation defines a linear bivariate regression model. In models that aim to capture causal effects, the variables on the left side of the equation are considered as the effects, while those on the right side are considered as the causes.
 
 The above equation includes a random variable called the error term, $u$, to account for other factors that may affect Y. It also assumes a linear relationship between X and Y by including a linear dependence. The coefficient of X is referred to as the intercept parameter, while the coefficient of Y is known as the slope parameter. These parameters describe the population, and our goal in empirical work is to estimate their values. However, we never observe these parameters directly because they are not data. Our task is to estimate these parameters using data and assumptions. To do this, we need credible assumptions to make accurate estimates using the data. In this simple regression framework, all unobserved variables that determine Y are encompassed by the error term $u$.
+
+* The first assumption that we make is that 
+
+$$
+E(u)=0
+$$
+
+and we can always adjust $\beta_0$ to acheive this goal. In example, 
+
+$$
+\begin{align}
+   y=(\beta_0+E(u))+\beta_1x+(u-E(u)).
+\end{align}
+$$
+
+* The second assumption is that 
+
+$$
+E(u\mid x)=0.
+$$
+
