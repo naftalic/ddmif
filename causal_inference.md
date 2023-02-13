@@ -152,3 +152,12 @@ $$
    \widehat{u}_i & = y_i-\widehat{y}_i.
 \end{align}
 $$
+
+Note that the residual is the difference between the actual value and the predicted value, which is known as the **prediction error**. This can be easily calculated using any sample of data. On the other hand, the **error term**, represented without the hat symbol, is not observable by the researcher as it includes all factors that affect the outcome but are not included in the model. The residual will be present in the data once the regression analysis has been performed, but the error term will never appear in the data. 
+
+
+We had $E(u)=0$ and we approximated $u$ with $\widehat{u}$, so clearly,
+
+$$
+\sum_{i=1}^n \widehat{u}_i=0.
+$$
