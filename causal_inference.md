@@ -81,7 +81,7 @@ is based on the assumption that it holds true for the population. The equation d
 
 The above equation includes a random variable called the error term, $u$, to account for other factors that may affect Y. It also assumes a linear relationship between X and Y by including a linear dependence. The coefficient of X is referred to as the intercept parameter, while the coefficient of Y is known as the slope parameter. These parameters describe the population, and our goal in empirical work is to estimate their values. However, we never observe these parameters directly because they are not data. Our task is to estimate these parameters using data and assumptions. To do this, we need credible assumptions to make accurate estimates using the data. In this simple regression framework, all unobserved variables that determine Y are encompassed by the error term $u$.
 
-* The first assumption that we make is that 
+The first assumption that we make is that 
 
 $$
 E(u)=0
@@ -95,7 +95,7 @@ $$
 \end{align}
 $$
 
-* The second assumption which is called the zero conditional mean assumption is that 
+The second assumption which is called the zero conditional mean assumption is that 
 
 $$
 E(u\mid x)=E(u) =0.
@@ -111,7 +111,7 @@ $$
 
 which shows the population regression function is a linear function of $x$.
 
-## Ordinary least squares
+## Ordinary least squares (OLS)
 Given data on $x$ and $y$, can we estimate the population parameters, $\beta_0$ and $\beta_1$? Let the pairs of $\{(x_i,y_i): i=1,2,\dots,n\}$ be random samples of size $n$ from the population. Plug any observation $i$ into the population equation to get $y_i=\beta_0+\beta_1x_i+u_i$ where we observe $y_i$ and $x_i$ but not $u_i$.
 
 We now use the two population restrictions $E(u)=0$ and $E(u\mid x)=0$ to estimate $\beta_0$ and $\beta_1$:
@@ -173,3 +173,37 @@ Because the $\widehat{y}_i$ are linear functions of the $x_i$ the fitted values 
 $$
 \sum_{i=1}^n \widehat{y_i} \widehat{u_i}=0.
 $$
+
+## Expected value of OLS
+
+So far, we have used a population model to explain simple regression, but our analysis has only been based on a sample of data. The OLS estimator is used to calculate residuals, which average to zero in the sample, regardless of any underlying model. Now, we need to study the statistical properties of the OLS estimator in the context of a population model and random sampling.
+
+Mathematical statistics is concerned with the behavior of estimators across different samples of data. For example, if we repeat the sample multiple times, will we get the correct answer on average? The expected value of the OLS estimators, which represents the average outcome across all possible random samples, must be determined to determine whether the estimators are unbiased.
+
+$$
+E(\widehat{\beta})=\beta
+$$
+
+Unbiasedness means that if we could take as many random samples on $y$ as we want from the population and compute an estimate each time, the average of the estimates $\widehat{\beta}$ would be equal to $\beta$.
+
+There are five assumptions that must be met for the OLS estimator to be unbiased:
+
+* Linearity: The population relationship between the randoms $x$ and $u$ and $y$ is linear: $y=\beta_0+\beta_1 x+u$. It implies that $y$ is also random.
+* Sampling: We draw random samples of size $n$ from the population: $y_i=\beta_0+\beta_1x_i+u_i$
+* Sample variations: The sample outcomes are not all the same value. Without that the estimated slope $\sum\limits_{i=1}^n(x_i-\overline{x})^2$ is undefined.
+
+Homoscedasticity: The variance of the errors must be constant for each observation.
+
+Normality: The errors must be normally distributed.
+
+No perfect multicollinearity: The independent variables must not be perfectly correlated with each other.
+
+It is important to note that while these assumptions are necessary for unbiased estimation, they do not guarantee that the OLS estimator will produce the best estimates. In some cases, these assumptions may not be met, in which case alternative estimation methods may need to be considered.
+
+
+
+
+
+
+
+
