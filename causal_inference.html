@@ -387,7 +387,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <p>in the works..</p>
+  <p>One result that will be very useful throughout this section is:</p>
+<p>\begin{align}
+\sum_{i=1}^n(x_i-\overline{x})^2 &amp; =<br />
+\sum_{i=1}^n (x_i^2-2x_i\overline{x}+\overline{x}^2)
+\
+&amp; = \sum x_i^2 - 2\overline{x} \sum x_i +n\overline{x}^2                                          \
+&amp; = \sum x_i^2 - 2 \dfrac{1}{n} \sum x_i \sum x_i +n\overline{x}^2                                \
+&amp; = \sum x_i^2 +n\overline{x}^2 - \dfrac{2}{n} \bigg (\sum x_i \bigg )^2                          \
+&amp; = \sum x_i^2+n\bigg (\dfrac{1}{n} \sum x_i \bigg)^2 - 2n \bigg (\dfrac{1}{n} \sum x_i \bigg )^2 \
+&amp; = \sum x_i^2 - n \bigg (\dfrac{1}{n} \sum x_i \bigg )^2                                         \
+&amp; = \sum x_i^2 - n \overline{x}^2<br />
+\end{align}</p>
+<p>A more general version of this result is:</p>
+<p>\begin{align}
+\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y}) &amp; = \sum_{i=1}^n x_i(y_i - \overline{y}) \
+&amp; = \sum_{i=1}^n (x_i - \overline{x})y_i \
+&amp; = \sum_{i=1}^n x_iy_i - n(\overline{xy}) \
+\end{align}</p>
 
     <script type="text/x-thebe-config">
     {
