@@ -118,16 +118,16 @@ We now use the two population restrictions $E(u)=0$ and $E(u\mid x)=0$ to estima
 
 $$
 \begin{align}
-  E(u) = E(y-\beta_0-\beta_1x)           \approx \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big) & = 0 \\
+  E(u) = E(y-\beta_0-\beta_1x)           \approx \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta}_0-\widehat{\beta}_1x_i\Big) & = 0 \\
   E(ux) = E\Big(x[y-\beta_0-\beta_1x]\Big) \approx \dfrac{1}{n}\sum_{i=1}^n
-  \Big(x_i \Big[y_i - \widehat{\beta_0} - \widehat{\beta_1} x_i \Big]\Big) & = 0                
+  \Big(x_i \Big[y_i - \widehat{\beta}_0 - \widehat{\beta}_1 x_i \Big]\Big) & = 0                
 \end{align}
 $$
 
-where $\widehat{\beta_0}$ and $\widehat{\beta_1}$ are the estimates from the data.
+where $\widehat{\beta}_0$ and $\widehat{\beta}_1$ are the estimates from the data.
 
-The first equation implies that $\widehat{\beta_0}=\overline{y}-\widehat{\beta_1} \overline{x}$ where $\overline{y}$ and $\overline{x}$ are 
-the sample averages. Pluging $\widehat{\beta_0}$ into the second equation gives
+The first equation implies that $\widehat{\beta}_0=\overline{y}-\widehat{\beta}_1 \overline{x}$ where $\overline{y}$ and $\overline{x}$ are 
+the sample averages. Pluging $\widehat{\beta}_0$ into the second equation gives
 
 $$
 \begin{align}
@@ -139,10 +139,11 @@ where the last term is the sample covariance over the sample variance.
 
 With the estimated $\widehat{\beta}_0$ and $\widehat{\beta}_1$ the fitted value for each $i$ is:
 
+$$
 \begin{align}
-   \widehat{y_i}=\widehat{\beta}_0+\widehat{\beta}_1x_i
+   \widehat{y}_i=\widehat{\beta}_0+\widehat{\beta}_1x_i
 \end{align}
-
+$$
 
 
 
