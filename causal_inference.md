@@ -145,5 +145,10 @@ $$
 \end{align}
 $$
 
+The residual $\widehat{u}$ is now defined as the prediction error between $y$ and $\widehat{y}_i$. That is
 
-
+$$
+\begin{align}
+   \widehat{u}_i & = y_i-\widehat{y}_i.
+\end{align}
+$$
