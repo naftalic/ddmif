@@ -131,9 +131,17 @@ the sample averages. Pluging $\widehat{\beta_0}$ into the second equation gives
 
 $$
 \begin{align}
-  \widehat{\beta}_1 & = \dfrac{\sum\limits_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum\limits_{i=1}^n(x_i-\overline{x})^2 } = \dfrac{C(x_i,y_i)}{V(x_i,x_i)}
+  \widehat{\beta}_1 & = \dfrac{\sum\limits_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum\limits_{i=1}^n(x_i-\overline{x})^2 } = \dfrac{C(x,y)}{V(x)}
 \end{align}
 $$
+
+where the last term is the sample covariance over the sample variance.
+
+With the estimated $\widehat{\beta}_0$ and $\widehat{\beta}_1$ the fitted value for each $i$ is:
+
+\begin{align}
+   \widehat{y_i}=\widehat{\beta}_0+\widehat{\beta}_1x_i
+\end{align}
 
 
 
