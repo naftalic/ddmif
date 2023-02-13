@@ -199,7 +199,7 @@ The estimated slope is given as
 
 $$
 \begin{align}
-   \widehat{\beta}_1=\dfrac{\sum_{i=1}^n (x_i - \overline{x})y_i}{\sum_{i=1}^n (x_i - \overline{x})^2}.
+   \widehat{\beta}_1=\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})y_i}{\sum\limits_{i=1}^n (x_i - \overline{x})^2}.
 \end{align}
 $$
 
