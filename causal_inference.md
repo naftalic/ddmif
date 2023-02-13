@@ -213,7 +213,7 @@ $$
    \\
                 & =0+\beta_1 \sum_{i=1}^n (x_i - \overline{x})^2+ \sum_{i=1}^n (x_i - \overline{x})u_i                                         
    \\
-                & = \beta_1 SST_x+\sum_{i=1}^n (x_i - \overline{x}) u_i                                                                        
+                & = \beta_1 \sum_{i=1}^n (x_i - \overline{x})^2+ \sum_{i=1}^n (x_i - \overline{x})u_i                                                                       
 \end{align}
 $$
 
