@@ -101,13 +101,18 @@ $$
 E(u\mid x)=E(u) =0.
 $$
 
-It means that the expected value of $u$ given $x$, or the mean of the error term $u$ for each “slice” of the population $x$ is eqaul to zero for all x. It implies that $u$ is mean independet of $x$.
+It means that the expected value of $u$ given $x$, or the mean of the error term $u$ for each “slice” of the population $x$ is eqaul to zero for all x. It implies that $E(ux)=0$ as $E(ux)=E(u\mid x)E(x)=0$.
 
-This assumption results in
+This assumption that $E(u\mid x)=0$ also results in
 
 $$
 E(y\mid x)=\beta_0+\beta_1x.
 $$
 
 which shows the population regression function is a linear function of $x$.
+
+## Ordinary least squares
+Given data on $x$ and $y$, how can we estimate the population parameters, $\beta_0$ and $\beta_1$? Let the pairs of $\big\{(x_i,\ \textrm{and}\ y_i): i=1,2,\dots,n \big\}$ be random samples of size $n$ from the population. Plug any observation $i$ into the population equation to get $y_i=\beta_0+\beta_1x_i+u_i$ where we observe $y_i$ and $x_i$ but not $u_i$.
+
+We now use the two population restrictions $E(u)=0$ and $E(u\mid x)=0$ to estimate $\beta_0$ and $\beta_1$.
 
