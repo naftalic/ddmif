@@ -131,7 +131,7 @@ the sample averages. Pluging $\widehat{\beta_0}$ into the second equation gives
 
 $$
 \begin{align}
-  \widehat{\beta}_1 & = \dfrac{\sum\limits_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum\limits_{i=1}^n(x_i-\overline{x})^2 } 
+  \widehat{\beta}_1 & = \dfrac{\sum\limits_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum\limits_{i=1}^n(x_i-\overline{x})^2 } = \dfrac{C(x_i,y_i)}{V(x_i,x_i)}
 \end{align}
 $$
 
