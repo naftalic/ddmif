@@ -29,6 +29,7 @@ One result that will be very useful throughout this section is:
 \end{align}
 
 A more general version of this result is:
+
 \begin{align}
    \sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y}) & = \sum_{i=1}^n x_i(y_i - \overline{y}) \\
     & = \sum_{i=1}^n (x_i - \overline{x})y_i \\
