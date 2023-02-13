@@ -52,7 +52,7 @@ $$
 C(X,Y) = E(XY) - E(X)E(Y).
 $$
 
-if X and Y are independent, then $E(XY) = E(X)E(Y)$ and $C(X,Y)=0$, but $C(X,Y)=0$ doesn't imply independence as the dependency between X and Y can be nonlinear.
+If X and Y are independent, then $E(XY) = E(X)E(Y)$ and $C(X,Y)=0$, but $C(X,Y)=0$ doesn't imply independence as the dependency between X and Y can be nonlinear.
 
 The covariance between two linear functions is:
 
