@@ -270,4 +270,4 @@ $$
 \end{align}
 $$
 
-The second follows because $E( h(x_i) \epsilon_i)=E(E( h(x_i) \epsilon_i\mid x))= E \{ h(x_i) E(\epsilon_i\mid x_i)\}$ where $h(x_i)$ is some function of $x$.
+The second follows because $E\[ h(x_i) \epsilon_i\]=E\[E( h(x_i) \epsilon_i\mid x)\]= E \\ h(x_i) E(\epsilon_i\mid x_i)\]=0$ where $h(x_i)$ is some function of $x$.
