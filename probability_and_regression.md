@@ -257,7 +257,7 @@ The LIE allows us to calculate the unconditional expectation of a variable by co
 
 ## CEF decomposition property
 The CEF decomposition theorem states that any random variable $Y$ can be decomposed into a piece that is explained by $X$ (the CEF) and a piece that is left over and orthogonal to it.
-For example, consider $y_i=E(y_i\mid x_i)+\epsilon_i\$, then the theorem argues that $\epsilon_i$ is mean independent of $x_i$: $E(\epsilon_i\mid x_i)=0$, and that $\epsilon_i$ is not correlated with any function of $x_i$. the first argument follows because
+For example, consider $y_i=E(y_i\mid x_i)+\epsilon_i\$, then the theorem argues that $\epsilon_i$ is mean independent of $x_i$: $E(\epsilon_i\mid x_i)=0$, and that $\epsilon_i$ is not correlated with any function of $x_i$. The first argument follows because
 
 $$
 \begin{align}
@@ -270,4 +270,10 @@ $$
 \end{align}
 $$
 
-The second follows because $E\[ h(x_i) \epsilon_i\]=E\[E( h(x_i) \epsilon_i\mid x)\]= E \\ h(x_i) E(\epsilon_i\mid x_i)\]=0$ where $h(x_i)$ is some function of $x$.
+The second follows because 
+
+$$
+E\[ h(x_i) \epsilon_i\]=E\[E( h(x_i) \epsilon_i\mid x)\]= E \\ h(x_i) E(\epsilon_i\mid x_i)\]=0
+$$ 
+
+where $h(x_i)$ is some function of $x$.
