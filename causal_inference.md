@@ -231,7 +231,7 @@ Now, we can apply the expectation of the last eqaution to infer biasness.
 
 $$
 \begin{align}
-   E\widehat{\beta}_1 = E(\beta_1)+E\bigg(\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}\bigg)        
+   E(\widehat{\beta}_1) = E(\beta_1)+E\bigg(\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}\bigg)        
 \end{align}
 $$
 
