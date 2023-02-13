@@ -205,6 +205,7 @@ $$
 
 Let's expand the numerator first.
 
+$$
 \begin{align}
    \sum_{i=1}^n (x_i - \overline{x})y_i & =\sum_{i=1}^n (x_i - \overline{x})(\beta_0+\beta_1 x_i+u_i)                                                                  
    \\
@@ -214,6 +215,6 @@ Let's expand the numerator first.
    \\
                 & = \beta_1 SST_x+\sum_{i=1}^n (x_i - \overline{x}) u_i                                                                        
 \end{align}
-
+$$
 
 
