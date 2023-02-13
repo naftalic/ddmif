@@ -161,3 +161,15 @@ We had $E(u)=0$ and we approximated $u$ with $\widehat{u}$, so clearly,
 $$
 \sum_{i=1}^n \widehat{u}_i=0.
 $$
+
+By the same argument we get that
+
+$$
+\sum_{i=1}^n x_i \widehat{u}_i=0.
+$$
+
+Because the $\widehat{y}_i$ are linear functions of the $x_i$ the fitted values and residuals are uncorrelated too it follows that 
+
+$$
+\sum_{i=1}^n \widehat{y_i} \widehat{u_i}=0.
+$$
