@@ -281,3 +281,4 @@ E\[ h(x_i) \epsilon_i\]
 \end{align}
 $$ 
 
+## CEF prediction property
