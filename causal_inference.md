@@ -37,10 +37,12 @@ $$
 $$
 
 The variance of the sum of two random variables is equal to:
+
 $$
 \begin{align}
    V(X+Y)=V(X)+V(Y)+2C(X,Y)
 \end{align}
 $$
-where C(X,Y) is the covariance measuring the amount of linear dependence between two random variables X and Y.
+
+where $C(X,Y)$ is the covariance measuring the amount of linear dependence between two random variables X and Y.
 
