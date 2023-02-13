@@ -222,7 +222,7 @@ It follows that,
 
 $$
 \begin{align}
-   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}.                  
+   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x}) }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}u_i.                  
 \end{align}
 $$
 
