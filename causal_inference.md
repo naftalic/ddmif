@@ -217,4 +217,12 @@ $$
 \end{align}
 $$
 
+Note, we used $\sum_{i=1}^n (x_i-\overline{x})=0$ and $\sum_{i=1}^n (x_i - \overline{x})x_i=\sum_{i=1}^n (x_i - \overline{x})^2$ for the manipulation.
+It follows that,
 
+$$
+\begin{align}
+   \widehat{\beta}_1 & = \dfrac{ \beta_1 SST_x+ \sum_{i=1}^n (x_i - \overline{x})u_i }{SST_x} \nonumber \\
+    & = \beta_1+\dfrac{ \sum_{i=1}^n (x_i - \overline{x})u_i }{SST_x}                  
+\end{align}
+$$
