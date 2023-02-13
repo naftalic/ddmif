@@ -203,7 +203,7 @@ $$
 \end{align}
 $$
 
-Let's expand the numerator first.
+Let's expand the numerator first:
 
 $$
 \begin{align}
