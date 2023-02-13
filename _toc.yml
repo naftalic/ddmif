@@ -9,6 +9,6 @@ chapters:
  - file: factors
  - file: screening_and_ranking
  - file: factors_advanced
- - file: causal_inference
+ - file: probability_and_regression
  - file: competition
 
