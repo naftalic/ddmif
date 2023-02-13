@@ -226,7 +226,7 @@ $$
 \end{align}
 $$
 
-The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to the sampled slope coefficient from the OLS regression of $u$ on $x$. However, under the zero conditional mean assumption $E(u\mid x)$ and hence it follows that applying the expectation on the last equation conditional on $x$ results in
+The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to the sampled slope coefficient from the OLS regression of $u$ on $x$. However, under the zero conditional mean assumption $E(u\mid x)$ and hence it follows that applying the expectation on the last equation, conditional on $x$, results in
 
 $$
 \begin{align}
@@ -234,6 +234,8 @@ $$
     & = \beta_1+\sum_{i=1}^n E(w_i u_i)              \\
     & = \beta_1+\sum_{i=1}^n w_i E(u_i)             \\
     & = \beta_1 + 0                                   \\
-    & = \beta_1                                      
+    & = \beta_1.                                     
 \end{align}
 $$
+
+Again, $\beta_1$ is the fixed constant in the population. The estimator, $\widehat{\beta}_1$, varies across samples and is the random outcome: before we collect our data, we do not know what $\widehat{\beta}_1$ will be. Under the four aforementioned assumptions we know that $E\widehat{\beta}_0=$E\widehat{\beta}_1=0$.
