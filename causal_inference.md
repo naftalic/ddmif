@@ -226,6 +226,12 @@ $$
 \end{align}
 $$
 
-The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to a linear function of the unobservables.
+The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to a linear function of the unobservables $u_i$. 
+Now, we can apply the expectation of the last eqaution to infer biasness.
 
+$$
+\begin{align}
+   E\widehat{\beta}_1 = E(\beta_1)+E\bigg(\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x}) }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}u_i\bigg)        
+\end{align}
+$$
 
