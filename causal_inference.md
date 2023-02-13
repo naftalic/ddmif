@@ -186,7 +186,7 @@ $$
 
 Unbiasedness means that if we could take as many random samples on $y$ as we want from the population and compute an estimate each time, the average of the estimates $\widehat{\beta}$ would be equal to $\beta$.
 
-There are five assumptions that must be met for the OLS estimator to be unbiased:
+There are multiple assumptions that must be met for the OLS estimator to be unbiased:
 
 * Linearity: The population relationship between the randoms $x$ and $u$ and $y$ is linear: $y=\beta_0+\beta_1 x+u$. It implies that $y$ is also random.
 * Sampling: We draw random samples of size $n$ from the population: $y_i=\beta_0+\beta_1x_i+u_i$
@@ -195,20 +195,25 @@ There are five assumptions that must be met for the OLS estimator to be unbiased
 
 Givent the above assumptions, let's now show that $\widehat{\beta}_1$ is an unbiased estimate of $\beta$:
 
+The estimated slope is given as 
 
+$$
+\begin{align}
+   \widehat{\beta}_1=\dfrac{\sum_{i=1}^n (x_i - \overline{x})y_i}{\sum_{i=1}^n (x_i - \overline{x})^2}.
+\end{align}
+$$
 
-Homoscedasticity: The variance of the errors must be constant for each observation.
+Let's expand the numerator first.
 
-Normality: The errors must be normally distributed.
-
-No perfect multicollinearity: The independent variables must not be perfectly correlated with each other.
-
-It is important to note that while these assumptions are necessary for unbiased estimation, they do not guarantee that the OLS estimator will produce the best estimates. In some cases, these assumptions may not be met, in which case alternative estimation methods may need to be considered.
-
-
-
-
-
+\begin{align}
+   \sum_{i=1}^n (x_i - \overline{x})y_i & =\sum_{i=1}^n (x_i - \overline{x})(\beta_0+\beta_1 x_i+u_i)                                                                  
+   \\
+                & = \beta_0 \sum_{i=1}^n (x_i - \overline{x})+\beta_1 \sum_{i=1}^n (x_i - \overline{x})x_i+\sum_{i=1}^n (x_i+\overline{x}) u_i
+   \\
+                & =0+\beta_1 \sum_{i=1}^n (x_i - \overline{x})^2+ \sum_{i=1}^n (x_i - \overline{x})u_i                                         
+   \\
+                & = \beta_1 SST_x+\sum_{i=1}^n (x_i - \overline{x}) u_i                                                                        
+\end{align}
 
 
 
