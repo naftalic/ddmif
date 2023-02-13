@@ -238,3 +238,17 @@ $$
 
 From the relationship between ${\beta}_0$ and ${\beta}_1$ it is easy to infer the unbiasness of $\widehat{\beta}_0$.
 Again, $\beta_1$ is the fixed constant in the population. The estimator, $\widehat{\beta}_1$, varies across samples and is the random outcome: before we collect our data, we do not know what $\widehat{\beta}_1$ will be. Under the four aforementioned assumptions we know that $E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0$.
+
+## Law of iterated expectations
+
+The conditional expectation function (CEF) is a statistical tool that represents the mean outcome of a random variable for a given set of covariates. The CEF is denoted as E(Y|X), where Y is the outcome and X is the set of covariates. The CEF is a random variable as it depends on the value of the covariates X, which are also random.
+
+The CEF is a useful tool for modeling the relationship between the outcome and covariates, and it can take on different values for different values of X. In some special cases, such as when there are treatment variables, the CEF may take on two values.
+
+The law of iterated expectations (LIE) is a complementary concept to the CEF. The LIE states that the unconditional expectation of a random variable can be calculated as the weighted average of the CEFs for all possible values of the covariates. Mathematically, this can be written as 
+
+$$
+E(Y) = E(E(Y|X)).
+$$
+
+The LIE allows us to calculate the unconditional expectation of a variable by considering the expected value of the variable given different values of the covariates.
