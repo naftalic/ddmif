@@ -15,6 +15,8 @@ kernelspec:
 
 # Probability and Regression Review
 
+In this section, we cover the topic of probability and linear regression by first presenting the fundamental probability concepts such as expected value, variance, and covariance. Then, we examine how these concepts are applied in the context of linear regression. We delve into the underlying assumptions of the regression model and explore its statistical and distributional characteristics.
+
 ## Expected value, variance, and covariance
 The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value's occurrence in the population.
 
@@ -239,7 +241,7 @@ $$
 From the relationship between ${\beta}_0$ and ${\beta}_1$ it is easy to infer the unbiasness of $\widehat{\beta}_0$.
 Again, $\beta_1$ is the fixed constant in the population. The estimator, $\widehat{\beta}_1$, varies across samples and is the random outcome: before we collect our data, we do not know what $\widehat{\beta}_1$ will be. Under the four aforementioned assumptions we know that $E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0$.
 
-## Law of iterated expectations
+## Law of iterated expectations (LIE)
 
 The conditional expectation function (CEF) is a statistical tool that represents the mean outcome of a random variable for a given set of covariates. The CEF is denoted as E(Y|X), where Y is the outcome and X is the set of covariates. The CEF is a random variable as it depends on the value of the covariates X, which are also random.
 
@@ -252,3 +254,18 @@ E(Y) = E(E(Y|X)).
 $$
 
 The LIE allows us to calculate the unconditional expectation of a variable by considering the expected value of the variable given different values of the covariates.
+
+## CEF decomposition property
+The CEF decomposition theorem states that any random variable $Y$ can be decomposed into a piece that is explained by $X$ (the CEF) and a piece that is left over and orthogonal to it.
+For example, consider $y_i=E(y_i\mid x_i)+\epsilon_i\$, then the theorem argues that $\epsilon_i$ is mean independent of $x_i$: $E(\epsilon_i\mid x_i)=0$, and that $\epsilon_i$ is not correlated with any function of $x_i$. the first argument follows because
+
+$$
+\begin{align}
+   E(\epsilon_i\mid x_i)
+     & =E\Big(y_i- E(y_i\mid x_i)\mid x_i\Big)
+   \\
+     & =E(y_i\mid x_i) - E(y_i\mid x_i)        
+   \\
+     & = 0                                     
+\end{align}
+$$
