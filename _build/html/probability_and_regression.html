@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Probability and Regression Review &#8212; Data-Driven Methods in Finance</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Investment Competition" href="competition.html" />
+    <link rel="prev" title="The Fundamental Factor Model" href="factors_advanced.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Data-Driven Methods in Finance
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_models.html">
+   Basic Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors.html">
+   Factors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screening_and_ranking.html">
+   Stock Screening and Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors_advanced.html">
+   The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Probability and Regression Review
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="competition.html">
+   Investment Competition
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/probability_and_regression.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/naftalic/ddmif"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fprobability_and_regression.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/probability_and_regression.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/probability_and_regression.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
+   Expected value, variance, and covariance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#population-model">
+   Population model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ordinary-least-squares-ols">
+   Ordinary least squares (OLS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-value-of-ols">
+   Expected value of OLS
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Probability and Regression Review</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
+   Expected value, variance, and covariance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#population-model">
+   Population model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ordinary-least-squares-ols">
+   Ordinary least squares (OLS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expected-value-of-ols">
+   Expected value of OLS
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="probability-and-regression-review">
+<h1>Probability and Regression Review<a class="headerlink" href="#probability-and-regression-review" title="Permalink to this headline">#</a></h1>
+<div class="section" id="expected-value-variance-and-covariance">
+<h2>Expected value, variance, and covariance<a class="headerlink" href="#expected-value-variance-and-covariance" title="Permalink to this headline">#</a></h2>
+<p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  E(X) &amp; = x_1p(x_1)+x_2p(x_2)+\dots+x_kp(x_k) \\
+  &amp; = \sum_{j=1}^k x_jp(x_j).             
+\end{align}
+\end{split}\]</div>
+<p>The variance of a random variable in the population is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+   V(X)=\sigma^2 &amp; = E\Big[\big(X-E(X)\big)^2\Big]\  \\
+&amp; = E\Big[\big(X^2-2XE(X)+E^2(X)\big)\Big]\  \\
+&amp; = E(X^2)-2E(X)E(X)+E^2(X) \\
+&amp; = E(X^2)-E^2(X).
+\end{align}
+\end{split}\]</div>
+<p>The variance of the sum of two random variables is equal to:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   V(X+Y)=V(X)+V(Y)+2C(X,Y)
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C(X,Y)\)</span> is the covariance measuring the amount of linear dependence between two random variables X and Y.</p>
+<p>The definition of covariance is</p>
+<div class="math notranslate nohighlight">
+\[
+C(X,Y) = E(XY) - E(X)E(Y).
+\]</div>
+<p>If X and Y are independent, then <span class="math notranslate nohighlight">\(E(XY) = E(X)E(Y)\)</span> and <span class="math notranslate nohighlight">\(C(X,Y)=0\)</span>, but <span class="math notranslate nohighlight">\(C(X,Y)=0\)</span> doesn’t imply independence as the dependency between X and Y can be nonlinear.</p>
+<p>The covariance between two linear functions is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   C(a_1+b_1X, a_2+b_2Y)=b_1b_2C(X,Y).
+\end{align}
+\]</div>
+<p>The correlation between X and Y is defined as the scaled covariance. That is,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}.
+\]</div>
+</div>
+<div class="section" id="population-model">
+<h2>Population model<a class="headerlink" href="#population-model" title="Permalink to this headline">#</a></h2>
+<p>This section focuses on cross-sectional analysis, where we collect a random sample from the population of interest. We consider two variables, X and Y, and aim to examine the relationship between them. The model we use</p>
+<div class="math notranslate nohighlight">
+\[
+y=\beta_0+\beta_1x+u
+\]</div>
+<p>is based on the assumption that it holds true for the population. The equation defines a linear bivariate regression model. In models that aim to capture causal effects, the variables on the left side of the equation are considered as the effects, while those on the right side are considered as the causes.</p>
+<p>The above equation includes a random variable called the error term, <span class="math notranslate nohighlight">\(u\)</span>, to account for other factors that may affect Y. It also assumes a linear relationship between X and Y by including a linear dependence. The coefficient of X is referred to as the intercept parameter, while the coefficient of Y is known as the slope parameter. These parameters describe the population, and our goal in empirical work is to estimate their values. However, we never observe these parameters directly because they are not data. Our task is to estimate these parameters using data and assumptions. To do this, we need credible assumptions to make accurate estimates using the data. In this simple regression framework, all unobserved variables that determine Y are encompassed by the error term <span class="math notranslate nohighlight">\(u\)</span>.</p>
+<p>The first assumption that we make is that</p>
+<div class="math notranslate nohighlight">
+\[
+E(u)=0
+\]</div>
+<p>and we can always adjust <span class="math notranslate nohighlight">\(\beta_0\)</span> to acheive this goal. In example,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   y=(\beta_0+E(u))+\beta_1x+(u-E(u)).
+\end{align}
+\]</div>
+<p>The second assumption which is called the zero conditional mean assumption is that</p>
+<div class="math notranslate nohighlight">
+\[
+E(u\mid x)=E(u) =0.
+\]</div>
+<p>It means that the expected value of <span class="math notranslate nohighlight">\(u\)</span> given <span class="math notranslate nohighlight">\(x\)</span>, or the mean of the error term <span class="math notranslate nohighlight">\(u\)</span> for each “slice” of the population <span class="math notranslate nohighlight">\(x\)</span> is eqaul to zero for all x. It implies that <span class="math notranslate nohighlight">\(E(ux)=0\)</span> as <span class="math notranslate nohighlight">\(E(ux)=E(u\mid x)E(x)=0\)</span>.</p>
+<p>This assumption that <span class="math notranslate nohighlight">\(E(u\mid x)=0\)</span> also results in</p>
+<div class="math notranslate nohighlight">
+\[
+E(y\mid x)=\beta_0+\beta_1x.
+\]</div>
+<p>which shows the population regression function is a linear function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
+<div class="section" id="ordinary-least-squares-ols">
+<h2>Ordinary least squares (OLS)<a class="headerlink" href="#ordinary-least-squares-ols" title="Permalink to this headline">#</a></h2>
+<p>Given data on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, can we estimate the population parameters, <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>? Let the pairs of <span class="math notranslate nohighlight">\(\{(x_i,y_i): i=1,2,\dots,n\}\)</span> be random samples of size <span class="math notranslate nohighlight">\(n\)</span> from the population. Plug any observation <span class="math notranslate nohighlight">\(i\)</span> into the population equation to get <span class="math notranslate nohighlight">\(y_i=\beta_0+\beta_1x_i+u_i\)</span> where we observe <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> but not <span class="math notranslate nohighlight">\(u_i\)</span>.</p>
+<p>We now use the two population restrictions <span class="math notranslate nohighlight">\(E(u)=0\)</span> and <span class="math notranslate nohighlight">\(E(u\mid x)=0\)</span> to estimate <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  E(u) = E(y-\beta_0-\beta_1x)           \approx \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta}_0-\widehat{\beta}_1x_i\Big) &amp; = 0 \\
+  E(ux) = E\Big(x[y-\beta_0-\beta_1x]\Big) \approx \dfrac{1}{n}\sum_{i=1}^n
+  \Big(x_i \Big[y_i - \widehat{\beta}_0 - \widehat{\beta}_1 x_i \Big]\Big) &amp; = 0                
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\widehat{\beta}_0\)</span> and <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> are the estimates from the data.</p>
+<p>The first equation implies that <span class="math notranslate nohighlight">\(\widehat{\beta}_0=\overline{y}-\widehat{\beta}_1 \overline{x}\)</span> where <span class="math notranslate nohighlight">\(\overline{y}\)</span> and <span class="math notranslate nohighlight">\(\overline{x}\)</span> are
+the sample averages. Pluging <span class="math notranslate nohighlight">\(\widehat{\beta}_0\)</span> into the second equation gives</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+  \widehat{\beta}_1 &amp; = \dfrac{\sum\limits_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum\limits_{i=1}^n(x_i-\overline{x})^2 } = \dfrac{C(x,y)}{V(x)}
+\end{align}
+\]</div>
+<p>where the last term is the sample covariance over the sample variance.</p>
+<p>With the estimated <span class="math notranslate nohighlight">\(\widehat{\beta}_0\)</span> and <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> the fitted value for each <span class="math notranslate nohighlight">\(i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   \widehat{y}_i=\widehat{\beta}_0+\widehat{\beta}_1x_i
+\end{align}
+\]</div>
+<p>The residual <span class="math notranslate nohighlight">\(\widehat{u}\)</span> is now defined as the prediction error between <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\widehat{y}_i\)</span>. That is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   \widehat{u}_i &amp; = y_i-\widehat{y}_i.
+\end{align}
+\]</div>
+<p>Note that the residual is the difference between the actual value and the predicted value, which is known as the <strong>prediction error</strong>. This can be easily calculated using any sample of data. On the other hand, the <strong>error term</strong>, represented without the hat symbol, is not observable by the researcher as it includes all factors that affect the outcome but are not included in the model. The residual will be present in the data once the regression analysis has been performed, but the error term will never appear in the data.</p>
+<p>We had <span class="math notranslate nohighlight">\(E(u)=0\)</span> and we approximated <span class="math notranslate nohighlight">\(u\)</span> with <span class="math notranslate nohighlight">\(\widehat{u}\)</span>, so clearly,</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n \widehat{u}_i=0.
+\]</div>
+<p>By the same argument we get that</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n x_i \widehat{u}_i=0.
+\]</div>
+<p>Because the <span class="math notranslate nohighlight">\(\widehat{y}_i\)</span> are linear functions of the <span class="math notranslate nohighlight">\(x_i\)</span> the fitted values and residuals are uncorrelated too it follows that</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n \widehat{y_i} \widehat{u_i}=0.
+\]</div>
+</div>
+<div class="section" id="expected-value-of-ols">
+<h2>Expected value of OLS<a class="headerlink" href="#expected-value-of-ols" title="Permalink to this headline">#</a></h2>
+<p>So far, we have used a population model to explain simple regression, but our analysis has only been based on a sample of data. The OLS estimator is used to calculate residuals, which average to zero in the sample, regardless of any underlying model. Now, we need to study the statistical properties of the OLS estimator in the context of a population model and random sampling.</p>
+<p>Mathematical statistics is concerned with the behavior of estimators across different samples of data. For example, if we repeat the sample multiple times, will we get the correct answer on average? The expected value of the OLS estimators, which represents the average outcome across all possible random samples, must be determined to determine whether the estimators are unbiased.</p>
+<div class="math notranslate nohighlight">
+\[
+E(\widehat{\beta})=\beta
+\]</div>
+<p>Unbiasedness means that if we could take as many random samples on <span class="math notranslate nohighlight">\(y\)</span> as we want from the population and compute an estimate each time, the average of the estimates <span class="math notranslate nohighlight">\(\widehat{\beta}\)</span> would be equal to <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>There are multiple assumptions that must be met for the OLS estimator to be unbiased:</p>
+<ul class="simple">
+<li><p>Linearity: The population relationship between the randoms <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is linear: <span class="math notranslate nohighlight">\(y=\beta_0+\beta_1 x+u\)</span>. It implies that <span class="math notranslate nohighlight">\(y\)</span> is also random.</p></li>
+<li><p>Sampling: We draw random samples of size <span class="math notranslate nohighlight">\(n\)</span> from the population: <span class="math notranslate nohighlight">\(y_i=\beta_0+\beta_1x_i+u_i\)</span></p></li>
+<li><p>Sample variations: The sample outcomes are not all the same value. Without that, the denominator of the estimated slope <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^n(x_i-\overline{x})^2\)</span> is zero and the slope is undefined.</p></li>
+<li><p>The zero conditional mean assumption: In the population, the error term has zero mean given any value of the explanatory variable: <span class="math notranslate nohighlight">\(E(u\mid x) = E(u) = 0\)</span>.</p></li>
+</ul>
+<p>Givent the above assumptions, let’s now show that <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> is an unbiased estimate of <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
+<p>The estimated slope is given as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   \widehat{\beta}_1=\dfrac{\sum\limits_{i=1}^n (x_i - \overline{x})y_i}{\sum\limits_{i=1}^n (x_i - \overline{x})^2}.
+\end{align}
+\]</div>
+<p>Let’s expand the numerator first:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+   \sum_{i=1}^n (x_i - \overline{x})y_i &amp; =\sum_{i=1}^n (x_i - \overline{x})(\beta_0+\beta_1 x_i+u_i)                                                                  
+   \\
+                &amp; = \beta_0 \sum_{i=1}^n (x_i - \overline{x})+\beta_1 \sum_{i=1}^n (x_i - \overline{x})x_i+\sum_{i=1}^n (x_i+\overline{x}) u_i
+   \\
+                &amp; =0+\beta_1 \sum_{i=1}^n (x_i - \overline{x})^2+ \sum_{i=1}^n (x_i - \overline{x})u_i                                         
+   \\
+                &amp; = \beta_1 \sum_{i=1}^n (x_i - \overline{x})^2+ \sum_{i=1}^n (x_i - \overline{x})u_i                                                                       
+\end{align}
+\end{split}\]</div>
+<p>Note, we used <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^n (x_i-\overline{x})=0\)</span> and <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^n (x_i - \overline{x})x_i=\sum\limits_{i=1}^n (x_i - \overline{x})^2\)</span> for the manipulation.
+It follows that,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}=\beta_1+\dfrac{ C(x,u)}{V(x)}.                  
+\end{align}
+\]</div>
+<p>The last equation tells us that the random difference between <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are due to the sampled slope coefficient from the OLS regression of <span class="math notranslate nohighlight">\(u\)</span> on <span class="math notranslate nohighlight">\(x\)</span>. However, under the zero conditional mean assumption <span class="math notranslate nohighlight">\(E(u\mid x)\)</span> and hence it follows that applying the expectation on the last equation, conditional on <span class="math notranslate nohighlight">\(x\)</span>, results in</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+   E(\widehat{\beta}_1) &amp; = E \bigg(\beta_1+\sum_{i=1}^n w_i u_i \bigg) \\
+    &amp; = \beta_1+\sum_{i=1}^n E(w_i u_i)              \\
+    &amp; = \beta_1+\sum_{i=1}^n w_i E(u_i)             \\
+    &amp; = \beta_1 + 0                                   \\
+    &amp; = \beta_1.                                     
+\end{align}
+\end{split}\]</div>
+<p>From the relationship between <span class="math notranslate nohighlight">\({\beta}_0\)</span> and <span class="math notranslate nohighlight">\({\beta}_1\)</span> it is easy to infer the unbiasness of <span class="math notranslate nohighlight">\(\widehat{\beta}_0\)</span>.
+Again, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the fixed constant in the population. The estimator, <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span>, varies across samples and is the random outcome: before we collect our data, we do not know what <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> will be. Under the four aforementioned assumptions we know that <span class="math notranslate nohighlight">\(E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="factors_advanced.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The Fundamental Factor Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="competition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Investment Competition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Naftali Cohen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
