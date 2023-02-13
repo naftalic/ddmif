@@ -118,8 +118,8 @@ We now use the two population restrictions $E(u)=0$ and $E(u\mid x)=0$ to estima
 
 $$
 \begin{align}
-  E(y-\beta_0-\beta_1x)           & \approx \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big) = 0 \\
-  E\Big(x[y-\beta_0-\beta_1x]\Big) & \approx \dfrac{1}{n}\sum_{i=1}^n
-  \Big(x_i \Big[y_i - \widehat{\beta_0} - \widehat{\beta_1} x_i \Big]\Big) = 0                
+  E(y-\beta_0-\beta_1x)           \approx \dfrac{1}{n}\sum_{i=1}^n\Big(y_i-\widehat{\beta_0}-\widehat{\beta_1}x_i\Big) & = 0 \\
+  E\Big(x[y-\beta_0-\beta_1x]\Big) \approx \dfrac{1}{n}\sum_{i=1}^n
+  \Big(x_i \Big[y_i - \widehat{\beta_0} - \widehat{\beta_1} x_i \Big]\Big) & = 0                
 \end{align}
 $$
