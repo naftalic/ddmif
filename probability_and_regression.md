@@ -275,7 +275,7 @@ The second follows because
 $$
 \begin{align}
 E\[ h(x_i) \epsilon_i\] &= E\[E( h(x_i) \epsilon_i\mid x)\]\quad\text{by LIE}\\
-&= E\[h(x_i)\] E(\epsilon_i\mid x_i)\]\quad\text{because $h(x_i)$ is some function of $x$} \\
+&= E\[h(x_i)\] E(\epsilon_i\mid x_i)\]\quad\text{because h(x_i)$ is some function of x} \\
 &=0.
 \begin{align}
 $$ 
