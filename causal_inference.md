@@ -123,3 +123,19 @@ $$
   \Big(x_i \Big[y_i - \widehat{\beta_0} - \widehat{\beta_1} x_i \Big]\Big) & = 0                
 \end{align}
 $$
+
+where $\widehat{\beta_0}$ and $\widehat{\beta_1}$ are the estimates from the data.
+
+The first equation implies that $\widehat{\beta_0}=\overline{y}-\widehat{\beta_1} \overline{x}$ where $\overline{y}$ and $\overline{x}$ are 
+the sample averages. Pluging $\widehat{\beta_0}$ into the second equation gives
+
+$$
+\begin{align}
+  \widehat{\beta}_1 & = \dfrac{\sum_{i=1}^n (x_i-\overline{x}) (y_i-\overline{y})}{\sum_{i=1}^n(x_i-\overline{x})^2 } 
+  =\dfrac{\text{Sample covariance}(x_i,y_i) }{\text{Sample variance}(x_i)}
+\end{align}
+$$
+
+
+
+
