@@ -22,8 +22,8 @@ The expected value, also known as the population mean, of a random variable is c
 
 $$
 \begin{align}
-  E(X) & = x_1p(x_1)+x_2p(x_2)+\dots+x_kp(x_k) \\
-  & = \sum_{j=1}^k x_jp(x_j).             
+  E(X) & = x_1p(x_1)+x_2p(x_2)+\dots+x_np(x_n) \\
+  & = \sum_{j=i}^k x_ip(x_i).             
 \end{align}
 $$
 
