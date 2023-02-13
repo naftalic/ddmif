@@ -226,12 +226,14 @@ $$
 \end{align}
 $$
 
-The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to the sampled slope coefficient from the OLS regression of $u$ on $x$. But, we cannot do this regression because the 
-$u$ is unobserved. 
+The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to the sampled slope coefficient from the OLS regression of $u$ on $x$. However, under the zero conditional mean assumption $E(u\mid x)$ and hence it follows that applying the expectation on the last equation conditional on $x$ results in
 
 $$
 \begin{align}
-   E(\widehat{\beta}_1) = E(\beta_1)+E\bigg(\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}\bigg)        
+   E(\widehat{\beta}_1) & = E \bigg(\beta_1+\sum_{i=1}^n w_i u_i \bigg) \\
+    & = \beta_1+\sum_{i=1}^n E(w_i u_i)              \\
+    & = \beta_1+\sum_{i=1}^n w_i E(u_i)             \\
+    & = \beta_1 + 0                                   \\
+    & = \beta_1                                      
 \end{align}
 $$
-
