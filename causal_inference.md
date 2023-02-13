@@ -46,3 +46,17 @@ $$
 
 where $C(X,Y)$ is the covariance measuring the amount of linear dependence between two random variables X and Y.
 
+The definition of covariance is 
+
+$$
+C(X,Y) = E(XY) - E(X)E(Y).
+$$
+
+if X and Y are independent, then $E(XY) = E(X)E(Y)$ and $C(X,Y)=0$, but $C(X,Y)=0$ doesn't imply independence as the dependency between X and Y can be nonlinear.
+
+The covariance between two linear functions is:
+$$
+\begin{align}
+   C(a_1+b_1X, a_2+b_2Y)=b_1b_2C(X,Y).
+\end{align}
+$$
