@@ -217,7 +217,7 @@ $$
 \end{align}
 $$
 
-Note, we used $\sum\limits_{i=1}^n (x_i-\overline{x})=0$ and $\sum_{i=1}^n (x_i - \overline{x})x_i=\sum_{i=1}^n (x_i - \overline{x})^2$ for the manipulation.
+Note, we used $\sum\limits_{i=1}^n (x_i-\overline{x})=0$ and $\sum\limits_{i=1}^n (x_i - \overline{x})x_i=\sum\limits_{i=1}^n (x_i - \overline{x})^2$ for the manipulation.
 It follows that,
 
 $$
