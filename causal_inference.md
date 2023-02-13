@@ -238,5 +238,5 @@ $$
 \end{align}
 $$
 
-From the relationship between ${\beta}_0$ and ${\beta}_1$ it is easy to infer the unbiasness of ${\beta}_0$.
-Again, $\beta_1$ is the fixed constant in the population. The estimator, $\widehat{\beta}_1$, varies across samples and is the random outcome: before we collect our data, we do not know what $\widehat{\beta}_1$ will be. Under the four aforementioned assumptions we know that $E\widehat{\beta}_0=E\widehat{\beta}_1=0$.
+From the relationship between ${\beta}_0$ and ${\beta}_1$ it is easy to infer the unbiasness of $\widehat{\beta}_0$.
+Again, $\beta_1$ is the fixed constant in the population. The estimator, $\widehat{\beta}_1$, varies across samples and is the random outcome: before we collect our data, we do not know what $\widehat{\beta}_1$ will be. Under the four aforementioned assumptions we know that $E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0$.
