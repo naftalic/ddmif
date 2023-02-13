@@ -222,6 +222,10 @@ It follows that,
 
 $$
 \begin{align}
-   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}                  
+   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}.                  
 \end{align}
 $$
+
+The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to a linear function of the unobservables.
+
+
