@@ -371,9 +371,21 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#math-background">
-   Math background
+  <a class="reference internal nav-link" href="#probability-and-regression-background">
+   Probability and Regression background
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
+     Expected value, variance, and covariance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-model">
+     Population model
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -400,9 +412,21 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#math-background">
-   Math background
+  <a class="reference internal nav-link" href="#probability-and-regression-background">
+   Probability and Regression background
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
+     Expected value, variance, and covariance
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#population-model">
+     Population model
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -417,8 +441,10 @@ title="Print to PDF"
   <div class="tex2jax_ignore mathjax_ignore section" id="causal-inference-in-finance">
 <h1>Causal Inference in Finance<a class="headerlink" href="#causal-inference-in-finance" title="Permalink to this headline">#</a></h1>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="math-background">
-<h1>Math background<a class="headerlink" href="#math-background" title="Permalink to this headline">#</a></h1>
+<div class="tex2jax_ignore mathjax_ignore section" id="probability-and-regression-background">
+<h1>Probability and Regression background<a class="headerlink" href="#probability-and-regression-background" title="Permalink to this headline">#</a></h1>
+<div class="section" id="expected-value-variance-and-covariance">
+<h2>Expected value, variance, and covariance<a class="headerlink" href="#expected-value-variance-and-covariance" title="Permalink to this headline">#</a></h2>
 <p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -429,25 +455,51 @@ title="Print to PDF"
 \end{split}\]</div>
 <p>The variance of a random variable in the population is defined as</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \begin{align}
-   V(X)=\sigma^2=E\Big[\big(X-E(X)\big)^2\Big]\ =E(X^2) - E(X)^2
-\end{align}
-The last identity follows from the fact that 
-\begin{align}
-E\Big[\big(X-E(X)\big)^2\Big]\  =
-&amp; = E\Big[\big(X^2-2XE(X)+E^2(X)\big)\Big]\
-&amp; = E(X^2)-2E(X)E(X)+E^2(X)
+   V(X)=\sigma^2 &amp; = E\Big[\big(X-E(X)\big)^2\Big]\  \\
+&amp; = E\Big[\big(X^2-2XE(X)+E^2(X)\big)\Big]\  \\
+&amp; = E(X^2)-2E(X)E(X)+E^2(X) \\
 &amp; = E(X^2)-E^2(X).
 \end{align}
-\]</div>
-<p>The variance of the sum of two random variables is equal to:
-$<span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>The variance of the sum of two random variables is equal to:</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{align}
    V(X+Y)=V(X)+V(Y)+2C(X,Y)
 \end{align}
-\)</span>$
-where C(X,Y) is the covariance measuring the amount of linear dependence between two random variables X and Y.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C(X,Y)\)</span> is the covariance measuring the amount of linear dependence between two random variables X and Y.</p>
+<p>The definition of covariance is</p>
+<div class="math notranslate nohighlight">
+\[
+C(X,Y) = E(XY) - E(X)E(Y).
+\]</div>
+<p>If X and Y are independent, then <span class="math notranslate nohighlight">\(E(XY) = E(X)E(Y)\)</span> and <span class="math notranslate nohighlight">\(C(X,Y)=0\)</span>, but <span class="math notranslate nohighlight">\(C(X,Y)=0\)</span> doesn’t imply independence as the dependency between X and Y can be nonlinear.</p>
+<p>The covariance between two linear functions is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+   C(a_1+b_1X, a_2+b_2Y)=b_1b_2C(X,Y).
+\end{align}
+\]</div>
+<p>The correlation between X and Y is defined as the scaled covariance. That is,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}.
+\]</div>
+</div>
+<div class="section" id="population-model">
+<h2>Population model<a class="headerlink" href="#population-model" title="Permalink to this headline">#</a></h2>
+<p>This section focuses on cross-sectional analysis, where we collect a random sample from the population of interest. We consider two variables, X and Y, and aim to examine the relationship between them. The model we use</p>
+<div class="math notranslate nohighlight">
+\[
+y=\beta_0+\beta_1x+u
+\]</div>
+<p>is based on the assumption that it holds true for the population. The equation defines a linear bivariate regression model. In models that aim to capture causal effects, the variables on the left side of the equation are considered as the effects, while those on the right side are considered as the causes.</p>
+<p>The above equation includes a random variable called the error term, <span class="math notranslate nohighlight">\(u\)</span>, to account for other factors that may affect Y. It also assumes a linear relationship between X and Y by including a linear dependence. The coefficient of X is referred to as the intercept parameter, while the coefficient of Y is known as the slope parameter. These parameters describe the population, and our goal in empirical work is to estimate their values. However, we never observe these parameters directly because they are not data. Our task is to estimate these parameters using data and assumptions. To do this, we need credible assumptions to make accurate estimates using the data. In this simple regression framework, all unobserved variables that determine Y are encompassed by the error term <span class="math notranslate nohighlight">\(u\)</span>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
