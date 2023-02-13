@@ -15,7 +15,7 @@ kernelspec:
 
 # Causal Inference in Finance
 
-# Math background
+# Probability and Regression background
 The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value's occurrence in the population.
 
 $$
