@@ -190,7 +190,12 @@ There are five assumptions that must be met for the OLS estimator to be unbiased
 
 * Linearity: The population relationship between the randoms $x$ and $u$ and $y$ is linear: $y=\beta_0+\beta_1 x+u$. It implies that $y$ is also random.
 * Sampling: We draw random samples of size $n$ from the population: $y_i=\beta_0+\beta_1x_i+u_i$
-* Sample variations: The sample outcomes are not all the same value. Without that the estimated slope $\sum\limits_{i=1}^n(x_i-\overline{x})^2$ is undefined.
+* Sample variations: The sample outcomes are not all the same value. Without that, the denominator of the estimated slope $\sum\limits_{i=1}^n(x_i-\overline{x})^2$ is zero and the slope is undefined.
+* The zero conditional mean assumption: In the population, the error term has zero mean given any value of the explanatory variable: $E(u\mid x) = E(u) = 0$.
+
+Givent the above assumptions, let's now show that $\widehat{\beta}_1$ is an unbiased estimate of $\beta$:
+
+
 
 Homoscedasticity: The variance of the errors must be constant for each observation.
 
