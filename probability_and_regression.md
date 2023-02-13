@@ -269,3 +269,5 @@ $$
      & = 0                                     
 \end{align}
 $$
+
+The second follows because $E( h(x_i) \epsilon_i)=E \{ h(x_i) E(\epsilon_i\mid x_i)\}$ where $h(x_i)$ is some function of $x$.
