@@ -61,3 +61,10 @@ $$
    C(a_1+b_1X, a_2+b_2Y)=b_1b_2C(X,Y).
 \end{align}
 $$
+
+The correlation between X and Y is defined as the scaled covariance. That is,
+
+$$
+\text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}.
+$$
+
