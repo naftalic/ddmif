@@ -222,12 +222,12 @@ It follows that,
 
 $$
 \begin{align}
-   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x}) }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}u_i.                  
+   \widehat{\beta}_1 = \beta_1+\dfrac{ \sum\limits_{i=1}^n (x_i - \overline{x})u_i }{\sum\limits_{i=1}^n (x_i - \overline{x})^2}=\beta_1+\dfrac{ C(x,u)}{V(x)}.                  
 \end{align}
 $$
 
-The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to a linear function of the unobservables $u_i$. 
-Now, we can apply the expectation of the last eqaution to infer biasness.
+The last equation tells us that the random difference between $\widehat{\beta}_1$ and $\beta$ are due to the sampled slope coefficient from the OLS regression of $u$ on $x$. But, we cannot do this regression because the 
+$u$ is unobserved. 
 
 $$
 \begin{align}
