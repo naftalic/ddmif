@@ -103,6 +103,10 @@ $$
 There are several methods available to estimate this equation, including the ordinary least squares (OLS) approach, which is the simplest. However, while the OLS estimator is easy to obtain, it may not always be the most reliable. As such, we recommend that portfolio managers perform several robustness checks on the OLS estimator and then decide whether to use a more sophisticated technique.
 
 
+The OLS estimator for the factor premium $f$ is:
 
+$$
+f=\frac{\cov{r,\beta}}{\var(\beta)}
+$$
 
 
