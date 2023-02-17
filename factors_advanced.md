@@ -102,11 +102,40 @@ $$
 
 There are several methods available to estimate this equation, including the ordinary least squares (OLS) approach, which is the simplest. However, while the OLS estimator is easy to obtain, it may not always be the most reliable. As such, we recommend that portfolio managers perform several robustness checks on the OLS estimator and then decide whether to use a more sophisticated technique.
 
-
 The OLS estimator for the factor premium $f$ is:
 
 $$
 \hat{f}=\frac{\text{cov}(r,\beta)}{\text{var}(\beta)}, \text{ with }\text{var}(\hat f)=
 $$
+
+It's important to recognize that a model is typically not an exact representation of reality, but rather a useful approximation. In statistics, discrepancies between the model and reality are referred to as specification errors. When estimating the factor premium in a regression, specification errors can arise, as with any other regression analysis. However, we should aim to create models that capture persistent and stable patterns.
+
+To assess the robustness of our estimation, we can perform a robustness check to determine whether our factor premium estimates are stable in the face of minor changes to the estimation process. If the current estimation is not robust, alternative estimation techniques should be explored.
+
+To conduct a robustness check, we can divide the dataset into several subsets and examine whether the estimates differ substantially across them. If the estimation is robust, the estimates should not differ significantly between subsets. These subsets can be created along the time dimension to test the stability of the estimation over time.
+
+# MAD Estimator
+The ordinary least squares (OLS) method is susceptible to outliers because it seeks to minimize the sum of the squared residuals. If a robustness check reveals that the OLS estimator is highly unstable, an alternative estimation technique that is less vulnerable to outliers may be necessary.
+
+The minimum absolute deviation (MAD) estimation, also referred to as median estimation, is one such alternative. MAD minimizes the sum of the absolute values of residuals instead of the squared residuals. This approach is less affected by outliers since it avoids squaring the residuals. Standard statistical software supports the MAD approach, making it easily implementable.
+
+# HAC standard error
+Despite its limitations, OLS estimation has been the standard empirical tool for many generations of empirical analysts. While adopting alternative estimation techniques may introduce additional errors, as each technique is based on its own set of assumptions, which may not be more realistic than the assumptions driving OLS. Therefore, a popular approach is to continue reporting the OLS estimates while adjusting for standard errors to relax certain OLS assumptions.
+
+Specifically, when calculating standard errors, we can relax two OLS assumptions: (1) that all error terms of different firms have the same variance (homoscedasticity assumption), and (2) that the error terms of different time periods are independent (no autocorrelation assumption). Heteroscedasticity- and autocorrelation-consistent (HAC) standard errors are the standard errors we obtain after relaxing these assumptions. However, certain restrictions on error terms still apply even with HAC standard errors. For instance, we do not allow error terms of different firms to be correlated, although we allow error terms of one firm for different periods to be correlated. Additionally, HAC requires error terms of one firm for different periods to have the same variance, although we allow error terms of different firms to have different variances.
+
+These maintained assumptions ensure that the OLS estimates remain consistent, meaning they are correct if the sample size is large enough, though they may not be the most efficient estimates, and other estimates may be more precise.
+
+# Decomposition of risk
+To construct an optimal portfolio, it is important to consider the risk of the stock return. In the fundamental factor model, the risk of the stock return has two components: nondiversifiable risk captured by the factor premium estimate $\hat f\beta$ and diversifiable risk captured by the error term $ε_i$. The total risk of the stock return is the sum of these two risks.
+
+Nondiversifiable risk arises from the randomness of the factor premium, and it can be measured by the sample variance obtained from a time series of factor premium and constant estimates. The diversifiable risk represents the part of the variation in the stock return that the variation in the model’s factors cannot explain and can be measured by the variance of the error term.
+
+When finding the optimal portfolio, it is also important to consider the correlations between stock returns. The correlation between the returns on a pair of stocks consists of the correlation between their nondiversifiable components and the correlation between their diversifiable components. However, estimating the diversifiable component of the return can be challenging due to the large number of parameters to estimate and the minimal impact it has on the stock return for investors.
+
+For these reasons, it is conventionally assumed that diversifiable risk is equal to zero. The total risk of a stock is composed of nondiversifiable risk and diversifiable risk, and the correlation between the returns of two stocks is estimated by their nondiversifiable components. Table 6.9 shows the decomposition of risk for selected stocks estimated from January 2016 to December 2020, reported in terms of variance and standard deviation.
+
+
+
 
 
