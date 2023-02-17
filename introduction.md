@@ -7,9 +7,7 @@ Investors can access active or passive portfolios through mutual funds, ETFs, or
 Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include [Peter Lynch](https://en.wikipedia.org/wiki/Peter_Lynch) and [Warren Buffett](https://en.wikipedia.org/wiki/Warren_Buffett). Quantitative portfolio management is usually associated with large institutions or hedge funds, such as [Two Sigma](https://www.twosigma.com/), [Citadel](https://www.citadel.com/), and [Schonfeld](https://www.schonfeld.com/).
 
 :::{note}
-Q: Why can a quantitative portfolio manager replicate an index portfolio, but a qualitative portfolio manager cannot?
-
-A: A qualitative portfolio manager may not be able to replicate an index portfolio because it can be costly to purchase every stock in the benchmark with the exact weights. Instead, a portfolio manager would typically purchase a subset of stocks that closely resemble the benchmark. However, managing the risk of this subset of stocks to track the benchmark would require a quantitative risk model. This means that indexing typically requires quantitative tools or techniques. In contrast, a quantitative portfolio manager can use these tools to accurately measure and manage the risk of the portfolio relative to the benchmark, allowing them to more easily replicate an index portfolio.
+A qualitative portfolio manager faces challenges in replicating an index portfolio as it can be expensive to purchase all the stocks in the benchmark with the exact weights. Instead, they usually buy a subset of stocks similar to the benchmark, but risk management requires a quantitative risk model. Quantitative tools are essential for indexing, while a quantitative portfolio manager can use these tools to manage risk and replicate an index portfolio more efficiently.
 :::
 
 # Fundamentals
@@ -22,6 +20,10 @@ In these equations, α is the benchmark or multi-factor alpha, $r_p$ is the retu
 The important aspect of alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, who aims for high alpha and high information ratio (the excess performance in terms of risk units). The expected or consensus return ($β_pr_b$ or $β\cdot f$) is the part of the portfolio's return related to the benchmark, while the residual return (α + ϵ) represents an increase in return independent of increased direct benchmark exposure. α is the expected value of the residual return, while ϵ is the deviation of the residual return from its mean.
 
 Alpha can be divided into ex-ante (in-sample) and ex-post (out-of-sample) alphas, where ex-ante alpha is the expected alpha and ex-post alpha is the realized one obtained through regression of portfolio and benchmark returns. The information ratio is the excess performance of a portfolio manager in terms of risk units and is calculated as IR = residual return / residual risk. An active portfolio manager aims for both high ex-post alpha and high ex-post information ratio.
+
+:::{note}
+Although the return of the portfolio minus the benchmark return is often used by investors to calculate alpha, this measure is not frequently used in quantitative finance because quantitative managers recognize that when the market is on an upswing, higher returns can be obtained by taking on more risk. Thus, to evaluate a manager's skill in managing a portfolio, it is more relevant to consider risk-adjusted returns. 
+:::
 
 # The Market Rules
 Investing in financial markets is a complex and challenging task that requires a deep understanding of various market rules and principles. The market rules, as stated here, are widely accepted and followed by investors, portfolio managers, and traders around the world. These rules help provide a framework for making informed investment decisions and maximizing returns while mitigating risk. 
@@ -102,6 +104,10 @@ The Analyst Forecasts Effect refers to the observation that stocks with "buy" ra
 - **The liquidity effect** refers to the observation that less liquid stocks tend to have higher returns than more liquid stocks. This anomaly may be driven by the tendency of investors to demand a higher return for investing in less liquid stocks, as well as by the difficulty of trading in and out of less liquid stocks.
 
 - **The crowding effect** refers to the observation that stocks invested in by many money managers tend to underperform less invested-in stocks. This anomaly may be driven by the difficulty of selling positions in crowded stocks, as well as by the tendency of managers to follow similar investment strategies, leading to reduced diversification. Crowding can be measured using holdings-based and return-based measures of saturation by money managers.
+
+:::{note}
+The P/B anomaly, P/E anomaly, size anomaly, and January effect are most susceptible to data mining or data snooping. While there have been several studies on the P/B and size anomalies since the original work by Fama and others, the P/E anomaly and January effect have also been well-documented. Nearly every quantitative portfolio manager and academic is aware of these factors either through their own testing or reading about them.
+:::
 
 # Behavioral Anomalies 
 
