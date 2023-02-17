@@ -92,7 +92,7 @@ In calculating financial ratios such as the E/P ratio, we use quarterly data. Fo
 # Factor premium
 In the fundamental factor model, the factor premium represents the payoff for each unit of factor exposure or risk that a stock holds. The factor premium is typically estimated using a panel regression, of the stock return on the factor exposure. This estimation is possible because the premium is expected to remain relatively constant across stocks and over several years.
 
-We can estimate the following equation using the returns of $N$ stocks over $T$ time periods, ${(r_{1,1}, ..., r_{N,1}), ..., (r_{1,T}, ..., r_{N,T})}$, and the factor exposures of $N$ stocks over $T$ time periods, {(β_{1,1}, ..., β_{N,1}), ..., (β_{1,T}, ..., β_{N,T})}:
+We can estimate the following equation using the returns of $N$ stocks over $T$ time periods, ${(r_{1,1}, ..., r_{N,1}), ..., (r_{1,T}, ..., r_{N,T})}$, and the factor exposures of $N$ stocks over $T$ time periods, ${(β_{1,1}, ..., β_{N,1}), ..., (β_{1,T}, ..., β_{N,T})}$:
 
 $$
 \begin{align}
