@@ -50,7 +50,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="causal_inference.html" />
+    <link rel="next" title="Probability and Regression Review" href="probability_and_regression.html" />
     <link rel="prev" title="Stock Screening and Ranking" href="screening_and_ranking.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -130,6 +130,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
  <li class="toctree-l1">
@@ -366,13 +371,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-average-stock-return">
-     The average stock return
+    <a class="reference internal nav-link" href="#return">
+     Return
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stock-risk">
-     Stock risk
+    <a class="reference internal nav-link" href="#risk">
+     Risk
     </a>
    </li>
   </ul>
@@ -383,8 +388,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
+  <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+   Benchmark and residual return
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#factor-exposure">
+   Factor exposure
   </a>
  </li>
 </ul>
@@ -412,13 +422,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-average-stock-return">
-     The average stock return
+    <a class="reference internal nav-link" href="#return">
+     Return
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stock-risk">
-     Stock risk
+    <a class="reference internal nav-link" href="#risk">
+     Risk
     </a>
    </li>
   </ul>
@@ -429,8 +439,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-code">
-   Some Code
+  <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+   Benchmark and residual return
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#factor-exposure">
+   Factor exposure
   </a>
  </li>
 </ul>
@@ -450,15 +465,15 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(r_i = \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i = \alpha + \beta_i^T f + \epsilon_i\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the constant term, <span class="math notranslate nohighlight">\(\beta_i\)</span> and <span class="math notranslate nohighlight">\(f\)</span> are the vector notations for the factor exposure and premium, and <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error term, representing the part of the stock return that does not depend on the K factors.</p>
 <p>The fundamental factor model assumes that a stock’s factor exposure, which is a measure of its exposure to a specific type of risk, can be represented by an observable characteristic such as market capitalization or book-to-market ratio. However, the factor premium, which represents the reward for taking on that risk, must be estimated through observation of the relationship between the average stock return and the factor exposure.</p>
-<div class="section" id="the-average-stock-return">
-<h2>The average stock return<a class="headerlink" href="#the-average-stock-return" title="Permalink to this headline">#</a></h2>
+<div class="section" id="return">
+<h2>Return<a class="headerlink" href="#return" title="Permalink to this headline">#</a></h2>
 <p>Using the assumption that the average <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is zero, we calculate the average stock return as</p>
 <div class="math notranslate nohighlight">
 \[E(r_i) = E(\alpha) + E(β_if)+E(\epsilon_i)=\alpha + β_iE(f)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span>, and <span class="math notranslate nohighlight">\(β_i\)</span> are constants and <span class="math notranslate nohighlight">\(E(\epsilon_i)=0\)</span>. Hence, the average stock return is simply the product of the factor exposure and the factor premium.</p>
 </div>
-<div class="section" id="stock-risk">
-<h2>Stock risk<a class="headerlink" href="#stock-risk" title="Permalink to this headline">#</a></h2>
+<div class="section" id="risk">
+<h2>Risk<a class="headerlink" href="#risk" title="Permalink to this headline">#</a></h2>
 <p>The average stock return represents the reward for taking risk, but what exactly is this risk? Stock risk is composed of two parts: diversifiable risk and nondiversifiable risk.</p>
 <p>Total risk  = Nondiversifiable risk + Diversifiable risk</p>
 <p>Since diversifiable risk can be removed from a portfolio through diversification, the market only rewards exposure to nondiversifiable risk. Therefore, we can conclude that: The average stock return is a reward for taking on nondiversifiable risk.</p>
@@ -492,37 +507,14 @@ V(r_i) &amp;= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newlin
 <p>In addition to the questions regarding the nature and time span of the data, the portfolio manager must decide on the number of stocks to consider when applying the model. There may already be external restrictions on the investment universe of the portfolio, or the portfolio manager may have a preliminary screening strategy to narrow down the list of potential investments.</p>
 <p>In the absence of external restrictions, the number of stocks is not a technological issue given the current state of computing technology. A personal computer can handle thousands of stocks without much difficulty. However, the size of the stock universe does affect some aspects of implementation. A large investment universe provides a vast pool of stocks to select from, but calculation of stock correlations becomes less precise as the number of stocks increases, making the model less reliable. For this reason, we do not recommend starting with an investment universe of more than a few thousand stocks.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="some-code">
-<h1>Some Code<a class="headerlink" href="#some-code" title="Permalink to this headline">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
-</pre></div>
+<div class="tex2jax_ignore mathjax_ignore section" id="benchmark-and-residual-return">
+<h1>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this headline">#</a></h1>
+<p>Portfolio managers use a benchmark to measure the performance of their portfolios. To incorporate the benchmark into the fundamental factor model, one approach is to use the model to predict only the residual return, which is the part of the stock return not correlated with the benchmark. This can be achieved by running a regression of the stock return on the benchmark. The portfolio manager’s value-added is wrapped up in the term <span class="math notranslate nohighlight">\(\alpha\)</span>. Alternatively, the benchmark can be added to the model as one of the factors. Accounting for the benchmark at this stage is not necessary, and some portfolio managers prefer to deal with it later in the process by controlling for tracking error.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/factors_advanced_2_0.png" src="_images/factors_advanced_2_0.png" />
-</div>
-</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="factor-exposure">
+<h1>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this headline">#</a></h1>
+<p>Factor exposure is a measure of a stock’s risk exposure in the fundamental factor model, determined by an observable or easily calculable characteristic that can be found on a price-volume chart or in a company’s financial statements. Once the factors have been selected, calculating factor exposure is typically a simple task.</p>
+<p>Some commonly used factors include the E/P ratio, which is the annual earnings per share divided by the share price, the B/P ratio, which is the value of common equity reported in the balance sheet divided by the share price, the D/E ratio, which is the total value of liabilities divided by the total value of equity reported in the balance sheet, LogSize, which is the natural log of the company’s market capitalization (in millions of dollars), and Momentum, which is the average monthly return over the previous 12 months expressed as a percentage.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -559,10 +551,10 @@ V(r_i) &amp;= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newlin
             <p class="prev-next-title">Stock Screening and Ranking</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="causal_inference.html" title="next page">
+    <a class='right-next' id="next-link" href="probability_and_regression.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Probability and Regression Review</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
