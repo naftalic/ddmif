@@ -6,7 +6,7 @@ Investors can access active or passive portfolios through mutual funds, ETFs, or
 
 Qualitative portfolio managers focus on intangibles and study company fundamentals, while quantitative portfolio managers use mathematical models to predict security returns. Famous qualitative portfolio managers include [Peter Lynch](https://en.wikipedia.org/wiki/Peter_Lynch) and [Warren Buffett](https://en.wikipedia.org/wiki/Warren_Buffett). Quantitative portfolio management is usually associated with large institutions or hedge funds, such as [Two Sigma](https://www.twosigma.com/), [Citadel](https://www.citadel.com/), and [Schonfeld](https://www.schonfeld.com/).
 
-:::{QA}
+:::{note}
 Q: Why can a quantitative portfolio manager replicate an index portfolio, but a qualitative portfolio manager cannot?
 
 A: A qualitative portfolio manager may not be able to replicate an index portfolio because it can be costly to purchase every stock in the benchmark with the exact weights. Instead, a portfolio manager would typically purchase a subset of stocks that closely resemble the benchmark. However, managing the risk of this subset of stocks to track the benchmark would require a quantitative risk model. This means that indexing typically requires quantitative tools or techniques. In contrast, a quantitative portfolio manager can use these tools to accurately measure and manage the risk of the portfolio relative to the benchmark, allowing them to more easily replicate an index portfolio.
