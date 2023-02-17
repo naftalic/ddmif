@@ -106,7 +106,7 @@ There are several methods available to estimate this equation, including the ord
 The OLS estimator for the factor premium $f$ is:
 
 $$
-\hat{f}=\frac{\text{cov}(r,\beta)}{\text{var}(\beta)}
+\hat{f}=\frac{\text{cov}(r,\beta)}{\text{var}(\beta)}, \text{ with }\text{var}(\hat f)=
 $$
 
 
