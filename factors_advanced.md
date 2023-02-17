@@ -81,7 +81,28 @@ In the absence of external restrictions, the number of stocks is not a technolog
 Portfolio managers use a benchmark to measure the performance of their portfolios. To incorporate the benchmark into the fundamental factor model, one approach is to use the model to predict only the residual return, which is the part of the stock return not correlated with the benchmark. This can be achieved by running a regression of the stock return on the benchmark. The portfolio manager's value-added is wrapped up in the term $\alpha$. Alternatively, the benchmark can be added to the model as one of the factors. Accounting for the benchmark at this stage is not necessary, and some portfolio managers prefer to deal with it later in the process by controlling for tracking error.
 
 # Factor exposure
-Factor exposure is a measure of a stock's risk exposure in the fundamental factor model, determined by an observable or easily calculable characteristic that can be found on a price-volume chart or in a company's financial statements. Once the factors have been selected, calculating factor exposure is typically a simple task.
+Factor exposure measures a stock's risk exposure in the fundamental factor model based on an observable or easily calculable characteristic found on a price-volume chart or in a company's financial statements. The calculation of factor exposure is straightforward once the factors have been selected. Commonly used factors include the E/P ratio, B/P ratio, D/E ratio, LogSize, and Momentum.
 
-Some commonly used factors include the E/P ratio, which is the annual earnings per share divided by the share price, the B/P ratio, which is the value of common equity reported in the balance sheet divided by the share price, the D/E ratio, which is the total value of liabilities divided by the total value of equity reported in the balance sheet, LogSize, which is the natural log of the company's market capitalization (in millions of dollars), and Momentum, which is the average monthly return over the previous 12 months expressed as a percentage.
+To ensure accurate factor exposure values, it's crucial to update them as they change over time. For monthly intervals, factor exposure recorded at the start of the month, or at the end of the previous month, is commonly used.
+
+However, when using financial statement data, caution must be exercised as companies may not immediately release statements after the fiscal quarter ends. For instance, the most recently available financial statements as of December 2020 may represent the second or third quarter of 2020.
+
+In calculating financial ratios such as the E/P ratio, we use quarterly data. For example, as of December 2020, we use earnings from the 12-month period ending in August, July, or June, depending on the company's fiscal quarter end date. If the fiscal quarter ends in September, we exclude the earnings for the July-September quarter from our calculation. Similarly, we use figures for fiscal quarters ending on or before August to calculate the B/P and D/E ratios. In general, a two- to three-month lag is advisable between the end of a fiscal period and the availability of the corresponding data.
+
+# Factor premium
+In the fundamental factor model, the factor premium represents the payoff for each unit of factor exposure or risk that a stock holds. The factor premium is typically estimated using a panel regression, of the stock return on the factor exposure. This estimation is possible because the premium is expected to remain relatively constant across stocks and over several years.
+
+We can estimate the following equation using the returns of $N$ stocks over $T$ time periods, ${(r_{1,1}, ..., r_{N,1}), ..., (r_{1,T}, ..., r_{N,T})}$, and the factor exposures of $N$ stocks over $T$ time periods, {(β_{1,1}, ..., β_{N,1}), ..., (β_{1,T}, ..., β_{N,T})}:
+
+$$
+\begin{align}
+r_{it}=\alpha+\beta_{i,t}\cdot f+\epsilon_{i,t}
+\end{align}
+$$
+
+There are several methods available to estimate this equation, including the ordinary least squares (OLS) approach, which is the simplest. However, while the OLS estimator is easy to obtain, it may not always be the most reliable. As such, we recommend that portfolio managers perform several robustness checks on the OLS estimator and then decide whether to use a more sophisticated technique.
+
+
+
+
 
