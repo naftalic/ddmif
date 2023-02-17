@@ -96,7 +96,7 @@ We can estimate the following equation using the returns of $N$ stocks over $T$ 
 
 $$
 \begin{align}
-r_{it}=\alpha+\beta_{i,t}\cdot f+\epsilon_{i,t}
+r_{it}=\alpha+f\beta_{i,t}+\epsilon_{i,t}
 \end{align}
 $$
 
