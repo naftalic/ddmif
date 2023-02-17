@@ -13,7 +13,7 @@
 # 
 # The fundamental factor model assumes that a stock's factor exposure, which is a measure of its exposure to a specific type of risk, can be represented by an observable characteristic such as market capitalization or book-to-market ratio. However, the factor premium, which represents the reward for taking on that risk, must be estimated through observation of the relationship between the average stock return and the factor exposure.
 # 
-# ## The average stock return 
+# ## Return 
 # 
 # Using the assumption that the average $\epsilon_i$ is zero, we calculate the average stock return as
 # 
@@ -21,7 +21,7 @@
 # 
 # where $\alpha$, and $β_i$ are constants and $E(\epsilon_i)=0$. Hence, the average stock return is simply the product of the factor exposure and the factor premium.
 # 
-# ## Stock risk
+# ## Risk
 # 
 # The average stock return represents the reward for taking risk, but what exactly is this risk? Stock risk is composed of two parts: diversifiable risk and nondiversifiable risk.
 # 
@@ -65,25 +65,10 @@
 # 
 # In the absence of external restrictions, the number of stocks is not a technological issue given the current state of computing technology. A personal computer can handle thousands of stocks without much difficulty. However, the size of the stock universe does affect some aspects of implementation. A large investment universe provides a vast pool of stocks to select from, but calculation of stock correlations becomes less precise as the number of stocks increases, making the model less reliable. For this reason, we do not recommend starting with an investment universe of more than a few thousand stocks.
 # 
+# # Benchmark and residual return
+# Portfolio managers use a benchmark to measure the performance of their portfolios. To incorporate the benchmark into the fundamental factor model, one approach is to use the model to predict only the residual return, which is the part of the stock return not correlated with the benchmark. This can be achieved by running a regression of the stock return on the benchmark. The portfolio manager's value-added is wrapped up in the term $\alpha$. Alternatively, the benchmark can be added to the model as one of the factors. Accounting for the benchmark at this stage is not necessary, and some portfolio managers prefer to deal with it later in the process by controlling for tracking error.
 # 
+# # Factor exposure
+# Factor exposure is a measure of a stock's risk exposure in the fundamental factor model, determined by an observable or easily calculable characteristic that can be found on a price-volume chart or in a company's financial statements. Once the factors have been selected, calculating factor exposure is typically a simple task.
 # 
-# # Some Code
-
-# In[1]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-w = np.linspace(0,1,100)
-sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
-
-print( w[np.argmax(sr)], np.max(sr) )
-
-
-# In[2]:
-
-
-plt.plot(w,sr)
-plt.show()
-
+# Some commonly used factors include the E/P ratio, which is the annual earnings per share divided by the share price, the B/P ratio, which is the value of common equity reported in the balance sheet divided by the share price, the D/E ratio, which is the total value of liabilities divided by the total value of equity reported in the balance sheet, LogSize, which is the natural log of the company's market capitalization (in millions of dollars), and Momentum, which is the average monthly return over the previous 12 months expressed as a percentage.
