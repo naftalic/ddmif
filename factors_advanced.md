@@ -54,7 +54,7 @@ V(r_i) &= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newline
 \end{align}
 $$
 
-In this model, the total risk $V(r_i)$ of an investment can be decomposed into two components: the nondiversifiable component and the diversifiable component. The nondiversifiable component, which is the part of the risk rewarded by the market, is given by the product of the square of the factor exposure and the factor premium risk $V(f)$, represented by the term $\beta_i^TV(f)\beta_i$. The diversifiable component, which can be reduced through diversification, is represented by the term $V(\epsilon_i)$. The model expresses each component of the total risk, allowing for a better understanding of the risk structure.
+In this model, the total risk $V(r_i)$ of an investment can be decomposed into two components: the nondiversifiable component and the diversifiable component. The nondiversifiable component, which is the part of the risk rewarded by the market, is given by the product of the square of the factor exposure and the factor premium risk $V(f)$ (a $K\times K$ matrix), represented by the term $\beta_i^TV(f)\beta_i$. The diversifiable component, which can be reduced through diversification, is represented by the term $V(\epsilon_i)$. The model expresses each component of the total risk, allowing for a better understanding of the risk structure.
 
 
 The fundamental factor model is a tool for predicting the returns and risks of stocks, helping portfolio managers make informed investment decisions. The process of formulating this model involves four steps: 
