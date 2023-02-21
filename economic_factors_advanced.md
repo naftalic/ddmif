@@ -116,7 +116,7 @@ $$
 
 where $D$ is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of $\hat\Sigma$. Each column of $Q$ is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of $\hat\Sigma$.
 
-To be more specific, we let $λ_1, ..., λ_N$ be the eigenvalues of such that $λ1 ≥ ... ≥ λN ≥ 0$. (Since $\hat\Sigma$ is a positive definite matrix, all the eigenvalues are positive.) Then matrix $D$ is constructed with ordered eigenvalues along its diagonal.
+To be more specific, we let $λ_1, ..., λ_N$ be the eigenvalues of such that $λ_1 ≥ ... ≥ λ_N ≥ 0$. (Since $\hat\Sigma$ is a positive definite matrix, all the eigenvalues are positive.) Then matrix $D$ is constructed with ordered eigenvalues along its diagonal.
 
 Let $q_1, ..., q_N$ be the orthonormal eigenvectors corresponding to $λ_1, ..., λ_N$. Matrix $Q$ is then constructed as $Q=(q_1,...,q_N)$.
 
