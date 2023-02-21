@@ -103,21 +103,29 @@ Obtaining factor premiums for statistical factors is a complex computational pro
 To begin, we estimate the variance-covariance matrix of stock returns, representing $N$ stock returns at time $t$ as an $N$-dimensional column vector, $r_t = (r_{1,t}, ..., r_{N,t})$. We have a total of $T$ such vectors $r_1, ..., r_T$. The variance-covariance matrix of returns $Σ$ is estimated as
 
 $$
-\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r\bar r
+\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r^\top\bar r
 $$
 
-where \bar r is the average (over time) return vector.
+where $\bar r$ is the average (over time) return vector.
 
-Once we have the variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix Q (that is, Q−1 = Q′) such that
+Once we have the $N\times N$ variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix $Q$ (that is, $Q−1 = Q^\top$) such that
 
-where D is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of . Each column of Q is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of .
+$$
+Q^\top \hat\Sigma Q = D
+$$
 
-To be more specific, we let λ1, ..., λN be the eigenvalues of such that λ1 ≥ ... ≥ λN ≥ 0. (Since is a positive definite matrix, all the eigenvalues are positive.) Then matrix D is constructed as
+where $D$ is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of $\hat\Sigma$. Each column of $Q$ is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of $\hat\Sigma$.
 
-Let q1, ..., qN be the orthonormal eigenvectors corresponding to λ1, ..., λN. Matrix Q is then constructed as
+To be more specific, we let $λ_1, ..., λ_N$ be the eigenvalues of such that $λ1 ≥ ... ≥ λN ≥ 0$. (Since $\hat\Sigma$ is a positive definite matrix, all the eigenvalues are positive.) Then matrix $D$ is constructed with ordered eigenvalues along its diagonal.
 
-If we want to find K factors, we obtain K factor premiums by weighting individual stock returns using the first K columns of Q. That is, factor premiums f1, ..., fK are defined as
+Let $q_1, ..., q_N$ be the orthonormal eigenvectors corresponding to $λ_1, ..., λ_N$. Matrix $Q$ is then constructed as $Q=(q_1,...,q_N)$.
 
-These K factors together have the highest in-sample explanatory power for N stock returns among any set of K explanatory variables constructed from linear combinations of N stock returns.
+If we want to find $K$ factors, we obtain $K$ factor premiums by weighting individual stock returns using the first $K$ columns of $Q$. That is, factor premiums $f_1, ..., f_K$ are defined as
+
+$$
+f_{1,t}=q_1^\top r_t,..., f_{K,t}=q_K^\top r_t
+$$
+
+These $K$ factors together have the **highest in-sample explanatory power** for $N$ stock returns among any set of $K$ explanatory variables constructed from linear combinations of $N$ stock returns.
 
 ## Factor premium
