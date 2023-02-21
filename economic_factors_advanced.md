@@ -106,7 +106,7 @@ $$
 \hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r^\top\bar r
 $$
 
-where $\bar r$ is the average (over time) return vector.
+where $\bar r$ is the time averaged return vector.
 
 Once we have the $N\times N$ variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix $Q$ (that is, $Q−1 = Q^\top$) such that
 
