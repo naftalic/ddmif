@@ -108,7 +108,7 @@ $$
 \hat{f}=\frac{\text{cov}(r,\beta)}{\text{var}(\beta)}, \text{ with }\text{var}(\hat f)=\frac{\hat\sigma^2}{\text{var}(\beta)}
 $$
 
-and $\hat\sigma^2$ is the estimated variance of ε_{it} that can be calculated from the data as $\epsilon_{i,t}=r_{it}-\hat\alpha+\hat f\beta_{i,t}$.
+and $\hat\sigma^2$ is the estimated variance of $\epsilon_{i,t}$ that can be calculated from the data as $\epsilon_{i,t}=r_{it}-\hat\alpha+\hat f\beta_{i,t}$.
 
 It's important to recognize that a model is typically not an exact representation of reality, but rather a useful approximation. In statistics, discrepancies between the model and reality are referred to as specification errors. When estimating the factor premium in a regression, specification errors can arise, as with any other regression analysis. However, we should aim to create models that capture persistent and stable patterns.
 
