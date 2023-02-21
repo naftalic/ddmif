@@ -108,7 +108,7 @@ $$
 
 where $\bar r$ is the time averaged return vector.
 
-Once we have the $N\times N$ variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix $Q$ (that is, $Q−1 = Q^\top$) such that
+Once we have the $N\times N$ variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix $Q$ (that is, $Q^{−1} = Q^\top$) such that
 
 $$
 Q^\top \hat\Sigma Q = D
