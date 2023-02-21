@@ -128,4 +128,25 @@ $$
 
 These $K$ factors together have the **highest in-sample explanatory power** for $N$ stock returns among any set of $K$ explanatory variables constructed from linear combinations of $N$ stock returns.
 
-## Factor premium
+## Factor exposure
+
+In the economic factor model, factor exposures are typically determined using time-series regression of stock returns on factor premiums. The regression coefficients, or factor exposures, measure the sensitivity of the dependent variable (the stock return) to changes in the independent variables (the factor premiums). Factor exposures are also known as factor sensitivities or factor loadings.
+
+To estimate the factor exposure for a stock $i$ using $T$ periods of returns and factor premiums, $(r_{i,1}, ..., r_{i,T})$ and $(f_1, ..., f_T)$, we can use the following equation:
+
+$$
+r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
+$$
+
+where the coefficient $β_i$ is the factor exposure we want to discover, and $ε_{i,t}$ is the error term reflecting the diversifiable risk of stock returns. 
+
+The ordinary least squares (OLS) estimator of βi is given by:
+where
+and
+By repeating the regression for each of the N stocks, we can obtain all the factor exposures we need. The standard error of the factor exposure is the square root of (the diagonal elements of) the following variance:
+where is the estimated variance of εit.
+
+
+
+
+
