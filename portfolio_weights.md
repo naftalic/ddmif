@@ -36,7 +36,6 @@ $$
 E(r_1)\\
 .\\
 .\\
-.\\
 E(r_N)
 \end{bmatrix}
 $$
@@ -46,8 +45,11 @@ and
 $$
 \Sigma = 
 \begin{bmatrix}
-1 & 2 & 3\\
-a & b & c
+V(r_1)      & C(r_1,r_2) &\cdots & C(r_1,r_N) \\
+C(r_2,r_1)  & V(r_2)     &\cdots & C(r_2,r_N) \\
+.           & .          &\cdots & .          \\
+.           & .          &\cdots & .          \\
+C(r_N,r_1)  & C(r_N,r_2) &\cdots & V(r_N)     \\
 \end{bmatrix}
 $$
 
