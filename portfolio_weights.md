@@ -31,7 +31,14 @@ Using MVO without any additional constraints requires building a model of expect
 Thus,
 
 $$
-\mu^\top = (E(r_1),\cdots, E(r_N))
+\mu^\top = 
+\begin{bmatrix}
+E(r_1)\\
+.\\
+.\\
+.\\
+E(r_N)
+\end{bmatrix}
 $$
 
 and 
