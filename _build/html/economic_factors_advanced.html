@@ -348,12 +348,63 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The Economic Factor Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-analysis">
+     Pre analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+     Benchmark and residual return
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-premium">
+     Factor premium
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Factor premium
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -365,6 +416,46 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The Economic Factor Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-analysis">
+     Pre analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+     Benchmark and residual return
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-premium">
+     Factor premium
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Factor premium
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -383,7 +474,57 @@ title="Print to PDF"
 r_i=\alpha_i+\beta_i\cdot f+\epsilon_i
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(f=(f_1, ..., f_K)\)</span> are factor premiums (which do not vary across stocks and so do not have the subscript <span class="math notranslate nohighlight">\(i\)</span>), and <span class="math notranslate nohighlight">\(\beta_i=β_{i,1}, ..., β_{i,K}\)</span> are factor exposures (which do vary across stocks and have the subscript <span class="math notranslate nohighlight">\(i\)</span>). The term <span class="math notranslate nohighlight">\(α_i\)</span> is the constant. The term <span class="math notranslate nohighlight">\(\beta_i\cdot f = β_{i,1}f_1 + ... + β_{i,K}f_K\)</span> represents the nondiversifiable risk of the stock, and <span class="math notranslate nohighlight">\(ε_i\)</span>, the error, reflects the diversifiable risk of the stock. The model is similar to the fundamental factor model in this regard.</p>
-<p>The economic factor model has been the only factor model deemed valid in academia, with the fundamental factor model gaining recent credibility. However, the academic literature fails to distinguish between the two and uses the term multifactor pricing model to refer generally to factor models.</p>
+<p>Similar to the fundamental factor model, the average stock return is</p>
+<div class="math notranslate nohighlight">
+\[E(r_i) =\alpha + β_iE(f)\]</div>
+<p>and the total risk of a stock</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+V(r_i) = \beta_i^TV(f)\beta_i+ V(\epsilon_i).
+\end{align}
+\]</div>
+<p>The model can also express the stock return for a particular period. We use the lowercase letter “t” to denote a time period:</p>
+<div class="math notranslate nohighlight">
+\[
+r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
+\]</div>
+<p>It’s important to note that the factor premium is denoted with a time subscript “t” because it varies over time. In other words, we consider the factor premium as a random variable with distinct values at different points in time. Conversely, the factor exposure does not have a time subscript “t” as it is assumed to remain constant over time. We view the factor exposure as an unknown parameter rather than a random variable.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-model">
+<h1>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">#</a></h1>
+<p>Similar to the previous chapter, the economic factor model is a tool for predicting the returns and risks of stocks, which helps portfolio managers make informed investment decisions. The process of formulating this model involves four steps:</p>
+<ol class="simple">
+<li><p>preliminary work, including choosing the factors, treating the risk-free rate, defining the data time frame and investment universe,</p></li>
+<li><p>estimating the factor loadings or sensitivities of each stock to the selected factors,</p></li>
+<li><p>estimating the factor premiums from historical data, and</p></li>
+<li><p>evaluating total risk by estimating both the systematic risk (non-diversifiable risk) and idiosyncratic risk (diversifiable risk).</p></li>
+</ol>
+<div class="section" id="pre-analysis">
+<h2>Pre analysis<a class="headerlink" href="#pre-analysis" title="Permalink to this headline">#</a></h2>
+<p>Before constructing an economic factor model, it is essential to plan carefully, just like in the fundamental factor model. The general decisions are the same, including the choice of factors, the treatment of the risk-free rate, and the sample makeup in terms of time interval, time period, and stock universe. Since the criteria for deciding how to treat the risk-free rate, determining the investment universe, and defining the time interval and period are the same for both models, we will focus only on factor selection.</p>
+<p>The strength of the economic factor model is its ability to include practically all kinds of factors. The factors can be broadly categorized into three categories:</p>
+<ul class="simple">
+<li><p>Economic/behavioral/market factors: These factors include Gross Domestic Product (GDP), inflation, unemployment, interest rates, and other macroeconomic variables. It also includes survey-based indexes like consumer sentiment index, business confidence index, investor sentiment index, and returns on broad market indexes such as the Standard &amp; Poor’s (S&amp;P) 500 or other market group/industry indexes. Computation of these factors is minimal as relevant information is usually publicly available or provided by data vendors.</p></li>
+<li><p>Fundamental/technical/analyst factors: These factors include financial statement information like the log of market capitalization, book-to-price ratio, earnings-to-price ratio, debt-to-equity ratio, and other firm characteristics. It also includes trading data like momentum, trading volume, and other information reflected in trading data. Additionally, it includes information provided by analysts like analyst rating changes, earnings revisions, or other information. Computation of these factors can be somewhat demanding, and even if obtained from an external source, the vendor’s methodology should be examined carefully. Studies suggest that thoroughly vetted fundamental/technical/analyst factors predict stock returns more effectively than other factor groups.</p></li>
+<li><p>Statistical factors: These factors are obtained from principal-component analysis applied to historical returns and require the highest level of computation.</p></li>
+</ul>
+<p>Careful planning is critical when constructing an economic factor model. Factor selection is crucial, and the model can include various types of factors. Computation requirements vary depending on the category of the factor, with statistical factors requiring the most significant computation.</p>
+</div>
+<div class="section" id="benchmark-and-residual-return">
+<h2>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this headline">#</a></h2>
+<p>Quantitative portfolio managers often manage their portfolios against a benchmark. As we discussed in previous chapters, it is not necessary to account for the benchmark at the outset of creating a model, but it can be useful to adjust for the effects of the benchmark when evaluating portfolio performance. There are two ways to incorporate the benchmark into the economic factor model.</p>
+<p>One way is to remove the benchmark-related return from the stock return before building the model. To do this, we first regress stock returns on the benchmark returns and calculate the residual, which is the part of stock returns that is not correlated with the benchmark return. Then we construct an economic factor model for the residual stock return rather than the total stock return. The resulting model shows the relationship between the factor premium, the factor exposure, and the portion of the stock return that is above and beyond the benchmark return.</p>
+<p>Another way is to explicitly include the benchmark in the economic factor model. If the benchmark is the broad-market index, the capital asset pricing model (CAPM) supports its inclusion in the model as a predictor of stock returns. Even if the benchmark is something other than the broad-market index, including it in the model will clarify the relationship between the portfolio and the benchmark.</p>
+</div>
+<div class="section" id="factor-premium">
+<h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this headline">#</a></h2>
+<p>To create the fundamental factor model, the portfolio manager gathers a dataset of many observations of stock returns and factor exposures, where the factor exposures change over time while the factor premium, a single statistically estimated proportion, remains constant. On the other hand, to construct the economic factor model, the portfolio manager needs to collect pairs of stock returns and factor premiums, where the factor premiums change over time. If there are K factors, the portfolio manager needs to find the factor premiums of the <span class="math notranslate nohighlight">\(K\)</span> factors at each time interval <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(f_t = (f_{1,t}, ..., f_{K,t})\)</span>.</p>
+<p>In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.</p>
+</div>
+<div class="section" id="id1">
+<h2>Factor premium<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
