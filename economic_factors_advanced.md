@@ -141,12 +141,43 @@ $$
 where the coefficient $β_i$ is the factor exposure we want to discover, and $ε_{i,t}$ is the error term reflecting the diversifiable risk of stock returns. 
 
 The ordinary least squares (OLS) estimator of βi is given by:
-where
-and
-By repeating the regression for each of the N stocks, we can obtain all the factor exposures we need. The standard error of the factor exposure is the square root of (the diagonal elements of) the following variance:
-where is the estimated variance of εit.
 
+$$
+\hat\beta_i=\text{cov}(r_{i,t},f_t)/\text{var}(f_t)
+$$
 
+and 
 
+$$
+\text{var}(\hat\beta_i)=\hat \sigma_i^2/\text{var}(f_t)
+$$
 
+where $\hat \sigma_i^2$ is the estimated variance of $ε_{i,t}$ that can can computed once we have $\hat\alpha$ and $\hat\beta$.
 
+## Factor exposure for small data
+Portfolio managers rely on time-series regressions to analyze stock returns and factor premiums. However, recent initial public offerings (IPOs) and stocks of merged or divested companies may lack sufficient data to conduct meaningful regressions. In such cases, we can infer a stock's factor exposures by using weighted factor exposures from groups of similar stocks as proxies for the original stock's exposures.
+
+In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, $r_{A,t}$ and $r_{B,t}$, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:
+
+$$
+\hat\beta{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
+$$
+
+where $s_A$ is the pre-merger market capitalization of firm A, and $s_B$ is the pre-merger market capitalization of firm B.
+
+For recent IPOs, we can only rely on observable firm characteristics from financial statements. To find similar firms, we calculate the z-score for each of the M characteristics of each firm for which we already have factor exposures. Then we choose a small critical level e and find all firms j such that $(z_i − z_j)^\top(z_i − z_j) < e$ to identify the similar firms. Once we identify the similar firms, we can take the equal-weighted average of their factor exposures as the factor exposure of the IPO. This process of identifying similar firms is known as characteristic matching and can also be applied to searching for other characteristics, such as expected stock return.
+
+An alternative to characteristic matching is using the industry-average figure. For instance, the average factor exposure of the entire pharmaceutical industry can stand in for the factor exposure of a new pharmaceutical company's stock. However, financial economic research suggests that characteristic matching is more effective than using the industry average.
+
+## Decomposition of risk
+The total risk of a stock return can be decomposed into nondiversifiable risk and diversifiable risk. Nondiversifiable risk depends on the factor exposure and variance of the factor premium, while diversifiable risk is equal to the variance of the error term:
+
+$$
+V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
+$$
+
+We already have the estimate for $β_i$. We can obtain an estimate for $V(f)$ given the factor premium data $(f1, ... ,fT)$ and estimating $V(ε_i)$ is straightforward.
+
+When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns $r_i$ and $r_j$ has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: $C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)$.
+
+If T is not large enough, it is conventional to assume that $C(ε_i, ε_j)$ is zero. 
