@@ -31,7 +31,17 @@ Using MVO without any additional constraints requires building a model of expect
 Thus,
 
 $$
-\mu^\top = E(r_1)\cdots E(r_N)
+\mu^\top = (E(r_1),\cdots, E(r_N))
+$$
+
+and 
+
+$$
+\Sigma = 
+\begin{bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{bmatrix}
 $$
 
 A valid portfolio is specified by an N-dimensional column vector of stock weights, w, where the weight of each stock is represented by wi. The sum of all elements in w must equal 1.
