@@ -29,6 +29,18 @@ $$
 
 where $f=(f_1, ..., f_K)$ are factor premiums (which do not vary across stocks and so do not have the subscript $i$), and $\beta_i=β_{i,1}, ..., β_{i,K}$ are factor exposures (which do vary across stocks and have the subscript $i$). The term $α_i$ is the constant. The term $\beta_i\cdot f = β_{i,1}f_1 + ... + β_{i,K}f_K$ represents the nondiversifiable risk of the stock, and $ε_i$, the error, reflects the diversifiable risk of the stock. The model is similar to the fundamental factor model in this regard.
 
+Similar to the fundamental factor model, the average stock return is
+
+$$E(r_i) =\alpha + β_iE(f)$$
+
+and the total risk of a stock
+
+$$
+\begin{align}
+V(r_i) = \beta_i^TV(f)\beta_i+ V(\epsilon_i).
+\end{align}
+$$
+
 The economic factor model has been the only factor model deemed valid in academia, with the fundamental factor model gaining recent credibility. However, the academic literature fails to distinguish between the two and uses the term multifactor pricing model to refer generally to factor models.
 
 
