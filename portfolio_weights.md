@@ -94,7 +94,7 @@ One common constraint added to optimization by portfolio managers is the trading
 For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as 
 
 $$
-500w_i \le 0.1x_i,\text{ or } w_i \le (0.1/500)x_i,
+500w_i \le 0.1x_i
 $$
 
 where $w_i$ is the portfolio weight of stock $i$ and $x_i$ is the average trading volume of stock $i$ measured in millions of dollars.
