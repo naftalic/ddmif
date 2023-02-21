@@ -53,10 +53,21 @@ C(r_N,r_1)  & C(r_N,r_2) &\cdots & V(r_N)     \\
 \end{bmatrix}
 $$
 
-A valid portfolio is specified by an N-dimensional column vector of stock weights, w, where the weight of each stock is represented by wi. The sum of all elements in w must equal 1.
+A valid portfolio is specified by an $N$-dimensional column vector of stock weights, $w$, where the weight of each stock is represented by $w_i$. The sum of all elements in w must equal 1.
 
-The expected return of the portfolio is given by w′μ, while the risk of the portfolio is represented by w′Σw, where w′ represents the transpose of the weight vector. The portfolio with the minimum risk and expected return of μP is obtained by minimizing the objective function w′Σw while satisfying the constraint w′μ = μP. This is a quadratic optimization problem, and mathematicians have developed quadratic programming to solve it.
+The expected return of the portfolio is given by $w^\top μ$, while the risk of the portfolio is represented by $w^\top Σw$, where $w^\top$ represents the transpose of the weight vector. The portfolio with the minimum risk and expected return of $μ_P$ is obtained by minimizing the objective function $w^\top Σw$ while satisfying the constraint $w^\top μ = μ_P$. This is a quadratic optimization problem, and mathematicians have developed quadratic programming to solve it.
 
-The quadratic minimization problem with equality constraints can be rewritten as a set of linear constraints, which have a closed-form solution. Appendix 9A provides further details on this solution. A visual example of the results from a mean-variance optimization can be seen in Figure 9.1, which displays the efficient frontier for the consumer staples sector based on data from January 2016 to December 2020.
+The quadratic minimization problem with **equality** constraints can be rewritten as a set of linear constraints, which have a **closed-form** solution. 
 
 To create a minimal-risk portfolio for a given level of expected return, we begin the optimization procedure using the expected return of the lowest expected return stock. We increment the mean return and repeat the optimization until we reach the expected return of the security with the highest mean return. We plot all the points in the diagram and connect them to produce the efficient frontier. The expected-return–expected-risk profile we desire can then be selected from the efficient frontier, and we can pick the weights of the corresponding stocks.
+
+# Short-Sale and Diversification Constraints
+
+Investment portfolio managers may face various constraints, such as legal restrictions or prospectus mandates, that limit their investment options. One of the main constraints faced by long-only portfolio managers is the short-sale restriction, which prohibits shorting securities. Mathematically, this restriction can be represented as the condition that each stock has a weight of at least zero. However, this is an inequality constraint, and quadratic optimization problems with inequality constraints do not have a simple analytical solution, requiring numerical methods instead. Techniques designed to solve these types of problems are known as quadratic programming, which can be easily entered into commercial software or a quadratic optimizer.
+When using the same data as before and applying quadratic optimization programming with short-sale constraints, the efficient frontier shifts to the right. This is because the additional constraint increases the lowest-risk portfolio's risk. 
+
+In addition to short-sale constraints, portfolio managers may also want to impose diversification constraints to comply with the [Investment Company Act of 1940](https://en.wikipedia.org/wiki/Investment_Company_Act_of_1940) or to reduce diversifiable risk. Such constraints can be expressed as maximum and minimum allowed weight vectors and added easily to the optimization problem, satisfying both the short-sale and diversification constraints simultaneously.
+
+
+
+
