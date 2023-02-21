@@ -176,7 +176,7 @@ $$
 V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
 $$
 
-We already have the estimate for $β_i$. We can obtain an estimate for $V(f)$ given the factor premium data $(f1, ... ,fT)$ and estimating $V(ε_i)$ is straightforward.
+We already have the estimate for $β_i$. We can obtain an estimate for $V(f)$ given the factor premium data $(f_1, ... ,f_T)$ and estimating $V(ε_i)$ is straightforward.
 
 When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns $r_i$ and $r_j$ has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: $C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)$.
 
