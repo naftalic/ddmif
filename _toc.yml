@@ -8,7 +8,8 @@ chapters:
  - file: basic_models
  - file: factors
  - file: screening_and_ranking
- - file: factors_advanced
+ - file: fundamental_factors_advanced
+ - file: economic_factors_advanced
  - file: probability_and_regression
  - file: competition
 
