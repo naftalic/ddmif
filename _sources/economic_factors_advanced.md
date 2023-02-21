@@ -81,4 +81,103 @@ To create the fundamental factor model, the portfolio manager gathers a dataset 
 
 In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.
 
-## Factor premium
+### Factor Premium for Economic/Behavioral/Market Factors
+The process of obtaining factor premiums for economic, behavioral, and market factors is straightforward and does not require complex computations. The values can be obtained by referencing reliable sources. Common examples of economic premiums include the unemployment rate, consumer sentiment growth, and overall market return:
+
+* To calculate the factor premium for unemployment, the unemployment rate can be obtained from the Bureau of Labor Statistics (BLS).
+* The growth rate of the consumer sentiment index can be obtained from the University of Michigan.
+* The market factor premium can be calculated as the difference between the S&P 500 total return and the one-month U.S. Treasury bill return.
+
+Once all the factor premiums for a specific time interval are obtained, they can be stored in a set of vectors $f_t = (f_1, ..., f_T)$, where $f_t$ represents the factor premium for time $t$, and the first element of $f_t$ always represents the constant term in the return equation.
+
+### Factor Premium for Fundamental/Technical/Analyst Factors
+To calculate factor premiums for fundamental, technical, and analyst factors, additional computations are necessary. This involves constructing zero-investment portfolios and calculating their returns. To find the factor premium on value using the book-to-price (B/P) ratio as a proxy, we need to identify portfolios of stocks with high and low exposures to the value factor (i.e., high and low B/P ratios). We can start by ranking all the stocks at time $t$ in order of their B/P ratio, creating a high-value portfolio by equally weighting the top quartile of the list, and a low-value portfolio by equally weighting the bottom quartile. The zero-investment portfolio return is then calculated as the difference between the return on the high-value portfolio and the return on the low-value portfolio.
+
+Careful consideration of the frequency of zero-investment portfolio construction is important, especially if the sorting variable is not frequently updated. For example, the book-to-price ratio is updated quarterly, while price is updated daily. Thus, creating a zero-investment portfolio too frequently may not reflect the information an investor needs.
+
+It is important to note that a single piece of data can represent multiple types of factors. For instance, the same B/P ratio value can represent high exposure to a value factor or low exposure to a growth factor. The same numerical figure can stand for either factor, and the sign and name of the factor do not matter as long as we assign consistent meanings to high and low values.
+
+### Factor Premium for Statistical Factors
+Obtaining factor premiums for statistical factors is a complex computational process that involves principal-component analysis (PCA). This technique is readily available in standard computer software packages.
+
+To begin, we estimate the variance-covariance matrix of stock returns, representing $N$ stock returns at time $t$ as an $N$-dimensional column vector, $r_t = (r_{1,t}, ..., r_{N,t})$. We have a total of $T$ such vectors $r_1, ..., r_T$. The variance-covariance matrix of returns $Σ$ is estimated as
+
+$$
+\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r^\top\bar r
+$$
+
+where $\bar r$ is the time averaged return vector.
+
+Once we have the $N\times N$ variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix $Q$ (that is, $Q^{−1} = Q^\top$) such that
+
+$$
+Q^\top \hat\Sigma Q = D
+$$
+
+where $D$ is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of $\hat\Sigma$. Each column of $Q$ is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of $\hat\Sigma$.
+
+To be more specific, we let $λ_1, ..., λ_N$ be the eigenvalues of $\hat\Sigma$ such that $λ_1 ≥ ... ≥ λ_N ≥ 0$. (Since $\hat\Sigma$ is a positive definite matrix, all the eigenvalues are positive.) Then matrix $D$ is constructed with ordered eigenvalues along its diagonal.
+
+Let $q_1, ..., q_N$ be the orthonormal eigenvectors corresponding to $λ_1, ..., λ_N$. Matrix $Q$ is then constructed as $Q=(q_1,...,q_N)$.
+
+If we want to find $K$ factors, we obtain $K$ factor premiums by weighting individual stock returns using the first $K$ columns of $Q$. That is, factor premiums $f_1, ..., f_K$ are defined as
+
+$$
+f_{1,t}=q_1^\top r_t,..., f_{K,t}=q_K^\top r_t
+$$
+
+These $K$ factors together have the **highest in-sample explanatory power** for $N$ stock returns among any set of $K$ explanatory variables constructed from linear combinations of $N$ stock returns.
+
+## Factor exposure
+
+In the economic factor model, factor exposures are typically determined using time-series regression of stock returns on factor premiums. The regression coefficients, or factor exposures, measure the sensitivity of the dependent variable (the stock return) to changes in the independent variables (the factor premiums). Factor exposures are also known as factor sensitivities or factor loadings.
+
+To estimate the factor exposure for a stock $i$ using $T$ periods of returns and factor premiums, $(r_{i,1}, ..., r_{i,T})$ and $(f_1, ..., f_T)$, we can use the following equation:
+
+$$
+r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
+$$
+
+where the coefficient $β_i$ is the factor exposure we want to discover, and $ε_{i,t}$ is the error term reflecting the diversifiable risk of stock returns. 
+
+The ordinary least squares (OLS) estimator of βi is given by:
+
+$$
+\hat\beta_i=\text{cov}(r_{i,t},f_t)/\text{var}(f_t)
+$$
+
+and 
+
+$$
+\text{var}(\hat\beta_i)=\hat \sigma_i^2/\text{var}(f_t)
+$$
+
+where $\hat \sigma_i^2$ is the estimated variance of $ε_{i,t}$ that can can computed once we have $\hat\alpha$ and $\hat\beta$.
+
+## Factor exposure for small data
+Portfolio managers rely on time-series regressions to analyze stock returns and factor premiums. However, recent initial public offerings (IPOs) and stocks of merged or divested companies may lack sufficient data to conduct meaningful regressions. In such cases, we can infer a stock's factor exposures by using weighted factor exposures from groups of similar stocks as proxies for the original stock's exposures.
+
+In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, $r_{A,t}$ and $r_{B,t}$, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:
+
+$$
+\hat\beta_{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
+$$
+
+where $s_A$ is the pre-merger market capitalization of firm A, and $s_B$ is the pre-merger market capitalization of firm B.
+
+For recent IPOs, we can only rely on observable firm characteristics from financial statements. To find similar firms, we calculate the z-score for each of the M characteristics of each firm for which we already have factor exposures. Then we choose a small critical level e and find all firms j such that $(z_i − z_j)^\top(z_i − z_j) < e$ to identify the similar firms. Once we identify the similar firms, we can take the equal-weighted average of their factor exposures as the factor exposure of the IPO. This process of identifying similar firms is known as characteristic matching and can also be applied to searching for other characteristics, such as expected stock return.
+
+An alternative to characteristic matching is using the industry-average figure. For instance, the average factor exposure of the entire pharmaceutical industry can stand in for the factor exposure of a new pharmaceutical company's stock. However, financial economic research suggests that characteristic matching is more effective than using the industry average.
+
+## Decomposition of risk
+The total risk of a stock return can be decomposed into nondiversifiable risk and diversifiable risk. Nondiversifiable risk depends on the factor exposure and variance of the factor premium, while diversifiable risk is equal to the variance of the error term:
+
+$$
+V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
+$$
+
+We already have the estimate for $β_i$. We can obtain an estimate for $V(f)$ given the factor premium data $(f_1, ... ,f_T)$ and estimating $V(ε_i)$ is straightforward.
+
+When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns $r_i$ and $r_j$ has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: $C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)$.
+
+If T is not large enough, it is conventional to assume that $C(ε_i, ε_j)$ is zero. 

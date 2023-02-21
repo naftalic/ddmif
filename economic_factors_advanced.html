@@ -394,10 +394,37 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#factor-premium">
      Factor premium
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-economic-behavioral-market-factors">
+       Factor Premium for Economic/Behavioral/Market Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-fundamental-technical-analyst-factors">
+       Factor Premium for Fundamental/Technical/Analyst Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-statistical-factors">
+       Factor Premium for Statistical Factors
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Factor premium
+    <a class="reference internal nav-link" href="#factor-exposure">
+     Factor exposure
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure-for-small-data">
+     Factor exposure for small data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-of-risk">
+     Decomposition of risk
     </a>
    </li>
   </ul>
@@ -445,10 +472,37 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#factor-premium">
      Factor premium
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-economic-behavioral-market-factors">
+       Factor Premium for Economic/Behavioral/Market Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-fundamental-technical-analyst-factors">
+       Factor Premium for Fundamental/Technical/Analyst Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-statistical-factors">
+       Factor Premium for Statistical Factors
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Factor premium
+    <a class="reference internal nav-link" href="#factor-exposure">
+     Factor exposure
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure-for-small-data">
+     Factor exposure for small data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-of-risk">
+     Decomposition of risk
     </a>
    </li>
   </ul>
@@ -521,9 +575,90 @@ r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
 <h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this headline">#</a></h2>
 <p>To create the fundamental factor model, the portfolio manager gathers a dataset of many observations of stock returns and factor exposures, where the factor exposures change over time while the factor premium, a single statistically estimated proportion, remains constant. On the other hand, to construct the economic factor model, the portfolio manager needs to collect pairs of stock returns and factor premiums, where the factor premiums change over time. If there are K factors, the portfolio manager needs to find the factor premiums of the <span class="math notranslate nohighlight">\(K\)</span> factors at each time interval <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(f_t = (f_{1,t}, ..., f_{K,t})\)</span>.</p>
 <p>In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.</p>
+<div class="section" id="factor-premium-for-economic-behavioral-market-factors">
+<h3>Factor Premium for Economic/Behavioral/Market Factors<a class="headerlink" href="#factor-premium-for-economic-behavioral-market-factors" title="Permalink to this headline">#</a></h3>
+<p>The process of obtaining factor premiums for economic, behavioral, and market factors is straightforward and does not require complex computations. The values can be obtained by referencing reliable sources. Common examples of economic premiums include the unemployment rate, consumer sentiment growth, and overall market return:</p>
+<ul class="simple">
+<li><p>To calculate the factor premium for unemployment, the unemployment rate can be obtained from the Bureau of Labor Statistics (BLS).</p></li>
+<li><p>The growth rate of the consumer sentiment index can be obtained from the University of Michigan.</p></li>
+<li><p>The market factor premium can be calculated as the difference between the S&amp;P 500 total return and the one-month U.S. Treasury bill return.</p></li>
+</ul>
+<p>Once all the factor premiums for a specific time interval are obtained, they can be stored in a set of vectors <span class="math notranslate nohighlight">\(f_t = (f_1, ..., f_T)\)</span>, where <span class="math notranslate nohighlight">\(f_t\)</span> represents the factor premium for time <span class="math notranslate nohighlight">\(t\)</span>, and the first element of <span class="math notranslate nohighlight">\(f_t\)</span> always represents the constant term in the return equation.</p>
 </div>
-<div class="section" id="id1">
-<h2>Factor premium<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="section" id="factor-premium-for-fundamental-technical-analyst-factors">
+<h3>Factor Premium for Fundamental/Technical/Analyst Factors<a class="headerlink" href="#factor-premium-for-fundamental-technical-analyst-factors" title="Permalink to this headline">#</a></h3>
+<p>To calculate factor premiums for fundamental, technical, and analyst factors, additional computations are necessary. This involves constructing zero-investment portfolios and calculating their returns. To find the factor premium on value using the book-to-price (B/P) ratio as a proxy, we need to identify portfolios of stocks with high and low exposures to the value factor (i.e., high and low B/P ratios). We can start by ranking all the stocks at time <span class="math notranslate nohighlight">\(t\)</span> in order of their B/P ratio, creating a high-value portfolio by equally weighting the top quartile of the list, and a low-value portfolio by equally weighting the bottom quartile. The zero-investment portfolio return is then calculated as the difference between the return on the high-value portfolio and the return on the low-value portfolio.</p>
+<p>Careful consideration of the frequency of zero-investment portfolio construction is important, especially if the sorting variable is not frequently updated. For example, the book-to-price ratio is updated quarterly, while price is updated daily. Thus, creating a zero-investment portfolio too frequently may not reflect the information an investor needs.</p>
+<p>It is important to note that a single piece of data can represent multiple types of factors. For instance, the same B/P ratio value can represent high exposure to a value factor or low exposure to a growth factor. The same numerical figure can stand for either factor, and the sign and name of the factor do not matter as long as we assign consistent meanings to high and low values.</p>
+</div>
+<div class="section" id="factor-premium-for-statistical-factors">
+<h3>Factor Premium for Statistical Factors<a class="headerlink" href="#factor-premium-for-statistical-factors" title="Permalink to this headline">#</a></h3>
+<p>Obtaining factor premiums for statistical factors is a complex computational process that involves principal-component analysis (PCA). This technique is readily available in standard computer software packages.</p>
+<p>To begin, we estimate the variance-covariance matrix of stock returns, representing <span class="math notranslate nohighlight">\(N\)</span> stock returns at time <span class="math notranslate nohighlight">\(t\)</span> as an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector, <span class="math notranslate nohighlight">\(r_t = (r_{1,t}, ..., r_{N,t})\)</span>. We have a total of <span class="math notranslate nohighlight">\(T\)</span> such vectors <span class="math notranslate nohighlight">\(r_1, ..., r_T\)</span>. The variance-covariance matrix of returns <span class="math notranslate nohighlight">\(Σ\)</span> is estimated as</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r^\top\bar r
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar r\)</span> is the time averaged return vector.</p>
+<p>Once we have the <span class="math notranslate nohighlight">\(N\times N\)</span> variance-covariance matrix, we “diagonalize” it by finding an orthogonal matrix <span class="math notranslate nohighlight">\(Q\)</span> (that is, <span class="math notranslate nohighlight">\(Q^{−1} = Q^\top\)</span>) such that</p>
+<div class="math notranslate nohighlight">
+\[
+Q^\top \hat\Sigma Q = D
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span>. Each column of <span class="math notranslate nohighlight">\(Q\)</span> is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span>.</p>
+<p>To be more specific, we let <span class="math notranslate nohighlight">\(λ_1, ..., λ_N\)</span> be the eigenvalues of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span> such that <span class="math notranslate nohighlight">\(λ_1 ≥ ... ≥ λ_N ≥ 0\)</span>. (Since <span class="math notranslate nohighlight">\(\hat\Sigma\)</span> is a positive definite matrix, all the eigenvalues are positive.) Then matrix <span class="math notranslate nohighlight">\(D\)</span> is constructed with ordered eigenvalues along its diagonal.</p>
+<p>Let <span class="math notranslate nohighlight">\(q_1, ..., q_N\)</span> be the orthonormal eigenvectors corresponding to <span class="math notranslate nohighlight">\(λ_1, ..., λ_N\)</span>. Matrix <span class="math notranslate nohighlight">\(Q\)</span> is then constructed as <span class="math notranslate nohighlight">\(Q=(q_1,...,q_N)\)</span>.</p>
+<p>If we want to find <span class="math notranslate nohighlight">\(K\)</span> factors, we obtain <span class="math notranslate nohighlight">\(K\)</span> factor premiums by weighting individual stock returns using the first <span class="math notranslate nohighlight">\(K\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>. That is, factor premiums <span class="math notranslate nohighlight">\(f_1, ..., f_K\)</span> are defined as</p>
+<div class="math notranslate nohighlight">
+\[
+f_{1,t}=q_1^\top r_t,..., f_{K,t}=q_K^\top r_t
+\]</div>
+<p>These <span class="math notranslate nohighlight">\(K\)</span> factors together have the <strong>highest in-sample explanatory power</strong> for <span class="math notranslate nohighlight">\(N\)</span> stock returns among any set of <span class="math notranslate nohighlight">\(K\)</span> explanatory variables constructed from linear combinations of <span class="math notranslate nohighlight">\(N\)</span> stock returns.</p>
+</div>
+</div>
+<div class="section" id="factor-exposure">
+<h2>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this headline">#</a></h2>
+<p>In the economic factor model, factor exposures are typically determined using time-series regression of stock returns on factor premiums. The regression coefficients, or factor exposures, measure the sensitivity of the dependent variable (the stock return) to changes in the independent variables (the factor premiums). Factor exposures are also known as factor sensitivities or factor loadings.</p>
+<p>To estimate the factor exposure for a stock <span class="math notranslate nohighlight">\(i\)</span> using <span class="math notranslate nohighlight">\(T\)</span> periods of returns and factor premiums, <span class="math notranslate nohighlight">\((r_{i,1}, ..., r_{i,T})\)</span> and <span class="math notranslate nohighlight">\((f_1, ..., f_T)\)</span>, we can use the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
+\]</div>
+<p>where the coefficient <span class="math notranslate nohighlight">\(β_i\)</span> is the factor exposure we want to discover, and <span class="math notranslate nohighlight">\(ε_{i,t}\)</span> is the error term reflecting the diversifiable risk of stock returns.</p>
+<p>The ordinary least squares (OLS) estimator of βi is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\beta_i=\text{cov}(r_{i,t},f_t)/\text{var}(f_t)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\text{var}(\hat\beta_i)=\hat \sigma_i^2/\text{var}(f_t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat \sigma_i^2\)</span> is the estimated variance of <span class="math notranslate nohighlight">\(ε_{i,t}\)</span> that can can computed once we have <span class="math notranslate nohighlight">\(\hat\alpha\)</span> and <span class="math notranslate nohighlight">\(\hat\beta\)</span>.</p>
+</div>
+<div class="section" id="factor-exposure-for-small-data">
+<h2>Factor exposure for small data<a class="headerlink" href="#factor-exposure-for-small-data" title="Permalink to this headline">#</a></h2>
+<p>Portfolio managers rely on time-series regressions to analyze stock returns and factor premiums. However, recent initial public offerings (IPOs) and stocks of merged or divested companies may lack sufficient data to conduct meaningful regressions. In such cases, we can infer a stock’s factor exposures by using weighted factor exposures from groups of similar stocks as proxies for the original stock’s exposures.</p>
+<p>In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, <span class="math notranslate nohighlight">\(r_{A,t}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t}\)</span>, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\beta_{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_A\)</span> is the pre-merger market capitalization of firm A, and <span class="math notranslate nohighlight">\(s_B\)</span> is the pre-merger market capitalization of firm B.</p>
+<p>For recent IPOs, we can only rely on observable firm characteristics from financial statements. To find similar firms, we calculate the z-score for each of the M characteristics of each firm for which we already have factor exposures. Then we choose a small critical level e and find all firms j such that <span class="math notranslate nohighlight">\((z_i − z_j)^\top(z_i − z_j) &lt; e\)</span> to identify the similar firms. Once we identify the similar firms, we can take the equal-weighted average of their factor exposures as the factor exposure of the IPO. This process of identifying similar firms is known as characteristic matching and can also be applied to searching for other characteristics, such as expected stock return.</p>
+<p>An alternative to characteristic matching is using the industry-average figure. For instance, the average factor exposure of the entire pharmaceutical industry can stand in for the factor exposure of a new pharmaceutical company’s stock. However, financial economic research suggests that characteristic matching is more effective than using the industry average.</p>
+</div>
+<div class="section" id="decomposition-of-risk">
+<h2>Decomposition of risk<a class="headerlink" href="#decomposition-of-risk" title="Permalink to this headline">#</a></h2>
+<p>The total risk of a stock return can be decomposed into nondiversifiable risk and diversifiable risk. Nondiversifiable risk depends on the factor exposure and variance of the factor premium, while diversifiable risk is equal to the variance of the error term:</p>
+<div class="math notranslate nohighlight">
+\[
+V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
+\]</div>
+<p>We already have the estimate for <span class="math notranslate nohighlight">\(β_i\)</span>. We can obtain an estimate for <span class="math notranslate nohighlight">\(V(f)\)</span> given the factor premium data <span class="math notranslate nohighlight">\((f_1, ... ,f_T)\)</span> and estimating <span class="math notranslate nohighlight">\(V(ε_i)\)</span> is straightforward.</p>
+<p>When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns <span class="math notranslate nohighlight">\(r_i\)</span> and <span class="math notranslate nohighlight">\(r_j\)</span> has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: <span class="math notranslate nohighlight">\(C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)\)</span>.</p>
+<p>If T is not large enough, it is conventional to assume that <span class="math notranslate nohighlight">\(C(ε_i, ε_j)\)</span> is zero.</p>
 </div>
 </div>
 
