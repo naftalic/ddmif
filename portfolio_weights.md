@@ -91,7 +91,13 @@ $$
 # Trading-Volume Constraint
 One common constraint added to optimization by portfolio managers is the trading-volume constraint, which is particularly relevant when managing large portfolios that could have a significant price impact on the market. To avoid negative price impact, portfolio managers may restrict the holdings of each stock to a certain threshold amount, often a fraction of the average trading volume of each stock.
 
-For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as 500wi ≤ 0.1xi or wi ≤ (0.1/500)xi, where wi is the portfolio weight of stock i and xi is the average trading volume of stock i measured in millions of dollars.
+For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as 
+
+$$
+500w_i \le 0.1x_i,\text{ or } w_i \le (0.1/500)x_i,
+$$
+
+where $w_i$ is the portfolio weight of stock $i$ and $x_i$ is the average trading volume of stock $i$ measured in millions of dollars.
 
 More generally, the trading volume constraint can be expressed as a linear inequality constraint, where x is a vector of average daily trading volume in dollar terms, and c is a constant indicating the threshold:
 
