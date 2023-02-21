@@ -76,10 +76,10 @@ In addition to short-sale constraints, portfolio managers may also want to impos
 For example,
 
 $$
-\underline \le w \le \overline w
+\underline w \le w \le \overline w
 $$
 
-
+where $\underline w$ and $\overline w$  are $N$-dimensional vectors of minimum and maximum allowed weights.
 
 
 
