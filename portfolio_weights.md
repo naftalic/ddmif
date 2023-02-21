@@ -81,5 +81,23 @@ $$
 
 where $\underline w$ and $\overline w$  are $N$-dimensional vectors of minimum and maximum allowed weights.
 
+# Sector or Industry Constraints
+Portfolio managers, particularly those who manage against a benchmark, often aim to limit the sector weightings of their portfolio. To achieve this, a straightforward modification can be made to the framework by constraining the sector weightings using the following formula:
+
+$$
+\underline w_j \le w_j \le \overline w_j
+$$
+
+# Trading-Volume Constraint
+One common constraint added to optimization by portfolio managers is the trading-volume constraint, which is particularly relevant when managing large portfolios that could have a significant price impact on the market. To avoid negative price impact, portfolio managers may restrict the holdings of each stock to a certain threshold amount, often a fraction of the average trading volume of each stock.
+
+For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as 500wi ≤ 0.1xi or wi ≤ (0.1/500)xi, where wi is the portfolio weight of stock i and xi is the average trading volume of stock i measured in millions of dollars.
+
+More generally, the trading volume constraint can be expressed as a linear inequality constraint, where x is a vector of average daily trading volume in dollar terms, and c is a constant indicating the threshold:
+
+∑i wi xi ≤ c, where i represents each stock in the portfolio.
+
+where $w_j$ denotes the weight of sector $j$ in the portfolio.
+
 
 
