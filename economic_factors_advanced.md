@@ -160,7 +160,7 @@ Portfolio managers rely on time-series regressions to analyze stock returns and 
 In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, $r_{A,t}$ and $r_{B,t}$, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:
 
 $$
-\hat\beta{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
+\hat\beta_{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
 $$
 
 where $s_A$ is the pre-merger market capitalization of firm A, and $s_B$ is the pre-merger market capitalization of firm B.
