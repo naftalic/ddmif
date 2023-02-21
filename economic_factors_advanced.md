@@ -81,4 +81,43 @@ To create the fundamental factor model, the portfolio manager gathers a dataset 
 
 In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.
 
+### Factor Premium for Economic/Behavioral/Market Factors
+The process of obtaining factor premiums for economic, behavioral, and market factors is straightforward and does not require complex computations. The values can be obtained by referencing reliable sources. Common examples of economic premiums include the unemployment rate, consumer sentiment growth, and overall market return:
+
+* To calculate the factor premium for unemployment, the unemployment rate can be obtained from the Bureau of Labor Statistics (BLS).
+* The growth rate of the consumer sentiment index can be obtained from the University of Michigan.
+* The market factor premium can be calculated as the difference between the S&P 500 total return and the one-month U.S. Treasury bill return.
+
+Once all the factor premiums for a specific time interval are obtained, they can be stored in a set of vectors $f_t = (f_1, ..., f_T)$, where $f_t$ represents the factor premium for time $t$, and the first element of $f_t$ always represents the constant term in the return equation.
+
+### Factor Premium for Fundamental/Technical/Analyst Factors
+To calculate factor premiums for fundamental, technical, and analyst factors, additional computations are necessary. This involves constructing zero-investment portfolios and calculating their returns. To find the factor premium on value using the book-to-price (B/P) ratio as a proxy, we need to identify portfolios of stocks with high and low exposures to the value factor (i.e., high and low B/P ratios). We can start by ranking all the stocks at time $t$ in order of their B/P ratio, creating a high-value portfolio by equally weighting the top quartile of the list, and a low-value portfolio by equally weighting the bottom quartile. The zero-investment portfolio return is then calculated as the difference between the return on the high-value portfolio and the return on the low-value portfolio.
+
+Careful consideration of the frequency of zero-investment portfolio construction is important, especially if the sorting variable is not frequently updated. For example, the book-to-price ratio is updated quarterly, while price is updated daily. Thus, creating a zero-investment portfolio too frequently may not reflect the information an investor needs.
+
+It is important to note that a single piece of data can represent multiple types of factors. For instance, the same B/P ratio value can represent high exposure to a value factor or low exposure to a growth factor. The same numerical figure can stand for either factor, and the sign and name of the factor do not matter as long as we assign consistent meanings to high and low values.
+
+### Factor Premium for Statistical Factors
+Obtaining factor premiums for statistical factors is a complex computational process that involves principal-component analysis (PCA). This technique is readily available in standard computer software packages.
+
+To begin, we estimate the variance-covariance matrix of stock returns, representing $N$ stock returns at time $t$ as an $N$-dimensional column vector, $r_t = (r_{1,t}, ..., r_{N,t})$. We have a total of $T$ such vectors $r_1, ..., r_T$. The variance-covariance matrix of returns $Σ$ is estimated as
+
+$$
+\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r\bar r
+$$
+
+where \bar r is the average (over time) return vector.
+
+Once we have the variance-covariance matrix, we "diagonalize" it by finding an orthogonal matrix Q (that is, Q−1 = Q′) such that
+
+where D is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of . Each column of Q is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of .
+
+To be more specific, we let λ1, ..., λN be the eigenvalues of such that λ1 ≥ ... ≥ λN ≥ 0. (Since is a positive definite matrix, all the eigenvalues are positive.) Then matrix D is constructed as
+
+Let q1, ..., qN be the orthonormal eigenvectors corresponding to λ1, ..., λN. Matrix Q is then constructed as
+
+If we want to find K factors, we obtain K factor premiums by weighting individual stock returns using the first K columns of Q. That is, factor premiums f1, ..., fK are defined as
+
+These K factors together have the highest in-sample explanatory power for N stock returns among any set of K explanatory variables constructed from linear combinations of N stock returns.
+
 ## Factor premium
