@@ -195,7 +195,7 @@ Assuming that the covariance between the residuals of the stocks is 0, we can wr
 
 $$
 \begin{align}
-\Sigma = 
+\Sigma &= 
 \begin{bmatrix}
 \beta(1,1) & \cdots & \beta(1,K) \\
 \vdots     & \vdots & \vdots     \\
