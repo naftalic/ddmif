@@ -155,13 +155,31 @@ The factor exposure of a portfolio is determined by the weighted average of the 
 By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.
 
 # Tracking-error minimization
-Portfolio managers who use benchmarks often use the minimization-of-tracking-error approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the tracking error given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum tracking-error constraint. The latter method is considered more practical.
+Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the TE given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint. 
 
-To minimize tracking error, portfolio managers use the standard deviation of portfolio returns minus benchmark returns. They typically use all tracking-error constraints available to them as long as they enhance the expected excess return over the benchmark. These constraints vary from portfolio to portfolio and range from 0.5% to 10% per annum.
+To minimize TE, portfolio managers use the standard deviation of portfolio returns minus benchmark returns:
 
-The quadratic optimization framework discussed earlier applies to tracking-error minimization, and only minor adjustments are necessary for the optimization problem. To find a portfolio that minimizes the tracking error, we minimize the variance of portfolio returns minus twice the covariance between portfolio returns and benchmark returns. We cannot control the variance of the benchmark.
+$$
+\text{TE}=s(r_P-r_B)=\sqrt{V(r_P-r_B)}.
+$$
 
-To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean μP will be some excess return over the benchmark. Practically, we should think of μP as the expected return of the benchmark plus a small amount (δ) that we add according to our desire, and then run the optimization to find the portfolio weights.
+They typically use all TE constraints available to them as long as they enhance the expected excess return over the benchmark. These constraints vary from portfolio to portfolio and range from 0.5% to 10% per annum.
+
+
+The quadratic optimization framework discussed earlier applies to tracking-error minimization, and only minor adjustments are necessary for the optimization problem. To find a portfolio that minimizes the tracking error 
+
+$$
+V(r_P-r_B)=V(r_P)-2C(r_P,r_B)+V(r_B),
+$$
+
+we minimize the variance of portfolio returns minus twice the covariance between portfolio returns and benchmark returns (e.g., $V(r_P)-2C(r_P,r_B)$) because we cannot control the variance of the benchmark.
+
+To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean $μ_P$ will be some excess return over the benchmark. Practically, we should think of $μ_P$ as the expected return of the benchmark plus a small amount ($μ_P=$μ_B+\delta$) that we add according to our desire, and then run the optimization to find the portfolio weights.
+Hence,
+
+$$
+\min\limits_w w^\top\Sigma w-2w^\top\gamma, \text{ s.t. } w^\top\mu=\mu_P.
+$$
 
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.
 
