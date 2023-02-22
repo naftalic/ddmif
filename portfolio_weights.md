@@ -213,7 +213,7 @@ C(f_K,f_1) & \cdots & V(f_K)     \\
 \end{bmatrix}
 +
 \begin{bmatrix}
-V(ֿ\epsilon_1)     & \cdots & 0 \\
+V(\epsilon_1)     & \cdots & 0 \\
 \vdots     & \vdots & \vdots     \\
 0 & \cdots & V(\epsilon_N)     \\
 \end{bmatrix}\\
