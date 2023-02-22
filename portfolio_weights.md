@@ -100,13 +100,13 @@ $$
 where $w_i$ is the portfolio weight of stock $i$ and $x_i$ is the average trading volume of stock $i$ measured in millions of dollars.
 
 # Risk-Adjusted Return
-In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows:
+In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows: maximize $μ_P$ subject to other constraints:
 
 $$
-\text{maximize } $μ_P$ \text{ subject to other constraints.}
+\max\limits_w w^\top\mu,\text{ s.t. } w^\top\Sigma w = \sigma_P.
 $$
 
-The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level σ, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
+The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level $σ_P$, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
 
 In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., μP - Aσ^2. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.
 
