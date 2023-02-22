@@ -218,6 +218,7 @@ V(ֿ\epsilon_1)     & \cdots & 0 \\
 \end{bmatrix}
 =B V(f) B^\top +V(\epsilon)
 $$
+
 where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances. 
 
 
