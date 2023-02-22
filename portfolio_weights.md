@@ -106,7 +106,7 @@ For example,
 
 
 $$
-\max\limits_w w^\top\mu\text{ s.t. } w^\top\Sigma w = \sigma_P, \text{ or } \min\limits_w w^\top\Sigma w\text{ s.t. } w^\top\mu = \mu_P.
+\max\limits_w w^\top\mu\text{ s.t. } w^\top\Sigma w = \sigma_P \text{ or } \min\limits_w w^\top\Sigma w\text{ s.t. } w^\top\mu = \mu_P.
 $$
 
 
