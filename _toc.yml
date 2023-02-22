@@ -8,8 +8,8 @@ chapters:
  - file: basic_models
  - file: factors
  - file: screening_and_ranking
- - file: fundamental_factors_advanced
- - file: economic_factors_advanced
+ - file: fundamental_factors
+ - file: economic_factors
  - file: portfolio_weights
  - file: tax_management
  - file: leverage
