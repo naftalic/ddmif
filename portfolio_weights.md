@@ -122,5 +122,8 @@ subject to other constraints.
 
 This formulation can be useful in certain applications, as it allows the portfolio manager to balance the trade-off between expected return and risk.
 
+# Benchmark
+Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.
+
 
 
