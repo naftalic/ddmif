@@ -99,11 +99,24 @@ $$
 
 where $w_i$ is the portfolio weight of stock $i$ and $x_i$ is the average trading volume of stock $i$ measured in millions of dollars.
 
-More generally, the trading volume constraint can be expressed as a linear inequality constraint, where x is a vector of average daily trading volume in dollar terms, and c is a constant indicating the threshold:
+# Risk-Adjusted Return
+In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows:
 
-∑i wi xi ≤ c, where i represents each stock in the portfolio.
+$$
+\text{maximize } $μ_P$ \text{ subject to other constraints.}
+$$
 
-where $w_j$ denotes the weight of sector $j$ in the portfolio.
+The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level σ, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
+
+In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., μP - Aσ^2. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.
+
+For instance, if the value of A is 2, it means that the portfolio manager equates a 1% increase in the variance with a 2% decrease in the expected return. Once the value of the risk-aversion parameter is determined, the mean-variance problem can be formulated as follows:
+
+maximize μP - Aσ^2
+
+subject to other constraints
+
+This formulation can be useful in certain applications, as it allows the portfolio manager to balance the trade-off between expected return and risk.
 
 
 
