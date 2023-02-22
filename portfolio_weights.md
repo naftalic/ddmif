@@ -197,7 +197,7 @@ $$
 \Sigma = 
 \begin{bmatrix}
 \beta(1,1) & \cdots & \beta(1,K) \\
-.          & .      &            \\
+\vdots     & \vdots & \vdots     \\
 \beta(N,1) & \cdots & \beta(N,K) \\
 \end{bmatrix}
 $$
