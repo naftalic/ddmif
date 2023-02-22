@@ -61,7 +61,7 @@ The quadratic minimization problem with **equality** constraints can be rewritte
 
 To create a minimal-risk portfolio for a given level of expected return, we begin the optimization procedure using the expected return of the lowest expected return stock. We increment the mean return and repeat the optimization until we reach the expected return of the security with the highest mean return. We plot all the points in the diagram and connect them to produce the efficient frontier. The expected-return–expected-risk profile we desire can then be selected from the efficient frontier, and we can pick the weights of the corresponding stocks.
 
-# Short-Sale and Diversification Constraints
+## Short-Sale and Diversification Constraints
 
 Investment portfolio managers may face various constraints, such as legal restrictions or prospectus mandates, that limit their investment options. One of the main constraints faced by long-only portfolio managers is the short-sale restriction, which prohibits shorting securities. Mathematically, this restriction can be represented as the condition that each stock has a weight of at least zero:
 
@@ -88,7 +88,7 @@ $$
 \underline w_j \le w_j \le \overline w_j
 $$
 
-# Trading-Volume Constraint
+## Trading-Volume Constraint
 One common constraint added to optimization by portfolio managers is the trading-volume constraint, which is particularly relevant when managing large portfolios that could have a significant price impact on the market. To avoid negative price impact, portfolio managers may restrict the holdings of each stock to a certain threshold amount, often a fraction of the average trading volume of each stock.
 
 For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as 
@@ -99,7 +99,7 @@ $$
 
 where $w_i$ is the portfolio weight of stock $i$ and $x_i$ is the average trading volume of stock $i$ measured in millions of dollars.
 
-# Risk-Adjusted Return
+## Risk-Adjusted Return
 In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows: maximize $μ_P$ subject to other constraints.
 The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level $σ_P$, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
 For example,
@@ -123,7 +123,46 @@ subject to other constraints.
 This formulation can be useful in certain applications, as it allows the portfolio manager to balance the trade-off between expected return and risk.
 
 # Benchmark
-Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.
+Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. **The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it**. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.
+
+
+## Ad hoc
+A straightforward way to ensure that a benchmarked portfolio closely tracks its benchmark is by using a simple weighting approach. This involves selecting the largest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to include 50 stocks, the 50 stocks with the largest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be computed based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.
+
+Several approaches exist for adjusting weights to favor preferred stocks. Assuming that the portfolio manager has used the aggregate z-score methodology explained earlier to rank stocks, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) equals zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as $z_\text{max}$. Third, compute the z-score multiplier $m = η/z_\text{max}$. Finally, compute the new weights of the portfolio using the formula $(w_i + mz_i)$, where $w_i$ represents the relative market capitalization weight within the benchmark. After completing these steps, the adjusted portfolio is ready.
+
+While selecting the largest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the optimal solution. This method does not consider minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark's total market capitalization, making it an inefficient approach.
+
+While other ad hoc methods exist, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.
+
+## Stratification
+Stratification, also known as stratified sampling, is a simple method for building portfolios while maintaining a basic risk control mechanism. It was originally developed for statisticians who wanted to understand the characteristics of a population without having to observe every member. The method involves dividing the stock universe into nonoverlapping groups, or strata, based on certain characteristics, such as industry or size. From each stratum, a proportion of stocks is chosen to create a representative sample of the universe, while minimizing risk exposure across multiple dimensions.
+
+To use stratification for portfolio management, the portfolio manager would first predict the excess returns of all stocks in the universe and then aim to choose high-alpha stocks while controlling risk versus the benchmark. After dividing the stock universe into strata, the manager would select representative stocks from each stratum based on some criterion, such as z-score or expected return. Suppose the stock universe is categorized by sectors and the portfolio manager needs to select four stocks from the transportation sector. In that case, the manager may opt to choose the stocks with the highest ranking based on future risk-adjusted returns.
+
+Although stratification provides a simple way to control risk through broad diversification, it lacks a precise, quantitative control mechanism. Professional portfolio managers may be hesitant to use stratification as it does not allow them to precisely quantify the risks they are taking. Overall, while stratification can be an effective method for some portfolio managers, it may not be the best solution for all.
+
+# Factor exposure targeting
+One method of aligning the portfolio with the benchmark is to target the benchmark's factor exposures as the desired factor exposures for the portfolio. Alternatively, the portfolio's overall beta relative to the benchmark can be set to approximately 1. This ensures that the portfolio closely tracks the benchmark's performance.
+
+The beta of a portfolio relative to its benchmark is calculated as the weighted average of the betas of the individual stocks in the portfolio. Specifically, let β be an $N$-dimensional column vector representing the benchmark beta of each stock, where $β_i$ is the beta of stock $i$ with respect to the benchmark. The portfolio beta is then given by the product of the transpose of the portfolio weight vector, $w^\top$, and $β$. To ensure that the portfolio beta aligns with the benchmark, one approach is to set a constraint on the portfolio beta, such as requiring it to fall within a specified range: $0.9 \le w^\top β\le 1.1$. Alternatively, we could add a constraint to the optimization problem directly: $ w^\top β=1$.
+
+To expand on the concept of targeting a portfolio's benchmark beta, we can also specify a range for each of the portfolio's other factor exposures. This is known as **factor tilting**, where the portfolio is adjusted to increase exposure to certain factors and decrease exposure to others based on market conditions and our view on the factors. For example, if a portfolio manager believes the market will rally, they may wish to have a higher market beta than the benchmark while keeping other factor exposures equal to the benchmark, thus tilting the portfolio towards the market factor.
+
+The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an $N x K$ matrix $B$, where $K$ is the number of relevant factors, and $β_{i,k}$ is the exposure of stock $i$ to factor $k$. The factor exposure of a portfolio with weight $w$ is simply $B^\top w$. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.
+
+By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.
+
+# Tracking-error minimization
+Portfolio managers who use benchmarks often use the minimization-of-tracking-error approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the tracking error given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum tracking-error constraint. The latter method is considered more practical.
+
+To minimize tracking error, portfolio managers use the standard deviation of portfolio returns minus benchmark returns. They typically use all tracking-error constraints available to them as long as they enhance the expected excess return over the benchmark. These constraints vary from portfolio to portfolio and range from 0.5% to 10% per annum.
+
+The quadratic optimization framework discussed earlier applies to tracking-error minimization, and only minor adjustments are necessary for the optimization problem. To find a portfolio that minimizes the tracking error, we minimize the variance of portfolio returns minus twice the covariance between portfolio returns and benchmark returns. We cannot control the variance of the benchmark.
+
+To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean μP will be some excess return over the benchmark. Practically, we should think of μP as the expected return of the benchmark plus a small amount (δ) that we add according to our desire, and then run the optimization to find the portfolio weights.
+
+Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.
 
 
 
