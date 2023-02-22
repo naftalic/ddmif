@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# The Economic Factor Model
+# 6) The Economic Factor Model
 
 The previous chapter, fundamental factor model, covered tools to combine stock-level information to determine returns and risks. The economic factor model is another way to efficiently combine stock information but with a different twist on the factor model framework.
 
