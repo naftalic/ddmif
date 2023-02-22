@@ -194,6 +194,7 @@ $$
 Assuming that the covariance between the residuals of the stocks is 0, we can write the variance-covariance matrix of all stock returns as
 
 $$
+\begin{align}
 \Sigma = 
 \begin{bmatrix}
 \beta(1,1) & \cdots & \beta(1,K) \\
@@ -215,8 +216,9 @@ C(f_K,f_1) & \cdots & V(f_K)     \\
 V(ֿ\epsilon_1)     & \cdots & 0 \\
 \vdots     & \vdots & \vdots     \\
 0 & \cdots & V(\epsilon_K)     \\
-\end{bmatrix}
-=B V(f) B^\top +V(\epsilon)
+\end{bmatrix}\\
+&=B V(f) B^\top +V(\epsilon)
+\end{align}
 $$
 
 where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances. 
