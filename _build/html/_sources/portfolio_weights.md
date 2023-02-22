@@ -1,4 +1,4 @@
-# Portfolio Weights
+# 7) Portfolio Weights
 
 In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.
 

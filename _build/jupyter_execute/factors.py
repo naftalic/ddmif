@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Factors
+# # 3) Factors
 # 
 # factors are crucial for financial modeling, and selecting the right ones is important for achieving outperformance. Good factors have a persistent and stable relationship with stock returns that can be explained by economic theory. The best way to find good factors is by using well-reasoned quantitative techniques rather than relying on superficial correlations produced by data mining. 
 # 
