@@ -226,7 +226,7 @@ where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ 
 With this, we can define the squared tracking error as:
 
 $$
-TE^2 = (w^P-w^B)^\topB V(f) B^\top(w^P-w^B)+(w^P-w^B)^\topV(\epsilon)^\top(w^P-w^B)
+TE^2 = (w^P-w^B)^\top B V(f) B^\top (w^P-w^B)+(w^P-w^B)^\top V(\epsilon)^\top (w^P-w^B)
 $$
 
 where $w_P$ and $w_B$ are the weight of the portfolio and benchmark, respectively. By adding relevant constraints, this tracking-error minimization problem can be solved using a quadratic optimizer.
@@ -253,3 +253,17 @@ $$
 $$
 
 subject to other additional constraints. It is important to note that the two formulations are related, and the maximum-return portfolios obtained from varying the target tracking error $σ_x$ are identical to the optimal portfolios obtained by varying the tracking-error aversion parameter $A$. Therefore, if a commercial software package does not support maximizing the expected return subject to a quadratic constraint, the tracking-error-adjusted expected return can be maximized for a specific value of $A$, and the value of $A$ can be changed iteratively until the tracking-error constraint is met. 
+
+# Quadratic programming
+
+The general quadratic programming problem can be expressed as minimizing the function 
+
+$$
+\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax\le b
+$$ 
+
+where $x$ is the vector of unknowns, $Q$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
+
+This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $Q$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $Q$ is used.
+
+Let's examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.

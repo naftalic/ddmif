@@ -450,6 +450,11 @@ title="Print to PDF"
    Risk-adjusted tracking error
   </a>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quadratic-programming">
+   Quadratic programming
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -553,6 +558,11 @@ title="Print to PDF"
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#risk-adjusted-tracking-error">
    Risk-adjusted tracking error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quadratic-programming">
+   Quadratic programming
   </a>
  </li>
 </ul>
@@ -759,7 +769,7 @@ V(\epsilon_1)     &amp; \cdots &amp; 0 \\
 <p>With this, we can define the squared tracking error as:</p>
 <div class="math notranslate nohighlight">
 \[
-TE^2 = (w^P-w^B)^\topB V(f) B^\top(w^P-w^B)+(w^P-w^B)^\topV(\epsilon)^\top(w^P-w^B)
+TE^2 = (w^P-w^B)^\top B V(f) B^\top (w^P-w^B)+(w^P-w^B)^\top V(\epsilon)^\top (w^P-w^B)
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(w_P\)</span> and <span class="math notranslate nohighlight">\(w_B\)</span> are the weight of the portfolio and benchmark, respectively. By adding relevant constraints, this tracking-error minimization problem can be solved using a quadratic optimizer.</p>
 <p>When minimizing tracking error, the portfolio’s factor exposures will be very similar to those of the benchmark. Consequently, the first term on the right-hand-side of the above equation becomes less important than the second term. If the portfolio manager has predetermined values for the portfolio factor exposures, they may disregard the first term entirely. This results in a simpler optimization problem where the portfolio’s error term variance is minimized, subject to additional constraints on portfolio factor exposure. This is known as factor tilting.</p>
@@ -783,6 +793,17 @@ If there is no specific target tracking error or expected return, the problem ca
 \max\limits_w w^\top\mu -AV(r_P-r_B)
 \]</div>
 <p>subject to other additional constraints. It is important to note that the two formulations are related, and the maximum-return portfolios obtained from varying the target tracking error <span class="math notranslate nohighlight">\(σ_x\)</span> are identical to the optimal portfolios obtained by varying the tracking-error aversion parameter <span class="math notranslate nohighlight">\(A\)</span>. Therefore, if a commercial software package does not support maximizing the expected return subject to a quadratic constraint, the tracking-error-adjusted expected return can be maximized for a specific value of <span class="math notranslate nohighlight">\(A\)</span>, and the value of <span class="math notranslate nohighlight">\(A\)</span> can be changed iteratively until the tracking-error constraint is met.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="quadratic-programming">
+<h1>Quadratic programming<a class="headerlink" href="#quadratic-programming" title="Permalink to this headline">#</a></h1>
+<p>The general quadratic programming problem can be expressed as minimizing the function</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax\le b
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the vector of unknowns, <span class="math notranslate nohighlight">\(Q\)</span> is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, <span class="math notranslate nohighlight">\(c\)</span> is a vector of coefficients related to the linear objective function, <span class="math notranslate nohighlight">\(A\)</span> is a matrix of coefficients for the constraints, and <span class="math notranslate nohighlight">\(b\)</span> is a vector of constraint values.</p>
+<p>This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, <span class="math notranslate nohighlight">\(Q\)</span> can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate <span class="math notranslate nohighlight">\(Q\)</span> is used.</p>
+<p>Let’s examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.</p>
 </div>
 
     <script type="text/x-thebe-config">
