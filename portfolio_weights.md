@@ -200,7 +200,24 @@ $$
 \vdots     & \vdots & \vdots     \\
 \beta(N,1) & \cdots & \beta(N,K) \\
 \end{bmatrix}
+\begin{bmatrix}
+V(f_1)     & \cdots & C(f_1,f_K) \\
+\vdots     & \vdots & \vdots     \\
+C(f_K,f_1) & \cdots & V(f_K)     \\
+\end{bmatrix}
+\begin{bmatrix}
+\beta(1,1) & \cdots & \beta(1,K) \\
+\vdots     & \vdots & \vdots     \\
+\beta(N,1) & \cdots & \beta(N,K) \\
+\end{bmatrix}
++
+\begin{bmatrix}
+V(ֿ\epsilon_1)     & \cdots & 0 \\
+\vdots     & \vdots & \vdots     \\
+0 & \cdots & V(\epsilon_K)     \\
+\end{bmatrix}
+=B V(f) B^\top +V(\epsilon)
 $$
-
+where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances. 
 
 
