@@ -226,7 +226,7 @@ where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ 
 With this, we can define the squared tracking error as:
 
 $$
-TE^2 = (w^P-w^B)^\topB V(f) B^\top(w^P-w^B)+(w^P-w^B)^\topV(\epsilon)^\top(w^P-w^B)
+TE^2 = (w^P-w^B)^\top B V(f) B^\top(w^P-w^B)+(w^P-w^B)^\top V(\epsilon)^\top(w^P-w^B)
 $$
 
 where $w_P$ and $w_B$ are the weight of the portfolio and benchmark, respectively. By adding relevant constraints, this tracking-error minimization problem can be solved using a quadratic optimizer.
