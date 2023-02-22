@@ -180,8 +180,8 @@ Hence,
 $$
 \min\limits_w w^\top\Sigma w-2w^\top\gamma, \text{ s.t. } w^\top\mu=\mu_P,
 $$
-with $\gamma^\top = (C(r_1,r_B),\cdots, C(r_N,r_B))$.
 
+with $\gamma^\top = (C(r_1,r_B),\cdots, C(r_N,r_B))$.
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.
 
 
