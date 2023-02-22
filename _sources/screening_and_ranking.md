@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Stock Screening and Ranking
+# 4) Stock Screening and Ranking
 The goal of systematic teams is to make investing more reliable, repeatable, and quantitative by avoiding the biases and errors of traditional stock picking. There are two types of stock screening methods: sequential and simultaneous. In sequential screening, criteria are applied one after the other to eliminate stocks from the investment universe. In simultaneous screening, all criteria are applied at once, and all stocks receive a ranking based on their overall scores. The most popular simultaneous screening method is the z-score approach, which involves choosing factors that explain stock returns and aggregating them into one score to rank stocks. The z-score ranking can be used as the basis for a stock returns model or added to an existing model.
 
 # Sequential Screening

@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6) The Economic Factor Model &#8212; Data-Driven Methods in Finance</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Data-Driven Methods in Finance
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   1) Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_models.html">
+   2) Basic Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors.html">
+   3) Factors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screening_and_ranking.html">
+   4) Stock Screening and Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_weights.html">
+   7) Portfolio Weights
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="competition.html">
+   Investment Competition
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/economic_factors.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/naftalic/ddmif"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Feconomic_factors.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/economic_factors.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/economic_factors.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-analysis">
+     Pre analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+     Benchmark and residual return
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-premium">
+     Factor premium
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-economic-behavioral-market-factors">
+       Factor Premium for Economic/Behavioral/Market Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-fundamental-technical-analyst-factors">
+       Factor Premium for Fundamental/Technical/Analyst Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-statistical-factors">
+       Factor Premium for Statistical Factors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure">
+     Factor exposure
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure-for-small-data">
+     Factor exposure for small data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-of-risk">
+     Decomposition of risk
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>6) The Economic Factor Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The model
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-analysis">
+     Pre analysis
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
+     Benchmark and residual return
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-premium">
+     Factor premium
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-economic-behavioral-market-factors">
+       Factor Premium for Economic/Behavioral/Market Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-fundamental-technical-analyst-factors">
+       Factor Premium for Fundamental/Technical/Analyst Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factor-premium-for-statistical-factors">
+       Factor Premium for Statistical Factors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure">
+     Factor exposure
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-exposure-for-small-data">
+     Factor exposure for small data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decomposition-of-risk">
+     Decomposition of risk
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-economic-factor-model">
+<h1>6) The Economic Factor Model<a class="headerlink" href="#the-economic-factor-model" title="Permalink to this headline">#</a></h1>
+<p>The previous chapter, fundamental factor model, covered tools to combine stock-level information to determine returns and risks. The economic factor model is another way to efficiently combine stock information but with a different twist on the factor model framework.</p>
+<p>The economic factor model has the same structure as the fundamental factor model, with stock returns being the payoff for taking risk. However, the roles of factor exposure and factor premium are reversed. In the fundamental factor model, the factor exposure is observable in financial statements, whereas the factor premium must be estimated from a cross-sectional regression. In the economic factor model, the factor premium is the known (global) value, while the factor exposure must be estimated by a time-series regression of stock returns on factor premiums.</p>
+<p>For example, an economic factor model with one factor, inflation, has the observed rate of inflation as the (global) factor premium, and the stock’s sensitivity or reactivity to inflation as the factor exposure, estimated as the relationship between the return on the stock and the rate of inflation. The economic factor model, therefore, assumes the premium that the market places on exposure to risk but requires the estimation of a particular stock’s exposure to risk.</p>
+<p>Mathematically, the economic factor model defines the return to stock <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(r_i\)</span>, as</p>
+<div class="math notranslate nohighlight">
+\[
+r_i=\alpha_i+\beta_i\cdot f+\epsilon_i
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f=(f_1, ..., f_K)\)</span> are factor premiums (which do not vary across stocks and so do not have the subscript <span class="math notranslate nohighlight">\(i\)</span>), and <span class="math notranslate nohighlight">\(\beta_i=β_{i,1}, ..., β_{i,K}\)</span> are factor exposures (which do vary across stocks and have the subscript <span class="math notranslate nohighlight">\(i\)</span>). The term <span class="math notranslate nohighlight">\(α_i\)</span> is the constant. The term <span class="math notranslate nohighlight">\(\beta_i\cdot f = β_{i,1}f_1 + ... + β_{i,K}f_K\)</span> represents the nondiversifiable risk of the stock, and <span class="math notranslate nohighlight">\(ε_i\)</span>, the error, reflects the diversifiable risk of the stock. The model is similar to the fundamental factor model in this regard.</p>
+<p>Similar to the fundamental factor model, the average stock return is</p>
+<div class="math notranslate nohighlight">
+\[E(r_i) =\alpha + β_iE(f)\]</div>
+<p>and the total risk of a stock</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+V(r_i) = \beta_i^TV(f)\beta_i+ V(\epsilon_i).
+\end{align}
+\]</div>
+<p>The model can also express the stock return for a particular period. We use the lowercase letter “t” to denote a time period:</p>
+<div class="math notranslate nohighlight">
+\[
+r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
+\]</div>
+<p>It’s important to note that the factor premium is denoted with a time subscript “t” because it varies over time. In other words, we consider the factor premium as a random variable with distinct values at different points in time. Conversely, the factor exposure does not have a time subscript “t” as it is assumed to remain constant over time. We view the factor exposure as an unknown parameter rather than a random variable.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-model">
+<h1>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">#</a></h1>
+<p>Similar to the previous chapter, the economic factor model is a tool for predicting the returns and risks of stocks, which helps portfolio managers make informed investment decisions. The process of formulating this model involves four steps:</p>
+<ol class="simple">
+<li><p>preliminary work, including choosing the factors, treating the risk-free rate, defining the data time frame and investment universe,</p></li>
+<li><p>estimating the factor loadings or sensitivities of each stock to the selected factors,</p></li>
+<li><p>estimating the factor premiums from historical data, and</p></li>
+<li><p>evaluating total risk by estimating both the systematic risk (non-diversifiable risk) and idiosyncratic risk (diversifiable risk).</p></li>
+</ol>
+<div class="section" id="pre-analysis">
+<h2>Pre analysis<a class="headerlink" href="#pre-analysis" title="Permalink to this headline">#</a></h2>
+<p>Before constructing an economic factor model, it is essential to plan carefully, just like in the fundamental factor model. The general decisions are the same, including the choice of factors, the treatment of the risk-free rate, and the sample makeup in terms of time interval, time period, and stock universe. Since the criteria for deciding how to treat the risk-free rate, determining the investment universe, and defining the time interval and period are the same for both models, we will focus only on factor selection.</p>
+<p>The strength of the economic factor model is its ability to include practically all kinds of factors. The factors can be broadly categorized into three categories:</p>
+<ul class="simple">
+<li><p>Economic/behavioral/market factors: These factors include Gross Domestic Product (GDP), inflation, unemployment, interest rates, and other macroeconomic variables. It also includes survey-based indexes like consumer sentiment index, business confidence index, investor sentiment index, and returns on broad market indexes such as the Standard &amp; Poor’s (S&amp;P) 500 or other market group/industry indexes. Computation of these factors is minimal as relevant information is usually publicly available or provided by data vendors.</p></li>
+<li><p>Fundamental/technical/analyst factors: These factors include financial statement information like the log of market capitalization, book-to-price ratio, earnings-to-price ratio, debt-to-equity ratio, and other firm characteristics. It also includes trading data like momentum, trading volume, and other information reflected in trading data. Additionally, it includes information provided by analysts like analyst rating changes, earnings revisions, or other information. Computation of these factors can be somewhat demanding, and even if obtained from an external source, the vendor’s methodology should be examined carefully. Studies suggest that thoroughly vetted fundamental/technical/analyst factors predict stock returns more effectively than other factor groups.</p></li>
+<li><p>Statistical factors: These factors are obtained from principal-component analysis applied to historical returns and require the highest level of computation.</p></li>
+</ul>
+<p>Careful planning is critical when constructing an economic factor model. Factor selection is crucial, and the model can include various types of factors. Computation requirements vary depending on the category of the factor, with statistical factors requiring the most significant computation.</p>
+</div>
+<div class="section" id="benchmark-and-residual-return">
+<h2>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this headline">#</a></h2>
+<p>Quantitative portfolio managers often manage their portfolios against a benchmark. As we discussed in previous chapters, it is not necessary to account for the benchmark at the outset of creating a model, but it can be useful to adjust for the effects of the benchmark when evaluating portfolio performance. There are two ways to incorporate the benchmark into the economic factor model.</p>
+<p>One way is to remove the benchmark-related return from the stock return before building the model. To do this, we first regress stock returns on the benchmark returns and calculate the residual, which is the part of stock returns that is not correlated with the benchmark return. Then we construct an economic factor model for the residual stock return rather than the total stock return. The resulting model shows the relationship between the factor premium, the factor exposure, and the portion of the stock return that is above and beyond the benchmark return.</p>
+<p>Another way is to explicitly include the benchmark in the economic factor model. If the benchmark is the broad-market index, the capital asset pricing model (CAPM) supports its inclusion in the model as a predictor of stock returns. Even if the benchmark is something other than the broad-market index, including it in the model will clarify the relationship between the portfolio and the benchmark.</p>
+</div>
+<div class="section" id="factor-premium">
+<h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this headline">#</a></h2>
+<p>To create the fundamental factor model, the portfolio manager gathers a dataset of many observations of stock returns and factor exposures, where the factor exposures change over time while the factor premium, a single statistically estimated proportion, remains constant. On the other hand, to construct the economic factor model, the portfolio manager needs to collect pairs of stock returns and factor premiums, where the factor premiums change over time. If there are K factors, the portfolio manager needs to find the factor premiums of the <span class="math notranslate nohighlight">\(K\)</span> factors at each time interval <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(f_t = (f_{1,t}, ..., f_{K,t})\)</span>.</p>
+<p>In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.</p>
+<div class="section" id="factor-premium-for-economic-behavioral-market-factors">
+<h3>Factor Premium for Economic/Behavioral/Market Factors<a class="headerlink" href="#factor-premium-for-economic-behavioral-market-factors" title="Permalink to this headline">#</a></h3>
+<p>The process of obtaining factor premiums for economic, behavioral, and market factors is straightforward and does not require complex computations. The values can be obtained by referencing reliable sources. Common examples of economic premiums include the unemployment rate, consumer sentiment growth, and overall market return:</p>
+<ul class="simple">
+<li><p>To calculate the factor premium for unemployment, the unemployment rate can be obtained from the Bureau of Labor Statistics (BLS).</p></li>
+<li><p>The growth rate of the consumer sentiment index can be obtained from the University of Michigan.</p></li>
+<li><p>The market factor premium can be calculated as the difference between the S&amp;P 500 total return and the one-month U.S. Treasury bill return.</p></li>
+</ul>
+<p>Once all the factor premiums for a specific time interval are obtained, they can be stored in a set of vectors <span class="math notranslate nohighlight">\(f_t = (f_1, ..., f_T)\)</span>, where <span class="math notranslate nohighlight">\(f_t\)</span> represents the factor premium for time <span class="math notranslate nohighlight">\(t\)</span>, and the first element of <span class="math notranslate nohighlight">\(f_t\)</span> always represents the constant term in the return equation.</p>
+</div>
+<div class="section" id="factor-premium-for-fundamental-technical-analyst-factors">
+<h3>Factor Premium for Fundamental/Technical/Analyst Factors<a class="headerlink" href="#factor-premium-for-fundamental-technical-analyst-factors" title="Permalink to this headline">#</a></h3>
+<p>To calculate factor premiums for fundamental, technical, and analyst factors, additional computations are necessary. This involves constructing zero-investment portfolios and calculating their returns. To find the factor premium on value using the book-to-price (B/P) ratio as a proxy, we need to identify portfolios of stocks with high and low exposures to the value factor (i.e., high and low B/P ratios). We can start by ranking all the stocks at time <span class="math notranslate nohighlight">\(t\)</span> in order of their B/P ratio, creating a high-value portfolio by equally weighting the top quartile of the list, and a low-value portfolio by equally weighting the bottom quartile. The zero-investment portfolio return is then calculated as the difference between the return on the high-value portfolio and the return on the low-value portfolio.</p>
+<p>Careful consideration of the frequency of zero-investment portfolio construction is important, especially if the sorting variable is not frequently updated. For example, the book-to-price ratio is updated quarterly, while price is updated daily. Thus, creating a zero-investment portfolio too frequently may not reflect the information an investor needs.</p>
+<p>It is important to note that a single piece of data can represent multiple types of factors. For instance, the same B/P ratio value can represent high exposure to a value factor or low exposure to a growth factor. The same numerical figure can stand for either factor, and the sign and name of the factor do not matter as long as we assign consistent meanings to high and low values.</p>
+</div>
+<div class="section" id="factor-premium-for-statistical-factors">
+<h3>Factor Premium for Statistical Factors<a class="headerlink" href="#factor-premium-for-statistical-factors" title="Permalink to this headline">#</a></h3>
+<p>Obtaining factor premiums for statistical factors is a complex computational process that involves principal-component analysis (PCA). This technique is readily available in standard computer software packages.</p>
+<p>To begin, we estimate the variance-covariance matrix of stock returns, representing <span class="math notranslate nohighlight">\(N\)</span> stock returns at time <span class="math notranslate nohighlight">\(t\)</span> as an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector, <span class="math notranslate nohighlight">\(r_t = (r_{1,t}, ..., r_{N,t})\)</span>. We have a total of <span class="math notranslate nohighlight">\(T\)</span> such vectors <span class="math notranslate nohighlight">\(r_1, ..., r_T\)</span>. The variance-covariance matrix of returns <span class="math notranslate nohighlight">\(Σ\)</span> is estimated as</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\Sigma=\frac{1}{T}\Sigma_{t=1}^{T} r^\top_tr_t-\bar r^\top\bar r
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar r\)</span> is the time averaged return vector.</p>
+<p>Once we have the <span class="math notranslate nohighlight">\(N\times N\)</span> variance-covariance matrix, we “diagonalize” it by finding an orthogonal matrix <span class="math notranslate nohighlight">\(Q\)</span> (that is, <span class="math notranslate nohighlight">\(Q^{−1} = Q^\top\)</span>) such that</p>
+<div class="math notranslate nohighlight">
+\[
+Q^\top \hat\Sigma Q = D
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is a diagonal matrix whose diagonal elements are eigenvalues (i.e., characteristic values) of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span>. Each column of <span class="math notranslate nohighlight">\(Q\)</span> is an orthonormal (i.e., of unit length) eigenvector corresponding to eigenvalues of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span>.</p>
+<p>To be more specific, we let <span class="math notranslate nohighlight">\(λ_1, ..., λ_N\)</span> be the eigenvalues of <span class="math notranslate nohighlight">\(\hat\Sigma\)</span> such that <span class="math notranslate nohighlight">\(λ_1 ≥ ... ≥ λ_N ≥ 0\)</span>. (Since <span class="math notranslate nohighlight">\(\hat\Sigma\)</span> is a positive definite matrix, all the eigenvalues are positive.) Then matrix <span class="math notranslate nohighlight">\(D\)</span> is constructed with ordered eigenvalues along its diagonal.</p>
+<p>Let <span class="math notranslate nohighlight">\(q_1, ..., q_N\)</span> be the orthonormal eigenvectors corresponding to <span class="math notranslate nohighlight">\(λ_1, ..., λ_N\)</span>. Matrix <span class="math notranslate nohighlight">\(Q\)</span> is then constructed as <span class="math notranslate nohighlight">\(Q=(q_1,...,q_N)\)</span>.</p>
+<p>If we want to find <span class="math notranslate nohighlight">\(K\)</span> factors, we obtain <span class="math notranslate nohighlight">\(K\)</span> factor premiums by weighting individual stock returns using the first <span class="math notranslate nohighlight">\(K\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>. That is, factor premiums <span class="math notranslate nohighlight">\(f_1, ..., f_K\)</span> are defined as</p>
+<div class="math notranslate nohighlight">
+\[
+f_{1,t}=q_1^\top r_t,..., f_{K,t}=q_K^\top r_t
+\]</div>
+<p>These <span class="math notranslate nohighlight">\(K\)</span> factors together have the <strong>highest in-sample explanatory power</strong> for <span class="math notranslate nohighlight">\(N\)</span> stock returns among any set of <span class="math notranslate nohighlight">\(K\)</span> explanatory variables constructed from linear combinations of <span class="math notranslate nohighlight">\(N\)</span> stock returns.</p>
+</div>
+</div>
+<div class="section" id="factor-exposure">
+<h2>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this headline">#</a></h2>
+<p>In the economic factor model, factor exposures are typically determined using time-series regression of stock returns on factor premiums. The regression coefficients, or factor exposures, measure the sensitivity of the dependent variable (the stock return) to changes in the independent variables (the factor premiums). Factor exposures are also known as factor sensitivities or factor loadings.</p>
+<p>To estimate the factor exposure for a stock <span class="math notranslate nohighlight">\(i\)</span> using <span class="math notranslate nohighlight">\(T\)</span> periods of returns and factor premiums, <span class="math notranslate nohighlight">\((r_{i,1}, ..., r_{i,T})\)</span> and <span class="math notranslate nohighlight">\((f_1, ..., f_T)\)</span>, we can use the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
+\]</div>
+<p>where the coefficient <span class="math notranslate nohighlight">\(β_i\)</span> is the factor exposure we want to discover, and <span class="math notranslate nohighlight">\(ε_{i,t}\)</span> is the error term reflecting the diversifiable risk of stock returns.</p>
+<p>The ordinary least squares (OLS) estimator of βi is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\beta_i=\text{cov}(r_{i,t},f_t)/\text{var}(f_t)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\text{var}(\hat\beta_i)=\hat \sigma_i^2/\text{var}(f_t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat \sigma_i^2\)</span> is the estimated variance of <span class="math notranslate nohighlight">\(ε_{i,t}\)</span> that can can computed once we have <span class="math notranslate nohighlight">\(\hat\alpha\)</span> and <span class="math notranslate nohighlight">\(\hat\beta\)</span>.</p>
+</div>
+<div class="section" id="factor-exposure-for-small-data">
+<h2>Factor exposure for small data<a class="headerlink" href="#factor-exposure-for-small-data" title="Permalink to this headline">#</a></h2>
+<p>Portfolio managers rely on time-series regressions to analyze stock returns and factor premiums. However, recent initial public offerings (IPOs) and stocks of merged or divested companies may lack sufficient data to conduct meaningful regressions. In such cases, we can infer a stock’s factor exposures by using weighted factor exposures from groups of similar stocks as proxies for the original stock’s exposures.</p>
+<p>In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, <span class="math notranslate nohighlight">\(r_{A,t}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t}\)</span>, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat\beta_{AB}=\frac{s_A}{s_A+s_B}\hat\beta_A+\frac{s_B}{s_A+s_B}\hat\beta_B
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_A\)</span> is the pre-merger market capitalization of firm A, and <span class="math notranslate nohighlight">\(s_B\)</span> is the pre-merger market capitalization of firm B.</p>
+<p>For recent IPOs, we can only rely on observable firm characteristics from financial statements. To find similar firms, we calculate the z-score for each of the M characteristics of each firm for which we already have factor exposures. Then we choose a small critical level e and find all firms j such that <span class="math notranslate nohighlight">\((z_i − z_j)^\top(z_i − z_j) &lt; e\)</span> to identify the similar firms. Once we identify the similar firms, we can take the equal-weighted average of their factor exposures as the factor exposure of the IPO. This process of identifying similar firms is known as characteristic matching and can also be applied to searching for other characteristics, such as expected stock return.</p>
+<p>An alternative to characteristic matching is using the industry-average figure. For instance, the average factor exposure of the entire pharmaceutical industry can stand in for the factor exposure of a new pharmaceutical company’s stock. However, financial economic research suggests that characteristic matching is more effective than using the industry average.</p>
+</div>
+<div class="section" id="decomposition-of-risk">
+<h2>Decomposition of risk<a class="headerlink" href="#decomposition-of-risk" title="Permalink to this headline">#</a></h2>
+<p>The total risk of a stock return can be decomposed into nondiversifiable risk and diversifiable risk. Nondiversifiable risk depends on the factor exposure and variance of the factor premium, while diversifiable risk is equal to the variance of the error term:</p>
+<div class="math notranslate nohighlight">
+\[
+V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
+\]</div>
+<p>We already have the estimate for <span class="math notranslate nohighlight">\(β_i\)</span>. We can obtain an estimate for <span class="math notranslate nohighlight">\(V(f)\)</span> given the factor premium data <span class="math notranslate nohighlight">\((f_1, ... ,f_T)\)</span> and estimating <span class="math notranslate nohighlight">\(V(ε_i)\)</span> is straightforward.</p>
+<p>When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns <span class="math notranslate nohighlight">\(r_i\)</span> and <span class="math notranslate nohighlight">\(r_j\)</span> has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: <span class="math notranslate nohighlight">\(C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)\)</span>.</p>
+<p>If T is not large enough, it is conventional to assume that <span class="math notranslate nohighlight">\(C(ε_i, ε_j)\)</span> is zero.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Naftali Cohen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
