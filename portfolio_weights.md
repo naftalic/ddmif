@@ -256,8 +256,6 @@ subject to other additional constraints. It is important to note that the two fo
 
 # Quadratic programming
 
-A portfolio manager can solve most portfolio optimization problems using a general quadratic optimization routine, which is commonly included in commercial software packages. For those who create their own risk models and optimizers, standard packages offer versions of the quadratic programming techniques we describe below.
-
 The general quadratic programming problem can be expressed as minimizing the function 
 
 $$
