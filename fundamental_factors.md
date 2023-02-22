@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# The Fundamental Factor Model
+# 5) The Fundamental Factor Model
 
 In financial economics, the average return of a stock is believed to be the reward for taking on risk. In a factor model, the risk exposure of a stock is represented by its factor exposure vector $\beta_i = (\beta_{i,1},...,\beta_{i,K})$. The factor premium vector $f = (f_1,...,f_K)$ represents the reward to an investor who takes on the risk by buying the stock.
 
