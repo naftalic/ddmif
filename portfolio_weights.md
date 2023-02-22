@@ -184,5 +184,23 @@ $$
 with $\gamma^\top = (C(r_1,r_B),\cdots, C(r_N,r_B))$.
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.
 
+# Tracking by factor exposure
+There is an alternative but equivalent representation of the tracking-error minimization problem. Recall that the variance of an individual stock $i$ can be estimated as
+
+$$
+V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i).
+$$
+
+Assuming that the covariance between the residuals of the stocks is 0, we can write the variance-covariance matrix of all stock returns as
+
+$$
+\Sigma = 
+\begin{bmatrix}
+\beta(1,1) & \cdots & \beta(1,K) \\
+.          & .      &            \\
+\beta(N,1) & \cdots & \beta(N,K) \\
+\end{bmatrix}
+$$
+
 
 
