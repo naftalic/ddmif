@@ -110,14 +110,15 @@ $$
 $$
 
 
-
-In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., μP - Aσ^2. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.
+In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., $μ_P - Aσ^2$. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.
 
 For instance, if the value of A is 2, it means that the portfolio manager equates a 1% increase in the variance with a 2% decrease in the expected return. Once the value of the risk-aversion parameter is determined, the mean-variance problem can be formulated as follows:
 
-maximize μP - Aσ^2
+$$
+\max\limits_w μ_P - Aσ^2
+$$
 
-subject to other constraints
+subject to other constraints.
 
 This formulation can be useful in certain applications, as it allows the portfolio manager to balance the trade-off between expected return and risk.
 
