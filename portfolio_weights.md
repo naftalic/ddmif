@@ -185,13 +185,13 @@ with $\gamma^\top = (C(r_1,r_B),\cdots, C(r_N,r_B))$.
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.
 
 # Tracking by factor exposure
-There is an alternative but equivalent representation of the tracking-error minimization problem. Recall that the variance of an individual stock $i$ can be estimated as
+There exists an alternative, yet equivalent method to represent the tracking-error minimization issue. Recall that an individual stock $i$'s variance can be estimated as follows:
 
 $$
 V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i).
 $$
 
-Assuming that the covariance between the residuals of the stocks is 0, we can write the variance-covariance matrix of all stock returns as
+If we assume that the covariance between the residuals of the stocks is 0, then we can express the variance-covariance matrix of all stock returns as:
 
 $$
 \begin{align}
@@ -221,6 +221,35 @@ V(\epsilon_1)     & \cdots & 0 \\
 \end{align}
 $$
 
-where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances. 
+where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances.
 
+With this, we can define the squared tracking error as:
 
+$$
+TE^2 = (w^P-w^B)^\topB V(f) B^\top(w^P-w^B)+(w^P-w^B)^\topV(\epsilon)^\top(w^P-w^B)
+$$
+
+where $w_P$ and $w_B$ are the weight of the portfolio and benchmark, respectively. By adding relevant constraints, this tracking-error minimization problem can be solved using a quadratic optimizer.
+
+When minimizing tracking error, the portfolio's factor exposures will be very similar to those of the benchmark. Consequently, the first term on the right-hand-side of the above equation becomes less important than the second term. If the portfolio manager has predetermined values for the portfolio factor exposures, they may disregard the first term entirely. This results in a simpler optimization problem where the portfolio's error term variance is minimized, subject to additional constraints on portfolio factor exposure. This is known as factor tilting.
+
+Suppose the portfolio manager desires to shift the portfolio towards small growth stocks while maintaining all other factor exposures identical to those of the benchmark. They may achieve this by setting the portfolio's exposures to the size and growth factors higher than those of the benchmark while keeping the other factor exposures equal to the benchmark's. 
+
+# Ghost benchmark tracking
+Ghost benchmark tracking refers to a scenario where the portfolio manager lacks knowledge of the weights of the benchmark's underlying securities or cannot estimate all the benchmark's factor exposures. In such cases, the objective of minimizing tracking error involves minimizing the deviation of the portfolio's historical returns from that of the benchmark. 
+
+# Risk-adjusted tracking error
+Risk-adjusted tracking error is a common constraint that portfolio managers use to limit tracking error within a certain percentage, such as 3% per annum. To achieve this constraint, the portfolio manager can increase the expected excess return until the desired tracking error level is reached. This process is similar to what we discussed earlier, with the objective function being the expected return of the portfolio and the constraint being the tracking error. In example,
+
+$$
+\max\limits_w w^\top\mu \text{ s.t. } V(r_P-r_B)=\sigma_x^2
+$$
+
+given the target tracking error of $\sigma_x$.
+If there is no specific target tracking error or expected return, the problem can be expressed in terms of the tracking-error-adjusted expected return. The expected return can be adjusted for tracking risk by subtracting a multiple of the squared tracking error, where the multiplier A is known as the tracking-error aversion parameter. This parameter indicates the level of cost the portfolio manager considers acceptable for tracking error. In example,
+
+$$
+\max\limits_w w^\top\mu -AV(r_P-r_B)
+$$
+
+subject to other additional constraints. It is important to note that the two formulations are related, and the maximum-return portfolios obtained from varying the target tracking error $σ_x$ are identical to the optimal portfolios obtained by varying the tracking-error aversion parameter $A$. Therefore, if a commercial software package does not support maximizing the expected return subject to a quadratic constraint, the tracking-error-adjusted expected return can be maximized for a specific value of $A$, and the value of $A$ can be changed iteratively until the tracking-error constraint is met. 
