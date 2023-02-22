@@ -197,9 +197,9 @@ $$
 \begin{align}
 \Sigma &= 
 \begin{bmatrix}
-\beta(1,1) & \cdots & \beta(1,K) \\
+\beta_{1,1} & \cdots & \beta_{1,K} \\
 \vdots     & \vdots & \vdots     \\
-\beta(N,1) & \cdots & \beta(N,K) \\
+\beta_{N,1} & \cdots & \beta_{N,K} \\
 \end{bmatrix}
 \begin{bmatrix}
 V(f_1)     & \cdots & C(f_1,f_K) \\
@@ -207,15 +207,15 @@ V(f_1)     & \cdots & C(f_1,f_K) \\
 C(f_K,f_1) & \cdots & V(f_K)     \\
 \end{bmatrix}
 \begin{bmatrix}
-\beta(1,1) & \cdots & \beta(1,K) \\
+\beta_{1,1} & \cdots & \beta_{1,K} \\
 \vdots     & \vdots & \vdots     \\
-\beta(N,1) & \cdots & \beta(N,K) \\
+\beta_{N,1} & \cdots & \beta_{N,K} \\
 \end{bmatrix}
 +
 \begin{bmatrix}
 V(ֿ\epsilon_1)     & \cdots & 0 \\
 \vdots     & \vdots & \vdots     \\
-0 & \cdots & V(\epsilon_K)     \\
+0 & \cdots & V(\epsilon_N)     \\
 \end{bmatrix}\\
 &=B V(f) B^\top +V(\epsilon)
 \end{align}
