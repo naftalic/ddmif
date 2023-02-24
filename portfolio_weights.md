@@ -553,5 +553,74 @@ To illustrate, we will focus on the situation where all stock weights should be 
 
 
 ## A numerical example
+Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.
 
+The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
+restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
+variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
+
+
+
+```{code-cell}
+import numpy as np
+import gurobipy as gp
+
+# Define the matrix A and vector b
+A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
+              [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
+              [1,0,0,0,0,0,-0.3,0,0,0,0,0],
+              [0,1,0,0,0,0,0,-0.3,0,0,0,0],
+              [0,0,1,0,0,0,0,0,-0.3,0,0,0],
+              [0,0,0,1,0,0,0,0,0,-0.3,0,0],
+              [0,0,0,0,1,0,0,0,0,0,-0.3,0],
+              [0,0,0,0,0,1,0,0,0,0,0,-0.3],
+              [-1,0,0,0,0,0,0.03,0,0,0,0,0],
+              [0,-1,0,0,0,0,0,0.03,0,0,0,0],
+              [0,0,-1,0,0,0,0,0,0.03,0,0,0],
+              [0,0,0,-1,0,0,0,0,0,0.03,0,0],
+              [0,0,0,0,-1,0,0,0,0,0,0.03,0],
+              [0,0,0,0,0,-1,0,0,0,0,0,0.03]])
+
+print(A)
+
+b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
+print(v)
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+
+# Create a GurobiPy model
+model = gp.Model()
+
+# Create the decision variables
+w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
+
+# Add the constraints Aw = b for the first two rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) == b[0,j] for j in range(2))
+
+# Add the constraints Aw <= b for the rest of the rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j in range(2,14))
+
+risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
+model.setObjective(risk, gp.GRB.MINIMIZE)
+
+# Set the objective function to zero (since this is a feasibility problem)
+model.setObjective(risk, sense=gp.GRB.MINIMIZE)
+
+# Solve the model
+model.optimize()
+
+# Print the solution
+if model.status == gp.GRB.OPTIMAL:
+    print("Solution found!")
+    for i in range(12):
+        print(f"w[{i}] = {w[i].x}")
+else:
+    print("No solution found.")
+```
 
