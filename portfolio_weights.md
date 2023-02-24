@@ -500,8 +500,8 @@ Suppose one creates the following binary variables, $b_i$ and $s_i$ for each one
 
 $$
 \begin{align*}
-& v_i^+\kappa_l \le b_i\ le v_i^+\kappa_h \\
-& v_i^-\gamma_l \le s_i\ le v_i^-\gamma_h \\
+& v_i^+\kappa_l \le b_i \le v_i^+\kappa_h \\
+& v_i^-\gamma_l \le s_i \le v_i^-\gamma_h \\
 \end{align*}
 $$
 
