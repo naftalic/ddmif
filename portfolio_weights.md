@@ -324,7 +324,15 @@ $$
 \end{align*}
 $$
 
-Finally, we can substitute the value of λ into the original expression for x to obtain a closed-form solution for x:
+Finally, we can substitute the value of λ into the expression for $x$ to obtain a closed-form solution for $x$:
+
+$$
+\begin{align*}
+x &= -Q^{-1}A^\top \lambda - Q^{-1}c \\
+  &= -Q^{-1}A^\top [-(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)] - Q^{-1}c \\
+  
+\end{align*}
+$$
 
 where I is the identity matrix.
 
