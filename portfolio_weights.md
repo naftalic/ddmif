@@ -284,7 +284,7 @@ A matrix of full rank has an inverse, and it is invertible. Additionally, the de
 A matrix $\Sigma$ is positive definite if it satisfies the following two conditions:
 * The matrix $\Sigma$ is symmetric, meaning that $\Sigma$ is equal to its transpose: $\Sigma = \Sigma^\top$.
 * For any non-zero vector x, the scalar value $x^\top \Sigma x$ is positive. This means that $x^\top \Sigma x > 0$ for any non-zero vector x.
-Geometrically, this means that the quadratic form defined by the matrix $\Sigma$ is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
+Geometrically, this means that the quadratic form defined by the matrix $\Sigma$ is always positive, and thus the matrix $\Sigma$ defines a "bowl-shaped" surface.
 The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix $\Sigma$, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.
 :::
 
