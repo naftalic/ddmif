@@ -305,7 +305,7 @@ $$
 The Lagrange method is a powerful tool for solving constrained optimization problems. It involves introducing Lagrange multipliers to convert a constrained optimization problem into an unconstrained optimization problem. The method is named after Joseph Louis Lagrange, a celebrated mathematician and physicist who was a professor at the University of Turin in 1755 and later served as director of mathematics at the Berlin Academy of Science, succeeding Euler in this position.
 :::
 
-We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for x, which gives:
+We can obtain the optimal value of $x$ by solving these equations algebraically. Specifically, we can start by solving the first equation for $x$, which gives:
 
 $$
 \begin{align*}
@@ -314,7 +314,15 @@ x &= -Q^{-1}A^\top \lambda - Q^{-1}c
 \end{align*}
 $$
 
-Substituting this expression for λ into the second equation yields:
+Substituting this expression for x into the second equation yields:
+
+$$
+\begin{align*}
+Ax-b &= 0
+A(-Q^{-1}A^\top \lambda - Q^{-1}c)-b&= 0
+\lambda = -(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)
+\end{align*}
+$$
 
 Finally, we can substitute the value of λ into the original expression for x to obtain a closed-form solution for x:
 
