@@ -330,10 +330,10 @@ $$
 \begin{align*}
 x &= -Q^{-1}A^\top \lambda - Q^{-1}c \\
   &= -Q^{-1}A^\top [-(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)] - Q^{-1}c \\
-  &= Q^{-1}A^\top(AQ^{-1}A^\top)^{-1}AQ^{-1}c
-    -Q^{-1}A^\top b - Q^{-1}c \\
+  &= -Q^{-1}[ -A^\top(AQ^{-1}A^\top)^{-1}(AQ^{-1} +I]c 
+  +Q^{-1}A^\top(AQ^{-1}A^\top)^{-1}b\\
 \end{align*}
 $$
 
-where I is the identity matrix.
+where $I$ is the identity matrix.
 
