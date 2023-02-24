@@ -422,6 +422,12 @@ print(w)
 # In[6]:
 
 
+get_ipython().system('pip install cvxpy')
+
+
+# In[7]:
+
+
 import cvxpy as cp
 
 N = 6
@@ -556,6 +562,12 @@ print( np.round(w.value,3), np.round(prob.value,3))
 # The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
 # restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
 # variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
+
+# In[ ]:
+
+
+get_ipython().system('pip install gurobipy')
+
 
 # In[ ]:
 
