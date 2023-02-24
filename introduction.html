@@ -128,18 +128,58 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="portfolio_weights.html">
    7) Portfolio Weights
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="competition.html">
-   Investment Competition
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
 </ul>
@@ -451,7 +491,7 @@ title="Print to PDF"
 <div class="tex2jax_ignore mathjax_ignore section" id="fundamentals">
 <h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Alpha_(finance)">Alpha</a> is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.</p>
-<p>There are two types of alpha: benchmark alpha and multi-factor alpha. Benchmark alpha measures the return of a portfolio not linked to the benchmark’s risk, while multi-factor alpha measures the return not linked to multiple factors’ risk. The equations for benchmark alpha and multi-factor alpha are: <span class="math notranslate nohighlight">\(r_p = α + β_pr_b + ϵ\)</span> and <span class="math notranslate nohighlight">\(r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ\)</span> respectively.</p>
+<p>There are two types of alpha: benchmark alpha and multi-factor alpha. Benchmark alpha measures the return of a portfolio not linked to the benchmark’s risk, while multi-factor alpha is a more generalized form that measures the return not linked to multiple factors’ risk. The equations for benchmark alpha and multi-factor alpha are: <span class="math notranslate nohighlight">\(r_p = α + β_pr_b + ϵ\)</span> and <span class="math notranslate nohighlight">\(r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ\)</span> respectively.</p>
 <p>In these equations, α is the benchmark or multi-factor alpha, <span class="math notranslate nohighlight">\(r_p\)</span> is the return of the portfolio, <span class="math notranslate nohighlight">\(β_p\)</span> is the beta of the portfolio, <span class="math notranslate nohighlight">\(r_b\)</span> is the return of the benchmark, <span class="math notranslate nohighlight">\(f=(f_1,f_2,...,f_K)^T\)</span> is the returns of the K factors, and <span class="math notranslate nohighlight">\(β=(β_1,β_2,...,β_K)^T\)</span> is the factor exposures or sensitivities of the portfolio to the K factors.</p>
 <p>The important aspect of alpha is the residual return, which represents an increase in return independent of increased benchmark exposure. The residual return is the focus of the quantitative portfolio manager, who aims for high alpha and high information ratio (the excess performance in terms of risk units). The expected or consensus return (<span class="math notranslate nohighlight">\(β_pr_b\)</span> or <span class="math notranslate nohighlight">\(β\cdot f\)</span>) is the part of the portfolio’s return related to the benchmark, while the residual return (α + ϵ) represents an increase in return independent of increased direct benchmark exposure. α is the expected value of the residual return, while ϵ is the deviation of the residual return from its mean.</p>
 <p>Alpha can be divided into ex-ante (in-sample) and ex-post (out-of-sample) alphas, where ex-ante alpha is the expected alpha and ex-post alpha is the realized one obtained through regression of portfolio and benchmark returns. The information ratio is the excess performance of a portfolio manager in terms of risk units and is calculated as IR = residual return / residual risk. An active portfolio manager aims for both high ex-post alpha and high ex-post information ratio.</p>

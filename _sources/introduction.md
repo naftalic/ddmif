@@ -13,7 +13,7 @@ A qualitative portfolio manager faces challenges in replicating an index portfol
 # Fundamentals
 [Alpha](https://en.wikipedia.org/wiki/Alpha_(finance)) is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.
 
-There are two types of alpha: benchmark alpha and multi-factor alpha. Benchmark alpha measures the return of a portfolio not linked to the benchmark's risk, while multi-factor alpha measures the return not linked to multiple factors' risk. The equations for benchmark alpha and multi-factor alpha are: $r_p = α + β_pr_b + ϵ$ and $r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ$ respectively.
+There are two types of alpha: benchmark alpha and multi-factor alpha. Benchmark alpha measures the return of a portfolio not linked to the benchmark's risk, while multi-factor alpha is a more generalized form that measures the return not linked to multiple factors' risk. The equations for benchmark alpha and multi-factor alpha are: $r_p = α + β_pr_b + ϵ$ and $r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ$ respectively.
 
 In these equations, α is the benchmark or multi-factor alpha, $r_p$ is the return of the portfolio, $β_p$ is the beta of the portfolio, $r_b$ is the return of the benchmark, $f=(f_1,f_2,...,f_K)^T$ is the returns of the K factors, and $β=(β_1,β_2,...,β_K)^T$ is the factor exposures or sensitivities of the portfolio to the K factors.
 
