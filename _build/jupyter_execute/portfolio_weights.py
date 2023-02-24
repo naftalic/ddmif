@@ -433,7 +433,7 @@ prob.solve(solver=cp.SCS)
 print( w.value, prob.value)
 
 
-# The optimal solution for a portfolio with a capital of $1 is to allocate $0.305 to stock 1, $0.057 to stock 2, $0.204 to stock 3, $0.274 to stock 4, short sell -$0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.
+# The optimal solution for a portfolio with a capital of \$1 is to allocate \$0.305 to stock 1, \$0.057 to stock 2, \$0.204 to stock 3, \$0.274 to stock 4, short sell -\$0.085 of stock 5, and allocate \$0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.
 # 
 # 
 # ## Quadraric programming with inequality constraints
@@ -442,3 +442,45 @@ print( w.value, prob.value)
 # One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.
 # 
 # While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.
+# 
+# ### A Numerical Example
+# To further illustrate the application, we will continue with the previous numerical example and introduce some inequality constraints. We will use the active-set method to solve the problem. Specifically, we will add three inequality constraints that specify that the weights of each individual stock cannot be less than zero, except for stock 2, which cannot have a weight less than 0.10. Therefore, we have $w ≥ 0$ and $w_2 ≥ 0.10$. These inequality constraints can be easily incorporated into the matrix $A$. 
+# The resulting optimization problem has the first two rows of $A$ representing equality constraints and the last seven rows representing inequality constraints. The formulation of the problem is as follows:
+
+# In[7]:
+
+
+A = np.array([[1,1,1,1,1,1],
+              [14.4,10.19,9.87,7.52,20.05,2.66],
+              [-1,0,0,0,0,0],
+              [0,-1,0,0,0,0],
+              [0,0,-1,0,0,0],
+              [0,0,0,-1,0,0],
+              [0,0,0,0,-1,0],
+              [0,0,0,0,0,-1],
+              [1,0,1,1,1,1]])
+print(A)
+
+
+# In[8]:
+
+
+b = np.array([1, 8,0,0,0,0,0,0,0.9])
+print(b)
+
+
+# In[9]:
+
+
+import cvxpy as cp
+
+N = 6
+w = cp.Variable(N)
+risk = cp.quad_form(w, Sigma)
+prob = cp.Problem(cp.Minimize(risk), [A[:2,:]@w == b[:2], A[2:,:]@w <= b[2:]])
+prob.solve(solver=cp.SCS)   
+
+print( np.round(w.value,3), np.round(prob.value,3))
+
+
+# It's worth noting that we expressed the constraint $w_2 ≥ 0.10$ as $w_1+w_3+w_4+w_5+w_6 ≤ 0.90$. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.

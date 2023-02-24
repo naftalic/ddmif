@@ -512,6 +512,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
      Quadraric programming with inequality constraints
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       A Numerical Example
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -641,6 +648,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
      Quadraric programming with inequality constraints
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       A Numerical Example
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1082,7 +1096,7 @@ w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 </div>
 </div>
 </div>
-<p>The optimal solution for a portfolio with a capital of <span class="math notranslate nohighlight">\(1 is to allocate \)</span>0.305 to stock 1, <span class="math notranslate nohighlight">\(0.057 to stock 2, \)</span>0.204 to stock 3, <span class="math notranslate nohighlight">\(0.274 to stock 4, short sell -\)</span>0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.</p>
+<p>The optimal solution for a portfolio with a capital of $1 is to allocate $0.305 to stock 1, $0.057 to stock 2, $0.204 to stock 3, $0.274 to stock 4, short sell -$0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.</p>
 </div>
 </div>
 <div class="section" id="quadraric-programming-with-inequality-constraints">
@@ -1090,6 +1104,74 @@ w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 <p>The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.</p>
 <p>One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.</p>
 <p>While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.</p>
+<div class="section" id="id1">
+<h3>A Numerical Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>To further illustrate the application, we will continue with the previous numerical example and introduce some inequality constraints. We will use the active-set method to solve the problem. Specifically, we will add three inequality constraints that specify that the weights of each individual stock cannot be less than zero, except for stock 2, which cannot have a weight less than 0.10. Therefore, we have <span class="math notranslate nohighlight">\(w ≥ 0\)</span> and <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span>. These inequality constraints can be easily incorporated into the matrix <span class="math notranslate nohighlight">\(A\)</span>.
+The resulting optimization problem has the first two rows of <span class="math notranslate nohighlight">\(A\)</span> representing equality constraints and the last seven rows representing inequality constraints. The formulation of the problem is as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.    1.    1.    1.    1.  ]
+ [14.4  10.19  9.87  7.52 20.05  2.66]
+ [-1.    0.    0.    0.    0.    0.  ]
+ [ 0.   -1.    0.    0.    0.    0.  ]
+ [ 0.    0.   -1.    0.    0.    0.  ]
+ [ 0.    0.    0.   -1.    0.    0.  ]
+ [ 0.    0.    0.    0.   -1.    0.  ]
+ [ 0.    0.    0.    0.    0.   -1.  ]
+ [ 1.    0.    1.    1.    1.    1.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.  8.  0.  0.  0.  0.  0.  0.  0.9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">risk</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">risk</span><span class="p">),</span> <span class="p">[</span><span class="n">A</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:]</span><span class="nd">@w</span> <span class="o">==</span> <span class="n">b</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">:,:]</span><span class="nd">@w</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">:]])</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">SCS</span><span class="p">)</span>   
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.256  0.1    0.026  0.287 -0.     0.331] 183.076
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s worth noting that we expressed the constraint <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span> as <span class="math notranslate nohighlight">\(w_1+w_3+w_4+w_5+w_6 ≤ 0.90\)</span>. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.</p>
+</div>
 </div>
 </div>
 
