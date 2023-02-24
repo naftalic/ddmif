@@ -507,3 +507,29 @@ $$
 
 and setting $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, the weights can fluctuate between 0 and 1, and the constraint $v_i^++v_i^-\le 1$ ensures that the phantom weights are orthogonal. If $b_i>0$, then $s_i=0$ and vice versa for every stock $i$. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.
 
+### Market neutrality with leverage constraints
+
+If we add the following constraints that
+
+$$
+\begin{align*}
+& w_i = w_^+-w_i^- \\
+& \sum\limits_{i=1}^N w_i^+=\sum\limits_{i=1}^N w_i^-\\
+& w^+ \ge 0\\
+& w^- \ge 0\\
+\end{align*}
+$$
+
+the resulting optimization will create a market-neutral portfolio that is dollar neutral (i.e., the sum of weights of the long stocks equals the sum of weights of the shorted stocks) and such that the leverage of the market-neutral portfolio is limited to 2 (i.e., the portfolio is 100% long and 100% short of the assets under management). 
+If the market-neutral manager wanted more excessive leverage, this could easily be changed by the constraints on the sum of the phantom long and short weights. For example,
+
+$$
+\begin{align*}
+& \sum\limits_{i=1}^N w_i^+=L_l\\
+& \sum\limits_{i=1}^N w_i^-=L_s
+\end{align*}
+$$
+
+where $L_l$ is the long exposure and $L_s$ is the short exposure. 
+For example, a 130–30 long–short portfolio could be constructed by making $L_l = 1.3$ and $L_s = 0.3$.
+
