@@ -267,3 +267,30 @@ where $x$ is the vector of unknowns, $Q$ is a symmetric positive semidefinite ma
 This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $Q$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $Q$ is used.
 
 Let's examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.
+
+## Quadraric programming with equality constraints
+In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:
+
+$$
+\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
+$$ 
+
+Given that matrix A is of full rank\footnote{A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
+A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.} and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:
+* The matrix Q is symmetric, meaning that Q is equal to its transpose: $Q = Q^\top$.
+* For any non-zero vector x, the scalar value $x^\top Q x$ is positive. This means that $x^\top Q x > 0$ for any non-zero vector x.
+Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
+The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.}, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
+
+The Lagrangian for this problem is given by:
+
+Taking partial derivatives with respect to x and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:
+
+We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for λ, which gives:
+
+Substituting this expression for λ into the second equation yields:
+
+Finally, we can substitute the value of λ into the original expression for x to obtain a closed-form solution for x:
+
+where I is the identity matrix.
+
