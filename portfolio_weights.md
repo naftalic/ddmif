@@ -487,6 +487,11 @@ print( np.round(w.value,3), np.round(prob.value,3))
 
 It's worth noting that we expressed the constraint $w_2 ≥ 0.10$ as $w_1+w_3+w_4+w_5+w_6 ≤ 0.90$. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.
 
+# Advanced Techniques for Quadratic Optimization
+While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.
+
+
+
 
 
 
