@@ -19,5 +19,5 @@ chapters:
  - file: backtesting
  - file: portfolio_performance
  - file: probability_and_regression
- - file: competition
+ - file: submission_guidelines
 
