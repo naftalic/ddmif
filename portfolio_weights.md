@@ -259,12 +259,12 @@ subject to other additional constraints. It is important to note that the two fo
 The general quadratic programming problem can be expressed as minimizing the function 
 
 $$
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax\le b
+\min\limits_x 0.5 x^\top \Sigma x + x^\top c \text{ s.t.} Ax\le b
 $$ 
 
-where $x$ is the vector of unknowns, $Q$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
+where $x$ is the vector of unknowns, $\Sigma$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
 
-This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $Q$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $Q$ is used.
+This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $\Sigma$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $\Sigma$ is used.
 
 Let's examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.
 
@@ -272,33 +272,33 @@ Let's examine two special cases of the general quadratic optimization program. O
 In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:
 
 $$
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
+\min\limits_x 0.5 x^\top \Sigma x + x^\top c \text{ s.t.} Ax= b
 $$ 
 
-Given that matrix A is of full rank and matrix Q is positive definite, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. 
+Given that matrix A is of full rank and matrix $\Sigma$ is positive definite, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. 
 
 :::{note}
 A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
 A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.
 
-A matrix Q is positive definite if it satisfies the following two conditions:
-* The matrix Q is symmetric, meaning that Q is equal to its transpose: $Q = Q^\top$.
-* For any non-zero vector x, the scalar value $x^\top Q x$ is positive. This means that $x^\top Q x > 0$ for any non-zero vector x.
-Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
-The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.
+A matrix $\Sigma$ is positive definite if it satisfies the following two conditions:
+* The matrix $\Sigma$ is symmetric, meaning that $\Sigma$ is equal to its transpose: $\Sigma = \Sigma^\top$.
+* For any non-zero vector x, the scalar value $x^\top \Sigma x$ is positive. This means that $x^\top \Sigma x > 0$ for any non-zero vector x.
+Geometrically, this means that the quadratic form defined by the matrix $\Sigma$ is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
+The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix $\Sigma$, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.
 :::
 
 To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
 The Lagrangian for this problem is given by:
 
 $$
-\mathcal{L} = 0.5 x^\top Q x + x^\top c-\lambda^\top(b-Ax)
+\mathcal{L} = 0.5 x^\top \Sigma x + x^\top c-\lambda^\top(b-Ax)
 $$
 
 Taking partial derivatives with respect to x and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:
 
 $$
-Q x + A^\top \lambda + c = 0, \text{  and } Ax-b = 0. 
+\Sigma x + A^\top \lambda + c = 0, \text{  and } Ax-b = 0. 
 $$
 
 :::{note}
@@ -309,8 +309,8 @@ We can obtain the optimal value of $x$ by solving these equations algebraically.
 
 $$
 \begin{align*}
-Q x &= -A^\top \lambda - c\\
-x &= -Q^{-1}A^\top \lambda - Q^{-1}c
+\Sigma x &= -A^\top \lambda - c\\
+x &= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c
 \end{align*}
 $$
 
@@ -319,8 +319,8 @@ Substituting this expression for x into the second equation yields:
 $$
 \begin{align*}
 &Ax-b = 0 \\
-&A(-Q^{-1}A^\top \lambda - Q^{-1}c)-b= 0 \\
-&\lambda = -(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)
+&A(-\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c)-b= 0 \\
+&\lambda = -(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)
 \end{align*}
 $$
 
@@ -328,10 +328,10 @@ Finally, we can substitute the value of λ into the expression for $x$ to obtain
 
 $$
 \begin{align*}
-x &= -Q^{-1}A^\top \lambda - Q^{-1}c \\
-  &= -Q^{-1}A^\top [-(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)] - Q^{-1}c \\
-  &= -Q^{-1}[ -A^\top(AQ^{-1}A^\top)^{-1}AQ^{-1} +I]c 
-  +Q^{-1}A^\top(AQ^{-1}A^\top)^{-1}b\\
+x &= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c \\
+  &= -\Sigma^{-1}A^\top [-(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)] - \Sigma^{-1}c \\
+  &= -\Sigma^{-1}[ -A^\top(A\Sigma^{-1}A^\top)^{-1}A\Sigma^{-1} +I]c 
+  +\Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 \end{align*}
 $$
 
