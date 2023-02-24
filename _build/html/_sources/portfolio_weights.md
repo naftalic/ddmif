@@ -562,9 +562,11 @@ variable equals 1, then the weight of stock $i$ will be forced to lie in the ran
 
 ```{code-cell}
 !pip install gurobipy
+```
+
+```{code-cell}
 import numpy as np
 import gurobipy as gp
-
 ```
 
 ```{code-cell}
