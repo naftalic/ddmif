@@ -560,8 +560,6 @@ print( np.round(w.value,3), np.round(prob.value,3))
 # In[ ]:
 
 
-get_ipython().system('pip install gurobipy')
-
 import numpy as np
 import gurobipy as gp
 
