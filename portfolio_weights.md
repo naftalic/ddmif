@@ -330,7 +330,6 @@ $$
 \begin{align*}
 x &= -Q^{-1}A^\top \lambda - Q^{-1}c \\
   &= -Q^{-1}A^\top [-(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)] - Q^{-1}c \\
-  
 \end{align*}
 $$
 
