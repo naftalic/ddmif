@@ -490,9 +490,18 @@ It's worth noting that we expressed the constraint $w_2 ≥ 0.10$ as $w_1+w_3+w_
 # Advanced Techniques for Quadratic Optimization
 While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.
 
+### Phantom weights
+In standard portfolio optimization problems, we typically only have $N$ unknowns, which are the portfolio weights. However, in certain nonstandard portfolio problems, it can be useful to introduce what we call "phantom weights." The idea of phantom weights is to create additional weights, in addition to the actual weights of the portfolio, that the optimizer will also find optimal values for. These additional weights can be used for various purposes, such as creating a set of buy and sell weights. For example, if the optimization problem has $N$ stocks, we can create an additional $2N$ weights, denoted as $b_1$ to $b_N$ and $s_1$ to $s_N$. With these additional weights, the new optimization problem becomes more complex, as we now have $3N$ weights to choose from. However, phantom weights offer many benefits in portfolio optimization. Often, the phantom weights have a specific relationship to the underlying weights, such as $b + s = 1$, where $b$ and $s$ are the buy and sell weights, respectively.
 
+### Binary weights
+In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., $b>0$ and $s>0$) is a wasteful solution. By creating binary variables and for each of the $N$ stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:
 
+Suppose one creates the following binary variables, $b_i$ and $s_i$ for each one of the $N$ stocks. One can then add a constraint of the following form:
 
+$$
+v_i^+\kappa_l \le b_i\ le v_i^+\kappa_h \\
+v_i^-\gamma_l \le s_i\ le v_i^-\gamma_h \\
+$$
 
-
+By setting κl = γl = 0 and κh = γh = 1, we allow the weights to fluctuate between 0 and 1, and the constraint ensures that the phantom weights are orthogonal. However, adding binary and phantom weights and constraints makes the optimization problem more complex and difficult to solve.
 
