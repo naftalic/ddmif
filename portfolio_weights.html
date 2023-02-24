@@ -233,6 +233,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/portfolio_weights.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -299,6 +328,23 @@ title="Open an issue"
   </button>
   <div class="menu-dropdown__content">
     <ul>
+      <li>
+        <a href="_sources/portfolio_weights.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
       <li>
         <a href="_sources/portfolio_weights.md"
    class="headerbtn"
@@ -454,6 +500,18 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">
      Quadraric programming with equality constraints
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-numerical-example">
+       A Numerical Example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
+     Quadraric programming with inequality constraints
+    </a>
    </li>
   </ul>
  </li>
@@ -570,6 +628,18 @@ title="Print to PDF"
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">
      Quadraric programming with equality constraints
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-numerical-example">
+       A Numerical Example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
+     Quadraric programming with inequality constraints
     </a>
    </li>
   </ul>
@@ -808,32 +878,218 @@ If there is no specific target tracking error or expected return, the problem ca
 <p>The general quadratic programming problem can be expressed as minimizing the function</p>
 <div class="math notranslate nohighlight">
 \[
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax\le b
+\min\limits_w 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw\le b
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> is the vector of unknowns, <span class="math notranslate nohighlight">\(Q\)</span> is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, <span class="math notranslate nohighlight">\(c\)</span> is a vector of coefficients related to the linear objective function, <span class="math notranslate nohighlight">\(A\)</span> is a matrix of coefficients for the constraints, and <span class="math notranslate nohighlight">\(b\)</span> is a vector of constraint values.</p>
-<p>This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, <span class="math notranslate nohighlight">\(Q\)</span> can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate <span class="math notranslate nohighlight">\(Q\)</span> is used.</p>
+<p>where <span class="math notranslate nohighlight">\(w\)</span> is the vector of unknowns, <span class="math notranslate nohighlight">\(\Sigma\)</span> is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, <span class="math notranslate nohighlight">\(c\)</span> is a vector of coefficients related to the linear objective function, <span class="math notranslate nohighlight">\(A\)</span> is a matrix of coefficients for the constraints, and <span class="math notranslate nohighlight">\(b\)</span> is a vector of constraint values.</p>
+<p>This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, <span class="math notranslate nohighlight">\(\Sigma\)</span> can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate <span class="math notranslate nohighlight">\(\Sigma\)</span> is used.</p>
 <p>Let’s examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.</p>
 <div class="section" id="quadraric-programming-with-equality-constraints">
 <h2>Quadraric programming with equality constraints<a class="headerlink" href="#quadraric-programming-with-equality-constraints" title="Permalink to this headline">#</a></h2>
 <p>In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:</p>
 <div class="math notranslate nohighlight">
 \[
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
+\min\limits_x 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw= b
 \]</div>
-<p>Given that matrix A is of full rank\footnote{A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
-A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.} and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:</p>
+<p>Given that matrix <span class="math notranslate nohighlight">\(A\)</span> is of full rank and matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is positive definite, a unique solution for <span class="math notranslate nohighlight">\(w\)</span> exists. By unique solution, we refer to a set of values for <span class="math notranslate nohighlight">\(w\)</span> that yields the minimum value of our objective function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
+A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.</p>
+<p>A matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is positive definite if it satisfies the following two conditions:</p>
 <ul class="simple">
-<li><p>The matrix Q is symmetric, meaning that Q is equal to its transpose: <span class="math notranslate nohighlight">\(Q = Q^\top\)</span>.</p></li>
-<li><p>For any non-zero vector x, the scalar value <span class="math notranslate nohighlight">\(x^\top Q x\)</span> is positive. This means that <span class="math notranslate nohighlight">\(x^\top Q x &gt; 0\)</span> for any non-zero vector x.
-Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a “bowl-shaped” surface.
-The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.}, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.</p></li>
+<li><p>The matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is symmetric, meaning that <span class="math notranslate nohighlight">\(\Sigma\)</span> is equal to its transpose: <span class="math notranslate nohighlight">\(\Sigma = \Sigma^\top\)</span>.</p></li>
+<li><p>For any non-zero vector <span class="math notranslate nohighlight">\(w\)</span>, the scalar value <span class="math notranslate nohighlight">\(x^\top \Sigma w\)</span> is positive. This means that <span class="math notranslate nohighlight">\(w^\top \Sigma w &gt; 0\)</span> for any non-zero vector <span class="math notranslate nohighlight">\(w\)</span>.
+Geometrically, this means that the quadratic form defined by the matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is always positive, and thus the matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> defines a “bowl-shaped” surface.
+The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix <span class="math notranslate nohighlight">\(\Sigma\)</span>, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.</p></li>
 </ul>
-<p>The Lagrangian for this problem is given by:</p>
-<p>Taking partial derivatives with respect to x and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:</p>
-<p>We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for λ, which gives:</p>
-<p>Substituting this expression for λ into the second equation yields:</p>
-<p>Finally, we can substitute the value of λ into the original expression for x to obtain a closed-form solution for x:</p>
-<p>where I is the identity matrix.</p>
+</div>
+<p>To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
+The Lagrangian for this problem is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L} = 0.5 w^\top \Sigma w + w^\top c-\lambda^\top(b-Aw)
+\]</div>
+<p>Taking partial derivatives with respect to <span class="math notranslate nohighlight">\(w\)</span> and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma w + A^\top \lambda + c = 0, \text{  and } Aw-b = 0. 
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Lagrange method is a powerful tool for solving constrained optimization problems. It involves introducing Lagrange multipliers to convert a constrained optimization problem into an unconstrained optimization problem. The method is named after Joseph Louis Lagrange, a celebrated mathematician and physicist who was a professor at the University of Turin in 1755 and later served as director of mathematics at the Berlin Academy of Science, succeeding Euler in this position.</p>
+</div>
+<p>We can obtain the optimal value of <span class="math notranslate nohighlight">\(w\)</span> by solving these equations algebraically. Specifically, we can start by solving the first equation for <span class="math notranslate nohighlight">\(w\)</span>, which gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\Sigma w &amp;= -A^\top \lambda - c\\
+w &amp;= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c
+\end{align*}
+\end{split}\]</div>
+<p>Substituting this expression for <span class="math notranslate nohighlight">\(w\)</span> into the second equation yields:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+&amp;Aw-b = 0 \\
+&amp;A(-\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c)-b= 0 \\
+&amp;\lambda = -(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)
+\end{align*}
+\end{split}\]</div>
+<p>Finally, we can substitute the value of λ into the expression for <span class="math notranslate nohighlight">\(w\)</span> to obtain a closed-form solution for <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+w &amp;= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c \\
+  &amp;= -\Sigma^{-1}A^\top [-(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)] - \Sigma^{-1}c \\
+  &amp;= -\Sigma^{-1}[ -A^\top(A\Sigma^{-1}A^\top)^{-1}A\Sigma^{-1} +I]c 
+  +\Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The identity matrix is a square matrix with ones on the diagonal and zeros elsewhere.</p>
+</div>
+<div class="section" id="a-numerical-example">
+<h3>A Numerical Example<a class="headerlink" href="#a-numerical-example" title="Permalink to this headline">#</a></h3>
+<p>In a portfolio risk-minimization problem, the objective is to minimize the variance of the portfolio for a given expected return level, subject to an equality constraint that the weights of the portfolio sum to 1. This can be translated into a quadratic optimization problem, where the risk of a portfolio is given by the variance-covariance matrix of the stock returns and the vector of stock weights. The mean return of the portfolio can be expressed as the dot product of the vector of mean returns and the vector of stock weights.</p>
+<p>To illustrate this, let’s consider a six-stock portfolio with known annualized mean returns and a variance-covariance matrix. We can construct the matrix A and vector b to reflect the equality constraint of summing to 1 by solve the following quadratic optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+A&amp;=
+\begin{bmatrix}
+1 &amp; \cdots &amp; 1 \\
+\mu_1 &amp; \cdots &amp; \mu_N \\
+\end{bmatrix}\\
+b &amp;=
+\begin{bmatrix}
+1 \\
+\mu_P \\
+\end{bmatrix}\\
+c &amp;= 0
+\end{align*}
+\end{split}\]</div>
+<p>It follows that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
+\end{align*}
+\end{split}\]</div>
+<p>To provide a detailed illustration of the application, let’s consider a simple portfolio consisting of six stocks. The annualized mean returns for these stocks are as follows: <span class="math notranslate nohighlight">\(μ_1\)</span> = 14.4, <span class="math notranslate nohighlight">\(μ_2\)</span> = 10.19, <span class="math notranslate nohighlight">\(μ_3\)</span> = 9.87, <span class="math notranslate nohighlight">\(μ_4\)</span> = 7.52, <span class="math notranslate nohighlight">\(μ_5\)</span> = 20.05, and <span class="math notranslate nohighlight">\(μ_6\)</span> = 2.66. The variances and covariances are expressed in percentage terms. For instance, the annualized variance for stock 1 is 452.33, which is equivalent to a variance of 452% per year (or a standard deviation of 21.26% per year). Finally, we select the value of <span class="math notranslate nohighlight">\(μ_P\)</span> to reflect an annualized return of 8%.</p>
+<p>Now, we can determine the optimal weights for the six stocks that will minimize the risk while achieving an expected mean return of 8% per year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">452.33</span><span class="p">,</span> <span class="mf">249.33</span> <span class="p">,</span> <span class="mf">189.23</span><span class="p">,</span> <span class="mf">70.75</span><span class="p">,</span>  <span class="mf">481.14</span> <span class="p">,</span> <span class="mf">106.5</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">249.33</span><span class="p">,</span> <span class="mf">1094.09</span><span class="p">,</span> <span class="mf">356.85</span><span class="p">,</span> <span class="mf">93.51</span> <span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">135.05</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">189.23</span><span class="p">,</span> <span class="mf">356.85</span> <span class="p">,</span> <span class="mf">617.57</span><span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">110.74</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">70.75</span> <span class="p">,</span> <span class="mf">93.51</span>  <span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">372.35</span><span class="p">,</span> <span class="mf">462.57</span> <span class="p">,</span> <span class="mf">107.52</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">481.14</span><span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">462.57</span><span class="p">,</span> <span class="mf">5658.42</span><span class="p">,</span> <span class="mf">425.35</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">106.5</span> <span class="p">,</span> <span class="mf">135.05</span><span class="p">,</span>  <span class="mf">110.74</span><span class="p">,</span> <span class="mf">107.52</span><span class="p">,</span> <span class="mf">425.35</span> <span class="p">,</span> <span class="mf">244.31</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 452.33  249.33  189.23   70.75  481.14  106.5 ]
+ [ 249.33 1094.09  356.85   93.51 1216.91  135.05]
+ [ 189.23  356.85  617.57  161.82 1304.29  110.74]
+ [  70.75   93.51  161.82  372.35  462.57  107.52]
+ [ 481.14 1216.91 1304.29  462.57 5658.42  425.35]
+ [ 106.5   135.05  110.74  107.52  425.35  244.31]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sigma</span><span class="o">.</span><span class="n">T</span><span class="o">==</span><span class="n">Sigma</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ True,  True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.    1.    1.    1.    1.  ]
+ [14.4  10.19  9.87  7.52 20.05  2.66]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">inv</span><span class="p">(</span> <span class="n">A</span> <span class="o">@</span> <span class="n">inv</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.30522103  0.05727213  0.20349517  0.27367711 -0.08463628  0.24497085]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">risk</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">risk</span><span class="p">),</span> <span class="p">[</span><span class="n">A</span><span class="nd">@w</span> <span class="o">==</span> <span class="n">b</span><span class="p">])</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">SCS</span><span class="p">)</span>   
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.30522105  0.05727212  0.20349515  0.27367711 -0.08463628  0.24497084] 152.2237804781498
+</pre></div>
+</div>
+</div>
+</div>
+<p>The optimal solution for a portfolio with a capital of <span class="math notranslate nohighlight">\(1 is to allocate \)</span>0.305 to stock 1, <span class="math notranslate nohighlight">\(0.057 to stock 2, \)</span>0.204 to stock 3, <span class="math notranslate nohighlight">\(0.274 to stock 4, short sell -\)</span>0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.</p>
+</div>
+</div>
+<div class="section" id="quadraric-programming-with-inequality-constraints">
+<h2>Quadraric programming with inequality constraints<a class="headerlink" href="#quadraric-programming-with-inequality-constraints" title="Permalink to this headline">#</a></h2>
+<p>The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.</p>
+<p>One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.</p>
+<p>While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.</p>
 </div>
 </div>
 

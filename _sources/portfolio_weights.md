@@ -1,3 +1,18 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # 7) Portfolio Weights
 
 In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.
@@ -259,12 +274,12 @@ subject to other additional constraints. It is important to note that the two fo
 The general quadratic programming problem can be expressed as minimizing the function 
 
 $$
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax\le b
+\min\limits_w 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw\le b
 $$ 
 
-where $x$ is the vector of unknowns, $Q$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
+where $w$ is the vector of unknowns, $\Sigma$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
 
-This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $Q$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $Q$ is used.
+This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, $\Sigma$ can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate $\Sigma$ is used.
 
 Let's examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.
 
@@ -272,25 +287,165 @@ Let's examine two special cases of the general quadratic optimization program. O
 In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:
 
 $$
-\min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
+\min\limits_x 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw= b
 $$ 
 
-Given that matrix A is of full rank\footnote{A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
-A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.} and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:
-* The matrix Q is symmetric, meaning that Q is equal to its transpose: $Q = Q^\top$.
-* For any non-zero vector x, the scalar value $x^\top Q x$ is positive. This means that $x^\top Q x > 0$ for any non-zero vector x.
-Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
-The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.}, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
+Given that matrix $A$ is of full rank and matrix $\Sigma$ is positive definite, a unique solution for $w$ exists. By unique solution, we refer to a set of values for $w$ that yields the minimum value of our objective function. 
 
+:::{note}
+A matrix $A$ is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
+A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.
+
+A matrix $\Sigma$ is positive definite if it satisfies the following two conditions:
+* The matrix $\Sigma$ is symmetric, meaning that $\Sigma$ is equal to its transpose: $\Sigma = \Sigma^\top$.
+* For any non-zero vector $w$, the scalar value $x^\top \Sigma w$ is positive. This means that $w^\top \Sigma w > 0$ for any non-zero vector $w$.
+Geometrically, this means that the quadratic form defined by the matrix $\Sigma$ is always positive, and thus the matrix $\Sigma$ defines a "bowl-shaped" surface.
+The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix $\Sigma$, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.
+:::
+
+To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
 The Lagrangian for this problem is given by:
 
-Taking partial derivatives with respect to x and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:
+$$
+\mathcal{L} = 0.5 w^\top \Sigma w + w^\top c-\lambda^\top(b-Aw)
+$$
 
-We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for λ, which gives:
+Taking partial derivatives with respect to $w$ and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:
 
-Substituting this expression for λ into the second equation yields:
+$$
+\Sigma w + A^\top \lambda + c = 0, \text{  and } Aw-b = 0. 
+$$
 
-Finally, we can substitute the value of λ into the original expression for x to obtain a closed-form solution for x:
+:::{note}
+The Lagrange method is a powerful tool for solving constrained optimization problems. It involves introducing Lagrange multipliers to convert a constrained optimization problem into an unconstrained optimization problem. The method is named after Joseph Louis Lagrange, a celebrated mathematician and physicist who was a professor at the University of Turin in 1755 and later served as director of mathematics at the Berlin Academy of Science, succeeding Euler in this position.
+:::
 
-where I is the identity matrix.
+We can obtain the optimal value of $w$ by solving these equations algebraically. Specifically, we can start by solving the first equation for $w$, which gives:
 
+$$
+\begin{align*}
+\Sigma w &= -A^\top \lambda - c\\
+w &= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c
+\end{align*}
+$$
+
+Substituting this expression for $w$ into the second equation yields:
+
+$$
+\begin{align*}
+&Aw-b = 0 \\
+&A(-\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c)-b= 0 \\
+&\lambda = -(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)
+\end{align*}
+$$
+
+Finally, we can substitute the value of λ into the expression for $w$ to obtain a closed-form solution for $w$:
+
+$$
+\begin{align*}
+w &= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c \\
+  &= -\Sigma^{-1}A^\top [-(A\Sigma^{-1}A^\top)^{-1}(A\Sigma^{-1}c+b)] - \Sigma^{-1}c \\
+  &= -\Sigma^{-1}[ -A^\top(A\Sigma^{-1}A^\top)^{-1}A\Sigma^{-1} +I]c 
+  +\Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
+\end{align*}
+$$
+
+where $I$ is the identity matrix.
+
+:::{note}
+The identity matrix is a square matrix with ones on the diagonal and zeros elsewhere. 
+:::
+
+### A Numerical Example
+In a portfolio risk-minimization problem, the objective is to minimize the variance of the portfolio for a given expected return level, subject to an equality constraint that the weights of the portfolio sum to 1. This can be translated into a quadratic optimization problem, where the risk of a portfolio is given by the variance-covariance matrix of the stock returns and the vector of stock weights. The mean return of the portfolio can be expressed as the dot product of the vector of mean returns and the vector of stock weights.
+
+To illustrate this, let's consider a six-stock portfolio with known annualized mean returns and a variance-covariance matrix. We can construct the matrix A and vector b to reflect the equality constraint of summing to 1 by solve the following quadratic optimization problem:
+
+$$
+\begin{align*}
+A&=
+\begin{bmatrix}
+1 & \cdots & 1 \\
+\mu_1 & \cdots & \mu_N \\
+\end{bmatrix}\\
+b &=
+\begin{bmatrix}
+1 \\
+\mu_P \\
+\end{bmatrix}\\
+c &= 0
+\end{align*}
+$$
+
+It follows that
+
+$$
+\begin{align*}
+w &= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
+\end{align*}
+$$
+
+To provide a detailed illustration of the application, let's consider a simple portfolio consisting of six stocks. The annualized mean returns for these stocks are as follows: $μ_1$ = 14.4, $μ_2$ = 10.19, $μ_3$ = 9.87, $μ_4$ = 7.52, $μ_5$ = 20.05, and $μ_6$ = 2.66. The variances and covariances are expressed in percentage terms. For instance, the annualized variance for stock 1 is 452.33, which is equivalent to a variance of 452% per year (or a standard deviation of 21.26% per year). Finally, we select the value of $μ_P$ to reflect an annualized return of 8%.
+
+Now, we can determine the optimal weights for the six stocks that will minimize the risk while achieving an expected mean return of 8% per year.
+
+```{code-cell}
+---
+mystnb:
+  figure:
+    align: center
+    caption_before: true
+    caption: This is my table caption, above the table
+---
+import numpy as np
+from numpy.linalg import inv
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+```
+
+```{code-cell}
+Sigma.T==Sigma
+```
+
+```{code-cell}
+A = np.array([[1,1,1,1,1,1],[14.4,10.19,9.87,7.52,20.05,2.66]])
+print(A)
+```
+
+```{code-cell}
+b = np.array([1, 8])
+print(b)
+```
+
+```{code-cell}
+w = inv(Sigma) @ A.T @ inv( A @ inv(Sigma) @ A.T) @ b
+print(w)
+```
+
+```{code-cell}
+import cvxpy as cp
+
+N = 6
+w = cp.Variable(N)
+risk = cp.quad_form(w, Sigma)
+prob = cp.Problem(cp.Minimize(risk), [A@w == b])
+prob.solve(solver=cp.SCS)   
+
+print( w.value, prob.value)
+```
+
+The optimal solution for a portfolio with a capital of $1 is to allocate $0.305 to stock 1, $0.057 to stock 2, $0.204 to stock 3, $0.274 to stock 4, short sell -$0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.
+
+
+## Quadraric programming with inequality constraints
+The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.
+
+One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.
+
+While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.
