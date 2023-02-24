@@ -513,7 +513,8 @@ By adding the constraints below, the resulting optimization can create a market-
 
 $$
 \begin{align*}
-& w_i = w_^+ - w_i^- \\
+& w_i = w_i^{+} - w_i^{-} \\
+& \sum\limits_{i=1}^N w_i^+ = \sum\limits_{i=1}^N w_i^-\\
 & w^+ \ge 0\\
 & w^- \ge 0\\
 \end{align*}
