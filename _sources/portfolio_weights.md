@@ -562,12 +562,12 @@ variable equals 1, then the weight of stock $i$ will be forced to lie in the ran
 
 ```{code-cell}
 !pip install gurobipy
-```
-
-```{code-cell}
 import numpy as np
 import gurobipy as gp
 
+```
+
+```{code-cell}
 # Define the matrix A and vector b
 A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
               [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
@@ -585,10 +585,15 @@ A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
               [0,0,0,0,0,-1,0,0,0,0,0,0.03]])
 
 print(A)
+```
 
+```{code-cell}
 b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
-print(v)
+print(b)
+```
 
+
+```{code-cell}
 Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
                   [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
                   [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
@@ -596,7 +601,11 @@ Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
                   [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
                   [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
 print(Sigma)
+```
 
+
+
+```{code-cell}
 # Create a GurobiPy model
 model = gp.Model()
 
@@ -626,4 +635,6 @@ if model.status == gp.GRB.OPTIMAL:
 else:
     print("No solution found.")
 ```
+
+
 
