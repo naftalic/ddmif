@@ -272,7 +272,7 @@ Let's examine two special cases of the general quadratic optimization program. O
 In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:
 
 $$
-\min\limits_x 0.5 w^\top \Sigma w + w^\top c \text{ s.t.} Aw= b
+\min\limits_x 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw= b
 $$ 
 
 Given that matrix $A$ is of full rank and matrix $\Sigma$ is positive definite, a unique solution for $w$ exists. By unique solution, we refer to a set of values for $w$ that yields the minimum value of our objective function. 
