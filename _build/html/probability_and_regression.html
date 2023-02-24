@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Probability and Regression Review &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -50,8 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Investment Competition" href="competition.html" />
-    <link rel="prev" title="The Fundamental Factor Model" href="factors_advanced.html" />
+    <link rel="prev" title="14) Portfolio Performance" href="portfolio_performance.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,37 +112,77 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="introduction.html">
-   Introduction
+   1) Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="basic_models.html">
-   Basic Models
+   2) Basic Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="factors.html">
-   Factors
+   3) Factors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="screening_and_ranking.html">
-   Stock Screening and Ranking
+   4) Stock Screening and Ranking
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="factors_advanced.html">
-   The Fundamental Factor Model
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_weights.html">
+   7) Portfolio Weights
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Probability and Regression Review
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="competition.html">
-   Investment Competition
   </a>
  </li>
 </ul>
@@ -464,10 +507,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="probability-and-regression-review">
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-and-regression-review">
 <h1>Probability and Regression Review<a class="headerlink" href="#probability-and-regression-review" title="Permalink to this headline">#</a></h1>
 <p>In this section, we cover the topic of probability and linear regression by first presenting the fundamental probability concepts such as expected value, variance, and covariance. Then, we examine how these concepts are applied in the context of linear regression. We delve into the underlying assumptions of the regression model and explore its statistical and distributional characteristics.</p>
-<div class="section" id="expected-value-variance-and-covariance">
+<section id="expected-value-variance-and-covariance">
 <h2>Expected value, variance, and covariance<a class="headerlink" href="#expected-value-variance-and-covariance" title="Permalink to this headline">#</a></h2>
 <p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.</p>
 <div class="math notranslate nohighlight">
@@ -513,8 +556,8 @@ C(X,Y) = E(XY) - E(X)E(Y).
 \[
 \text{Corr}(X,Y) = \dfrac{C(X,Y)}{\sqrt{V(X)V(Y)}}.
 \]</div>
-</div>
-<div class="section" id="population-model">
+</section>
+<section id="population-model">
 <h2>Population model<a class="headerlink" href="#population-model" title="Permalink to this headline">#</a></h2>
 <p>This section focuses on cross-sectional analysis, where we collect a random sample from the population of interest. We consider two variables, X and Y, and aim to examine the relationship between them. The model we use</p>
 <div class="math notranslate nohighlight">
@@ -547,8 +590,8 @@ E(u\mid x)=E(u) =0.
 E(y\mid x)=\beta_0+\beta_1x.
 \]</div>
 <p>which shows the population regression function is a linear function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
-</div>
-<div class="section" id="ordinary-least-squares-ols">
+</section>
+<section id="ordinary-least-squares-ols">
 <h2>Ordinary least squares (OLS)<a class="headerlink" href="#ordinary-least-squares-ols" title="Permalink to this headline">#</a></h2>
 <p>Given data on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, can we estimate the population parameters, <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>? Let the pairs of <span class="math notranslate nohighlight">\(\{(x_i,y_i): i=1,2,\dots,n\}\)</span> be random samples of size <span class="math notranslate nohighlight">\(n\)</span> from the population. Plug any observation <span class="math notranslate nohighlight">\(i\)</span> into the population equation to get <span class="math notranslate nohighlight">\(y_i=\beta_0+\beta_1x_i+u_i\)</span> where we observe <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> but not <span class="math notranslate nohighlight">\(u_i\)</span>.</p>
 <p>We now use the two population restrictions <span class="math notranslate nohighlight">\(E(u)=0\)</span> and <span class="math notranslate nohighlight">\(E(u\mid x)=0\)</span> to estimate <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>:</p>
@@ -600,8 +643,8 @@ the sample averages. Pluging <span class="math notranslate nohighlight">\(\wideh
 \[
 \sum_{i=1}^n \widehat{y_i} \widehat{u_i}=0.
 \]</div>
-</div>
-<div class="section" id="expected-value-of-ols">
+</section>
+<section id="expected-value-of-ols">
 <h2>Expected value of OLS<a class="headerlink" href="#expected-value-of-ols" title="Permalink to this headline">#</a></h2>
 <p>So far, we have used a population model to explain simple regression, but our analysis has only been based on a sample of data. The OLS estimator is used to calculate residuals, which average to zero in the sample, regardless of any underlying model. Now, we need to study the statistical properties of the OLS estimator in the context of a population model and random sampling.</p>
 <p>Mathematical statistics is concerned with the behavior of estimators across different samples of data. For example, if we repeat the sample multiple times, will we get the correct answer on average? The expected value of the OLS estimators, which represents the average outcome across all possible random samples, must be determined to determine whether the estimators are unbiased.</p>
@@ -659,8 +702,8 @@ It follows that,</p>
 \end{split}\]</div>
 <p>From the relationship between <span class="math notranslate nohighlight">\({\beta}_0\)</span> and <span class="math notranslate nohighlight">\({\beta}_1\)</span> it is easy to infer the unbiasness of <span class="math notranslate nohighlight">\(\widehat{\beta}_0\)</span>.
 Again, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the fixed constant in the population. The estimator, <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span>, varies across samples and is the random outcome: before we collect our data, we do not know what <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> will be. Under the four aforementioned assumptions we know that <span class="math notranslate nohighlight">\(E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0\)</span>.</p>
-</div>
-<div class="section" id="law-of-iterated-expectations-lie">
+</section>
+<section id="law-of-iterated-expectations-lie">
 <h2>Law of iterated expectations (LIE)<a class="headerlink" href="#law-of-iterated-expectations-lie" title="Permalink to this headline">#</a></h2>
 <p>The conditional expectation function (CEF) is a statistical tool that represents the mean outcome of a random variable for a given set of covariates. The CEF is denoted as E(Y|X), where Y is the outcome and X is the set of covariates. The CEF is a random variable as it depends on the value of the covariates X, which are also random.</p>
 <p>The CEF is a useful tool for modeling the relationship between the outcome and covariates, and it can take on different values for different values of X. In some special cases, such as when there are treatment variables, the CEF may take on two values.</p>
@@ -670,8 +713,8 @@ Again, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the fixe
 E(Y) = E(E(Y|X)).
 \]</div>
 <p>The LIE allows us to calculate the unconditional expectation of a variable by considering the expected value of the variable given different values of the covariates.</p>
-</div>
-<div class="section" id="cef-decomposition-property">
+</section>
+<section id="cef-decomposition-property">
 <h2>CEF decomposition property<a class="headerlink" href="#cef-decomposition-property" title="Permalink to this headline">#</a></h2>
 <p>The CEF decomposition theorem states that any random variable <span class="math notranslate nohighlight">\(Y\)</span> can be decomposed into a piece that is explained by <span class="math notranslate nohighlight">\(X\)</span> (the CEF) and a piece that is left over and orthogonal to it.
 For example, consider <span class="math notranslate nohighlight">\(y_i=E(y_i\mid x_i)+\epsilon_i\$, then the theorem argues that \)</span>\epsilon_i<span class="math notranslate nohighlight">\( is mean independent of \)</span>x_i<span class="math notranslate nohighlight">\(: \)</span>E(\epsilon_i\mid x_i)=0<span class="math notranslate nohighlight">\(, and that \)</span>\epsilon_i<span class="math notranslate nohighlight">\( is not correlated with any function of \)</span>x_i$. The first argument follows because</p>
@@ -696,11 +739,11 @@ E\[ h(x_i) \epsilon_i\]
 &amp;=0.
 \end{align}
 \end{split}\]</div>
-</div>
-<div class="section" id="cef-prediction-property">
+</section>
+<section id="cef-prediction-property">
 <h2>CEF prediction property<a class="headerlink" href="#cef-prediction-property" title="Permalink to this headline">#</a></h2>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -714,7 +757,7 @@ E\[ h(x_i) \epsilon_i\]
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -729,19 +772,12 @@ E\[ h(x_i) \epsilon_i\]
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="factors_advanced.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="portfolio_performance.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Fundamental Factor Model</p>
+            <p class="prev-next-title">14) Portfolio Performance</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="competition.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Investment Competition</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

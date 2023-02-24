@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>7) Portfolio Weights &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -742,27 +746,27 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="portfolio-weights">
+  <section class="tex2jax_ignore mathjax_ignore" id="portfolio-weights">
 <h1>7) Portfolio Weights<a class="headerlink" href="#portfolio-weights" title="Permalink to this headline">#</a></h1>
 <p>In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.</p>
 <p>There are several ways to generate stock weights, ranging from simple methods like equal weighting or market capitalization weighting to more complex techniques based on modern portfolio theory. For portfolio managers who manage against a benchmark, there are additional weighting possibilities, such as ensuring the weighted-average factor exposures of the portfolio match those of the benchmark or maximizing excess expected return while limiting tracking error.</p>
 <p>To minimize tracking error or risk when weighting stocks, the manager needs to know each stock’s expected return, risk or variance, and covariances among stocks. Additionally, the manager may want to impose constraints on the portfolio creation process, such as prohibiting short sales or upholding diversification rules. The manager can then use a quadratic optimizer to determine the optimal weights for the portfolio.</p>
 <p>We begin by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio’s total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="ad-hoc-methods">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ad-hoc-methods">
 <h1>Ad hoc methods<a class="headerlink" href="#ad-hoc-methods" title="Permalink to this headline">#</a></h1>
 <p>After selecting the stocks for a portfolio, there are several ad hoc methods for determining the portfolio weights. The two most common are equal weighting and value weighting.</p>
 <p>Equal weighting assigns the same weight to every stock, regardless of market capitalization or other factors. For example, if there are 10 stocks in the portfolio, each stock will have a weight of 0.1 (= 1/10). While this approach is simple and quick, it does not consider the expected returns or risks of the stocks and may not be suitable for portfolios where such information is available.</p>
 <p>Value weighting, on the other hand, assigns weights proportional to the stocks’ market capitalizations. For example, if the market capitalization of stock A is twice as great as that of stock B, then the weight of stock A will also be twice the weight of stock B. This method ensures that the portfolio’s performance matches that of the market average, but it still does not reflect the expected returns or risks of individual stocks.</p>
 <p>There are variations of value weighting, such as weighting stocks by the square root or cube root of their market capitalization, which reduces bias towards large stocks. Another ad hoc weighting method is price weighting, where the portfolio manager buys the same number of shares in each stock so that the weights are proportional to the stock prices. This is how the Dow Jones Industrial Average and the Nikkei 225 are calculated.</p>
 <p>Other ad hoc weighting methods may be used for benchmarked portfolios, which will be discussed later. Ultimately, the choice of weighting method will depend on the portfolio manager’s information and objectives.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="mean-variance-optimization-method">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mean-variance-optimization-method">
 <h1>Mean-variance optimization method<a class="headerlink" href="#mean-variance-optimization-method" title="Permalink to this headline">#</a></h1>
 <p>Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the ex-ante risks and expected returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio’s risk and return explicitly.</p>
 <p>However, MVO has its limitations, as estimation errors could result in overweighting certain outlier stocks with low variances or high means. To mitigate this risk, additional portfolio constraints, such as short-sale, diversification, or sector constraints, may be imposed to limit the maximum and minimum stock weights. It is crucial to strike a balance between the constraints to avoid contradiction.</p>
 <p>The portfolio manager’s role is to carefully evaluate the estimation errors and decide on the necessary constraints, while allowing the optimizer to handle the rest. Nonetheless, caution must be taken not to over-constrain the portfolio and avoid hindering the full investment of the portfolio.</p>
-<div class="section" id="no-constraints">
+<section id="no-constraints">
 <h2>No constraints<a class="headerlink" href="#no-constraints" title="Permalink to this headline">#</a></h2>
 <p>Using MVO without any additional constraints requires building a model of expected stock returns and risk, either by utilizing previously discussed models or by using commercial software models in combination with excess-return models. The portfolio manager begins by incorporating all relevant information about individual stock returns into a column vector μ and a matrix Σ, where μ represents the expected returns of individual stocks and Σ represents the variances and covariances of individual stock returns.
 Thus,</p>
@@ -792,8 +796,8 @@ C(r_N,r_1)  &amp; C(r_N,r_2) &amp;\cdots &amp; V(r_N)     \\
 <p>The expected return of the portfolio is given by <span class="math notranslate nohighlight">\(w^\top μ\)</span>, while the risk of the portfolio is represented by <span class="math notranslate nohighlight">\(w^\top Σw\)</span>, where <span class="math notranslate nohighlight">\(w^\top\)</span> represents the transpose of the weight vector. The portfolio with the minimum risk and expected return of <span class="math notranslate nohighlight">\(μ_P\)</span> is obtained by minimizing the objective function <span class="math notranslate nohighlight">\(w^\top Σw\)</span> while satisfying the constraint <span class="math notranslate nohighlight">\(w^\top μ = μ_P\)</span>. This is a quadratic optimization problem, and mathematicians have developed quadratic programming to solve it.</p>
 <p>The quadratic minimization problem with <strong>equality</strong> constraints can be rewritten as a set of linear constraints, which have a <strong>closed-form</strong> solution.</p>
 <p>To create a minimal-risk portfolio for a given level of expected return, we begin the optimization procedure using the expected return of the lowest expected return stock. We increment the mean return and repeat the optimization until we reach the expected return of the security with the highest mean return. We plot all the points in the diagram and connect them to produce the efficient frontier. The expected-return–expected-risk profile we desire can then be selected from the efficient frontier, and we can pick the weights of the corresponding stocks.</p>
-</div>
-<div class="section" id="short-sale-and-diversification-constraints">
+</section>
+<section id="short-sale-and-diversification-constraints">
 <h2>Short-Sale and Diversification Constraints<a class="headerlink" href="#short-sale-and-diversification-constraints" title="Permalink to this headline">#</a></h2>
 <p>Investment portfolio managers may face various constraints, such as legal restrictions or prospectus mandates, that limit their investment options. One of the main constraints faced by long-only portfolio managers is the short-sale restriction, which prohibits shorting securities. Mathematically, this restriction can be represented as the condition that each stock has a weight of at least zero:</p>
 <div class="math notranslate nohighlight">
@@ -809,16 +813,16 @@ For example,</p>
 \underline w \le w \le \overline w
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\underline w\)</span> and <span class="math notranslate nohighlight">\(\overline w\)</span>  are <span class="math notranslate nohighlight">\(N\)</span>-dimensional vectors of minimum and maximum allowed weights.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="sector-or-industry-constraints">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sector-or-industry-constraints">
 <h1>Sector or Industry Constraints<a class="headerlink" href="#sector-or-industry-constraints" title="Permalink to this headline">#</a></h1>
 <p>Portfolio managers, particularly those who manage against a benchmark, often aim to limit the sector weightings of their portfolio. To achieve this, a straightforward modification can be made to the framework by constraining the sector weightings using the following formula:</p>
 <div class="math notranslate nohighlight">
 \[
 \underline w_j \le w_j \le \overline w_j
 \]</div>
-<div class="section" id="trading-volume-constraint">
+<section id="trading-volume-constraint">
 <h2>Trading-Volume Constraint<a class="headerlink" href="#trading-volume-constraint" title="Permalink to this headline">#</a></h2>
 <p>One common constraint added to optimization by portfolio managers is the trading-volume constraint, which is particularly relevant when managing large portfolios that could have a significant price impact on the market. To avoid negative price impact, portfolio managers may restrict the holdings of each stock to a certain threshold amount, often a fraction of the average trading volume of each stock.</p>
 <p>For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as</p>
@@ -827,8 +831,8 @@ For example,</p>
 500w_i \le 0.1x_i
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(w_i\)</span> is the portfolio weight of stock <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> is the average trading volume of stock <span class="math notranslate nohighlight">\(i\)</span> measured in millions of dollars.</p>
-</div>
-<div class="section" id="risk-adjusted-return">
+</section>
+<section id="risk-adjusted-return">
 <h2>Risk-Adjusted Return<a class="headerlink" href="#risk-adjusted-return" title="Permalink to this headline">#</a></h2>
 <p>In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows: maximize <span class="math notranslate nohighlight">\(μ_P\)</span> subject to other constraints.
 The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level <span class="math notranslate nohighlight">\(σ_P\)</span>, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
@@ -845,34 +849,34 @@ For example,</p>
 \]</div>
 <p>subject to other constraints.</p>
 <p>This formulation can be useful in certain applications, as it allows the portfolio manager to balance the trade-off between expected return and risk.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="benchmark">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="benchmark">
 <h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">#</a></h1>
 <p>Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. <strong>The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it</strong>. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.</p>
-<div class="section" id="ad-hoc">
+<section id="ad-hoc">
 <h2>Ad hoc<a class="headerlink" href="#ad-hoc" title="Permalink to this headline">#</a></h2>
 <p>A straightforward way to ensure that a benchmarked portfolio closely tracks its benchmark is by using a simple weighting approach. This involves selecting the largest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to include 50 stocks, the 50 stocks with the largest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be computed based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.</p>
 <p>Several approaches exist for adjusting weights to favor preferred stocks. Assuming that the portfolio manager has used the aggregate z-score methodology explained earlier to rank stocks, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) equals zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as <span class="math notranslate nohighlight">\(z_\text{max}\)</span>. Third, compute the z-score multiplier <span class="math notranslate nohighlight">\(m = η/z_\text{max}\)</span>. Finally, compute the new weights of the portfolio using the formula <span class="math notranslate nohighlight">\((w_i + mz_i)\)</span>, where <span class="math notranslate nohighlight">\(w_i\)</span> represents the relative market capitalization weight within the benchmark. After completing these steps, the adjusted portfolio is ready.</p>
 <p>While selecting the largest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the optimal solution. This method does not consider minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark’s total market capitalization, making it an inefficient approach.</p>
 <p>While other ad hoc methods exist, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
-</div>
-<div class="section" id="stratification">
+</section>
+<section id="stratification">
 <h2>Stratification<a class="headerlink" href="#stratification" title="Permalink to this headline">#</a></h2>
 <p>Stratification, also known as stratified sampling, is a simple method for building portfolios while maintaining a basic risk control mechanism. It was originally developed for statisticians who wanted to understand the characteristics of a population without having to observe every member. The method involves dividing the stock universe into nonoverlapping groups, or strata, based on certain characteristics, such as industry or size. From each stratum, a proportion of stocks is chosen to create a representative sample of the universe, while minimizing risk exposure across multiple dimensions.</p>
 <p>To use stratification for portfolio management, the portfolio manager would first predict the excess returns of all stocks in the universe and then aim to choose high-alpha stocks while controlling risk versus the benchmark. After dividing the stock universe into strata, the manager would select representative stocks from each stratum based on some criterion, such as z-score or expected return. Suppose the stock universe is categorized by sectors and the portfolio manager needs to select four stocks from the transportation sector. In that case, the manager may opt to choose the stocks with the highest ranking based on future risk-adjusted returns.</p>
 <p>Although stratification provides a simple way to control risk through broad diversification, it lacks a precise, quantitative control mechanism. Professional portfolio managers may be hesitant to use stratification as it does not allow them to precisely quantify the risks they are taking. Overall, while stratification can be an effective method for some portfolio managers, it may not be the best solution for all.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="factor-exposure-targeting">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="factor-exposure-targeting">
 <h1>Factor exposure targeting<a class="headerlink" href="#factor-exposure-targeting" title="Permalink to this headline">#</a></h1>
 <p>One method of aligning the portfolio with the benchmark is to target the benchmark’s factor exposures as the desired factor exposures for the portfolio. Alternatively, the portfolio’s overall beta relative to the benchmark can be set to approximately 1. This ensures that the portfolio closely tracks the benchmark’s performance.</p>
 <p>The beta of a portfolio relative to its benchmark is calculated as the weighted average of the betas of the individual stocks in the portfolio. Specifically, let β be an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector representing the benchmark beta of each stock, where <span class="math notranslate nohighlight">\(β_i\)</span> is the beta of stock <span class="math notranslate nohighlight">\(i\)</span> with respect to the benchmark. The portfolio beta is then given by the product of the transpose of the portfolio weight vector, <span class="math notranslate nohighlight">\(w^\top\)</span>, and <span class="math notranslate nohighlight">\(β\)</span>. To ensure that the portfolio beta aligns with the benchmark, one approach is to set a constraint on the portfolio beta, such as requiring it to fall within a specified range: <span class="math notranslate nohighlight">\(0.9 \le w^\top β\le 1.1\)</span>. Alternatively, we could add a constraint to the optimization problem directly: <span class="math notranslate nohighlight">\( w^\top β=1\)</span>.</p>
 <p>To expand on the concept of targeting a portfolio’s benchmark beta, we can also specify a range for each of the portfolio’s other factor exposures. This is known as <strong>factor tilting</strong>, where the portfolio is adjusted to increase exposure to certain factors and decrease exposure to others based on market conditions and our view on the factors. For example, if a portfolio manager believes the market will rally, they may wish to have a higher market beta than the benchmark while keeping other factor exposures equal to the benchmark, thus tilting the portfolio towards the market factor.</p>
 <p>The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an <span class="math notranslate nohighlight">\(N x K\)</span> matrix <span class="math notranslate nohighlight">\(B\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the number of relevant factors, and <span class="math notranslate nohighlight">\(β_{i,k}\)</span> is the exposure of stock <span class="math notranslate nohighlight">\(i\)</span> to factor <span class="math notranslate nohighlight">\(k\)</span>. The factor exposure of a portfolio with weight <span class="math notranslate nohighlight">\(w\)</span> is simply <span class="math notranslate nohighlight">\(B^\top w\)</span>. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.</p>
 <p>By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="tracking-error-minimization">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tracking-error-minimization">
 <h1>Tracking-error minimization<a class="headerlink" href="#tracking-error-minimization" title="Permalink to this headline">#</a></h1>
 <p>Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the TE given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint.</p>
 <p>To minimize TE, portfolio managers use the standard deviation of portfolio returns minus benchmark returns:</p>
@@ -895,8 +899,8 @@ Hence,</p>
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma^\top = (C(r_1,r_B),\cdots, C(r_N,r_B))\)</span>.
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="tracking-by-factor-exposure">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tracking-by-factor-exposure">
 <h1>Tracking by factor exposure<a class="headerlink" href="#tracking-by-factor-exposure" title="Permalink to this headline">#</a></h1>
 <p>There exists an alternative, yet equivalent method to represent the tracking-error minimization issue. Recall that an individual stock <span class="math notranslate nohighlight">\(i\)</span>’s variance can be estimated as follows:</p>
 <div class="math notranslate nohighlight">
@@ -941,12 +945,12 @@ TE^2 = (w^P-w^B)^\top B V(f) B^\top (w^P-w^B)+(w^P-w^B)^\top V(\epsilon)^\top (w
 <p>where <span class="math notranslate nohighlight">\(w_P\)</span> and <span class="math notranslate nohighlight">\(w_B\)</span> are the weight of the portfolio and benchmark, respectively. By adding relevant constraints, this tracking-error minimization problem can be solved using a quadratic optimizer.</p>
 <p>When minimizing tracking error, the portfolio’s factor exposures will be very similar to those of the benchmark. Consequently, the first term on the right-hand-side of the above equation becomes less important than the second term. If the portfolio manager has predetermined values for the portfolio factor exposures, they may disregard the first term entirely. This results in a simpler optimization problem where the portfolio’s error term variance is minimized, subject to additional constraints on portfolio factor exposure. This is known as factor tilting.</p>
 <p>Suppose the portfolio manager desires to shift the portfolio towards small growth stocks while maintaining all other factor exposures identical to those of the benchmark. They may achieve this by setting the portfolio’s exposures to the size and growth factors higher than those of the benchmark while keeping the other factor exposures equal to the benchmark’s.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="ghost-benchmark-tracking">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ghost-benchmark-tracking">
 <h1>Ghost benchmark tracking<a class="headerlink" href="#ghost-benchmark-tracking" title="Permalink to this headline">#</a></h1>
 <p>Ghost benchmark tracking refers to a scenario where the portfolio manager lacks knowledge of the weights of the benchmark’s underlying securities or cannot estimate all the benchmark’s factor exposures. In such cases, the objective of minimizing tracking error involves minimizing the deviation of the portfolio’s historical returns from that of the benchmark.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="risk-adjusted-tracking-error">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="risk-adjusted-tracking-error">
 <h1>Risk-adjusted tracking error<a class="headerlink" href="#risk-adjusted-tracking-error" title="Permalink to this headline">#</a></h1>
 <p>Risk-adjusted tracking error is a common constraint that portfolio managers use to limit tracking error within a certain percentage, such as 3% per annum. To achieve this constraint, the portfolio manager can increase the expected excess return until the desired tracking error level is reached. This process is similar to what we discussed earlier, with the objective function being the expected return of the portfolio and the constraint being the tracking error. In example,</p>
 <div class="math notranslate nohighlight">
@@ -960,8 +964,8 @@ If there is no specific target tracking error or expected return, the problem ca
 \max\limits_w w^\top\mu -AV(r_P-r_B)
 \]</div>
 <p>subject to other additional constraints. It is important to note that the two formulations are related, and the maximum-return portfolios obtained from varying the target tracking error <span class="math notranslate nohighlight">\(σ_x\)</span> are identical to the optimal portfolios obtained by varying the tracking-error aversion parameter <span class="math notranslate nohighlight">\(A\)</span>. Therefore, if a commercial software package does not support maximizing the expected return subject to a quadratic constraint, the tracking-error-adjusted expected return can be maximized for a specific value of <span class="math notranslate nohighlight">\(A\)</span>, and the value of <span class="math notranslate nohighlight">\(A\)</span> can be changed iteratively until the tracking-error constraint is met.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="quadratic-programming">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="quadratic-programming">
 <h1>Quadratic programming<a class="headerlink" href="#quadratic-programming" title="Permalink to this headline">#</a></h1>
 <p>The general quadratic programming problem can be expressed as minimizing the function</p>
 <div class="math notranslate nohighlight">
@@ -971,7 +975,7 @@ If there is no specific target tracking error or expected return, the problem ca
 <p>where <span class="math notranslate nohighlight">\(w\)</span> is the vector of unknowns, <span class="math notranslate nohighlight">\(\Sigma\)</span> is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, <span class="math notranslate nohighlight">\(c\)</span> is a vector of coefficients related to the linear objective function, <span class="math notranslate nohighlight">\(A\)</span> is a matrix of coefficients for the constraints, and <span class="math notranslate nohighlight">\(b\)</span> is a vector of constraint values.</p>
 <p>This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, <span class="math notranslate nohighlight">\(\Sigma\)</span> can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate <span class="math notranslate nohighlight">\(\Sigma\)</span> is used.</p>
 <p>Let’s examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.</p>
-<div class="section" id="quadraric-programming-with-equality-constraints">
+<section id="quadraric-programming-with-equality-constraints">
 <h2>Quadraric programming with equality constraints<a class="headerlink" href="#quadraric-programming-with-equality-constraints" title="Permalink to this headline">#</a></h2>
 <p>In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:</p>
 <div class="math notranslate nohighlight">
@@ -1038,7 +1042,7 @@ w &amp;= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c \\
 <p class="admonition-title">Note</p>
 <p>The identity matrix is a square matrix with ones on the diagonal and zeros elsewhere.</p>
 </div>
-<div class="section" id="a-numerical-example">
+<section id="a-numerical-example">
 <h3>A Numerical Example<a class="headerlink" href="#a-numerical-example" title="Permalink to this headline">#</a></h3>
 <p>In a portfolio risk-minimization problem, the objective is to minimize the variance of the portfolio for a given expected return level, subject to an equality constraint that the weights of the portfolio sum to 1. This can be translated into a quadratic optimization problem, where the risk of a portfolio is given by the variance-covariance matrix of the stock returns and the vector of stock weights. The mean return of the portfolio can be expressed as the dot product of the vector of mean returns and the vector of stock weights.</p>
 <p>To illustrate this, let’s consider a six-stock portfolio with known annualized mean returns and a variance-covariance matrix. We can construct the matrix A and vector b to reflect the equality constraint of summing to 1 by solve the following quadratic optimization problem:</p>
@@ -1165,20 +1169,27 @@ w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.30522105  0.05727212  0.20349515  0.27367711 -0.08463628  0.24497084] 152.2237804781498
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">w</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;cvxpy&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <p>The optimal solution for a portfolio with a capital of $1 is to allocate $0.305 to stock 1, $0.057 to stock 2, $0.204 to stock 3, $0.274 to stock 4, short sell -$0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.</p>
-</div>
-</div>
-<div class="section" id="quadraric-programming-with-inequality-constraints">
+</section>
+</section>
+<section id="quadraric-programming-with-inequality-constraints">
 <h2>Quadraric programming with inequality constraints<a class="headerlink" href="#quadraric-programming-with-inequality-constraints" title="Permalink to this headline">#</a></h2>
 <p>The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.</p>
 <p>One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.</p>
 <p>While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>A Numerical Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>To further illustrate the application, we will continue with the previous numerical example and introduce some inequality constraints. We will use the active-set method to solve the problem. Specifically, we will add three inequality constraints that specify that the weights of each individual stock cannot be less than zero, except for stock 2, which cannot have a weight less than 0.10. Therefore, we have <span class="math notranslate nohighlight">\(w ≥ 0\)</span> and <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span>. These inequality constraints can be easily incorporated into the matrix <span class="math notranslate nohighlight">\(A\)</span>.
 The resulting optimization problem has the first two rows of <span class="math notranslate nohighlight">\(A\)</span> representing equality constraints and the last seven rows representing inequality constraints. The formulation of the problem is as follows:</p>
@@ -1197,29 +1208,11 @@ The resulting optimization problem has the first two rows of <span class="math n
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.    1.    1.    1.    1.  ]
- [14.4  10.19  9.87  7.52 20.05  2.66]
- [-1.    0.    0.    0.    0.    0.  ]
- [ 0.   -1.    0.    0.    0.    0.  ]
- [ 0.    0.   -1.    0.    0.    0.  ]
- [ 0.    0.    0.   -1.    0.    0.  ]
- [ 0.    0.    0.    0.   -1.    0.  ]
- [ 0.    0.    0.    0.    0.   -1.  ]
- [ 1.    0.    1.    1.    1.    1.  ]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.  8.  0.  0.  0.  0.  0.  0.  0.9]
 </pre></div>
 </div>
 </div>
@@ -1238,24 +1231,19 @@ The resulting optimization problem has the first two rows of <span class="math n
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.256  0.1    0.026  0.287 -0.     0.331] 183.076
-</pre></div>
-</div>
-</div>
 </div>
 <p>It’s worth noting that we expressed the constraint <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span> as <span class="math notranslate nohighlight">\(w_1+w_3+w_4+w_5+w_6 ≤ 0.90\)</span>. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="advanced-techniques-for-quadratic-optimization">
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="advanced-techniques-for-quadratic-optimization">
 <h1>Advanced Techniques for Quadratic Optimization<a class="headerlink" href="#advanced-techniques-for-quadratic-optimization" title="Permalink to this headline">#</a></h1>
 <p>While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.</p>
-<div class="section" id="phantom-weights">
+<section id="phantom-weights">
 <h2>Phantom weights<a class="headerlink" href="#phantom-weights" title="Permalink to this headline">#</a></h2>
 <p>In standard portfolio optimization problems, we typically only have <span class="math notranslate nohighlight">\(N\)</span> unknowns, which are the portfolio weights. However, in certain nonstandard portfolio problems, it can be useful to introduce what we call “phantom weights.” The idea of phantom weights is to create additional weights, in addition to the actual weights of the portfolio, that the optimizer will also find optimal values for. These additional weights can be used for various purposes, such as creating a set of buy and sell weights. For example, if the optimization problem has <span class="math notranslate nohighlight">\(N\)</span> stocks, we can create an additional <span class="math notranslate nohighlight">\(2N\)</span> weights, denoted as <span class="math notranslate nohighlight">\(b_1\)</span> to <span class="math notranslate nohighlight">\(b_N\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> to <span class="math notranslate nohighlight">\(s_N\)</span>. With these additional weights, the new optimization problem becomes more complex, as we now have <span class="math notranslate nohighlight">\(3N\)</span> weights to choose from. However, phantom weights offer many benefits in portfolio optimization. Often, the phantom weights have a specific relationship to the underlying weights, such as <span class="math notranslate nohighlight">\(b + s = 1\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(s\)</span> are the buy and sell weights, respectively.</p>
-</div>
-<div class="section" id="binary-weights">
+</section>
+<section id="binary-weights">
 <h2>Binary weights<a class="headerlink" href="#binary-weights" title="Permalink to this headline">#</a></h2>
 <p>In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., <span class="math notranslate nohighlight">\(b&gt;0\)</span> and <span class="math notranslate nohighlight">\(s&gt;0\)</span>) is a wasteful solution. By creating binary variables and for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:</p>
 <p>To incorporate binary variables as optimization weights, one can create <span class="math notranslate nohighlight">\(v_i^+\)</span> and <span class="math notranslate nohighlight">\(v_i^-\)</span> binary variables for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks. By adding the constraint</p>
@@ -1267,8 +1255,8 @@ The resulting optimization problem has the first two rows of <span class="math n
 \end{align*}
 \end{split}\]</div>
 <p>and setting <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, the weights can fluctuate between 0 and 1, and the constraint <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> ensures that the phantom weights are orthogonal. If <span class="math notranslate nohighlight">\(b_i&gt;0\)</span>, then <span class="math notranslate nohighlight">\(s_i=0\)</span> and vice versa for every stock <span class="math notranslate nohighlight">\(i\)</span>. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.</p>
-</div>
-<div class="section" id="market-neutrality-with-leverage-constraints">
+</section>
+<section id="market-neutrality-with-leverage-constraints">
 <h2>Market neutrality with leverage constraints<a class="headerlink" href="#market-neutrality-with-leverage-constraints" title="Permalink to this headline">#</a></h2>
 <p>Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:</p>
 <div class="math notranslate nohighlight">
@@ -1292,8 +1280,8 @@ These constraints ensure that the sum of the weights of the long stocks equals t
 \end{align*}
 \end{split}\]</div>
 <p>This would result in a portfolio with long exposure of 130% and short exposure of 30%.</p>
-</div>
-<div class="section" id="transactions-costs">
+</section>
+<section id="transactions-costs">
 <h2>Transactions costs<a class="headerlink" href="#transactions-costs" title="Permalink to this headline">#</a></h2>
 <p>When we want to rebalance a portfolio while considering transaction costs (or market impact), we can use phantom weights and binary variables to find an exact solution to the portfolio optimization problem. To do this, we need to add constraints to the optimization problem that consider the current weights of the portfolio represented by <span class="math notranslate nohighlight">\(w_b\)</span> and the target weights after rebalancing represented by <span class="math notranslate nohighlight">\(w_a\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1301,13 +1289,13 @@ These constraints ensure that the sum of the weights of the long stocks equals t
 w_i^a = w_i^b+w_i^+-w_i^-
 \]</div>
 <p>The relationship between the binary variables and the phantom weights is set such that <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, which allows the weights to fluctuate between 0 and 1. We also add the constraint that <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> to ensure the phantom weights are orthogonal. Stocks that have reduced weight from the prior portfolio will have negative net weights but positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^-\)</span>. We can multiply the transactions cost vector by their value. Conversely, stocks that have increased weight will have positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^+\)</span>, and can also be multiplied by the transactions cost vector. The final optimized weights of the portfolio will be <span class="math notranslate nohighlight">\(w_i\)</span>. In the case of transaction costs, the phantom weights serve as a mechanism to denote the change to the current weights, storing the positive changes in the positive phantom weights and the negative changes in the negative phantom weights. Both positive and negative phantom weights are positive, so the transaction cost vector remains positive, and the transaction cost rebalance problem is resolved.</p>
-</div>
-<div class="section" id="elimination-of-small-weight-stocks">
+</section>
+<section id="elimination-of-small-weight-stocks">
 <h2>Elimination of small-weight stocks<a class="headerlink" href="#elimination-of-small-weight-stocks" title="Permalink to this headline">#</a></h2>
 <p>Portfolio managers may want to reduce the number of securities in their portfolio, which can be achieved by constructing an optimized portfolio that forces individual stock weights to be above a minimum or below a maximum weight. However, the traditional method of adding inequality constraints to optimize weights may not always result in a solution, as it forces all stocks to be within a given range, which may not be optimal. The use of binary variables can create an optimization that limits the optimizer to find weights between the minimum and maximum or forces the weight of a particular stock to zero. This results in more successful optimizations and aligns better with the portfolio manager’s thought process.</p>
 <p>To illustrate, we will focus on the situation where all stock weights should be between a lower bound (<span class="math notranslate nohighlight">\(\kappa_l\)</span>) and an upper bound (<span class="math notranslate nohighlight">\(\kappa_h\)</span>) for the long portion of the portfolio. Using the inequality relationship of the binary variables and phantom weights, we can set <span class="math notranslate nohighlight">\(v_i^+\kappa_l \le b_i \le v_i^+\kappa_h\)</span> and <span class="math notranslate nohighlight">\(v_i^-\gamma_l \le s_i \le v_i^-\gamma_h\)</span>. Once we specify the values for <span class="math notranslate nohighlight">\(\kappa_l\)</span>, <span class="math notranslate nohighlight">\(\gamma_l\)</span>, <span class="math notranslate nohighlight">\(\kappa_h\)</span>, and <span class="math notranslate nohighlight">\(\gamma_h\)</span>, we can effectively achieve our goal. If the portfolio is only a long portfolio, phantom weights are not needed, and we should construct one set of binary variables with respect to the actual weights, <span class="math notranslate nohighlight">\(w_i\)</span>. The binary variables can be either 0 or 1, and the weights of the portfolio will be selected to be within the minimum and maximum weights or set to zero.</p>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h2>A numerical example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.</p>
 <p>The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector <span class="math notranslate nohighlight">\(x\)</span>), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
@@ -1315,7 +1303,7 @@ restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. Tha
 variable equals 1, then the weight of stock <span class="math notranslate nohighlight">\(i\)</span> will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then <span class="math notranslate nohighlight">\(v_i^+= 0\)</span> and <span class="math notranslate nohighlight">\(w_i\)</span> will also be equal to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install gurobipy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gurobipy
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
@@ -1380,32 +1368,9 @@ variable equals 1, then the weight of stock <span class="math notranslate nohigh
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: Could not find a version that satisfies the requirement gurobipy (from versions: none)</span>
-<span class=" -Color -Color-Red">ERROR: No matching distribution found for gurobipy</span>
-</pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;pip install gurobipy&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Define the matrix A and vector b</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>               <span class="p">[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>               <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">]])</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;gurobipy&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1419,7 +1384,7 @@ variable equals 1, then the weight of stock <span class="math notranslate nohigh
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

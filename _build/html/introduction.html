@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>1) Introduction &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -478,7 +482,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>1) Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>There are two major categories of quantitative equity portfolio management: active and passive. Passive approach, also known as indexing, aims to track a well-known index, such as the S&amp;P 500, and minimize the tracking error. Active approach aims to outperform a benchmark or provide an absolute return without any reference to an index.</p>
 <p>Investors can access active or passive portfolios through mutual funds, ETFs, or building their own portfolios. Major equity benchmarks for portfolio managers include <a class="reference external" href="https://en.wikipedia.org/wiki/S%26P_500">S&amp;P 500</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Russell_3000_Index">Russell 3000</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Wilshire_5000">Wilshire 5000</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Nasdaq-100">NASDAQ-100</a>, and MSCI USA.</p>
@@ -487,8 +491,8 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p>A qualitative portfolio manager faces challenges in replicating an index portfolio as it can be expensive to purchase all the stocks in the benchmark with the exact weights. Instead, they usually buy a subset of stocks similar to the benchmark, but risk management requires a quantitative risk model. Quantitative tools are essential for indexing, while a quantitative portfolio manager can use these tools to manage risk and replicate an index portfolio more efficiently.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="fundamentals">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fundamentals">
 <h1>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Alpha_(finance)">Alpha</a> is a key measure in quantitative finance used to evaluate the performance of an investment relative to a benchmark index. It represents the excess return of an investment over the benchmark after adjusting for risk. Alpha helps investors determine if the portfolio manager or investment strategy has produced returns through skill or luck.</p>
 <p>There are two types of alpha: benchmark alpha and multi-factor alpha. Benchmark alpha measures the return of a portfolio not linked to the benchmark’s risk, while multi-factor alpha is a more generalized form that measures the return not linked to multiple factors’ risk. The equations for benchmark alpha and multi-factor alpha are: <span class="math notranslate nohighlight">\(r_p = α + β_pr_b + ϵ\)</span> and <span class="math notranslate nohighlight">\(r_p = α + β_1f_1 +...+β_Kf_K +ϵ = α + β\cdot f +ϵ\)</span> respectively.</p>
@@ -499,8 +503,8 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p>Although the return of the portfolio minus the benchmark return is often used by investors to calculate alpha, this measure is not frequently used in quantitative finance because quantitative managers recognize that when the market is on an upswing, higher returns can be obtained by taking on more risk. Thus, to evaluate a manager’s skill in managing a portfolio, it is more relevant to consider risk-adjusted returns.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-market-rules">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-market-rules">
 <h1>The Market Rules<a class="headerlink" href="#the-market-rules" title="Permalink to this headline">#</a></h1>
 <p>Investing in financial markets is a complex and challenging task that requires a deep understanding of various market rules and principles. The market rules, as stated here, are widely accepted and followed by investors, portfolio managers, and traders around the world. These rules help provide a framework for making informed investment decisions and maximizing returns while mitigating risk.</p>
 <ul class="simple">
@@ -510,8 +514,8 @@ title="Print to PDF"
 <li><p><strong>Quantitative Analysis must be based on solid economic theories and reflect persistent patterns:</strong> To be effective, quantitative analysis must be based on solid economic theories and reflect persistent patterns in the data. This means that the investment strategies used must be backed by research and analysis and be able to withstand changing market conditions.</p></li>
 <li><p><strong>Deviations from the benchmark are acceptable only if they come with manageable uncertainty:</strong> Investors often use benchmark portfolios as a reference point for their own investments. Deviations from the benchmark are acceptable only if they are accompanied by manageable levels of uncertainty and the potential for a higher return. This is because investors are willing to take on additional risk if they believe that the reward is worth it.</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="market-efficiencies">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="market-efficiencies">
 <h1>Market Efficiencies<a class="headerlink" href="#market-efficiencies" title="Permalink to this headline">#</a></h1>
 <p>We generaly distingish between three forms of market efficiencies:</p>
 <ul class="simple">
@@ -525,16 +529,16 @@ title="Print to PDF"
 <li><p><strong>Semi-strong form efficiency:</strong> This can be tested by looking for anomalies such as earnings surprise persistence, January effect, low P/B, P/E ratios, and neglected firm effects (e.g. small cap stocks).</p></li>
 <li><p><strong>Strong form efficiency:</strong> This is challenging to test, but one way is to analyze insider trading transactions, limit order book data, and employee stock grants.</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="market-anomalies">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="market-anomalies">
 <h1>Market Anomalies<a class="headerlink" href="#market-anomalies" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p><strong>Defining “normal” returns:</strong> To determine if a strategy violates market efficiency, it’s necessary to define what is considered a “normal” or “expected” return. This can be done by using a zero-investment portfolio or a security pricing model (e.g. CAPM).</p></li>
 <li><p><strong>Testing strategy returns:</strong> Using historical data, a strategy can be created and tested for excess returns that are statistically significant. For example, creating an equal-weight portfolio of stocks whose analyst ratings improved in the last month and running a regression analysis.</p></li>
 </ul>
 <p>When testing for anomalies, it’s important to be aware of data limitations and to ensure good organization of the data. A good knowledge of statistics and attention to detail is also critical to avoid mistakes in the analysis.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="documented-market-anomalies">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="documented-market-anomalies">
 <h1>Documented Market Anomalies<a class="headerlink" href="#documented-market-anomalies" title="Permalink to this headline">#</a></h1>
 <p>Despite market efficiency, there are systematic anomalies that persist and can be profitable. Some examples include:</p>
 <ul class="simple">
@@ -564,8 +568,8 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
 <p class="admonition-title">Note</p>
 <p>The P/B anomaly, P/E anomaly, size anomaly, and January effect are most susceptible to data mining or data snooping. While there have been several studies on the P/B and size anomalies since the original work by Fama and others, the P/E anomaly and January effect have also been well-documented. Nearly every quantitative portfolio manager and academic is aware of these factors either through their own testing or reading about them.</p>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="behavioral-anomalies">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="behavioral-anomalies">
 <h1>Behavioral Anomalies<a class="headerlink" href="#behavioral-anomalies" title="Permalink to this headline">#</a></h1>
 <p>Behavioral finance is a branch of finance that considers psychological and behavioral factors in investment decisions, leading to outcomes that differ from those predicted by rational decision-making theories. It recognizes profitable opportunities from investors’ behavior.</p>
 <p>Documented anomalies:</p>
@@ -582,8 +586,8 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
 <li><p><strong>Narrow framing</strong>: Investors may consider investments in isolation, rather than considering them in the context of a portfolio or broader market trends. This can result in suboptimal decisions and a failure to consider risk and diversification.</p></li>
 <li><p><strong>Overconfidence</strong>: Investors may overestimate their abilities and have an over-confidence in their investment decisions, leading to frequent trades and high transaction costs. This can result in poor investment outcomes, as they may be acting on emotions rather than rational analysis.</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="why-is-market-efficiency-imperfect">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="why-is-market-efficiency-imperfect">
 <h1>Why is market efficiency imperfect?<a class="headerlink" href="#why-is-market-efficiency-imperfect" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p><strong>Information asymmetry</strong>: Information is not equally accessible to all market participants. Some investors have more resources or expertise to obtain or analyze information. This can lead to a difference in opinion and cause market inefficiencies.</p></li>
@@ -597,8 +601,8 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
 <li><p><strong>Taxation</strong>: Taxation policies can affect market performance and create inefficiencies. For example, taxes on capital gains can impact the decisions of investors and create price differences between taxed and untaxed markets.</p></li>
 <li><p><strong>Government regulations</strong>: Government regulations, such as market manipulation laws, can create deviations from ideal economic models. For example, regulations can reduce the information available to market participants and increase transactions costs, leading to market inefficiencies.</p></li>
 </ul>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="brief-history-of-financial-theory">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="brief-history-of-financial-theory">
 <h1>Brief history of financial theory<a class="headerlink" href="#brief-history-of-financial-theory" title="Permalink to this headline">#</a></h1>
 <p>The modern financial theory has a history of over 100 years, starting from Bachelier’s work in 1900 to today’s portfolio risk measurement. The growth of quantitative equity portfolio management was accelerated by technological and theoretical advances in the late 20th century, but it’s based on a vast literature of modern portfolio theory. Despite being widely used, many practitioners may not be aware of its origin. Here’s a brief overview of the progress in investment philosophy. Knowledge of modern portfolio theory is valuable for both practitioners and students of finance, even if they later question its parts.</p>
 <p>Louis Bachelier, a French mathematician, wrote “The Theory of Speculation” in 1900 and laid the foundation for dynamic security pricing. He showed that prices fluctuate randomly, making predictions impossible. In the 1930s, Alfred Cowles III found no evidence of professionals’ ability to outperform the market after examining thousands of stock selections. This supports the notion that trying to predict the market was no better than flipping a coin.</p>
@@ -609,7 +613,7 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
 <p>The CAPM theory claimed that stock returns could be predicted based on market risk exposure, but Paul Samuelson’s “Proof that Properly Anticipated Prices Fluctuate Randomly” (1965) showed that prices couldn’t be forecasted if properly anticipated. Michael Jensen’s 1968 study found that actively managed mutual funds underperformed the market, and past performance didn’t predict future performance. Eugene Fama defined and found evidence for market efficiency in 1970, with weak form efficiency meaning past prices can’t predict future prices, semistrong meaning publicly available information can’t forecast stock prices, and strong meaning even private information can’t predict stock prices. Fama found extensive evidence for the semistrong and strong forms of market efficiency, but recent evidence suggests deviations from efficiency exist (market anomalies).</p>
 <p>The greatest invention in financial theory was the Black-Scholes options pricing model, developed by Fischer Black and Myron Scholes in the 1960s. They based the formula on the Capital Asset Pricing Model (CAPM), but found that the price of an option didn’t depend on the expected return of a stock. Robert Merton provided a more elegant derivation of Black-Scholes, which is now widely used to value options. The Arbitrage Theory of Capital Asset Pricing (APT) proposed by Stephen Ross in 1976 was an alternative to the CAPM that allowed for multiple factors instead of one and took into account non-diversifiable risk. In 1992, Eugene Fama and Kenneth French published a three-factor APT model for stock returns that explained 95% of the variability in stock returns (market risk, company size, and book-to-market ratio). Researchers later added a fourth factor, momentum, to the Fama-French model. Today, many academics and practitioners use either a three- or four-factor APT model to explain stock returns.</p>
 <p>The growth of financial quantitative research since the 1990s is due to advancements in technology and the development of financial theory. The multifactor model of stock returns is widely used by quantitative managers to forecast returns and manage portfolio risk, and it’s becoming a more influential tool in performance measurement. However, financial theory also defines the limits of quantitative research’s use and raises questions about its effectiveness. For example, if the market is weak-form efficient, quantitative research’s arbitrage opportunities may be limited. Financial theory provides valuable insights, but investors must understand its implications to make informed decisions.</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -623,7 +627,7 @@ The Analyst Forecasts Effect refers to the observation that stocks with “buy�
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

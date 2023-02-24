@@ -85,7 +85,7 @@ df
 # 
 # The overall RPS for multiple submission points $t_1$ to $t_2$ is $$RPS_{t_1-t_2}=\frac{1}{N(t_2-t_1+1)}\sum_{t=t_1}^{t_2}\sum_{i=1}^{N}RPS_{i,t}.$$
 
-# In[2]:
+# In[ ]:
 
 
 #Example
@@ -97,7 +97,7 @@ q = np.cumsum(np.array([[0,0,0,1,0]]), axis=1)
 np.sum((q-f)**2,axis=1)/f.shape[1]
 
 
-# In[3]:
+# In[ ]:
 
 
 #Example
@@ -107,7 +107,7 @@ f = np.array([[0,0,0,0.25,0.75],[0.2,0.2,0.2,0.2,0.2],[0,0,0.25,0.5,0.25],[0,0.2
 pd.DataFrame(data = f)
 
 
-# In[4]:
+# In[ ]:
 
 
 #Example
@@ -117,7 +117,7 @@ q = np.array([[0,0,0,0,1],[0,0,0,1,0],[0,0,1,0,0],[0,1,0,0,0],[1,0,0,0,0],      
 pd.DataFrame(data = q)
 
 
-# In[5]:
+# In[ ]:
 
 
 def forecast_performance(f,q):
@@ -165,7 +165,7 @@ forecast_performance(f,q)
 # $$IR_{t_1:t_2}=\frac{252/5\times 0.01}{\sqrt{252}\times 0.01}=0.79.$$
 # Note that in this example, as in all our investment performance assessments, daily returns on investment decisions are utilized. This allows for more degrees of freedom when calculating the standard deviation, providing a more accurate representation of the investment's performance over the given period.
 
-# In[6]:
+# In[ ]:
 
 
 # Example
@@ -224,7 +224,7 @@ decision_performance(S, w)
 # * Sum of absolute values of "decision" column must be <= 1
 # * Use a copy of the notebooks, do not edit provided notebooks unless necessary.
 
-# In[7]:
+# In[ ]:
 
 
 get_ipython().system('pip install yfinance')

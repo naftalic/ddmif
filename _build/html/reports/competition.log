@@ -17,24 +17,23 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import cvxpy as cp
+import numpy as np
+import matplotlib.pyplot as plt
 
-N = 6
-w = cp.Variable(N)
-risk = cp.quad_form(w, Sigma)
-prob = cp.Problem(cp.Minimize(risk), [A@w == b])
-prob.solve(solver=cp.SCS)   
+w = np.linspace(0,1,100)
+sr = (2*w+(1-w))/np.sqrt(20*w**2+10*(1-w)**2)
 
-print( w.value, prob.value)
+print( w[np.argmax(sr)], np.max(sr) )
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[6], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mcvxpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mcp[39;00m
-[1;32m      3[0m N [38;5;241m=[39m [38;5;241m6[39m
-[1;32m      4[0m w [38;5;241m=[39m cp[38;5;241m.[39mVariable(N)
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      4[0m w [38;5;241m=[39m np[38;5;241m.[39mlinspace([38;5;241m0[39m,[38;5;241m1[39m,[38;5;241m100[39m)
+[1;32m      5[0m sr [38;5;241m=[39m ([38;5;241m2[39m[38;5;241m*[39mw[38;5;241m+[39m([38;5;241m1[39m[38;5;241m-[39mw))[38;5;241m/[39mnp[38;5;241m.[39msqrt([38;5;241m20[39m[38;5;241m*[39mw[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39m[38;5;241m10[39m[38;5;241m*[39m([38;5;241m1[39m[38;5;241m-[39mw)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)
 
-[0;31mModuleNotFoundError[0m: No module named 'cvxpy'
-ModuleNotFoundError: No module named 'cvxpy'
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
 

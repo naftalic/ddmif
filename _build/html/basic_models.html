@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>2) Basic Models &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -128,18 +132,58 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="portfolio_weights.html">
    7) Portfolio Weights
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="competition.html">
-   Investment Competition
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
 </ul>
@@ -464,13 +508,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="basic-models">
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-models">
 <h1>2) Basic Models<a class="headerlink" href="#basic-models" title="Permalink to this headline">#</a></h1>
 <p>The Fundamental Factor Model aims to explain a stock’s expected return based on its fundamental characteristics, such as price-to-earnings ratio, market capitalization, and other financial metrics. The idea is that these characteristics are proxies for the underlying risk and growth prospects of a company, which in turn determines the expected return.</p>
 <p>The Economic Factor Model, on the other hand, uses macroeconomic variables such as gross domestic product (GDP) and inflation as factors to explain expected returns. The premise is that macroeconomic conditions drive the performance of the overall economy, and in turn, affect the expected return of individual stocks. This type of model can also incorporate other factors, such as sector-specific variables, to provide a more comprehensive view of a stock’s expected return.</p>
 <p>Both types of factor models are used by quantitative investors to help inform investment decisions. The models provide a systematic way to analyze risk and reward and identify which stocks are likely to outperform based on their factor exposures. However, it’s important to note that factor models are not perfect, and past performance does not guarantee future returns. Additionally, changes in economic conditions and company fundamentals can impact the expected return of a stock, and the factor model must be updated to reflect these changes.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="fundamental-and-economic-factor-models">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fundamental-and-economic-factor-models">
 <h1>Fundamental and economic factor models<a class="headerlink" href="#fundamental-and-economic-factor-models" title="Permalink to this headline">#</a></h1>
 <p>The fundamental factor model and the economic factor model are two models that aim to explain the average stock return as the product of the factor premium (<span class="math notranslate nohighlight">\(f_k\)</span>) and the factor exposure (<span class="math notranslate nohighlight">\(β_{ik}\)</span>). However, there are some similarities and differences between the two models.</p>
 <ul class="simple">
@@ -483,16 +527,16 @@ The factor premium operates differently in the two models. In the fundamental fa
 </ul>
 <p>The economic factor model is considered better than the fundamental factor model because it measures the sensitivity of stocks to various economic risk factors, rather than relying on exposures as proxies for risk. The fundamental factor model, while it may be equivalent to the economic factor model if the relationship between stock returns and fundamental factor exposures is linear, is lacking in theoretical backing and econometric justification if the relationship is not linear, leading to a misspecified cross-sectional regression and incorrect estimation of the relationship. The economic factor model is therefore seen as a more accurate measure of underlying stock risk.</p>
 <p>Both the fundamental factor model and the economic factor model attempt to explain stock returns by the product of the factor premium and exposure. However, the two models differ in the way factor exposures and premiums are determined and estimated.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="modeling-stock-returns">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-stock-returns">
 <h1>Modeling Stock Returns<a class="headerlink" href="#modeling-stock-returns" title="Permalink to this headline">#</a></h1>
 <p>The equation for modeling stock returns is known as the Capital Asset Pricing Model (CAPM), which is a widely used model in finance for explaining the relationship between stock returns and systematic risk. The model assumes that each stock’s return can be decomposed into two components:</p>
 <p>A stock-specific component (<span class="math notranslate nohighlight">\(α_i\)</span>) which is uncorrelated with the market and represents the expected return of the stock that is not related to systematic risk factors.</p>
 <p>A market-related component (<span class="math notranslate nohighlight">\(β_{i1}f_1 + β_{i2}f_2 + ... + β_{iK}f_K\)</span>) that represents the stock’s exposure to systematic risk factors (<span class="math notranslate nohighlight">\(f_1, f_2, ..., f_K\)</span>). Each factor’s return contributes to the stock’s return in proportion to the factor’s sensitivity to the stock, represented by <span class="math notranslate nohighlight">\(β_i\)</span>.</p>
 <p>The term <span class="math notranslate nohighlight">\(ϵ_i\)</span> represents the residual, which is the difference between the actual stock return and the expected return given by the model. The residual represents the unsystematic risk, which is unique to each stock and can be diversified away by holding a well-diversified portfolio.</p>
 <p>The CAPM can be used to determine the expected return and risk of each stock and portfolio, and then choose the optimal portfolio based on the results. The optimal portfolio is the one that maximizes expected returns for a given level of risk or minimizes risk for a given level of expected returns. This process is known as Modern Portfolio Theory (MPT) and it is a cornerstone of quantitative investing.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="modeling-process">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-process">
 <h1>Modeling process<a class="headerlink" href="#modeling-process" title="Permalink to this headline">#</a></h1>
 <p>The steps to form a model and make a portfolio are a process of choosing and analyzing various factors to estimate the expected return and risk of each stock and portfolio. The goal is to make informed investment decisions based on data and mathematical models.</p>
 <ul class="simple">
@@ -504,14 +548,14 @@ The factor premium operates differently in the two models. In the fundamental fa
 <li><p>Finally, the portfolio is weighted based on the investment objective and the forecast for future performance. This includes considering past data versus future data, factor exposure stability, and changes in factor premiums.</p></li>
 </ul>
 <p>In conclusion, the steps to form a model and make a portfolio involve a systematic process of choosing and analyzing factors, selecting data, and estimating expected returns and risks to make informed investment decisions.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="screening-and-ranking-stocks">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="screening-and-ranking-stocks">
 <h1>Screening and Ranking Stocks<a class="headerlink" href="#screening-and-ranking-stocks" title="Permalink to this headline">#</a></h1>
 <p>A stock screening technique involves using specific criteria to identify stocks that meet certain investment goals. This technique is simpler than using a formal model, as it doesn’t require in-depth analysis of factors and their exposures. Instead, it focuses on easily obtainable data points such as earnings growth, dividend yield, P/E ratio, or market capitalization.</p>
 <p>Z-scores are a measure of how far a value is from the mean, expressed in terms of the standard deviation. In the context of stock selection, Z-scores can be used to rank stocks based on their deviation from the mean return of a particular factor, such as earnings growth or P/E ratio. Z-scores can help identify stocks that are undervalued or overvalued compared to their peers and provide a simple way to screen and rank stocks based on a specific factor.</p>
 <p>While these techniques are quick and convenient, they may not provide a complete picture of a stock’s risk and reward profile, and may not account for the dynamic relationships between different factors. Portfolio managers may opt to use a combination of these techniques and formal models to select stocks for their portfolio.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="exercise">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise">
 <h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h1>
 <p>You are given a world with two stocks, Stock A and Stock B. The returns of the stocks in the next period, <span class="math notranslate nohighlight">\(r_{A,t+1}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t+1}\)</span>, are determined by their current Price-to-Book (P/B) ratios.
 The equations for Stock A and Stock B’s returns are given as</p>
@@ -520,8 +564,8 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <p>As seen, the returns are influenced by the P/B ratios and their random components are represented by ε. ε is a random variable distributed following a normal distribution and different standard deviations for each stock. The covariance between the random errors of the two stocks is zero.</p>
 <p>Now, it is given that for period T, the P/B ratios of Stock A and Stock B are 20 and 10, respectively. We assumes that the relationship between the stock returns and the P/B ratios is stationary over time and across stocks.</p>
 <p>Calculate the weights of a portfolio that contains both stocks and maximizes the Sharpe ratio using a graphical method.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="solution">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="solution">
 <h1>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -536,7 +580,15 @@ The equations for Stock A and Stock B’s returns are given as</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8383838383838385 2.061507862299763
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mf">0.2</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
 </pre></div>
 </div>
 </div>
@@ -548,11 +600,8 @@ The equations for Stock A and Stock B’s returns are given as</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/basic_models_2_0.png" src="_images/basic_models_2_0.png" />
 </div>
-</div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -566,7 +615,7 @@ The equations for Stock A and Stock B’s returns are given as</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

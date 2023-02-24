@@ -447,7 +447,7 @@ print( w.value, prob.value)
 # To further illustrate the application, we will continue with the previous numerical example and introduce some inequality constraints. We will use the active-set method to solve the problem. Specifically, we will add three inequality constraints that specify that the weights of each individual stock cannot be less than zero, except for stock 2, which cannot have a weight less than 0.10. Therefore, we have $w ≥ 0$ and $w_2 ≥ 0.10$. These inequality constraints can be easily incorporated into the matrix $A$. 
 # The resulting optimization problem has the first two rows of $A$ representing equality constraints and the last seven rows representing inequality constraints. The formulation of the problem is as follows:
 
-# In[7]:
+# In[ ]:
 
 
 A = np.array([[1,1,1,1,1,1],
@@ -462,14 +462,14 @@ A = np.array([[1,1,1,1,1,1],
 print(A)
 
 
-# In[8]:
+# In[ ]:
 
 
 b = np.array([1, 8,0,0,0,0,0,0,0.9])
 print(b)
 
 
-# In[9]:
+# In[ ]:
 
 
 import cvxpy as cp
@@ -557,7 +557,7 @@ print( np.round(w.value,3), np.round(prob.value,3))
 # restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
 # variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
 
-# In[10]:
+# In[ ]:
 
 
 get_ipython().system('pip install gurobipy')
