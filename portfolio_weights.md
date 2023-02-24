@@ -318,8 +318,8 @@ Substituting this expression for x into the second equation yields:
 
 $$
 \begin{align*}
-Ax-b &= 0
-A(-Q^{-1}A^\top \lambda - Q^{-1}c)-b&= 0
+Ax-b &= 0 \\
+A(-Q^{-1}A^\top \lambda - Q^{-1}c)-b&= 0 \\
 \lambda = -(AQ^{-1}A^\top)^{-1}(AQ^{-1}c+b)
 \end{align*}
 $$
