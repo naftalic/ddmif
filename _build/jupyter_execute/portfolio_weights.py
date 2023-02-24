@@ -561,13 +561,12 @@ print( np.round(w.value,3), np.round(prob.value,3))
 
 
 get_ipython().system('pip install gurobipy')
+import numpy as np
+import gurobipy as gp
 
 
 # In[ ]:
 
-
-import numpy as np
-import gurobipy as gp
 
 # Define the matrix A and vector b
 A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
@@ -587,8 +586,16 @@ A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
 
 print(A)
 
+
+# In[ ]:
+
+
 b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
-print(v)
+print(b)
+
+
+# In[ ]:
+
 
 Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
                   [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
@@ -597,6 +604,10 @@ Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
                   [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
                   [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
 print(Sigma)
+
+
+# In[ ]:
+
 
 # Create a GurobiPy model
 model = gp.Model()

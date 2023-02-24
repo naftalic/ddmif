@@ -1304,16 +1304,15 @@ variable equals 1, then the weight of stock <span class="math notranslate nohigh
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>gurobipy
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
-
-<span class="c1"># Define the matrix A and vector b</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the matrix A and vector b</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
@@ -1330,19 +1329,34 @@ variable equals 1, then the weight of stock <span class="math notranslate nohigh
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">]])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">452.33</span><span class="p">,</span> <span class="mf">249.33</span> <span class="p">,</span> <span class="mf">189.23</span><span class="p">,</span> <span class="mf">70.75</span><span class="p">,</span>  <span class="mf">481.14</span> <span class="p">,</span> <span class="mf">106.5</span><span class="p">],</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">452.33</span><span class="p">,</span> <span class="mf">249.33</span> <span class="p">,</span> <span class="mf">189.23</span><span class="p">,</span> <span class="mf">70.75</span><span class="p">,</span>  <span class="mf">481.14</span> <span class="p">,</span> <span class="mf">106.5</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">249.33</span><span class="p">,</span> <span class="mf">1094.09</span><span class="p">,</span> <span class="mf">356.85</span><span class="p">,</span> <span class="mf">93.51</span> <span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">135.05</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">189.23</span><span class="p">,</span> <span class="mf">356.85</span> <span class="p">,</span> <span class="mf">617.57</span><span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">110.74</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">70.75</span> <span class="p">,</span> <span class="mf">93.51</span>  <span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">372.35</span><span class="p">,</span> <span class="mf">462.57</span> <span class="p">,</span> <span class="mf">107.52</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">481.14</span><span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">462.57</span><span class="p">,</span> <span class="mf">5658.42</span><span class="p">,</span> <span class="mf">425.35</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">106.5</span> <span class="p">,</span> <span class="mf">135.05</span><span class="p">,</span>  <span class="mf">110.74</span><span class="p">,</span> <span class="mf">107.52</span><span class="p">,</span> <span class="mf">425.35</span> <span class="p">,</span> <span class="mf">244.31</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
-
-<span class="c1"># Create a GurobiPy model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a GurobiPy model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>
 
 <span class="c1"># Create the decision variables</span>
