@@ -275,18 +275,44 @@ $$
 \min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
 $$ 
 
-Given that matrix A is of full rank\footnote{A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
-A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.} and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:
+Given that matrix A is of full rank and matrix Q is positive definite, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. 
+
+:::{note}
+A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
+A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.
+
+A matrix Q is positive definite if it satisfies the following two conditions:
 * The matrix Q is symmetric, meaning that Q is equal to its transpose: $Q = Q^\top$.
 * For any non-zero vector x, the scalar value $x^\top Q x$ is positive. This means that $x^\top Q x > 0$ for any non-zero vector x.
 Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
-The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.}, a unique solution for x exists. By unique solution, we refer to a set of values for x that yields the minimum value of our objective function. To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
+The concept of positive definiteness is important in many areas of mathematics, particularly in linear algebra and optimization. For example, if the objective function of a quadratic optimization problem involves a positive definite matrix Q, then the optimization problem has a unique global minimum, and this minimum can be found by solving a system of linear equations.
+:::
 
+To solve this minimization problem, we can apply the Lagrange method and derive the first-order optimality conditions.
 The Lagrangian for this problem is given by:
+
+$$
+\mathcal{L} = 0.5 x^\top Q x + x^\top c-\lambda^\top(b-Ax)
+$$
 
 Taking partial derivatives with respect to x and λ, we can derive the Lagrange necessary (or first-order) conditions for a solution:
 
-We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for λ, which gives:
+$$
+Q x + A^\top \lambda + c = 0, \text{  and } Ax-b = 0. 
+$$
+
+:::{note}
+The Lagrange method is a powerful tool for solving constrained optimization problems. It involves introducing Lagrange multipliers to convert a constrained optimization problem into an unconstrained optimization problem. The method is named after Joseph Louis Lagrange, a celebrated mathematician and physicist who was a professor at the University of Turin in 1755 and later served as director of mathematics at the Berlin Academy of Science, succeeding Euler in this position.
+:::
+
+We can obtain the optimal value of x by solving these equations algebraically. Specifically, we can start by solving the first equation for x, which gives:
+
+$$
+\begin{align*}
+Q x &= -A^\top \lambda - c\\
+x &= -Q^{-1}A^\top \lambda - Q^{-1}c
+\end{align*}
+$$
 
 Substituting this expression for λ into the second equation yields:
 
