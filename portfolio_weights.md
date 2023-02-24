@@ -275,8 +275,8 @@ $$
 \min\limits_x 0.5 x^\top Q x + x^\top c \text{ s.t.} Ax= b
 $$ 
 
-Given that matrix A is of full rank\footnote{A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
-A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.} and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:
+Given that matrix A is of full rank[A matrix A is said to be of full rank if its rows or columns are linearly independent. In other words, there are no redundant rows or columns that can be expressed as linear combinations of other rows or columns. This implies that the matrix has the maximum possible number of linearly independent rows or columns, which is equal to the minimum of the number of rows or columns of the matrix.
+A matrix of full rank has an inverse, and it is invertible. Additionally, the determinant of a matrix of full rank is non-zero.] and matrix Q is positive definite\footnote{A matrix Q is positive definite if it satisfies the following two conditions:
 * The matrix Q is symmetric, meaning that Q is equal to its transpose: $Q = Q^\top$.
 * For any non-zero vector x, the scalar value $x^\top Q x$ is positive. This means that $x^\top Q x > 0$ for any non-zero vector x.
 Geometrically, this means that the quadratic form defined by the matrix Q is always positive, and thus the matrix Q defines a "bowl-shaped" surface.
