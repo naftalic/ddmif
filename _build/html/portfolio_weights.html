@@ -522,6 +522,43 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">
+   Advanced Techniques for Quadratic Optimization
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phantom-weights">
+     Phantom weights
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binary-weights">
+     Binary weights
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">
+     Market neutrality with leverage constraints
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transactions-costs">
+     Transactions costs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">
+     Elimination of small-weight stocks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     A numerical example
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -655,6 +692,43 @@ title="Print to PDF"
       </a>
      </li>
     </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">
+   Advanced Techniques for Quadratic Optimization
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phantom-weights">
+     Phantom weights
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binary-weights">
+     Binary weights
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">
+     Market neutrality with leverage constraints
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transactions-costs">
+     Transactions costs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">
+     Elimination of small-weight stocks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     A numerical example
+    </a>
    </li>
   </ul>
  </li>
@@ -1171,6 +1245,157 @@ The resulting optimization problem has the first two rows of <span class="math n
 </div>
 </div>
 <p>It’s worth noting that we expressed the constraint <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span> as <span class="math notranslate nohighlight">\(w_1+w_3+w_4+w_5+w_6 ≤ 0.90\)</span>. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.</p>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="advanced-techniques-for-quadratic-optimization">
+<h1>Advanced Techniques for Quadratic Optimization<a class="headerlink" href="#advanced-techniques-for-quadratic-optimization" title="Permalink to this headline">#</a></h1>
+<p>While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.</p>
+<div class="section" id="phantom-weights">
+<h2>Phantom weights<a class="headerlink" href="#phantom-weights" title="Permalink to this headline">#</a></h2>
+<p>In standard portfolio optimization problems, we typically only have <span class="math notranslate nohighlight">\(N\)</span> unknowns, which are the portfolio weights. However, in certain nonstandard portfolio problems, it can be useful to introduce what we call “phantom weights.” The idea of phantom weights is to create additional weights, in addition to the actual weights of the portfolio, that the optimizer will also find optimal values for. These additional weights can be used for various purposes, such as creating a set of buy and sell weights. For example, if the optimization problem has <span class="math notranslate nohighlight">\(N\)</span> stocks, we can create an additional <span class="math notranslate nohighlight">\(2N\)</span> weights, denoted as <span class="math notranslate nohighlight">\(b_1\)</span> to <span class="math notranslate nohighlight">\(b_N\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> to <span class="math notranslate nohighlight">\(s_N\)</span>. With these additional weights, the new optimization problem becomes more complex, as we now have <span class="math notranslate nohighlight">\(3N\)</span> weights to choose from. However, phantom weights offer many benefits in portfolio optimization. Often, the phantom weights have a specific relationship to the underlying weights, such as <span class="math notranslate nohighlight">\(b + s = 1\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(s\)</span> are the buy and sell weights, respectively.</p>
+</div>
+<div class="section" id="binary-weights">
+<h2>Binary weights<a class="headerlink" href="#binary-weights" title="Permalink to this headline">#</a></h2>
+<p>In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., <span class="math notranslate nohighlight">\(b&gt;0\)</span> and <span class="math notranslate nohighlight">\(s&gt;0\)</span>) is a wasteful solution. By creating binary variables and for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:</p>
+<p>To incorporate binary variables as optimization weights, one can create <span class="math notranslate nohighlight">\(v_i^+\)</span> and <span class="math notranslate nohighlight">\(v_i^-\)</span> binary variables for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks. By adding the constraint</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+&amp; v_i^+\kappa_l \le b_i \le v_i^+\kappa_h \\
+&amp; v_i^-\gamma_l \le s_i \le v_i^-\gamma_h \\
+\end{align*}
+\end{split}\]</div>
+<p>and setting <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, the weights can fluctuate between 0 and 1, and the constraint <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> ensures that the phantom weights are orthogonal. If <span class="math notranslate nohighlight">\(b_i&gt;0\)</span>, then <span class="math notranslate nohighlight">\(s_i=0\)</span> and vice versa for every stock <span class="math notranslate nohighlight">\(i\)</span>. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.</p>
+</div>
+<div class="section" id="market-neutrality-with-leverage-constraints">
+<h2>Market neutrality with leverage constraints<a class="headerlink" href="#market-neutrality-with-leverage-constraints" title="Permalink to this headline">#</a></h2>
+<p>Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+&amp; w_i = w_i^{+} - w_i^{-} \\
+&amp; \sum\limits_{i=1}^N w_i^+ = \sum\limits_{i=1}^N w_i^-\\
+&amp; w_i^+ \ge 0\\
+&amp; w_i^- \ge 0\\
+&amp; \sum\limits_{i=1}^N w_i^+ + \sum\limits_{i=1}^N w_i^- \le 2\\
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_i^{+}=b_i\)</span> and <span class="math notranslate nohighlight">\(w_i^{-}=s_i\)</span>.
+These constraints ensure that the sum of the weights of the long stocks equals the sum of the weights of the shorted stocks, creating a dollar-neutral portfolio. The leverage of the portfolio is limited to 2, meaning that the portfolio is 100% long and 100% short of the assets under management.</p>
+<p>If the market-neutral manager wanted to increase the leverage, they could adjust the constraints on the sum of the phantom long and short weights. For example, to create a 130-30 long-short portfolio, one could set <span class="math notranslate nohighlight">\(L_l = 1.3\)</span> and <span class="math notranslate nohighlight">\(L_s = 0.3\)</span> in the following constraints:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+&amp; \sum\limits_{i=1}^N w_i^+=L_l\\
+&amp; \sum\limits_{i=1}^N w_i^-=L_s
+\end{align*}
+\end{split}\]</div>
+<p>This would result in a portfolio with long exposure of 130% and short exposure of 30%.</p>
+</div>
+<div class="section" id="transactions-costs">
+<h2>Transactions costs<a class="headerlink" href="#transactions-costs" title="Permalink to this headline">#</a></h2>
+<p>When we want to rebalance a portfolio while considering transaction costs (or market impact), we can use phantom weights and binary variables to find an exact solution to the portfolio optimization problem. To do this, we need to add constraints to the optimization problem that consider the current weights of the portfolio represented by <span class="math notranslate nohighlight">\(w_b\)</span> and the target weights after rebalancing represented by <span class="math notranslate nohighlight">\(w_a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+w_i^a = w_i^b+w_i^+-w_i^-
+\]</div>
+<p>The relationship between the binary variables and the phantom weights is set such that <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, which allows the weights to fluctuate between 0 and 1. We also add the constraint that <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> to ensure the phantom weights are orthogonal. Stocks that have reduced weight from the prior portfolio will have negative net weights but positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^-\)</span>. We can multiply the transactions cost vector by their value. Conversely, stocks that have increased weight will have positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^+\)</span>, and can also be multiplied by the transactions cost vector. The final optimized weights of the portfolio will be <span class="math notranslate nohighlight">\(w_i\)</span>. In the case of transaction costs, the phantom weights serve as a mechanism to denote the change to the current weights, storing the positive changes in the positive phantom weights and the negative changes in the negative phantom weights. Both positive and negative phantom weights are positive, so the transaction cost vector remains positive, and the transaction cost rebalance problem is resolved.</p>
+</div>
+<div class="section" id="elimination-of-small-weight-stocks">
+<h2>Elimination of small-weight stocks<a class="headerlink" href="#elimination-of-small-weight-stocks" title="Permalink to this headline">#</a></h2>
+<p>Portfolio managers may want to reduce the number of securities in their portfolio, which can be achieved by constructing an optimized portfolio that forces individual stock weights to be above a minimum or below a maximum weight. However, the traditional method of adding inequality constraints to optimize weights may not always result in a solution, as it forces all stocks to be within a given range, which may not be optimal. The use of binary variables can create an optimization that limits the optimizer to find weights between the minimum and maximum or forces the weight of a particular stock to zero. This results in more successful optimizations and aligns better with the portfolio manager’s thought process.</p>
+<p>To illustrate, we will focus on the situation where all stock weights should be between a lower bound (<span class="math notranslate nohighlight">\(\kappa_l\)</span>) and an upper bound (<span class="math notranslate nohighlight">\(\kappa_h\)</span>) for the long portion of the portfolio. Using the inequality relationship of the binary variables and phantom weights, we can set <span class="math notranslate nohighlight">\(v_i^+\kappa_l \le b_i \le v_i^+\kappa_h\)</span> and <span class="math notranslate nohighlight">\(v_i^-\gamma_l \le s_i \le v_i^-\gamma_h\)</span>. Once we specify the values for <span class="math notranslate nohighlight">\(\kappa_l\)</span>, <span class="math notranslate nohighlight">\(\gamma_l\)</span>, <span class="math notranslate nohighlight">\(\kappa_h\)</span>, and <span class="math notranslate nohighlight">\(\gamma_h\)</span>, we can effectively achieve our goal. If the portfolio is only a long portfolio, phantom weights are not needed, and we should construct one set of binary variables with respect to the actual weights, <span class="math notranslate nohighlight">\(w_i\)</span>. The binary variables can be either 0 or 1, and the weights of the portfolio will be selected to be within the minimum and maximum weights or set to zero.</p>
+</div>
+<div class="section" id="id2">
+<h2>A numerical example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.</p>
+<p>The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector <span class="math notranslate nohighlight">\(x\)</span>), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
+restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of <span class="math notranslate nohighlight">\(\kappa_l\)</span> and <span class="math notranslate nohighlight">\(\kappa_h\)</span> such that <span class="math notranslate nohighlight">\(0.03v_i^+ \le w_i \le 0.3v_i^+\)</span>. Since <span class="math notranslate nohighlight">\(v_i^+\)</span>  is a binary variable, if this
+variable equals 1, then the weight of stock <span class="math notranslate nohighlight">\(i\)</span> will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then <span class="math notranslate nohighlight">\(v_i^+= 0\)</span> and <span class="math notranslate nohighlight">\(w_i\)</span> will also be equal to 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="c1"># Define the matrix A and vector b</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">452.33</span><span class="p">,</span> <span class="mf">249.33</span> <span class="p">,</span> <span class="mf">189.23</span><span class="p">,</span> <span class="mf">70.75</span><span class="p">,</span>  <span class="mf">481.14</span> <span class="p">,</span> <span class="mf">106.5</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">249.33</span><span class="p">,</span> <span class="mf">1094.09</span><span class="p">,</span> <span class="mf">356.85</span><span class="p">,</span> <span class="mf">93.51</span> <span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">135.05</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">189.23</span><span class="p">,</span> <span class="mf">356.85</span> <span class="p">,</span> <span class="mf">617.57</span><span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">110.74</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">70.75</span> <span class="p">,</span> <span class="mf">93.51</span>  <span class="p">,</span> <span class="mf">161.82</span><span class="p">,</span> <span class="mf">372.35</span><span class="p">,</span> <span class="mf">462.57</span> <span class="p">,</span> <span class="mf">107.52</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">481.14</span><span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">462.57</span><span class="p">,</span> <span class="mf">5658.42</span><span class="p">,</span> <span class="mf">425.35</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mf">106.5</span> <span class="p">,</span> <span class="mf">135.05</span><span class="p">,</span>  <span class="mf">110.74</span><span class="p">,</span> <span class="mf">107.52</span><span class="p">,</span> <span class="mf">425.35</span> <span class="p">,</span> <span class="mf">244.31</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
+
+<span class="c1"># Create a GurobiPy model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>
+
+<span class="c1"># Create the decision variables</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVars</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="p">[</span><span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">CONTINUOUS</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span> <span class="o">+</span> <span class="p">[</span><span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">BINARY</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Add the constraints Aw = b for the first two rows</span>
+<span class="n">model</span><span class="o">.</span><span class="n">addConstrs</span><span class="p">(</span><span class="n">gp</span><span class="o">.</span><span class="n">quicksum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Add the constraints Aw &lt;= b for the rest of the rows</span>
+<span class="n">model</span><span class="o">.</span><span class="n">addConstrs</span><span class="p">(</span><span class="n">gp</span><span class="o">.</span><span class="n">quicksum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+
+<span class="n">risk</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">gp</span><span class="o">.</span><span class="n">quicksum</span><span class="p">(</span><span class="n">Sigma</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">setObjective</span><span class="p">(</span><span class="n">risk</span><span class="p">,</span> <span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">MINIMIZE</span><span class="p">)</span>
+
+<span class="c1"># Set the objective function to zero (since this is a feasibility problem)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">setObjective</span><span class="p">(</span><span class="n">risk</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">MINIMIZE</span><span class="p">)</span>
+
+<span class="c1"># Solve the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+
+<span class="c1"># Print the solution</span>
+<span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solution found!&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;w[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] = </span><span class="si">{</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No solution found.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Define the matrix A and vector b</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>               <span class="p">[</span><span class="mf">14.4</span><span class="p">,</span><span class="mf">10.19</span><span class="p">,</span><span class="mf">9.87</span><span class="p">,</span><span class="mf">7.52</span><span class="p">,</span><span class="mf">20.05</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>               <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.03</span><span class="p">]])</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;gurobipy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>

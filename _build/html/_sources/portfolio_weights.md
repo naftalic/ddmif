@@ -487,7 +487,140 @@ print( np.round(w.value,3), np.round(prob.value,3))
 
 It's worth noting that we expressed the constraint $w_2 ≥ 0.10$ as $w_1+w_3+w_4+w_5+w_6 ≤ 0.90$. This is because in certain cases, such as when using certain programming tools, the most apparent constraints may require some tweaking or reengineering to fit into the optimization problem.
 
+# Advanced Techniques for Quadratic Optimization
+While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.
+
+### Phantom weights
+In standard portfolio optimization problems, we typically only have $N$ unknowns, which are the portfolio weights. However, in certain nonstandard portfolio problems, it can be useful to introduce what we call "phantom weights." The idea of phantom weights is to create additional weights, in addition to the actual weights of the portfolio, that the optimizer will also find optimal values for. These additional weights can be used for various purposes, such as creating a set of buy and sell weights. For example, if the optimization problem has $N$ stocks, we can create an additional $2N$ weights, denoted as $b_1$ to $b_N$ and $s_1$ to $s_N$. With these additional weights, the new optimization problem becomes more complex, as we now have $3N$ weights to choose from. However, phantom weights offer many benefits in portfolio optimization. Often, the phantom weights have a specific relationship to the underlying weights, such as $b + s = 1$, where $b$ and $s$ are the buy and sell weights, respectively.
+
+### Binary weights
+In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., $b>0$ and $s>0$) is a wasteful solution. By creating binary variables and for each of the $N$ stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:
+
+To incorporate binary variables as optimization weights, one can create $v_i^+$ and $v_i^-$ binary variables for each of the $N$ stocks. By adding the constraint
+
+$$
+\begin{align*}
+& v_i^+\kappa_l \le b_i \le v_i^+\kappa_h \\
+& v_i^-\gamma_l \le s_i \le v_i^-\gamma_h \\
+\end{align*}
+$$
+
+and setting $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, the weights can fluctuate between 0 and 1, and the constraint $v_i^++v_i^-\le 1$ ensures that the phantom weights are orthogonal. If $b_i>0$, then $s_i=0$ and vice versa for every stock $i$. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.
+
+### Market neutrality with leverage constraints
+
+Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:
+
+$$
+\begin{align*}
+& w_i = w_i^{+} - w_i^{-} \\
+& \sum\limits_{i=1}^N w_i^+ = \sum\limits_{i=1}^N w_i^-\\
+& w_i^+ \ge 0\\
+& w_i^- \ge 0\\
+& \sum\limits_{i=1}^N w_i^+ + \sum\limits_{i=1}^N w_i^- \le 2\\
+\end{align*}
+$$
+
+where $w_i^{+}=b_i$ and $w_i^{-}=s_i$.
+These constraints ensure that the sum of the weights of the long stocks equals the sum of the weights of the shorted stocks, creating a dollar-neutral portfolio. The leverage of the portfolio is limited to 2, meaning that the portfolio is 100% long and 100% short of the assets under management.
+
+If the market-neutral manager wanted to increase the leverage, they could adjust the constraints on the sum of the phantom long and short weights. For example, to create a 130-30 long-short portfolio, one could set $L_l = 1.3$ and $L_s = 0.3$ in the following constraints:
+
+$$
+\begin{align*}
+& \sum\limits_{i=1}^N w_i^+=L_l\\
+& \sum\limits_{i=1}^N w_i^-=L_s
+\end{align*}
+$$
+
+This would result in a portfolio with long exposure of 130% and short exposure of 30%.
+
+
+## Transactions costs
+When we want to rebalance a portfolio while considering transaction costs (or market impact), we can use phantom weights and binary variables to find an exact solution to the portfolio optimization problem. To do this, we need to add constraints to the optimization problem that consider the current weights of the portfolio represented by $w_b$ and the target weights after rebalancing represented by $w_a$:
+
+$$
+w_i^a = w_i^b+w_i^+-w_i^-
+$$
+
+The relationship between the binary variables and the phantom weights is set such that $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, which allows the weights to fluctuate between 0 and 1. We also add the constraint that $v_i^++v_i^-\le 1$ to ensure the phantom weights are orthogonal. Stocks that have reduced weight from the prior portfolio will have negative net weights but positive phantom weights, denoted by $w_i^-$. We can multiply the transactions cost vector by their value. Conversely, stocks that have increased weight will have positive phantom weights, denoted by $w_i^+$, and can also be multiplied by the transactions cost vector. The final optimized weights of the portfolio will be $w_i$. In the case of transaction costs, the phantom weights serve as a mechanism to denote the change to the current weights, storing the positive changes in the positive phantom weights and the negative changes in the negative phantom weights. Both positive and negative phantom weights are positive, so the transaction cost vector remains positive, and the transaction cost rebalance problem is resolved.
+
+
+## Elimination of small-weight stocks
+Portfolio managers may want to reduce the number of securities in their portfolio, which can be achieved by constructing an optimized portfolio that forces individual stock weights to be above a minimum or below a maximum weight. However, the traditional method of adding inequality constraints to optimize weights may not always result in a solution, as it forces all stocks to be within a given range, which may not be optimal. The use of binary variables can create an optimization that limits the optimizer to find weights between the minimum and maximum or forces the weight of a particular stock to zero. This results in more successful optimizations and aligns better with the portfolio manager's thought process.
+
+To illustrate, we will focus on the situation where all stock weights should be between a lower bound ($\kappa_l$) and an upper bound ($\kappa_h$) for the long portion of the portfolio. Using the inequality relationship of the binary variables and phantom weights, we can set $v_i^+\kappa_l \le b_i \le v_i^+\kappa_h$ and $v_i^-\gamma_l \le s_i \le v_i^-\gamma_h$. Once we specify the values for $\kappa_l$, $\gamma_l$, $\kappa_h$, and $\gamma_h$, we can effectively achieve our goal. If the portfolio is only a long portfolio, phantom weights are not needed, and we should construct one set of binary variables with respect to the actual weights, $w_i$. The binary variables can be either 0 or 1, and the weights of the portfolio will be selected to be within the minimum and maximum weights or set to zero.
+
+
+## A numerical example
+Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.
+
+The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
+restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
+variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
 
 
 
+```{code-cell}
+import numpy as np
+import gurobipy as gp
+
+# Define the matrix A and vector b
+A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
+              [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
+              [1,0,0,0,0,0,-0.3,0,0,0,0,0],
+              [0,1,0,0,0,0,0,-0.3,0,0,0,0],
+              [0,0,1,0,0,0,0,0,-0.3,0,0,0],
+              [0,0,0,1,0,0,0,0,0,-0.3,0,0],
+              [0,0,0,0,1,0,0,0,0,0,-0.3,0],
+              [0,0,0,0,0,1,0,0,0,0,0,-0.3],
+              [-1,0,0,0,0,0,0.03,0,0,0,0,0],
+              [0,-1,0,0,0,0,0,0.03,0,0,0,0],
+              [0,0,-1,0,0,0,0,0,0.03,0,0,0],
+              [0,0,0,-1,0,0,0,0,0,0.03,0,0],
+              [0,0,0,0,-1,0,0,0,0,0,0.03,0],
+              [0,0,0,0,0,-1,0,0,0,0,0,0.03]])
+
+print(A)
+
+b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
+print(v)
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+
+# Create a GurobiPy model
+model = gp.Model()
+
+# Create the decision variables
+w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
+
+# Add the constraints Aw = b for the first two rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) == b[0,j] for j in range(2))
+
+# Add the constraints Aw <= b for the rest of the rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j in range(2,14))
+
+risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
+model.setObjective(risk, gp.GRB.MINIMIZE)
+
+# Set the objective function to zero (since this is a feasibility problem)
+model.setObjective(risk, sense=gp.GRB.MINIMIZE)
+
+# Solve the model
+model.optimize()
+
+# Print the solution
+if model.status == gp.GRB.OPTIMAL:
+    print("Solution found!")
+    for i in range(12):
+        print(f"w[{i}] = {w[i].x}")
+else:
+    print("No solution found.")
+```
 
