@@ -1,0 +1,1877 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction &#8212; Data-Driven Methods in Finance</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Probability and Regression Review" href="probability_and_regression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Data-Driven Methods in Finance
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   1) Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_models.html">
+   2) Basic Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="factors.html">
+   3) Factors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="screening_and_ranking.html">
+   4) Stock Screening and Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_weights.html">
+   7) Portfolio Weights
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/submission_guidelines.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/naftalic/ddmif"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fsubmission_guidelines.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/submission_guidelines.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schedule">
+   Schedule
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-format">
+   Submission format
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-example">
+   Submission example
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schedule">
+   Schedule
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-format">
+   Submission format
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-example">
+   Submission example
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>As part of this course, students will participate in an in-class real-time financial forecasting competition similar to the <a class="reference external" href="https://m6competition.com/">M6</a>. The competition will require students to augment open-source financial data with external open-source datasets of their choice. They will then present their findings to the class by the end of the course.</p>
+<p>The focus of the forecasting competition will be on several key areas, including the ability to estimate future returns and uncertainty, combining estimates into an investment decision, developing a consistent investment strategy, utilizing alternative datasets effectively, and learning from mistakes through teamwork and transparency.</p>
+<p>The winning students of the competition will be guaranteed an A and will receive a special prize as recognition for their achievement.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="schedule">
+<h1>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">#</a></h1>
+<p>The competition will take place in real-time during the semester.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="evaluation">
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h1>
+<p>The competition will consist of two distinct challenges: Forecasting, which will be evaluated using the ranked probability score, and Investment decisions, which will be evaluated using the information ratio.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h1>
+<p>The competition’s investment universe will consist of three asset classes: 50 stocks from the S&amp;P 500 index, 50 international ETFs, and 10 cryptocurrencies. These assets have been selected to provide a broad representation of the overall market.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="submission-format">
+<h1>Submission format<a class="headerlink" href="#submission-format" title="Permalink to this headline">#</a></h1>
+<p>The competition will have 10 submission points, plus an additional test point, with a deadline of 6 PM ET on the Sunday before the start of the corresponding investment period. Participants are required to submit their forecasts and investment decisions at each point, outlining their predictions and strategy for the upcoming week. The forecast horizon is one week, typically five trading days, and there will be no overlapping evaluation periods.</p>
+<p>Example: The deadline for the first submission point is 6 PM ET on September 18th, 2022 (Sunday). Participants are required to submit forecasts and investment decisions reflecting the closing value of the last trading day of the following week, which is September 23rd, 2022 (Friday).</p>
+<p>At each submission point, students may submit a single csv file consisting of seven columns of 110 values each (one per asset):</p>
+<ul class="simple">
+<li><p>The first column must indicate the asset to which the forecasts and the respective row’s investment decisions refer. The acronym of each asset will serve as an identifier.</p></li>
+<li><p>The second to sixth columns must contain positive values summing horizontally to unity that refer to the probabilities of the ranks of the forecasted percentage return for each asset (stocks or ETFs); rank 1 is the lowest forecasted percentage return, and rank 5 is the highest forecasted percentage return.</p></li>
+<li><p>The seventh column must contain numerical values corresponding to the weights for investing in each asset. These values must be positive for long positions, negative for short positions, or zero for no position.</p></li>
+</ul>
+<p>For example, if three assets are assigned weights 0.5, 0.3, and -0.2, respectively, and all other assets weights of 0, this means that the participant wishes to invest in only three assets with positions long, long, and short and with a budget allocation of 50%, 30%, and 20% respectively. The submission will be considered invalid if the sum of the absolute weights exceeds 1. If the sum of the absolute weights is less than 1 (less than 100%), then the remainder is assumed to be assigned to an asset with zero return and zero risk (i.e., no investment). However, if the sum of the absolute weights is below 0.25 (25%) the submission will be considered invalid (i.e., some investment must be made and some risk must be taken).</p>
+<p>Example: The following is an example for the first 8 rows of a submission file. In this case, the participant decides to invest in three assets (3rd, 6th, and 7th) with weights of 50%, 30%, and 20% (or 0.5, 0.3, and 0.2) and positions long, long, and short, respectively. Additionally, the participant forecasts that there is a probability of 0.1, 0.2, 0.5, and 0.2 that the first asset (MMM) will be ranked 2nd, 3rd, 4th, and 5th, respectively, with regards to the expected percentage return. Equally, the participant’s forecast is that the second asset (ATVI) will be ranked 3rd.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;rank1&#39;</span><span class="p">,</span> <span class="s1">&#39;rank2&#39;</span><span class="p">,</span> <span class="s1">&#39;rank3&#39;</span><span class="p">,</span> <span class="s1">&#39;rank4&#39;</span><span class="p">,</span> <span class="s1">&#39;rank5&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+<span class="n">assets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mmm&#39;</span><span class="p">,</span><span class="s1">&#39;atvi&#39;</span><span class="p">,</span><span class="s1">&#39;googl&#39;</span><span class="p">,</span><span class="s1">&#39;aph&#39;</span><span class="p">,</span><span class="s1">&#39;bmy&#39;</span><span class="p">,</span><span class="s1">&#39;cb&#39;</span><span class="p">,</span><span class="s1">&#39;exr&#39;</span><span class="p">,</span><span class="s1">&#39;msi&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cols</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">assets</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+               <span class="p">[</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.6</span><span class="p">,</span><span class="mf">.5</span><span class="p">],</span> \
+               <span class="p">[</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.4</span><span class="p">,</span><span class="mf">.05</span><span class="p">,</span><span class="mf">.05</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> \
+               <span class="p">[</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.2</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> \
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.1</span><span class="p">,</span><span class="mf">.4</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">.3</span><span class="p">],</span> \
+               <span class="p">[</span><span class="mf">.7</span><span class="p">,</span><span class="mf">.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">.2</span><span class="p">],</span> \
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">mat</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sum of abs decisions: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sum of ranks equals 1: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;all ranks are non negative: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 6)
+sum of abs decisions:  1.0
+sum of ranks equals 1:  True
+all ranks are non negative:  True
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>rank1</th>
+      <th>rank2</th>
+      <th>rank3</th>
+      <th>rank4</th>
+      <th>rank5</th>
+      <th>decision</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mmm</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.20</td>
+      <td>0.50</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>atvi</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>googl</td>
+      <td>0.1</td>
+      <td>0.1</td>
+      <td>0.10</td>
+      <td>0.10</td>
+      <td>0.6</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>aph</td>
+      <td>0.5</td>
+      <td>0.4</td>
+      <td>0.05</td>
+      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>bmy</td>
+      <td>0.2</td>
+      <td>0.2</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>cb</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.10</td>
+      <td>0.40</td>
+      <td>0.5</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>exr</td>
+      <td>0.7</td>
+      <td>0.3</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>-0.2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>msi</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>#Measuring the performance of the forecasts:</p>
+<p>The forecasting performance for a specific submission point will be measured by the Ranked Probability Score (RPS). The realized percentage total returns of all assets over the period are divided into quintiles, ranking from 1 (worst performing) to 5 (best performing). Given 110 assets, 22 of these will receive a rank of 5, 22 a rank of 4, and so forth. In cases involving a tie on the margins of the classes, the tied assets will all be assigned the respective average rank.</p>
+<p>For example, if four assets are tied at the 20th place, then they will all get a rank of (5+5+5+4)/4=4.75, with three “5” in this expression being the rank of the 3 assets in the first quintile, and the “4” being the rank of the asset in the second quintile. The actual return ranking of each asset is described by a vector <span class="math notranslate nohighlight">\(q_{i,t}\)</span> of order 5. For example, if asset i is ranked in quintile 3 at time t, then <span class="math notranslate nohighlight">\(q_{i,t}=(0,0,1,0,0)\)</span> and a rank of 4.75 for asset j at time t will have <span class="math notranslate nohighlight">\(q_{j,t}=(0,0,0,0.25,0.75)\)</span></p>
+<p>We construct a vector denoting the probabilities of each rank for a particular asset <span class="math notranslate nohighlight">\(f_{i,t}\)</span>, as submitted by a participant. The RPS for asset <span class="math notranslate nohighlight">\(i\)</span> in period <span class="math notranslate nohighlight">\(t\)</span> is then</p>
+<div class="math notranslate nohighlight">
+\[RPS_{i,t}=\frac{1}{5}\sum_{j=1}^5(\sum_{k=1}^jq_{i,t,k} -\sum_{k=1}^{j}f_{i,t,k})^2.\]</div>
+<p>Example: We wish to compute the overall RPS of a participant for a particular asset, <span class="math notranslate nohighlight">\(i\)</span>, at one submission point, <span class="math notranslate nohighlight">\(t\)</span>. The submitted probabilities for the ranks are 0, 0.2, 0.3, 0.4, and 0.1, while the actual rank was 4. As such <span class="math notranslate nohighlight">\(q_{i,t}=(0,0,0,1,0)\)</span>, <span class="math notranslate nohighlight">\(f_{i,t}=(0,0.2,0.3,0.4,0.1)\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[RPS_{i,t}=\frac{[(0-0)^2+(0-0.2)^2+(0-0.5)^2+(1-0.9)^2+(1-1)^2]}{5}=0.06.\]</div>
+<p>The portfolio <span class="math notranslate nohighlight">\(RPS\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}RPS_t=\frac{1}{N}\sum_{i=1}^{N}RPS_{i,t},$$ where $N$ is the number of assests (e.g., $N=110$). \\The overall RPS for multiple submission points $t_1$ to $t_2$ is $$RPS_{t_1-t_2}=\frac{1}{N(t_2-t_1+1)}\sum_{t=t_1}^{t_2}\sum_{i=1}^{N}RPS_{i,t}.\end{aligned}\end{align} \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">q</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.06])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+
+<span class="c1">#forecasting</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span>\
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.2</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.50</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.5</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.2</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.50</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.5</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example</span>
+
+<span class="c1">#actual</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">forecast_performance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
+  
+  <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-3</span>
+  <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">q</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">f</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">eps</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">eps</span><span class="p">),</span> \
+        <span class="s2">&quot;f or q are not conditioned well&quot;</span>
+  
+  <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+  <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+  <span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">q</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#forecast performance</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="c1">#mean forecast performance</span>
+
+<span class="n">forecast_performance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1165
+</pre></div>
+</div>
+</div>
+</div>
+<p>#Measuring the performance of the investment decisions:</p>
+<p>The performance of investment decisions is evaluated using the Information Ratio (IR), calculated as the ratio of portfolio return (ret) to the standard deviation of portfolio return (sdp):</p>
+<div class="math notranslate nohighlight">
+\[IR=\frac{ret}{sdp}\]</div>
+<p>Where ret represents continuously compounded portfolio returns and sdp represents the standard deviation of these returns, calculated daily. It’s important to note that all IR values reported are annualized.
+This variant of the Information Ratio uses a benchmark return of 0 and is similar to the Sharpe Ratio, with a risk-free rate of 0</p>
+<p>The formula for calculating daily portfolio holding period return is:
+$<span class="math notranslate nohighlight">\(RET_t=\sum_{i=1}^Nw_i(\frac{S_{i,t}}{S_{i,t-1}}-1)\)</span>$</p>
+<p>Where N is the number of assets, <span class="math notranslate nohighlight">\(w_i\)</span> is the portfolio weight, and <span class="math notranslate nohighlight">\(S_{i,t}\)</span> is the adjusted closing price of asset i at the end of trading day t. <span class="math notranslate nohighlight">\(t-1\)</span> refers to the previous trading day. The continuously compounded portfolio return is then calculated as:
+$<span class="math notranslate nohighlight">\(ret_t=log(1+RET_t)\)</span>$</p>
+<p>This <span class="math notranslate nohighlight">\(RET_t\)</span> is measured for a single day, <span class="math notranslate nohighlight">\(t\)</span>, and represents the percentage return associated with each asset selected for investment, averaged by the corresponding investment decision weight for each asset. To calculate returns for a holding period longer than one day, the sum of daily returns is taken. In particular, the return for the holding period from <span class="math notranslate nohighlight">\(t_1\)</span> to <span class="math notranslate nohighlight">\(t_2\)</span> is calculated as:
+$<span class="math notranslate nohighlight">\(ret_{t_1:t_2}=\sum_{t=t_1}^{t=t_2}ret_t\)</span>$</p>
+<p>The standard deviation, <span class="math notranslate nohighlight">\(sdp_{t_1:t_2}\)</span>, is calculated using the same <span class="math notranslate nohighlight">\(t_2-t_1+1\)</span> values of <span class="math notranslate nohighlight">\(ret_t\)</span> as those used in the calculation of <span class="math notranslate nohighlight">\(ret_{t_1:t_2}\)</span>.</p>
+<p>It is calculated as follows:
+$<span class="math notranslate nohighlight">\(varp_{t_1:t_2}=\frac{1}{T-1}\sum_{t=t_1}^{t_2}(ret_t-\frac{ret_{t_1:t_2}}{T})^2\)</span><span class="math notranslate nohighlight">\(
+And
+\)</span><span class="math notranslate nohighlight">\(sdp_{t_1:t_2}=\sqrt{varp_{t_1:t_2}}\)</span><span class="math notranslate nohighlight">\(
+Where T is defined as \)</span>T=t_2-t_1+1$.
+Higher values of the Information Ratio (IR), which is the ratio of portfolio return (ret) to the standard deviation of portfolio return (sdp), suggest better investment performance.</p>
+<p>Example: To calculate the Information Ratio (IR) of a one-week investment decision of a participant over a 5-day assessment period, we first calculate the daily compound returns, yielding 5 <span class="math notranslate nohighlight">\(ret_t\)</span> observations. Summing these observations yields <span class="math notranslate nohighlight">\(ret_{1:5}=0.01\)</span>. We also calculate that <span class="math notranslate nohighlight">\(sdp_{1:5}=0.01\)</span>. Then, we have:
+$<span class="math notranslate nohighlight">\(IR_{t_1:t_2}=\frac{252/5\times 0.01}{\sqrt{252}\times 0.01}=0.79.\)</span>$
+Note that in this example, as in all our investment performance assessments, daily returns on investment decisions are utilized. This allows for more degrees of freedom when calculating the standard deviation, providing a more accurate representation of the investment’s performance over the given period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example</span>
+
+<span class="c1"># weights</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.3</span><span class="p">,</span><span class="o">-</span><span class="mf">.4</span><span class="p">])</span>
+
+<span class="c1"># prices, end of trading day, Fri -&gt; Fri</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> 
+
+<span class="k">def</span> <span class="nf">decision_performance</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-3</span>
+  <span class="k">assert</span> <span class="mi">1</span><span class="o">+</span><span class="n">eps</span><span class="o">&gt;</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;w is not conditioned well&quot;</span>
+
+  <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># add cash to the portfolio</span>
+    <span class="n">w1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">w1</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">+</span><span class="p">[</span><span class="n">w1</span><span class="p">])</span>
+
+  <span class="n">cash</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
+  <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">S</span><span class="p">,</span> <span class="n">cash</span><span class="p">))</span>
+
+  <span class="n">RET</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">w</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">S</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span><span class="o">/</span><span class="n">S</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">RET</span><span class="p">)</span>
+
+  <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+  <span class="n">ir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">252</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="n">ret</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">252</span><span class="p">)</span><span class="o">*</span><span class="n">std</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">ir</span>
+
+<span class="n">decision_performance</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.3500470193669045
+</pre></div>
+</div>
+</div>
+</div>
+<p>#Measuring the combined performance of the forecasts and the investment decisions</p>
+<p>The combined performance of a forecasting and investment decision is measured by the arithmetic mean of the ranks of the ranked probability score (RPS) and the performance of the investment decision (IR), assuming equal importance between the two tasks. The overall rank for submission <span class="math notranslate nohighlight">\(t\)</span> (OR) is calculated as:
+$<span class="math notranslate nohighlight">\(OR=\frac{rank(RPS)+rank(IR)}{2}\)</span>$
+Where rank(•) returns the rank of a participant relative to all other participants for that measure (RPS or IR).</p>
+<p>To calculate the overall forecasting rank, RPS, across all 12 submission points, the arithmetic mean of the RPS as calculated in each week is taken.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="submission-example">
+<h1>Submission example<a class="headerlink" href="#submission-example" title="Permalink to this headline">#</a></h1>
+<p>Submission guidelines summary:</p>
+<ul class="simple">
+<li><p>Submit a CSV file, not Google Sheet or XML</p></li>
+<li><p>Name the file: GROUPNAME__DATETIME.csv (double underscores)</p></li>
+<li><p>Columns must be named: “id”, “rank1”, “rank2”, “rank3”, “rank4”, “rank5”, “decision” (no “symbol” or “name” column)</p></li>
+<li><p>File should contain 7 columns and 110 rows (not including header row)</p></li>
+<li><p>“id” names must be unique and match asset universe</p></li>
+<li><p>Values in “rank” columns should be between 0 and 1</p></li>
+<li><p>Sum of “rank” columns for each row must equal 1</p></li>
+<li><p>Sum of absolute values of “decision” column must be &lt;= 1</p></li>
+<li><p>Use a copy of the notebooks, do not edit provided notebooks unless necessary.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install yfinance
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+<span class="n">yf</span><span class="o">.</span><span class="n">pdr_override</span><span class="p">()</span>
+
+<span class="n">root_dir</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/&#39;</span> 
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+
+<span class="n">main_dir</span> <span class="o">=</span> <span class="n">root_dir</span><span class="o">+</span><span class="s1">&#39;MyDrive/teaching/ddmif_spring_2023/&#39;</span> 
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">main_dir</span><span class="o">+</span><span class="s1">&#39;data/&#39;</span>
+<span class="n">ddmif_dir</span> <span class="o">=</span> <span class="n">root_dir</span><span class="o">+</span><span class="s1">&#39;MyDrive/teaching/ddmif&#39;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">main_dir</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">main_dir</span><span class="p">)</span>
+
+<span class="n">ddmif_dir</span> <span class="o">=</span> <span class="n">root_dir</span><span class="o">+</span><span class="s1">&#39;MyDrive/teaching/ddmif_spring_2023/ddmif&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">ddmif_dir</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="k">pass</span>
+
+<span class="o">!</span>git clone https://github.com/naftalic/ddmif.git
+<span class="kn">import</span> <span class="nn">ddmif.ddmif_functions</span> <span class="k">as</span> <span class="nn">ddmif</span>
+<span class="c1">#pip freeze &gt; requirements.txt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (0.1.70)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: lxml&gt;=4.5.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (4.9.0)
+Requirement already satisfied: numpy&gt;=1.15 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (1.22.4)
+Requirement already satisfied: pandas&gt;=0.24.0 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (1.4.2)
+Requirement already satisfied: requests&gt;=2.26 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (2.27.1)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (0.0.10)
+Requirement already satisfied: pytz&gt;=2020.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from pandas&gt;=0.24.0-&gt;yfinance) (2021.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from pandas&gt;=0.24.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: six&gt;=1.5 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.24.0-&gt;yfinance) (1.16.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.5.18.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.8)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (3.3)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_friday</span> <span class="o">=</span> <span class="s2">&quot;2023-01-20&quot;</span>
+
+<span class="n">first_friday</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">first_friday</span><span class="p">,</span> <span class="n">dayfirst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">first_saturday</span> <span class="o">=</span> <span class="n">first_friday</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">first_sunday</span>   <span class="o">=</span> <span class="n">first_friday</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">last_saturday</span>  <span class="o">=</span> <span class="n">first_friday</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">#get universe</span>
+<span class="n">universe_file</span> <span class="o">=</span> <span class="s1">&#39;universe.csv&#39;</span>
+<span class="n">universe_df</span>   <span class="o">=</span> <span class="n">ddmif</span><span class="o">.</span><span class="n">get_universe</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">universe_file</span><span class="p">)</span>
+
+<span class="c1">#get price data from yahoo</span>
+<span class="n">assets_df</span>  <span class="o">=</span> <span class="n">ddmif</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">universe_df</span><span class="p">,</span> <span class="n">first_friday</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> \
+             <span class="n">first_saturday</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">first_sunday</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">last_saturday</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">assets_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+[*********************100%***********************]  1 of 1 completed
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-4ee90273-fbd6-4054-a53f-67dc1d67dfce">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>symbol</th>
+      <th>ABBV</th>
+      <th>ACN</th>
+      <th>ADA-USD</th>
+      <th>AEP</th>
+      <th>AIZ</th>
+      <th>ALLE</th>
+      <th>AMAT</th>
+      <th>AMP</th>
+      <th>AMZN</th>
+      <th>AVAX-USD</th>
+      <th>...</th>
+      <th>XLE</th>
+      <th>XLF</th>
+      <th>XLI</th>
+      <th>XLK</th>
+      <th>XLP</th>
+      <th>XLU</th>
+      <th>XLV</th>
+      <th>XLY</th>
+      <th>XOM</th>
+      <th>XRP-USD</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-01-06</th>
+      <td>164.981674</td>
+      <td>268.113312</td>
+      <td>0.278652</td>
+      <td>96.529999</td>
+      <td>128.589996</td>
+      <td>111.419998</td>
+      <td>104.269997</td>
+      <td>321.279999</td>
+      <td>86.080002</td>
+      <td>11.781206</td>
+      <td>...</td>
+      <td>87.559998</td>
+      <td>35.380001</td>
+      <td>100.910004</td>
+      <td>124.730003</td>
+      <td>75.779999</td>
+      <td>71.000000</td>
+      <td>135.669998</td>
+      <td>132.070007</td>
+      <td>110.529999</td>
+      <td>0.344645</td>
+    </tr>
+    <tr>
+      <th>2023-01-09</th>
+      <td>160.137726</td>
+      <td>272.634827</td>
+      <td>0.317102</td>
+      <td>97.949997</td>
+      <td>125.110001</td>
+      <td>112.269997</td>
+      <td>106.489998</td>
+      <td>321.220001</td>
+      <td>87.360001</td>
+      <td>12.209637</td>
+      <td>...</td>
+      <td>87.250000</td>
+      <td>35.250000</td>
+      <td>100.459999</td>
+      <td>126.180000</td>
+      <td>75.040001</td>
+      <td>71.480003</td>
+      <td>133.399994</td>
+      <td>132.869995</td>
+      <td>108.470001</td>
+      <td>0.349340</td>
+    </tr>
+    <tr>
+      <th>2023-01-10</th>
+      <td>158.136734</td>
+      <td>273.809998</td>
+      <td>0.322496</td>
+      <td>97.279999</td>
+      <td>126.519997</td>
+      <td>112.040001</td>
+      <td>108.040001</td>
+      <td>319.769989</td>
+      <td>89.870003</td>
+      <td>12.731241</td>
+      <td>...</td>
+      <td>87.870003</td>
+      <td>35.450001</td>
+      <td>101.010002</td>
+      <td>126.959999</td>
+      <td>74.940002</td>
+      <td>71.500000</td>
+      <td>134.520004</td>
+      <td>134.539993</td>
+      <td>110.089996</td>
+      <td>0.351241</td>
+    </tr>
+    <tr>
+      <th>2023-01-11</th>
+      <td>155.689987</td>
+      <td>281.079987</td>
+      <td>0.322749</td>
+      <td>97.629997</td>
+      <td>126.589996</td>
+      <td>114.110001</td>
+      <td>110.059998</td>
+      <td>329.989990</td>
+      <td>95.089996</td>
+      <td>15.913924</td>
+      <td>...</td>
+      <td>88.139999</td>
+      <td>35.779999</td>
+      <td>101.980003</td>
+      <td>129.160004</td>
+      <td>74.980003</td>
+      <td>72.080002</td>
+      <td>135.279999</td>
+      <td>138.169998</td>
+      <td>111.370003</td>
+      <td>0.374158</td>
+    </tr>
+    <tr>
+      <th>2023-01-12</th>
+      <td>152.220001</td>
+      <td>283.839996</td>
+      <td>0.329758</td>
+      <td>96.410004</td>
+      <td>126.000000</td>
+      <td>113.510002</td>
+      <td>110.199997</td>
+      <td>331.170013</td>
+      <td>95.269997</td>
+      <td>15.457350</td>
+      <td>...</td>
+      <td>89.820000</td>
+      <td>35.849998</td>
+      <td>102.580002</td>
+      <td>130.119995</td>
+      <td>74.389999</td>
+      <td>71.589996</td>
+      <td>134.850006</td>
+      <td>138.399994</td>
+      <td>113.220001</td>
+      <td>0.375197</td>
+    </tr>
+    <tr>
+      <th>2023-01-13</th>
+      <td>153.600006</td>
+      <td>282.140015</td>
+      <td>0.345771</td>
+      <td>94.839996</td>
+      <td>128.750000</td>
+      <td>113.760002</td>
+      <td>109.970001</td>
+      <td>333.179993</td>
+      <td>98.120003</td>
+      <td>15.962223</td>
+      <td>...</td>
+      <td>89.949997</td>
+      <td>36.119999</td>
+      <td>102.459999</td>
+      <td>130.490005</td>
+      <td>74.739998</td>
+      <td>71.330002</td>
+      <td>135.449997</td>
+      <td>139.699997</td>
+      <td>113.150002</td>
+      <td>0.385804</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 110 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-4ee90273-fbd6-4054-a53f-67dc1d67dfce')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-4ee90273-fbd6-4054-a53f-67dc1d67dfce button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-4ee90273-fbd6-4054-a53f-67dc1d67dfce');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#submission file example:</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="n">num_groups</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_groups</span><span class="p">):</span>
+  
+  <span class="n">submission_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;EST&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">_%H:%M:%S&#39;</span><span class="p">)</span>
+
+  <span class="n">feature_list</span>          <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;rank1&#39;</span><span class="p">,</span> <span class="s1">&#39;rank2&#39;</span><span class="p">,</span> <span class="s1">&#39;rank3&#39;</span><span class="p">,</span> <span class="s1">&#39;rank4&#39;</span><span class="p">,</span><span class="s1">&#39;rank5&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+  <span class="n">submission_file</span>       <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">feature_list</span><span class="p">)</span>
+  <span class="n">submission_file</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">universe_df</span><span class="p">[</span><span class="s1">&#39;symbol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+  <span class="n">submission_file</span><span class="p">[[</span><span class="s1">&#39;rank1&#39;</span><span class="p">,</span> <span class="s1">&#39;rank2&#39;</span><span class="p">,</span> <span class="s1">&#39;rank3&#39;</span><span class="p">,</span> <span class="s1">&#39;rank4&#39;</span><span class="p">,</span><span class="s1">&#39;rank5&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">submission_file</span><span class="p">[[</span><span class="s1">&#39;decision&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+  <span class="n">submission_dir</span> <span class="o">=</span> <span class="n">main_dir</span><span class="o">+</span><span class="s1">&#39;submissions/dueJan15/&#39;</span>
+  <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;group_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;__&#39;</span><span class="o">+</span><span class="n">submission_time</span>
+  <span class="n">submission_file</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">submission_dir</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">submission_dir</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_0__2023-01-18_22:44:38
+/content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_1__2023-01-18_22:44:38
+/content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_2__2023-01-18_22:44:38
+/content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_3__2023-01-18_22:44:38
+/content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_4__2023-01-18_22:44:38
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;fake&#39; real data</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">std_price</span>  <span class="o">=</span> <span class="mi">20</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean_price</span><span class="p">,</span> <span class="n">std_price</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">vector</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">S</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">quintile_rank_with_average_tie</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;value&#39;</span><span class="p">:</span><span class="n">vector</span><span class="p">,</span> <span class="s1">&#39;dense_rank&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">vector</span><span class="p">))})</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;quintile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dense_rank&#39;</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;quintile_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)[</span><span class="s1">&#39;quintile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+  <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;quintile_rank&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="k">def</span> <span class="nf">map_to_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
+    <span class="n">quintile_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">vector</span><span class="p">),</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vector</span><span class="p">)):</span>
+        <span class="n">quintile_vector</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+          <span class="n">quintile_vector</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+          <span class="n">quintile_vector</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">vector</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">quintile_vector</span>
+
+<span class="n">vector</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">S</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">quintile_rank</span> <span class="o">=</span> <span class="n">quintile_rank_with_average_tie</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">map_to_vector</span><span class="p">(</span><span class="n">quintile_rank</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[22. 22. 22. 22. 22.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">submission_dir</span> <span class="o">=</span> <span class="n">main_dir</span><span class="o">+</span><span class="s1">&#39;submissions/dueJan15/&#39;</span>
+<span class="n">symbols</span> <span class="o">=</span> <span class="n">universe_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;symbol&#39;</span><span class="p">])[</span><span class="s1">&#39;symbol&#39;</span><span class="p">]</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">submission_dir</span><span class="o">+</span><span class="s1">&#39;/*&#39;</span><span class="p">)</span>
+
+<span class="n">stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;group_name&#39;</span><span class="p">,</span><span class="s1">&#39;forecast_performance&#39;</span><span class="p">,</span><span class="s1">&#39;decision_performance&#39;</span><span class="p">])</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)):</span>
+  
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">ddmif</span><span class="o">.</span><span class="n">eval_submission_file</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">universe_df</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;rank1&#39;</span><span class="p">,</span> <span class="s1">&#39;rank2&#39;</span><span class="p">,</span> <span class="s1">&#39;rank3&#39;</span><span class="p">,</span> <span class="s1">&#39;rank4&#39;</span><span class="p">,</span><span class="s1">&#39;rank5&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;decision&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">forecast_performance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span> <span class="n">decision_performance</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+  <span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;******************&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;**Problem** with file:&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e6</span>
+
+<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;overall_rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;forecast_performance&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;dense&#39;</span><span class="p">)</span> <span class="o">+</span>\
+                                     <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;decision_performance&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;dense&#39;</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">scoring_dir</span> <span class="o">=</span> <span class="n">main_dir</span><span class="o">+</span><span class="s1">&#39;scoring/&#39;</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">scoring_dir</span><span class="o">+</span><span class="s1">&#39;dueJan15.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_0__2023-01-18_22:44:38 is okay
+submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_1__2023-01-18_22:44:38 is okay
+submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_2__2023-01-18_22:44:38 is okay
+submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_3__2023-01-18_22:44:38 is okay
+submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/dueJan15/group_4__2023-01-18_22:44:38 is okay
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst2</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">scoring_dir</span><span class="o">+</span><span class="s1">&#39;/*&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst2</span><span class="p">)):</span>
+  <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">lst2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="n">final_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">final_stats</span><span class="p">[</span><span class="s1">&#39;group_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;group_name&#39;</span><span class="p">]</span>
+  <span class="n">final_stats</span><span class="p">[</span><span class="s1">&#39;OR_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;overall_rank&#39;</span><span class="p">]</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">final_stats</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;OR&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]</span>
+<span class="n">final_stats</span><span class="p">[</span><span class="s1">&#39;mean_OR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">final_stats</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">final_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-b5c30de4-6b12-44bd-b2a3-fbda30c46a7f">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group_name</th>
+      <th>OR_0</th>
+      <th>mean_OR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>group_0</td>
+      <td>2.5</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>group_1</td>
+      <td>3.5</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>group_2</td>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>group_3</td>
+      <td>4.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>group_4</td>
+      <td>3.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b5c30de4-6b12-44bd-b2a3-fbda30c46a7f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-b5c30de4-6b12-44bd-b2a3-fbda30c46a7f button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-b5c30de4-6b12-44bd-b2a3-fbda30c46a7f');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="probability_and_regression.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Probability and Regression Review</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Naftali Cohen<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
