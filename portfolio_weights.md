@@ -499,8 +499,10 @@ In portfolio optimization, it may be beneficial to use binary variables as optim
 Suppose one creates the following binary variables, $b_i$ and $s_i$ for each one of the $N$ stocks. One can then add a constraint of the following form:
 
 $$
-v_i^+\kappa_l \le b_i\ le v_i^+\kappa_h \\
-v_i^-\gamma_l \le s_i\ le v_i^-\gamma_h \\
+\begin{align*}
+& v_i^+\kappa_l \le b_i\ le v_i^+\kappa_h \\
+& v_i^-\gamma_l \le s_i\ le v_i^-\gamma_h \\
+\end{align*}
 $$
 
 By setting κl = γl = 0 and κh = γh = 1, we allow the weights to fluctuate between 0 and 1, and the constraint ensures that the phantom weights are orthogonal. However, adding binary and phantom weights and constraints makes the optimization problem more complex and difficult to solve.
