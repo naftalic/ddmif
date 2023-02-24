@@ -496,7 +496,7 @@ In standard portfolio optimization problems, we typically only have $N$ unknowns
 ### Binary weights
 In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., $b>0$ and $s>0$) is a wasteful solution. By creating binary variables and for each of the $N$ stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:
 
-Suppose one creates the following binary variables, $b_i$ and $s_i$ for each one of the $N$ stocks. One can then add a constraint of the following form:
+To incorporate binary variables as optimization weights, one can create $v_i^+$ and $v_i^-$ binary variables for each of the $N$ stocks. By adding the constraint
 
 $$
 \begin{align*}
@@ -505,5 +505,5 @@ $$
 \end{align*}
 $$
 
-By setting κl = γl = 0 and κh = γh = 1, we allow the weights to fluctuate between 0 and 1, and the constraint ensures that the phantom weights are orthogonal. However, adding binary and phantom weights and constraints makes the optimization problem more complex and difficult to solve.
+and setting $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, the weights can fluctuate between 0 and 1, and the constraint $v_i^++v_i^-\le 1$ ensures that the phantom weights are orthogonal. If $b_i>0$, then $s_i=0$ and vice versa for every stock $i$. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.
 
