@@ -560,6 +560,9 @@ restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. Tha
 variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
 
 
+```{code-cell}
+!pip install gurobipy
+```
 
 ```{code-cell}
 import numpy as np
