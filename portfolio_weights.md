@@ -521,6 +521,7 @@ $$
 \end{align*}
 $$
 
+where $w_i^{+}=b_i$ and $w_i^{-}=s_i$.
 These constraints ensure that the sum of the weights of the long stocks equals the sum of the weights of the shorted stocks, creating a dollar-neutral portfolio. The leverage of the portfolio is limited to 2, meaning that the portfolio is 100% long and 100% short of the assets under management.
 
 If the market-neutral manager wanted to increase the leverage, they could adjust the constraints on the sum of the phantom long and short weights. For example, to create a 130-30 long-short portfolio, one could set $L_l = 1.3$ and $L_s = 0.3$ in the following constraints:
@@ -533,4 +534,24 @@ $$
 $$
 
 This would result in a portfolio with long exposure of 130% and short exposure of 30%.
+
+
+## Transactions costs
+When we want to rebalance a portfolio while considering transaction costs (or market impact), we can use phantom weights and binary variables to find an exact solution to the portfolio optimization problem. To do this, we need to add constraints to the optimization problem that consider the current weights of the portfolio represented by $w_b$ and the target weights after rebalancing represented by $w_a$:
+
+$$
+w_i^a = w_i^b+w_i^+-w_i^-
+$$
+
+The relationship between the binary variables and the phantom weights is set such that $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, which allows the weights to fluctuate between 0 and 1. We also add the constraint that $v_i^++v_i^-\le 1$ to ensure the phantom weights are orthogonal. Stocks that have reduced weight from the prior portfolio will have negative net weights but positive phantom weights, denoted by $w_i^-$. We can multiply the transactions cost vector by their value. Conversely, stocks that have increased weight will have positive phantom weights, denoted by $w_i^+$, and can also be multiplied by the transactions cost vector. The final optimized weights of the portfolio will be $w_i$. In the case of transaction costs, the phantom weights serve as a mechanism to denote the change to the current weights, storing the positive changes in the positive phantom weights and the negative changes in the negative phantom weights. Both positive and negative phantom weights are positive, so the transaction cost vector remains positive, and the transaction cost rebalance problem is resolved.
+
+
+## Elimination of small-weight stocks
+Portfolio managers may want to reduce the number of securities in their portfolio, which can be achieved by constructing an optimized portfolio that forces individual stock weights to be above a minimum or below a maximum weight. However, the traditional method of adding inequality constraints to optimize weights may not always result in a solution, as it forces all stocks to be within a given range, which may not be optimal. The use of binary variables can create an optimization that limits the optimizer to find weights between the minimum and maximum or forces the weight of a particular stock to zero. This results in more successful optimizations and aligns better with the portfolio manager's thought process.
+
+To illustrate, we will focus on the situation where all stock weights should be between a lower bound ($\kappa_l$) and an upper bound ($\kappa_h$) for the long portion of the portfolio. Using the inequality relationship of the binary variables and phantom weights, we can set $v_i^+\kappa_l \le b_i \le v_i^+\kappa_h$ and $v_i^-\gamma_l \le s_i \le v_i^-\gamma_h$. Once we specify the values for $\kappa_l$, $\gamma_l$, $\kappa_h$, and $\gamma_h$, we can effectively achieve our goal. If the portfolio is only a long portfolio, phantom weights are not needed, and we should construct one set of binary variables with respect to the actual weights, $w_i$. The binary variables can be either 0 or 1, and the weights of the portfolio will be selected to be within the minimum and maximum weights or set to zero.
+
+
+## A numerical example
+
 
