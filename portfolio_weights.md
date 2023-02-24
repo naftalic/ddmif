@@ -337,3 +337,35 @@ $$
 
 where $I$ is the identity matrix.
 
+:::{note}
+The identity matrix is a square matrix with ones on the diagonal and zeros elsewhere. 
+:::
+
+### A Numerical Example
+In a portfolio risk-minimization problem, the objective is to minimize the variance of the portfolio for a given expected return level, subject to an equality constraint that the weights of the portfolio sum to 1. This can be translated into a quadratic optimization problem, where the risk of a portfolio is given by the variance-covariance matrix of the stock returns and the vector of stock weights. The mean return of the portfolio can be expressed as the dot product of the vector of mean returns and the vector of stock weights.
+
+To illustrate this, let's consider a six-stock portfolio with known annualized mean returns and a variance-covariance matrix. We can construct the matrix A and vector b to reflect the equality constraint of summing to 1 by solve the following quadratic optimization problem:
+
+$$
+\begin{align*}
+A&=
+\begin{bmatrix}
+1 & \cdots & 1 \\
+\mu_1 & \cdots & \mu_N \\
+\end{bmatrix}\\
+b &=
+\begin{bmatrix}
+1 \\
+\mu_P \\
+\end{bmatrix}\\
+c &= 0
+\end{align*}
+$$
+
+
+## Quadraric programming with inequality constraints
+The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.
+
+One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.
+
+While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.
