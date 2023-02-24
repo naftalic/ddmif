@@ -1,3 +1,18 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # 7) Portfolio Weights
 
 In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.
@@ -259,7 +274,7 @@ subject to other additional constraints. It is important to note that the two fo
 The general quadratic programming problem can be expressed as minimizing the function 
 
 $$
-\min\limits_w 0.5 w^\top \Sigma w + w^\top c \text{ s.t.} Aw\le b
+\min\limits_w 0.5 w^\top \Sigma w + w^\top c \quad\text{s.t.}\quad Aw\le b
 $$ 
 
 where $w$ is the vector of unknowns, $\Sigma$ is a symmetric positive semidefinite matrix supplying coefficients on the quadratic terms, $c$ is a vector of coefficients related to the linear objective function, $A$ is a matrix of coefficients for the constraints, and $b$ is a vector of constraint values.
@@ -361,6 +376,71 @@ b &=
 c &= 0
 \end{align*}
 $$
+
+It follows that
+
+$$
+\begin{align*}
+w &= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
+\end{align*}
+$$
+
+To provide a detailed illustration of the application, let's consider a simple portfolio consisting of six stocks. The annualized mean returns for these stocks are as follows: $μ_1$ = 14.4, $μ_2$ = 10.19, $μ_3$ = 9.87, $μ_4$ = 7.52, $μ_5$ = 20.05, and $μ_6$ = 2.66. The variances and covariances are expressed in percentage terms. For instance, the annualized variance for stock 1 is 452.33, which is equivalent to a variance of 452% per year (or a standard deviation of 21.26% per year). Finally, we select the value of $μ_P$ to reflect an annualized return of 8%.
+
+Now, we can determine the optimal weights for the six stocks that will minimize the risk while achieving an expected mean return of 8% per year.
+
+```{code-cell}
+---
+mystnb:
+  figure:
+    align: center
+    caption_before: true
+    caption: This is my table caption, above the table
+---
+import numpy as np
+from numpy.linalg import inv
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+```
+
+```{code-cell}
+Sigma.T==Sigma
+```
+
+```{code-cell}
+A = np.array([[1,1,1,1,1,1],[14.4,10.19,9.87,7.52,20.05,2.66]])
+print(A)
+```
+
+```{code-cell}
+b = np.array([1, 8])
+print(b)
+```
+
+```{code-cell}
+w = inv(Sigma) @ A.T @ inv( A @ inv(Sigma) @ A.T) @ b
+print(w)
+```
+
+```{code-cell}
+import cvxpy as cp
+
+N = 6
+w = cp.Variable(N)
+risk = cp.quad_form(w, Sigma)
+prob = cp.Problem(cp.Minimize(risk), [A@w == b])
+prob.solve(solver=cp.SCS)   
+
+print( w.value, prob.value)
+```
+
+The optimal solution for a portfolio with a capital of $1 is to allocate $0.305 to stock 1, $0.057 to stock 2, $0.204 to stock 3, $0.274 to stock 4, short sell -$0.085 of stock 5, and allocate $0.245 to stock 6. However, the short position in stock 5 may not be feasible for many portfolio managers due to various reasons. Therefore, the portfolio manager may want to impose inequality constraints, such as requiring the weight of security 2 to be greater than 10%. Additionally, the portfolio manager may want to ensure that the weights of all securities are greater than zero. These restrictions were not applied in the preceding optimization, but we will introduce them in the next application of our example.
 
 
 ## Quadraric programming with inequality constraints
