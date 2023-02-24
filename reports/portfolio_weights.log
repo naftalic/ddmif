@@ -1,0 +1,97 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import gurobipy as gp
+
+# Define the matrix A and vector b
+A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
+              [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
+              [1,0,0,0,0,0,-0.3,0,0,0,0,0],
+              [0,1,0,0,0,0,0,-0.3,0,0,0,0],
+              [0,0,1,0,0,0,0,0,-0.3,0,0,0],
+              [0,0,0,1,0,0,0,0,0,-0.3,0,0],
+              [0,0,0,0,1,0,0,0,0,0,-0.3,0],
+              [0,0,0,0,0,1,0,0,0,0,0,-0.3],
+              [-1,0,0,0,0,0,0.03,0,0,0,0,0],
+              [0,-1,0,0,0,0,0,0.03,0,0,0,0],
+              [0,0,-1,0,0,0,0,0,0.03,0,0,0],
+              [0,0,0,-1,0,0,0,0,0,0.03,0,0],
+              [0,0,0,0,-1,0,0,0,0,0,0.03,0],
+              [0,0,0,0,0,-1,0,0,0,0,0,0.03]])
+
+print(A)
+
+b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
+print(v)
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+
+# Create a GurobiPy model
+model = gp.Model()
+
+# Create the decision variables
+w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
+
+# Add the constraints Aw = b for the first two rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) == b[0,j] for j in range(2))
+
+# Add the constraints Aw <= b for the rest of the rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j in range(2,14))
+
+risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
+model.setObjective(risk, gp.GRB.MINIMIZE)
+
+# Set the objective function to zero (since this is a feasibility problem)
+model.setObjective(risk, sense=gp.GRB.MINIMIZE)
+
+# Solve the model
+model.optimize()
+
+# Print the solution
+if model.status == gp.GRB.OPTIMAL:
+    print("Solution found!")
+    for i in range(12):
+        print(f"w[{i}] = {w[i].x}")
+else:
+    print("No solution found.")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [10][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mgurobipy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgp[39;00m
+[1;32m      4[0m [38;5;66;03m# Define the matrix A and vector b[39;00m
+[1;32m      5[0m A [38;5;241m=[39m np[38;5;241m.[39marray([[[38;5;241m1[39m,[38;5;241m1[39m,[38;5;241m1[39m,[38;5;241m1[39m,[38;5;241m1[39m,[38;5;241m1[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m],
+[1;32m      6[0m               [[38;5;241m14.4[39m,[38;5;241m10.19[39m,[38;5;241m9.87[39m,[38;5;241m7.52[39m,[38;5;241m20.05[39m,[38;5;241m2.66[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m],
+[1;32m      7[0m               [[38;5;241m1[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m-[39m[38;5;241m0.3[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m],
+[0;32m   (...)[0m
+[1;32m     17[0m               [[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m-[39m[38;5;241m1[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0.03[39m,[38;5;241m0[39m],
+[1;32m     18[0m               [[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m-[39m[38;5;241m1[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0[39m,[38;5;241m0.03[39m]])
+
+[0;31mModuleNotFoundError[0m: No module named 'gurobipy'
+ModuleNotFoundError: No module named 'gurobipy'
+
