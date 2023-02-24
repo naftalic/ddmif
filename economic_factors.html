@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>6) The Economic Factor Model &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -143,13 +147,43 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="competition.html">
-   Investment Competition
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
 </ul>
@@ -522,7 +556,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-economic-factor-model">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-economic-factor-model">
 <h1>6) The Economic Factor Model<a class="headerlink" href="#the-economic-factor-model" title="Permalink to this headline">#</a></h1>
 <p>The previous chapter, fundamental factor model, covered tools to combine stock-level information to determine returns and risks. The economic factor model is another way to efficiently combine stock information but with a different twist on the factor model framework.</p>
 <p>The economic factor model has the same structure as the fundamental factor model, with stock returns being the payoff for taking risk. However, the roles of factor exposure and factor premium are reversed. In the fundamental factor model, the factor exposure is observable in financial statements, whereas the factor premium must be estimated from a cross-sectional regression. In the economic factor model, the factor premium is the known (global) value, while the factor exposure must be estimated by a time-series regression of stock returns on factor premiums.</p>
@@ -549,8 +583,8 @@ V(r_i) = \beta_i^TV(f)\beta_i+ V(\epsilon_i).
 r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
 \]</div>
 <p>It’s important to note that the factor premium is denoted with a time subscript “t” because it varies over time. In other words, we consider the factor premium as a random variable with distinct values at different points in time. Conversely, the factor exposure does not have a time subscript “t” as it is assumed to remain constant over time. We view the factor exposure as an unknown parameter rather than a random variable.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-model">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-model">
 <h1>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">#</a></h1>
 <p>Similar to the previous chapter, the economic factor model is a tool for predicting the returns and risks of stocks, which helps portfolio managers make informed investment decisions. The process of formulating this model involves four steps:</p>
 <ol class="simple">
@@ -559,7 +593,7 @@ r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
 <li><p>estimating the factor premiums from historical data, and</p></li>
 <li><p>evaluating total risk by estimating both the systematic risk (non-diversifiable risk) and idiosyncratic risk (diversifiable risk).</p></li>
 </ol>
-<div class="section" id="pre-analysis">
+<section id="pre-analysis">
 <h2>Pre analysis<a class="headerlink" href="#pre-analysis" title="Permalink to this headline">#</a></h2>
 <p>Before constructing an economic factor model, it is essential to plan carefully, just like in the fundamental factor model. The general decisions are the same, including the choice of factors, the treatment of the risk-free rate, and the sample makeup in terms of time interval, time period, and stock universe. Since the criteria for deciding how to treat the risk-free rate, determining the investment universe, and defining the time interval and period are the same for both models, we will focus only on factor selection.</p>
 <p>The strength of the economic factor model is its ability to include practically all kinds of factors. The factors can be broadly categorized into three categories:</p>
@@ -569,18 +603,18 @@ r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
 <li><p>Statistical factors: These factors are obtained from principal-component analysis applied to historical returns and require the highest level of computation.</p></li>
 </ul>
 <p>Careful planning is critical when constructing an economic factor model. Factor selection is crucial, and the model can include various types of factors. Computation requirements vary depending on the category of the factor, with statistical factors requiring the most significant computation.</p>
-</div>
-<div class="section" id="benchmark-and-residual-return">
+</section>
+<section id="benchmark-and-residual-return">
 <h2>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this headline">#</a></h2>
 <p>Quantitative portfolio managers often manage their portfolios against a benchmark. As we discussed in previous chapters, it is not necessary to account for the benchmark at the outset of creating a model, but it can be useful to adjust for the effects of the benchmark when evaluating portfolio performance. There are two ways to incorporate the benchmark into the economic factor model.</p>
 <p>One way is to remove the benchmark-related return from the stock return before building the model. To do this, we first regress stock returns on the benchmark returns and calculate the residual, which is the part of stock returns that is not correlated with the benchmark return. Then we construct an economic factor model for the residual stock return rather than the total stock return. The resulting model shows the relationship between the factor premium, the factor exposure, and the portion of the stock return that is above and beyond the benchmark return.</p>
 <p>Another way is to explicitly include the benchmark in the economic factor model. If the benchmark is the broad-market index, the capital asset pricing model (CAPM) supports its inclusion in the model as a predictor of stock returns. Even if the benchmark is something other than the broad-market index, including it in the model will clarify the relationship between the portfolio and the benchmark.</p>
-</div>
-<div class="section" id="factor-premium">
+</section>
+<section id="factor-premium">
 <h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this headline">#</a></h2>
 <p>To create the fundamental factor model, the portfolio manager gathers a dataset of many observations of stock returns and factor exposures, where the factor exposures change over time while the factor premium, a single statistically estimated proportion, remains constant. On the other hand, to construct the economic factor model, the portfolio manager needs to collect pairs of stock returns and factor premiums, where the factor premiums change over time. If there are K factors, the portfolio manager needs to find the factor premiums of the <span class="math notranslate nohighlight">\(K\)</span> factors at each time interval <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(f_t = (f_{1,t}, ..., f_{K,t})\)</span>.</p>
 <p>In the economic factor model, the factor premium is a known value, unlike the factor exposure, which is estimated through regression. However, it is not always possible to observe a factor premium directly. Computation for economic/behavioral/market factors is rather straightforward. For fundamental/technical/analyst factors, the computation is somewhat more demanding, while for statistical factors, it presents a significant challenge.</p>
-<div class="section" id="factor-premium-for-economic-behavioral-market-factors">
+<section id="factor-premium-for-economic-behavioral-market-factors">
 <h3>Factor Premium for Economic/Behavioral/Market Factors<a class="headerlink" href="#factor-premium-for-economic-behavioral-market-factors" title="Permalink to this headline">#</a></h3>
 <p>The process of obtaining factor premiums for economic, behavioral, and market factors is straightforward and does not require complex computations. The values can be obtained by referencing reliable sources. Common examples of economic premiums include the unemployment rate, consumer sentiment growth, and overall market return:</p>
 <ul class="simple">
@@ -589,14 +623,14 @@ r_{i,t}=\alpha_i+\beta_i\cdot f_t+\epsilon_{i,t}.
 <li><p>The market factor premium can be calculated as the difference between the S&amp;P 500 total return and the one-month U.S. Treasury bill return.</p></li>
 </ul>
 <p>Once all the factor premiums for a specific time interval are obtained, they can be stored in a set of vectors <span class="math notranslate nohighlight">\(f_t = (f_1, ..., f_T)\)</span>, where <span class="math notranslate nohighlight">\(f_t\)</span> represents the factor premium for time <span class="math notranslate nohighlight">\(t\)</span>, and the first element of <span class="math notranslate nohighlight">\(f_t\)</span> always represents the constant term in the return equation.</p>
-</div>
-<div class="section" id="factor-premium-for-fundamental-technical-analyst-factors">
+</section>
+<section id="factor-premium-for-fundamental-technical-analyst-factors">
 <h3>Factor Premium for Fundamental/Technical/Analyst Factors<a class="headerlink" href="#factor-premium-for-fundamental-technical-analyst-factors" title="Permalink to this headline">#</a></h3>
 <p>To calculate factor premiums for fundamental, technical, and analyst factors, additional computations are necessary. This involves constructing zero-investment portfolios and calculating their returns. To find the factor premium on value using the book-to-price (B/P) ratio as a proxy, we need to identify portfolios of stocks with high and low exposures to the value factor (i.e., high and low B/P ratios). We can start by ranking all the stocks at time <span class="math notranslate nohighlight">\(t\)</span> in order of their B/P ratio, creating a high-value portfolio by equally weighting the top quartile of the list, and a low-value portfolio by equally weighting the bottom quartile. The zero-investment portfolio return is then calculated as the difference between the return on the high-value portfolio and the return on the low-value portfolio.</p>
 <p>Careful consideration of the frequency of zero-investment portfolio construction is important, especially if the sorting variable is not frequently updated. For example, the book-to-price ratio is updated quarterly, while price is updated daily. Thus, creating a zero-investment portfolio too frequently may not reflect the information an investor needs.</p>
 <p>It is important to note that a single piece of data can represent multiple types of factors. For instance, the same B/P ratio value can represent high exposure to a value factor or low exposure to a growth factor. The same numerical figure can stand for either factor, and the sign and name of the factor do not matter as long as we assign consistent meanings to high and low values.</p>
-</div>
-<div class="section" id="factor-premium-for-statistical-factors">
+</section>
+<section id="factor-premium-for-statistical-factors">
 <h3>Factor Premium for Statistical Factors<a class="headerlink" href="#factor-premium-for-statistical-factors" title="Permalink to this headline">#</a></h3>
 <p>Obtaining factor premiums for statistical factors is a complex computational process that involves principal-component analysis (PCA). This technique is readily available in standard computer software packages.</p>
 <p>To begin, we estimate the variance-covariance matrix of stock returns, representing <span class="math notranslate nohighlight">\(N\)</span> stock returns at time <span class="math notranslate nohighlight">\(t\)</span> as an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector, <span class="math notranslate nohighlight">\(r_t = (r_{1,t}, ..., r_{N,t})\)</span>. We have a total of <span class="math notranslate nohighlight">\(T\)</span> such vectors <span class="math notranslate nohighlight">\(r_1, ..., r_T\)</span>. The variance-covariance matrix of returns <span class="math notranslate nohighlight">\(Σ\)</span> is estimated as</p>
@@ -619,9 +653,9 @@ Q^\top \hat\Sigma Q = D
 f_{1,t}=q_1^\top r_t,..., f_{K,t}=q_K^\top r_t
 \]</div>
 <p>These <span class="math notranslate nohighlight">\(K\)</span> factors together have the <strong>highest in-sample explanatory power</strong> for <span class="math notranslate nohighlight">\(N\)</span> stock returns among any set of <span class="math notranslate nohighlight">\(K\)</span> explanatory variables constructed from linear combinations of <span class="math notranslate nohighlight">\(N\)</span> stock returns.</p>
-</div>
-</div>
-<div class="section" id="factor-exposure">
+</section>
+</section>
+<section id="factor-exposure">
 <h2>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this headline">#</a></h2>
 <p>In the economic factor model, factor exposures are typically determined using time-series regression of stock returns on factor premiums. The regression coefficients, or factor exposures, measure the sensitivity of the dependent variable (the stock return) to changes in the independent variables (the factor premiums). Factor exposures are also known as factor sensitivities or factor loadings.</p>
 <p>To estimate the factor exposure for a stock <span class="math notranslate nohighlight">\(i\)</span> using <span class="math notranslate nohighlight">\(T\)</span> periods of returns and factor premiums, <span class="math notranslate nohighlight">\((r_{i,1}, ..., r_{i,T})\)</span> and <span class="math notranslate nohighlight">\((f_1, ..., f_T)\)</span>, we can use the following equation:</p>
@@ -641,8 +675,8 @@ r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
 \text{var}(\hat\beta_i)=\hat \sigma_i^2/\text{var}(f_t)
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat \sigma_i^2\)</span> is the estimated variance of <span class="math notranslate nohighlight">\(ε_{i,t}\)</span> that can can computed once we have <span class="math notranslate nohighlight">\(\hat\alpha\)</span> and <span class="math notranslate nohighlight">\(\hat\beta\)</span>.</p>
-</div>
-<div class="section" id="factor-exposure-for-small-data">
+</section>
+<section id="factor-exposure-for-small-data">
 <h2>Factor exposure for small data<a class="headerlink" href="#factor-exposure-for-small-data" title="Permalink to this headline">#</a></h2>
 <p>Portfolio managers rely on time-series regressions to analyze stock returns and factor premiums. However, recent initial public offerings (IPOs) and stocks of merged or divested companies may lack sufficient data to conduct meaningful regressions. In such cases, we can infer a stock’s factor exposures by using weighted factor exposures from groups of similar stocks as proxies for the original stock’s exposures.</p>
 <p>In the case of a merger, we can find the weighted average of the factor exposures of the premerger firms. We determine the appropriate weights using the market capitalizations of the premerger firms. Suppose that firm A and firm B recently merged. We can find the factor exposures of each firm separately using the stock returns of each firm, <span class="math notranslate nohighlight">\(r_{A,t}\)</span> and <span class="math notranslate nohighlight">\(r_{B,t}\)</span>, respectively, and regressing factor premiums on those returns. The factor exposures of the merged firm, , can then be calculated using the formula:</p>
@@ -653,8 +687,8 @@ r_{i,t}=\alpha_i+\beta_if_t+\epsilon_{i,t}
 <p>where <span class="math notranslate nohighlight">\(s_A\)</span> is the pre-merger market capitalization of firm A, and <span class="math notranslate nohighlight">\(s_B\)</span> is the pre-merger market capitalization of firm B.</p>
 <p>For recent IPOs, we can only rely on observable firm characteristics from financial statements. To find similar firms, we calculate the z-score for each of the M characteristics of each firm for which we already have factor exposures. Then we choose a small critical level e and find all firms j such that <span class="math notranslate nohighlight">\((z_i − z_j)^\top(z_i − z_j) &lt; e\)</span> to identify the similar firms. Once we identify the similar firms, we can take the equal-weighted average of their factor exposures as the factor exposure of the IPO. This process of identifying similar firms is known as characteristic matching and can also be applied to searching for other characteristics, such as expected stock return.</p>
 <p>An alternative to characteristic matching is using the industry-average figure. For instance, the average factor exposure of the entire pharmaceutical industry can stand in for the factor exposure of a new pharmaceutical company’s stock. However, financial economic research suggests that characteristic matching is more effective than using the industry average.</p>
-</div>
-<div class="section" id="decomposition-of-risk">
+</section>
+<section id="decomposition-of-risk">
 <h2>Decomposition of risk<a class="headerlink" href="#decomposition-of-risk" title="Permalink to this headline">#</a></h2>
 <p>The total risk of a stock return can be decomposed into nondiversifiable risk and diversifiable risk. Nondiversifiable risk depends on the factor exposure and variance of the factor premium, while diversifiable risk is equal to the variance of the error term:</p>
 <div class="math notranslate nohighlight">
@@ -664,8 +698,8 @@ V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
 <p>We already have the estimate for <span class="math notranslate nohighlight">\(β_i\)</span>. We can obtain an estimate for <span class="math notranslate nohighlight">\(V(f)\)</span> given the factor premium data <span class="math notranslate nohighlight">\((f_1, ... ,f_T)\)</span> and estimating <span class="math notranslate nohighlight">\(V(ε_i)\)</span> is straightforward.</p>
 <p>When finding the optimal portfolio, we need to know the correlation among stock returns. The correlation between two stock returns <span class="math notranslate nohighlight">\(r_i\)</span> and <span class="math notranslate nohighlight">\(r_j\)</span> has two components: the correlation between nondiversifiable components and the correlation between diversifiable components. The covariance between two stock returns can be estimated from factor exposure: <span class="math notranslate nohighlight">\(C(r_i,r_j)=\beta_i^\top V(f)\beta_j+C(ε_i, ε_j)\)</span>.</p>
 <p>If T is not large enough, it is conventional to assume that <span class="math notranslate nohighlight">\(C(ε_i, ε_j)\)</span> is zero.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -679,7 +713,7 @@ V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

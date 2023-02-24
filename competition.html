@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Investment Competition &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -48,7 +52,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="causal_inference.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -103,35 +106,80 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="introduction.html">
-   Introduction
+   1) Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="basic_models.html">
-   Basic Models
+   2) Basic Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="factors.html">
-   Factors
+   3) Factors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="screening_and_ranking.html">
-   Stock Screening and Ranking
+   4) Stock Screening and Ranking
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="factors_advanced.html">
-   The Fundamental Factor Model
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Investment Competition
+ <li class="toctree-l1">
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_weights.html">
+   7) Portfolio Weights
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
 </ul>
@@ -406,10 +454,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="investment-competition">
+  <section class="tex2jax_ignore mathjax_ignore" id="investment-competition">
 <h1>Investment Competition<a class="headerlink" href="#investment-competition" title="Permalink to this headline">#</a></h1>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="some-code">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="some-code">
 <h1>Some Code<a class="headerlink" href="#some-code" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -424,7 +472,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5050505050505051 0.5476978880959652
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
 </pre></div>
 </div>
 </div>
@@ -436,11 +492,8 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/competition_2_0.png" src="_images/competition_2_0.png" />
 </div>
-</div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -454,7 +507,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -469,13 +522,6 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="causal_inference.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">&lt;no title&gt;</p>
-        </div>
-    </a>
 </div>
             </footer>
         </div>

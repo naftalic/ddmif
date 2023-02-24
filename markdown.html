@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Markdown Files &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -105,32 +109,77 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="introduction.html">
-   Introduction
+   1) Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="basic_models.html">
-   Basic Models
+   2) Basic Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="factors.html">
-   Factors
+   3) Factors
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="screening_and_ranking.html">
-   Stock Screening and Ranking
+   4) Stock Screening and Ranking
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="factors_advanced.html">
-   The Fundamental Factor Model
+  <a class="reference internal" href="fundamental_factors.html">
+   5) The Fundamental Factor Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="competition.html">
-   Investment Competition
+  <a class="reference internal" href="economic_factors.html">
+   6) The Economic Factor Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_weights.html">
+   7) Portfolio Weights
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_management.html">
+   8) Tax Management
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="leverage.html">
+   9) Leverage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_neutral.html">
+   10) Market Neutral
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian_alpha.html">
+   11) Bayesian Alpha
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance_measurement_and_attribution.html">
+   12) Performance Measurement and Attribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backtesting.html">
+   13) Backtesting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="portfolio_performance.html">
+   14) Portfolio Performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probability_and_regression.html">
+   Probability and Regression Review
   </a>
  </li>
 </ul>
@@ -379,21 +428,21 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="markdown-files">
+  <section class="tex2jax_ignore mathjax_ignore" id="markdown-files">
 <h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Permalink to this headline">#</a></h1>
 <p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
 in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
 called <strong>MyST Markdown</strong>.
 This is a simple file to help you get started and show off some syntax.</p>
-<div class="section" id="what-is-myst">
+<section id="what-is-myst">
 <h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">#</a></h2>
 <p>MyST stands for “Markedly Structured Text”. It
 is a slight variation on a flavor of markdown called “CommonMark” markdown,
 with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
 in the Sphinx ecosystem.</p>
 <p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
-</div>
-<div class="section" id="sample-roles-and-directives">
+</section>
+<section id="sample-roles-and-directives">
 <h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Permalink to this headline">#</a></h2>
 <p>Roles and directives are two of the most powerful tools in Jupyter Book. They
 are kind of like functions, but written in a markup language. They both
@@ -408,8 +457,8 @@ that is being called.</p>
 </div>
 <p>It will be rendered in a special box when you build your book.</p>
 <p>Here is an inline directive to refer to a document: <a class="reference internal" href="markdown-notebooks.html"><span class="doc">Notebooks with MyST Markdown</span></a>.</p>
-</div>
-<div class="section" id="citations">
+</section>
+<section id="citations">
 <h2>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">#</a></h2>
 <p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
 the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
@@ -419,19 +468,20 @@ The <code class="docutils literal notranslate"><span class="pre">{bibliography}<
 render properly.
 For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
 then the bibliography is inserted with:</p>
-<p id="id2"><dl class="citation">
+<div class="docutils container" id="id2">
+<dl class="citation">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
 <dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </dd>
 </dl>
-</p>
 </div>
-<div class="section" id="learn-more">
+</section>
+<section id="learn-more">
 <h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline">#</a></h2>
 <p>This is just a simple starter to get you started.
 You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -445,7 +495,7 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true

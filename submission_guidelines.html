@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction &#8212; Data-Driven Methods in Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -34,10 +35,13 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -50,7 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Probability and Regression Review" href="probability_and_regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="introduction.html">
    1) Introduction
@@ -179,11 +182,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="probability_and_regression.html">
    Probability and Regression Review
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction
   </a>
  </li>
 </ul>
@@ -481,25 +479,25 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>As part of this course, students will participate in an in-class real-time financial forecasting competition similar to the <a class="reference external" href="https://m6competition.com/">M6</a>. The competition will require students to augment open-source financial data with external open-source datasets of their choice. They will then present their findings to the class by the end of the course.</p>
 <p>The focus of the forecasting competition will be on several key areas, including the ability to estimate future returns and uncertainty, combining estimates into an investment decision, developing a consistent investment strategy, utilizing alternative datasets effectively, and learning from mistakes through teamwork and transparency.</p>
 <p>The winning students of the competition will be guaranteed an A and will receive a special prize as recognition for their achievement.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="schedule">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="schedule">
 <h1>Schedule<a class="headerlink" href="#schedule" title="Permalink to this headline">#</a></h1>
 <p>The competition will take place in real-time during the semester.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="evaluation">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="evaluation">
 <h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h1>
 <p>The competition will consist of two distinct challenges: Forecasting, which will be evaluated using the ranked probability score, and Investment decisions, which will be evaluated using the information ratio.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="data">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data">
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h1>
 <p>The competition’s investment universe will consist of three asset classes: 50 stocks from the S&amp;P 500 index, 50 international ETFs, and 10 cryptocurrencies. These assets have been selected to provide a broad representation of the overall market.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="submission-format">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="submission-format">
 <h1>Submission format<a class="headerlink" href="#submission-format" title="Permalink to this headline">#</a></h1>
 <p>The competition will have 10 submission points, plus an additional test point, with a deadline of 6 PM ET on the Sunday before the start of the corresponding investment period. Participants are required to submit their forecasts and investment decisions at each point, outlining their predictions and strategy for the upcoming week. The forecast horizon is one week, typically five trading days, and there will be no overlapping evaluation periods.</p>
 <p>Example: The deadline for the first submission point is 6 PM ET on September 18th, 2022 (Sunday). Participants are required to submit forecasts and investment decisions reflecting the closing value of the last trading day of the following week, which is September 23rd, 2022 (Friday).</p>
@@ -539,123 +537,17 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 6)
-sum of abs decisions:  1.0
-sum of ranks equals 1:  True
-all ranks are non negative:  True
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;rank1&#39;</span><span class="p">,</span> <span class="s1">&#39;rank2&#39;</span><span class="p">,</span> <span class="s1">&#39;rank3&#39;</span><span class="p">,</span> <span class="s1">&#39;rank4&#39;</span><span class="p">,</span> <span class="s1">&#39;rank5&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>rank1</th>
-      <th>rank2</th>
-      <th>rank3</th>
-      <th>rank4</th>
-      <th>rank5</th>
-      <th>decision</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>mmm</td>
-      <td>0.0</td>
-      <td>0.1</td>
-      <td>0.20</td>
-      <td>0.50</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>atvi</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.00</td>
-      <td>0.00</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>googl</td>
-      <td>0.1</td>
-      <td>0.1</td>
-      <td>0.10</td>
-      <td>0.10</td>
-      <td>0.6</td>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>aph</td>
-      <td>0.5</td>
-      <td>0.4</td>
-      <td>0.05</td>
-      <td>0.05</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>bmy</td>
-      <td>0.2</td>
-      <td>0.2</td>
-      <td>0.20</td>
-      <td>0.20</td>
-      <td>0.2</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>cb</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.10</td>
-      <td>0.40</td>
-      <td>0.5</td>
-      <td>0.3</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>exr</td>
-      <td>0.7</td>
-      <td>0.3</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.0</td>
-      <td>-0.2</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>msi</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.00</td>
-      <td>0.00</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+</div>
 </div>
 <p>#Measuring the performance of the forecasts:</p>
 <p>The forecasting performance for a specific submission point will be measured by the Ranked Probability Score (RPS). The realized percentage total returns of all assets over the period are divided into quintiles, ranking from 1 (worst performing) to 5 (best performing). Given 110 assets, 22 of these will receive a rank of 5, 22 a rank of 4, and so forth. In cases involving a tie on the margins of the classes, the tied assets will all be assigned the respective average rank.</p>
@@ -699,7 +591,10 @@ all ranks are non negative:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-3e62929e-7982-4ccf-b54d-debbf8d6454c">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -807,7 +702,83 @@ all ranks are non negative:  True
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-3e62929e-7982-4ccf-b54d-debbf8d6454c')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-3e62929e-7982-4ccf-b54d-debbf8d6454c button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-3e62929e-7982-4ccf-b54d-debbf8d6454c');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -821,7 +792,10 @@ all ranks are non negative:  True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-71bf48df-c36c-4c0e-aee6-6c673190ee5d">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -929,7 +903,83 @@ all ranks are non negative:  True
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-71bf48df-c36c-4c0e-aee6-6c673190ee5d')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-71bf48df-c36c-4c0e-aee6-6c673190ee5d button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-71bf48df-c36c-4c0e-aee6-6c673190ee5d');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1024,8 +1074,8 @@ Note that in this example, as in all our investment performance assessments, dai
 $<span class="math notranslate nohighlight">\(OR=\frac{rank(RPS)+rank(IR)}{2}\)</span>$
 Where rank(•) returns the rank of a participant relative to all other participants for that measure (RPS or IR).</p>
 <p>To calculate the overall forecasting rank, RPS, across all 12 submission points, the arithmetic mean of the RPS as calculated in each week is taken.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="submission-example">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="submission-example">
 <h1>Submission example<a class="headerlink" href="#submission-example" title="Permalink to this headline">#</a></h1>
 <p>Submission guidelines summary:</p>
 <ul class="simple">
@@ -1041,7 +1091,7 @@ Where rank(•) returns the rank of a participant relative to all other particip
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install yfinance
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>yfinance
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -1070,40 +1120,65 @@ Where rank(•) returns the rank of a participant relative to all other particip
 <span class="k">except</span><span class="p">:</span>
   <span class="k">pass</span>
 
-<span class="o">!</span>git clone https://github.com/naftalic/ddmif.git
+<span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/naftalic/ddmif.git
 <span class="kn">import</span> <span class="nn">ddmif.ddmif_functions</span> <span class="k">as</span> <span class="nn">ddmif</span>
 <span class="c1">#pip freeze &gt; requirements.txt</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: yfinance in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (0.1.70)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: lxml&gt;=4.5.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (4.9.0)
-Requirement already satisfied: numpy&gt;=1.15 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (1.22.4)
-Requirement already satisfied: pandas&gt;=0.24.0 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (1.4.2)
-Requirement already satisfied: requests&gt;=2.26 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (2.27.1)
-Requirement already satisfied: multitasking&gt;=0.0.7 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from yfinance) (0.0.10)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from pandas&gt;=0.24.0-&gt;yfinance) (2021.3)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from pandas&gt;=0.24.0-&gt;yfinance) (2.8.2)
-Requirement already satisfied: six&gt;=1.5 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=0.24.0-&gt;yfinance) (1.16.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (2022.5.18.1)
-Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (1.26.8)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (2.0.4)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/lib/python3.8/site-packages (from requests&gt;=2.26-&gt;yfinance) (3.3)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting yfinance
+  Downloading yfinance-0.2.4-py2.py3-none-any.whl (51 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">51.4/51.4 KB</span> <span class=" -Color -Color-Red">2.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting cryptography&gt;=3.3.2
+  Downloading cryptography-39.0.0-cp36-abi3-manylinux_2_28_x86_64.whl (4.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.2/4.2 MB</span> <span class=" -Color -Color-Red">54.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: lxml&gt;=4.9.1 in /usr/local/lib/python3.8/dist-packages (from yfinance) (4.9.2)
+Requirement already satisfied: pytz&gt;=2022.5 in /usr/local/lib/python3.8/dist-packages (from yfinance) (2022.7)
+Collecting frozendict&gt;=2.3.4
+  Downloading frozendict-2.3.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (110 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">111.0/111.0 KB</span> <span class=" -Color -Color-Red">8.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting beautifulsoup4&gt;=4.11.1
+  Downloading beautifulsoup4-4.11.1-py3-none-any.whl (128 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">128.2/128.2 KB</span> <span class=" -Color -Color-Red">7.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hCollecting requests&gt;=2.26
+  Downloading requests-2.28.2-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">62.8/62.8 KB</span> <span class=" -Color -Color-Red">3.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: appdirs&gt;=1.4.4 in /usr/local/lib/python3.8/dist-packages (from yfinance) (1.4.4)
+Collecting html5lib&gt;=1.1
+  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">112.2/112.2 KB</span> <span class=" -Color -Color-Red">7.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pandas&gt;=1.3.0 in /usr/local/lib/python3.8/dist-packages (from yfinance) (1.3.5)
+Requirement already satisfied: multitasking&gt;=0.0.7 in /usr/local/lib/python3.8/dist-packages (from yfinance) (0.0.11)
+Requirement already satisfied: numpy&gt;=1.16.5 in /usr/local/lib/python3.8/dist-packages (from yfinance) (1.21.6)
+Collecting soupsieve&gt;1.2
+  Downloading soupsieve-2.3.2.post1-py3-none-any.whl (37 kB)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/local/lib/python3.8/dist-packages (from cryptography&gt;=3.3.2-&gt;yfinance) (1.15.1)
+Requirement already satisfied: webencodings in /usr/local/lib/python3.8/dist-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
+Requirement already satisfied: six&gt;=1.9 in /usr/local/lib/python3.8/dist-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.15.0)
+Requirement already satisfied: python-dateutil&gt;=2.7.3 in /usr/local/lib/python3.8/dist-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.8/dist-packages (from requests&gt;=2.26-&gt;yfinance) (1.24.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.8/dist-packages (from requests&gt;=2.26-&gt;yfinance) (2.1.1)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.8/dist-packages (from requests&gt;=2.26-&gt;yfinance) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.8/dist-packages (from requests&gt;=2.26-&gt;yfinance) (2.10)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.8/dist-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=3.3.2-&gt;yfinance) (2.21)
+Installing collected packages: soupsieve, requests, html5lib, frozendict, cryptography, beautifulsoup4, yfinance
+  Attempting uninstall: requests
+    Found existing installation: requests 2.25.1
+    Uninstalling requests-2.25.1:
+      Successfully uninstalled requests-2.25.1
+  Attempting uninstall: html5lib
+    Found existing installation: html5lib 1.0.1
+    Uninstalling html5lib-1.0.1:
+      Successfully uninstalled html5lib-1.0.1
+  Attempting uninstall: beautifulsoup4
+    Found existing installation: beautifulsoup4 4.6.3
+    Uninstalling beautifulsoup4-4.6.3:
+      Successfully uninstalled beautifulsoup4-4.6.3
+Successfully installed beautifulsoup4-4.11.1 cryptography-39.0.0 frozendict-2.3.4 html5lib-1.1 requests-2.28.2 soupsieve-2.3.2.post1 yfinance-0.2.4
+Mounted at /content/drive/
+fatal: destination path &#39;ddmif&#39; already exists and is not an empty directory.
 </pre></div>
 </div>
 </div>
@@ -1813,7 +1888,7 @@ submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/du
   </div>
 </div></div>
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1827,7 +1902,7 @@ submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/du
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1842,13 +1917,6 @@ submission file /content/drive/MyDrive/teaching/ddmif_spring_2023/submissions/du
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="probability_and_regression.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Probability and Regression Review</p>
-        </div>
-    </a>
 </div>
             </footer>
         </div>
