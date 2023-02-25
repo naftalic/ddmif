@@ -643,23 +643,13 @@ Continuing from the previous example, our goal is to construct a portfolio with 
 
 The quadratic programming problem that represents this situation can be expressed as follows:
 
- 
-
 $$
 \begin{align*}
-
-\end{align*}
-$$
-
-
-$$
-\begin{align*}
-&\text{minimize}\quad w^T \Sigma w\\
-&\text{subject to}\quad 
-&&w^T \mu = 0.08 \\
-&&w^T \mathbf{1} = 1 \\
-&&w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
-&&\sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3 \\
+&\text{minimize}\quad & w^T \Sigma w\\
+&\text{subject to}\quad   &w^T \mu = 0.08 \\
+& &w^T \mathbf{1} = 1 \\
+& &w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
+& &\sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3 \\
 \end{align*}
 $$
 
