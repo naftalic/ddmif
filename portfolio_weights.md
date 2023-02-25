@@ -643,10 +643,15 @@ Continuing from the previous example, our goal is to construct a portfolio with 
 
 The quadratic programming problem that represents this situation can be expressed as follows:
 
-minimize $w^T \Sigma w$
+minimize 
+$$
+\begin{align*}
+w^T \Sigma w
+\end{align*}
+$$
+
 
 subject to:
-
 $$
 \begin{align*}
 &w^T \mu = 0.08 \\
