@@ -613,6 +613,7 @@ print(Sigma.shape, A.shape, b.shape)
 
 # Create a GurobiPy model
 model = gp.Model()
+model.setParam('OutputFlag', 0)
 
 # Create the decision variables
 w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
@@ -722,6 +723,7 @@ print(Sigma.shape, A.shape, b.shape)
 
 # Create a GurobiPy model
 model = gp.Model()
+model.setParam('OutputFlag', 0)
 
 # Create the decision variables
 w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)

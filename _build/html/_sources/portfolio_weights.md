@@ -603,6 +603,7 @@ print(Sigma.shape, A.shape, b.shape)
 ```{code-cell}
 # Create a GurobiPy model
 model = gp.Model()
+model.setParam('OutputFlag', 0)
 
 # Create the decision variables
 w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
@@ -703,6 +704,7 @@ The remaining rows of the $A$ matrix represent inequality constraints that limit
 ```{code-cell}
 # Create a GurobiPy model
 model = gp.Model()
+model.setParam('OutputFlag', 0)
 
 # Create the decision variables
 w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
