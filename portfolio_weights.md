@@ -655,4 +655,11 @@ $$
 
 where $w$ is the vector of portfolio weights, $\mu$ is the vector of expected returns, $\Sigma$ is the covariance matrix, and $\mathbf{1}$ is a vector of ones. The first constraint ensures the portfolio's average annualized return is 8%. The second constraint guarantees that the portfolio weights sum to 1, while the third constraint prohibits short sales. Finally, the fourth constraint ensures that the portfolio contains no more than three stocks. The indicator function $\mathbb{I}(w_i>0)$ returns 1 if the $i$-th weight is positive and 0 otherwise.
 
+As before we condense the quadratic programming problem to 
 
+$$
+\begin{align*}
+\min_w 0.5 w^T \Sigma w\\
+\text{s.t} Ax \le b
+\end{align*}
+$$
