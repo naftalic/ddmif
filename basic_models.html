@@ -147,43 +147,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tax_management.html">
-   8) Tax Management
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="leverage.html">
-   9) Leverage
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="market_neutral.html">
-   10) Market Neutral
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian_alpha.html">
-   11) Bayesian Alpha
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="performance_measurement_and_attribution.html">
-   12) Performance Measurement and Attribution
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="backtesting.html">
-   13) Backtesting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_performance.html">
-   14) Portfolio Performance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
+  <a class="reference internal" href="rebalancing_and_transactions_costs.html">
+   8) Rebalancing and transactions costs
   </a>
  </li>
 </ul>
@@ -571,8 +536,13 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mf">0.2</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span> <span class="n">w</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sr</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span> <span class="p">)</span>
@@ -580,15 +550,7 @@ The equations for Stock A and Stock B’s returns are given as</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sr</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="mi">20</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mf">0.2</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8383838383838385 2.061507862299763
 </pre></div>
 </div>
 </div>
@@ -599,6 +561,9 @@ The equations for Stock A and Stock B’s returns are given as</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/basic_models_3_0.png" src="_images/basic_models_3_0.png" />
 </div>
 </div>
 </section>
