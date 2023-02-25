@@ -647,13 +647,14 @@ minimize $w^T \Sigma w$
 
 subject to:
 
-$w^T \mu = 0.08$
-
-$w^T \mathbf{1} = 1$
-
-$w_i \geq 0$ for $i = 1,2,...,6$
-
-$\sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3$
+$$
+\begin{align*}
+&w^T \mu = 0.08 \\
+&w^T \mathbf{1} = 1 \\
+&w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
+&\sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3 \\
+\end{align*}
+$$
 
 where $w$ is the vector of portfolio weights, $\mu$ is the vector of expected returns, $\Sigma$ is the covariance matrix, and $\mathbf{1}$ is a vector of ones. The first constraint ensures the portfolio's average annualized return is 8%. The second constraint guarantees that the portfolio weights sum to 1, while the third constraint prohibits short sales. Finally, the fourth constraint ensures that the portfolio contains no more than three stocks. The indicator function $\mathbb{I}(w_i>0)$ returns 1 if the $i$-th weight is positive and 0 otherwise.
 
