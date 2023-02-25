@@ -651,11 +651,10 @@ $$
 \end{align*}
 $$
 
-subject to:
 
 $$
 \begin{align*}
-\text{subject to:} 
+\text{subject to}\quad 
 &w^T \mu = 0.08 \\
 &w^T \mathbf{1} = 1 \\
 &w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
