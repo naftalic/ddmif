@@ -400,6 +400,11 @@ title="Print to PDF"
    Understanding transactions costs
   </a>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-transaction-costs">
+   Modeling transaction costs
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -444,6 +449,11 @@ title="Print to PDF"
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#understanding-transactions-costs">
    Understanding transactions costs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-transaction-costs">
+   Modeling transaction costs
   </a>
  </li>
 </ul>
@@ -495,6 +505,26 @@ Quantitative portfolio managers must always keep the model in mind. If a manager
 <p>While broker commissions are generally straightforward, bid-ask spreads and price impacts are harder to estimate. These costs can vary over time and depend on a variety of factors, making it difficult to predict the exact cost of a trade. However, investors can estimate these costs using historical data and by consulting with their broker or financial advisor.</p>
 <p>For example, let’s say an investor wants to buy shares of a newly-listed company. Due to the lack of trading history and low liquidity, the bid-ask spread is wide, at 5% of the share price. Additionally, the investor’s order is large relative to the trading volume, resulting in a price impact of 2%. Including the commission charged by the broker, the total transaction cost for this trade would be around 7%. In contrast, if the investor wanted to buy shares of a well-established company with high trading volume, the bid-ask spread may only be 0.1% and the price impact negligible, resulting in a much lower transaction cost of around 0.5%.</p>
 <p>Overall, understanding transaction costs is an important aspect of investing, as it can have a significant impact on investment returns over time. By estimating and minimizing these costs, investors can increase their chances of achieving their financial goals.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-transaction-costs">
+<h1>Modeling transaction costs<a class="headerlink" href="#modeling-transaction-costs" title="Permalink to this headline">#</a></h1>
+<p>Modeling transaction costs can be a challenging task due to their complex and unpredictable nature. Conventionally, a fixed proportion of the total transaction value is used to approximate transaction costs, represented by a constant denoted as <span class="math notranslate nohighlight">\(c\)</span>. For example, if <span class="math notranslate nohighlight">\(c\)</span> is set to 5 or 10 basis points, then the transaction cost per dollar transaction would be <span class="math notranslate nohighlight">\(10 \times c\)</span> for a transaction value of $10.</p>
+<p>Calculating the total transaction value (TV) is a straightforward process. To determine the current portfolio’s dollar value (<span class="math notranslate nohighlight">\(V_t\)</span>), the weights of stocks in the current portfolio (<span class="math notranslate nohighlight">\(w_1^b,\cdots,w_N^b\)</span>) and the weights of stocks in the future portfolio (<span class="math notranslate nohighlight">\(w_1^a,\cdots,w_N^a\)</span>) are used. The superscripts ‘b’ and ‘a’ denote ‘before’ and ‘after’, respectively. The current holding of stock <span class="math notranslate nohighlight">\(i\)</span> in dollar terms is represented by <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, and the future holding of stock <span class="math notranslate nohighlight">\(i\)</span> in dollar terms is represented by <span class="math notranslate nohighlight">\(V_tw_i^a\)</span>. If <span class="math notranslate nohighlight">\(V_tw_i^a\)</span> is greater than <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, buying stock <span class="math notranslate nohighlight">\(i\)</span> is suggested. On the other hand, if <span class="math notranslate nohighlight">\(V_tw_i^a\)</span> is smaller than <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, selling stock <span class="math notranslate nohighlight">\(i\)</span> is suggested. The difference between <span class="math notranslate nohighlight">\(V_tw_i^a\)</span> and <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, represented as <span class="math notranslate nohighlight">\(V_tw_i^a-V_tw_i^b\)</span>, indicates the amount to buy or sell, in dollar terms. Therefore, the transaction value is the sum of this difference across all stocks, which is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\text{TV} = \sum\limits_{i=1}^N|V_tw_i^a-V_tw_i^b|
+\]</div>
+<p>The transaction cost (TC) is a constant fraction of the transaction value, represented by <span class="math notranslate nohighlight">\(cV_t\sum\limits_{i=1}^N|w_i^a-w_i^b|\)</span>. To include the transaction cost formula in an optimization problem, it is useful to express TC as a linear function, which is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\text{TC} = V_t\sum\limits_{i=1}^Nc_i(w_i^a-w_i^b)
+\]</div>
+<p>The values of <span class="math notranslate nohighlight">\(c_i\)</span> depend on the values of <span class="math notranslate nohighlight">\(w_a\)</span> and <span class="math notranslate nohighlight">\(w_b\)</span>. If <span class="math notranslate nohighlight">\(w_i^a&gt;w_i^b\)</span>, then <span class="math notranslate nohighlight">\(c_i\)</span> is set to <span class="math notranslate nohighlight">\(c\)</span>. Conversely, if <span class="math notranslate nohighlight">\(w_i^a&lt;w_i^b\)</span>, then <span class="math notranslate nohighlight">\(c_i\)</span> is set to <span class="math notranslate nohighlight">\(-c\)</span>. By defining the vector of current weights as <span class="math notranslate nohighlight">\(w_b\)</span>, the vector of future weights as <span class="math notranslate nohighlight">\(w_a\)</span>, and the vector of transactions costs as <span class="math notranslate nohighlight">\(c\)</span>, the transaction cost can be expressed as a vector product of the weight vector and the transactions cost vector. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[
+\text{TC} = V_t(w^a-w^b)^\top c
+\]</div>
+<p>To account for different stocks having different transaction costs, transaction costs can be modeled as proportional to the liquidity of each stock, considering the bid-ask spread and the price impact. The trading cost can be assumed to be inversely proportional to the average trading volume of each stock. In this case, elements of <span class="math notranslate nohighlight">\(c\)</span> would have different signs and absolute values.</p>
 </section>
 
     <script type="text/x-thebe-config">
