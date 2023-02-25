@@ -60,3 +60,28 @@ For example, let's say an investor wants to buy shares of a newly-listed company
 
 Overall, understanding transaction costs is an important aspect of investing, as it can have a significant impact on investment returns over time. By estimating and minimizing these costs, investors can increase their chances of achieving their financial goals.
 
+
+# Modeling transaction costs
+Modeling transaction costs can be a challenging task due to their complex and unpredictable nature. Conventionally, a fixed proportion of the total transaction value is used to approximate transaction costs, represented by a constant denoted as $c$. For example, if $c$ is set to 5 or 10 basis points, then the transaction cost per dollar transaction would be $10 \times c$ for a transaction value of $10.
+
+Calculating the total transaction value (TV) is a straightforward process. To determine the current portfolio's dollar value ($V_t$), the weights of stocks in the current portfolio ($w_1^b,\cdots,w_N^b$) and the weights of stocks in the future portfolio ($w_1^a,\cdots,w_N^a$) are used. The superscripts 'b' and 'a' denote 'before' and 'after', respectively. The current holding of stock $i$ in dollar terms is represented by $V_tw_i^b$, and the future holding of stock $i$ in dollar terms is represented by $V_tw_i^a$. If $V_tw_i^a$ is greater than $V_tw_i^b$, buying stock $i$ is suggested. On the other hand, if $V_tw_i^a$ is smaller than $V_tw_i^b$, selling stock $i$ is suggested. The difference between $V_tw_i^a$ and $V_tw_i^b$, represented as $V_tw_i^a-V_tw_i^b$, indicates the amount to buy or sell, in dollar terms. Therefore, the transaction value is the sum of this difference across all stocks, which is given by 
+
+$$
+\text{TV} = \sum\limits_{i=1}^N|V_tw_i^a-V_tw_i^b|
+$$.
+
+The transaction cost (TC) is a constant fraction of the transaction value, represented by $cV_t\sum\limits_{i=1}^N|w_i^a-w_i^b|$. To include the transaction cost formula in an optimization problem, it is useful to express TC as a linear function, which is given by 
+
+$$
+\text{TC} = V_t\sum\limits_{i=1}^Nc_i(w_i^a-w_i^b)
+$$ 
+
+The values of $c_i$ depend on the values of $w_a$ and $w_b$. If $w_i^a>w_i^b$, then $c_i$ is set to $c$. Conversely, if $w_i^a<w_i^b$, then $c_i$ is set to $-c$. By defining the vector of current weights as $w_b$, the vector of future weights as $w_a$, and the vector of transactions costs as $c$, the transaction cost can be expressed as a vector product of the weight vector and the transactions cost vector. Therefore, 
+
+$$
+\text{TC} = V_t(w^a-w^b)^\top c
+$$.
+
+To account for different stocks having different transaction costs, transaction costs can be modeled as proportional to the liquidity of each stock, considering the bid-ask spread and the price impact. The trading cost can be assumed to be inversely proportional to the average trading volume of each stock. In this case, elements of $c$ would have different signs and absolute values.
+
+
