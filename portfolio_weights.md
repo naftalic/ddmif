@@ -563,7 +563,16 @@ import gurobipy as gp
 ```
 
 ```{code-cell}
-# Define the matrix A and vector b
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+```
+
+```{code-cell}
 A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
               [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
               [1,0,0,0,0,0,-0.3,0,0,0,0,0],
@@ -587,18 +596,9 @@ b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
 print(b)
 ```
 
-
 ```{code-cell}
-Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
-                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
-                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
-                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
-                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
-                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
-print(Sigma)
+print(Sigma.shape, A.shape, b.shape)
 ```
-
-
 
 ```{code-cell}
 # Create a GurobiPy model
@@ -626,7 +626,7 @@ model.optimize()
 if model.status == gp.GRB.OPTIMAL:
     print("Solution found!")
     for i in range(12):
-        print(f"w[{i}] = {np.round(w[i].x,4)}")
+        print(f"w[{i}] = {np.round(w[i].x,3)}")
 else:
     print("No solution found.")
 ```
@@ -641,20 +641,6 @@ If the managers are only limiting the number of stocks, binary variables will su
 ## A numerical example
 Continuing from the previous example, our goal is to construct a portfolio with an average annualized return of 8%, without short sales and with the portfolio weights summing to 1. However, we want to restrict the portfolio to have no more than three stocks, despite having six stocks available for purchase.
 
-The quadratic programming problem that represents this situation can be expressed as follows:
-
-$$
-\begin{align*}
-\text{minimize}\quad & w^T \Sigma w\\
-\text{subject to}\quad   &w^T \mu = 0.08 \\
-& w^T \mathbf{1} = 1 \\
-& w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
-& \sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3 \\
-\end{align*}
-$$
-
-where $w$ is the vector of portfolio weights, $\mu$ is the vector of expected returns, $\Sigma$ is the covariance matrix, and $\mathbf{1}$ is a vector of ones. The first constraint ensures the portfolio's average annualized return is 8%. The second constraint guarantees that the portfolio weights sum to 1, while the third constraint prohibits short sales. Finally, the fourth constraint ensures that the portfolio contains no more than three stocks. The indicator function $\mathbb{I}(w_i>0)$ returns 1 if the $i$-th weight is positive and 0 otherwise.
-
 As before we condense the quadratic programming problem to 
 
 $$
@@ -662,3 +648,85 @@ $$
 \min\limits_w 0.5 w^T \Sigma w\quad\text{s.t}\quad Ax \le b
 \end{align*}
 $$
+
+
+```{code-cell}
+import numpy as np
+import gurobipy as gp
+```
+
+
+```{code-cell}
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+```
+
+
+```{code-cell}
+A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
+              [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
+              [1,0,0,0,0,0,-1,0,0,0,0,0], 
+              [0,1,0,0,0,0,0,-1,0,0,0,0],
+              [0,0,1,0,0,0,0,0,-1,0,0,0],
+              [0,0,0,1,0,0,0,0,0,-1,0,0],
+              [0,0,0,0,1,0,0,0,0,0,-1,0],
+              [0,0,0,0,0,1,0,0,0,0,0,-1],
+              [-1,0,0,0,0,0,0,0,0,0,0,0],
+              [0,-1,0,0,0,0,0,0,0,0,0,0],
+              [0,0,-1,0,0,0,0,0,0,0,0,0],
+              [0,0,0,-1,0,0,0,0,0,0,0,0],
+              [0,0,0,0,-1,0,0,0,0,0,0,0],
+              [0,0,0,0,0,-1,0,0,0,0,0,0],
+              [0,0,0,0,0,0,1,1,1,1,1,1],
+              [0,0,0,0,0,0,-1,-1,-1,-1,-1,-1]])
+print(A)
+```
+
+```{code-cell}
+b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0,3,0]])
+print(b)
+```
+
+```{code-cell}
+print(Sigma.shape, A.shape, b.shape)
+```
+
+The $A$ matrix consists of two rows that represent equality constraints. The first row indicates that the sum of weights must be equal to 1, and the second row represents the constraint that the target mean is 8%. For binary weights, a 0 value is assigned to the matrix, as they are not relevant for these constraints.
+
+The remaining rows of the $A$ matrix represent inequality constraints that limit the weight of each stock between 0 and 1. The last two rows of the matrix represent inequality constraints on the binary variables. Specifically, they ensure that the sum of the binary variables is between 0 and 3, which is equivalent to limiting the number of stocks to be less than or equal to three.
+
+```{code-cell}
+# Create a GurobiPy model
+model = gp.Model()
+
+# Create the decision variables
+w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
+
+# Add the constraints Aw = b for the first two rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) == b[0,j] for j in range(2))
+
+# Add the constraints Aw <= b for the rest of the rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j in range(2,16))
+
+risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
+model.setObjective(risk, gp.GRB.MINIMIZE)
+
+# Set the objective function to zero (since this is a feasibility problem)
+model.setObjective(risk, sense=gp.GRB.MINIMIZE)
+
+# Solve the model
+model.optimize()
+
+# Print the solution
+if model.status == gp.GRB.OPTIMAL:
+    print("Solution found!")
+    for i in range(12):
+        print(f"w[{i}] = {np.round(w[i].x,3)}")
+else:
+    print("No solution found.")
+```
