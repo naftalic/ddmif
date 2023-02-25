@@ -654,7 +654,7 @@ $$
 
 $$
 \begin{align*}
-&\text{minimize}\quad w^T \Sigma w
+&\text{minimize}\quad w^T \Sigma w\\
 &\text{subject to}\quad 
 &&w^T \mu = 0.08 \\
 &&w^T \mathbf{1} = 1 \\
