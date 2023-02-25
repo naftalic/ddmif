@@ -68,7 +68,7 @@ Calculating the total transaction value (TV) is a straightforward process. To de
 
 $$
 \text{TV} = \sum\limits_{i=1}^N|V_tw_i^a-V_tw_i^b|
-$$.
+$$
 
 The transaction cost (TC) is a constant fraction of the transaction value, represented by $cV_t\sum\limits_{i=1}^N|w_i^a-w_i^b|$. To include the transaction cost formula in an optimization problem, it is useful to express TC as a linear function, which is given by 
 
@@ -80,7 +80,7 @@ The values of $c_i$ depend on the values of $w_a$ and $w_b$. If $w_i^a>w_i^b$, t
 
 $$
 \text{TC} = V_t(w^a-w^b)^\top c
-$$.
+$$
 
 To account for different stocks having different transaction costs, transaction costs can be modeled as proportional to the liquidity of each stock, considering the bid-ask spread and the price impact. The trading cost can be assumed to be inversely proportional to the average trading volume of each stock. In this case, elements of $c$ would have different signs and absolute values.
 
