@@ -638,7 +638,23 @@ Portfolio managers may choose to limit the number of stocks in their portfolio f
 If the managers are only limiting the number of stocks, binary variables will suffice. For a long-only portfolio, the managers should create a set of $N$ binary variables, $v_i^+$, while for a long-short portfolio, they should create two sets of binary variables, $v_i^+$ and $v_i^-,$ allowing them to specify the range of stocks in both the long and short portfolios, respectively. To ensure that the number of stocks in the long portfolio is within the specified range, two inequality constraints should be added. The first constraint is that $\sum\limits_{i=1}^Nv_i^+ \leq n_h$, while the second constraint is that $n_l \leq \sum\limits_{i=1}^Nv_i^+$. For optimization frameworks that require it, the second inequality can be transformed into $-\sum\limits_{i=1}^Nv_i^+ \leq -n_l$. Similarly, for a long-short portfolio, the portfolio manager should add similar constraints on the short portfolio using the corresponding binary variables.
 
 
+## A numerical example
+Continuing from the previous example, our goal is to construct a portfolio with an average annualized return of 8%, without short sales and with the portfolio weights summing to 1. However, we want to restrict the portfolio to have no more than three stocks, despite having six stocks available for purchase.
 
+The quadratic programming problem that represents this situation can be expressed as follows:
 
+minimize $w^T \Sigma w$
+
+subject to:
+
+$w^T \mu = 0.08$
+
+$w^T \mathbf{1} = 1$
+
+$w_i \geq 0$ for $i = 1,2,...,6$
+
+$\sum\limits_{i=1}^6\mathbb{I}(w_i>0)\leq 3$
+
+where $w$ is the vector of portfolio weights, $\mu$ is the vector of expected returns, $\Sigma$ is the covariance matrix, and $\mathbf{1}$ is a vector of ones. The first constraint ensures the portfolio's average annualized return is 8%. The second constraint guarantees that the portfolio weights sum to 1, while the third constraint prohibits short sales. Finally, the fourth constraint ensures that the portfolio contains no more than three stocks. The indicator function $\mathbb{I}(w_i>0)$ returns 1 if the $i$-th weight is positive and 0 otherwise.
 
 
