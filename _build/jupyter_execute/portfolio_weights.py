@@ -551,11 +551,9 @@ print( np.round(w.value,3), np.round(prob.value,3))
 # 
 # 
 # ## A numerical example
-# Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.
+# Building upon the previous numerical example, we aim to construct a portfolio that delivers an average annualized return of 8% without short sales and with the restriction that the weights of the portfolio must sum to 1. We further impose the constraint that the weight of each stock can only be greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%), or it must be 0.
 # 
-# The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
-# restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
-# variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
+# To represent these constraints mathematically, we construct the matrix A, where the first two rows denote equality constraints that the sum of weights should equal 1 and that the target mean return is 8%. Since binary weights are not relevant for these constraints, we place 0 in the corresponding matrix elements. The remaining rows of the matrix are inequality constraints that restrict the weights of each stock to lie between 0.03 and 0.30 or be 0. We use the values of $\kappa_l$ and $\kappa_h$ to ensure that $0.03v_i^+ \le w_i \le 0.3v_i^+$, where $v_i^+$ is a binary variable. If $v_i^+$ equals 1, the weight of stock $i$ must lie within the range of 0.03 to 0.30. Otherwise, if it is more optimal for the weight of stock $i$ to be 0, then $v_i^+= 0$, and $w_i$ is also equal to 0.
 
 # In[10]:
 
@@ -567,7 +565,18 @@ import gurobipy as gp
 # In[11]:
 
 
-# Define the matrix A and vector b
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+
+
+# In[12]:
+
+
 A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
               [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
               [1,0,0,0,0,0,-0.3,0,0,0,0,0],
@@ -586,26 +595,20 @@ A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
 print(A)
 
 
-# In[12]:
+# In[13]:
 
 
 b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0]])
 print(b)
 
 
-# In[13]:
-
-
-Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
-                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
-                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
-                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
-                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
-                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
-print(Sigma)
-
-
 # In[14]:
+
+
+print(Sigma.shape, A.shape, b.shape)
+
+
+# In[15]:
 
 
 # Create a GurobiPy model
@@ -633,7 +636,116 @@ model.optimize()
 if model.status == gp.GRB.OPTIMAL:
     print("Solution found!")
     for i in range(12):
-        print(f"w[{i}] = {w[i].x}")
+        print(f"w[{i}] = {np.round(w[i].x,3)}")
+else:
+    print("No solution found.")
+
+
+# ## Limiting the Number of Stocks in a Portfolio
+# 
+# Portfolio managers may choose to limit the number of stocks in their portfolio for various reasons. For instance, it might be more manageable to handle a portfolio with fewer stocks, especially when using a regularly rebalanced quantitative model. To achieve this, portfolio optimization can be performed, allowing managers to restrict the number of stocks within a range of $n_l$ to $n_h$. Here, phantom weights are not necessary unless the managers are working with a long-short portfolio.
+# 
+# If the managers are only limiting the number of stocks, binary variables will suffice. For a long-only portfolio, the managers should create a set of $N$ binary variables, $v_i^+$, while for a long-short portfolio, they should create two sets of binary variables, $v_i^+$ and $v_i^-,$ allowing them to specify the range of stocks in both the long and short portfolios, respectively. To ensure that the number of stocks in the long portfolio is within the specified range, two inequality constraints should be added. The first constraint is that $\sum\limits_{i=1}^Nv_i^+ \leq n_h$, while the second constraint is that $n_l \leq \sum\limits_{i=1}^Nv_i^+$. For optimization frameworks that require it, the second inequality can be transformed into $-\sum\limits_{i=1}^Nv_i^+ \leq -n_l$. Similarly, for a long-short portfolio, the portfolio manager should add similar constraints on the short portfolio using the corresponding binary variables.
+# 
+# 
+# ## A numerical example
+# Continuing from the previous example, our goal is to construct a portfolio with an average annualized return of 8%, without short sales and with the portfolio weights summing to 1. However, we want to restrict the portfolio to have no more than three stocks, despite having six stocks available for purchase.
+# 
+# As before we condense the quadratic programming problem to 
+# 
+# $$
+# \begin{align*}
+# \min\limits_w 0.5 w^T \Sigma w\quad\text{s.t}\quad Ax \le b
+# \end{align*}
+# $$
+
+# In[16]:
+
+
+import numpy as np
+import gurobipy as gp
+
+
+# In[17]:
+
+
+Sigma = np.array([[452.33, 249.33 , 189.23, 70.75,  481.14 , 106.5],
+                  [249.33, 1094.09, 356.85, 93.51 , 1216.91, 135.05],
+                  [189.23, 356.85 , 617.57, 161.82, 1304.29, 110.74],
+                  [70.75 , 93.51  , 161.82, 372.35, 462.57 , 107.52],
+                  [481.14, 1216.91, 1304.29, 462.57, 5658.42, 425.35],
+                  [106.5 , 135.05,  110.74, 107.52, 425.35 , 244.31]])
+print(Sigma)
+
+
+# In[18]:
+
+
+A = np.array([[1,1,1,1,1,1,0,0,0,0,0,0],
+              [14.4,10.19,9.87,7.52,20.05,2.66,0,0,0,0,0,0],
+              [1,0,0,0,0,0,-1,0,0,0,0,0], 
+              [0,1,0,0,0,0,0,-1,0,0,0,0],
+              [0,0,1,0,0,0,0,0,-1,0,0,0],
+              [0,0,0,1,0,0,0,0,0,-1,0,0],
+              [0,0,0,0,1,0,0,0,0,0,-1,0],
+              [0,0,0,0,0,1,0,0,0,0,0,-1],
+              [-1,0,0,0,0,0,0,0,0,0,0,0],
+              [0,-1,0,0,0,0,0,0,0,0,0,0],
+              [0,0,-1,0,0,0,0,0,0,0,0,0],
+              [0,0,0,-1,0,0,0,0,0,0,0,0],
+              [0,0,0,0,-1,0,0,0,0,0,0,0],
+              [0,0,0,0,0,-1,0,0,0,0,0,0],
+              [0,0,0,0,0,0,1,1,1,1,1,1],
+              [0,0,0,0,0,0,-1,-1,-1,-1,-1,-1]])
+print(A)
+
+
+# In[19]:
+
+
+b = np.array([[1,8,0,0,0,0,0,0,0,0,0,0,0,0,3,0]])
+print(b)
+
+
+# In[20]:
+
+
+print(Sigma.shape, A.shape, b.shape)
+
+
+# The $A$ matrix consists of two rows that represent equality constraints. The first row indicates that the sum of weights must be equal to 1, and the second row represents the constraint that the target mean is 8%. For binary weights, a 0 value is assigned to the matrix, as they are not relevant for these constraints.
+# 
+# The remaining rows of the $A$ matrix represent inequality constraints that limit the weight of each stock between 0 and 1. The last two rows of the matrix represent inequality constraints on the binary variables. Specifically, they ensure that the sum of the binary variables is between 0 and 3, which is equivalent to limiting the number of stocks to be less than or equal to three.
+
+# In[21]:
+
+
+# Create a GurobiPy model
+model = gp.Model()
+
+# Create the decision variables
+w = model.addVars(12, vtype=[gp.GRB.CONTINUOUS]*6 + [gp.GRB.BINARY]*6)
+
+# Add the constraints Aw = b for the first two rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) == b[0,j] for j in range(2))
+
+# Add the constraints Aw <= b for the rest of the rows
+model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j in range(2,16))
+
+risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
+model.setObjective(risk, gp.GRB.MINIMIZE)
+
+# Set the objective function to zero (since this is a feasibility problem)
+model.setObjective(risk, sense=gp.GRB.MINIMIZE)
+
+# Solve the model
+model.optimize()
+
+# Print the solution
+if model.status == gp.GRB.OPTIMAL:
+    print("Solution found!")
+    for i in range(12):
+        print(f"w[{i}] = {np.round(w[i].x,3)}")
 else:
     print("No solution found.")
 
