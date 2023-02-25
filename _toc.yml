@@ -11,13 +11,14 @@ chapters:
  - file: fundamental_factors
  - file: economic_factors
  - file: portfolio_weights
- - file: tax_management
- - file: leverage
- - file: market_neutral
- - file: bayesian_alpha
- - file: performance_measurement_and_attribution
- - file: backtesting
- - file: portfolio_performance
- - file: probability_and_regression
+ - file: rebalancing_and_transactions_costs
+# - file: tax_management
+# - file: leverage
+# - file: market_neutral
+# - file: bayesian_alpha
+# - file: performance_measurement_and_attribution
+# - file: backtesting
+# - file: portfolio_performance
+# - file: probability_and_regression
 # - file: submission_guidelines
 
