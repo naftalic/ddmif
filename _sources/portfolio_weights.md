@@ -429,10 +429,6 @@ print(w)
 ```
 
 ```{code-cell}
-!pip install cvxpy
-```
-
-```{code-cell}
 import cvxpy as cp
 
 N = 6
@@ -563,10 +559,6 @@ The first two rows of this A matrix are the equality constraints that the sum of
 restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
 variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
 
-
-```{code-cell}
-!pip install gurobipy
-```
 
 ```{code-cell}
 import numpy as np
