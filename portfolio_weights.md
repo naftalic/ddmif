@@ -643,11 +643,11 @@ Continuing from the previous example, our goal is to construct a portfolio with 
 
 The quadratic programming problem that represents this situation can be expressed as follows:
 
-minimize 
+ 
 
 $$
 \begin{align*}
-w^T \Sigma w
+\text{minimize}\quad w^T \Sigma w
 \end{align*}
 $$
 
@@ -655,6 +655,7 @@ subject to:
 
 $$
 \begin{align*}
+\text{subject to:} 
 &w^T \mu = 0.08 \\
 &w^T \mathbf{1} = 1 \\
 &w_i \geq 0,\quad\text{for}\quad i = 1,2,...,6 \\
