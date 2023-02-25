@@ -557,14 +557,6 @@ Building upon the previous numerical example, we aim to construct a portfolio th
 
 To represent these constraints mathematically, we construct the matrix A, where the first two rows denote equality constraints that the sum of weights should equal 1 and that the target mean return is 8%. Since binary weights are not relevant for these constraints, we place 0 in the corresponding matrix elements. The remaining rows of the matrix are inequality constraints that restrict the weights of each stock to lie between 0.03 and 0.30 or be 0. We use the values of $\kappa_l$ and $\kappa_h$ to ensure that $0.03v_i^+ \le w_i \le 0.3v_i^+$, where $v_i^+$ is a binary variable. If $v_i^+$ equals 1, the weight of stock $i$ must lie within the range of 0.03 to 0.30. Otherwise, if it is more optimal for the weight of stock $i$ to be 0, then $v_i^+= 0$, and $w_i$ is also equal to 0.
 
-
-Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.
-
-The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
-restrict the weights of every stock between 0.03 and 0.30, or a weight of 0. That is, we chose the values of $\kappa_l$ and $\kappa_h$ such that $0.03v_i^+ \le w_i \le 0.3v_i^+$. Since $v_i^+$  is a binary variable, if this
-variable equals 1, then the weight of stock $i$ will be forced to lie in the range of 0.03 and 0.30; however, if it’s more optimal to make its weight 0, then $v_i^+= 0$ and $w_i$ will also be equal to 0.
-
-
 ```{code-cell}
 import numpy as np
 import gurobipy as gp
@@ -638,6 +630,15 @@ if model.status == gp.GRB.OPTIMAL:
 else:
     print("No solution found.")
 ```
+
+## Limiting the Number of Stocks in a Portfolio
+
+Portfolio managers may choose to limit the number of stocks in their portfolio for various reasons. For instance, it might be more manageable to handle a portfolio with fewer stocks, especially when using a regularly rebalanced quantitative model. To achieve this, portfolio optimization can be performed, allowing managers to restrict the number of stocks within a range of $n_l$ to $n_h$. Here, phantom weights are not necessary unless the managers are working with a long-short portfolio.
+
+If the managers are only limiting the number of stocks, binary variables will suffice. For a long-only portfolio, the managers should create a set of $N$ binary variables, $v_i^+$, while for a long-short portfolio, they should create two sets of binary variables, $v_i^+$ and $v_i^-,$ allowing them to specify the range of stocks in both the long and short portfolios, respectively. To ensure that the number of stocks in the long portfolio is within the specified range, two inequality constraints should be added. The first constraint is that $\sum\limits_{i=1}^Nv_i^+ \leq n_h$, while the second constraint is that $n_l \leq \sum\limits_{i=1}^Nv_i^+$. For optimization frameworks that require it, the second inequality can be transformed into $-\sum\limits_{i=1}^Nv_i^+ \leq -n_l$. Similarly, for a long-short portfolio, the portfolio manager should add similar constraints on the short portfolio using the corresponding binary variables.
+
+
+
 
 
 
