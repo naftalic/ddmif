@@ -659,7 +659,7 @@ As before we condense the quadratic programming problem to
 
 $$
 \begin{align*}
-\min_w 0.5 w^T \Sigma w\\
-\text{s.t} Ax \le b
+& \text{min}\limits_w 0.5 w^T \Sigma w\\
+&\text{s.t}\quad Ax \le b
 \end{align*}
 $$
