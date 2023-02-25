@@ -553,6 +553,11 @@ To illustrate, we will focus on the situation where all stock weights should be 
 
 
 ## A numerical example
+Building upon the previous numerical example, we aim to construct a portfolio that delivers an average annualized return of 8% without short sales and with the restriction that the weights of the portfolio must sum to 1. We further impose the constraint that the weight of each stock can only be greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%), or it must be 0.
+
+To represent these constraints mathematically, we construct the matrix A, where the first two rows denote equality constraints that the sum of weights should equal 1 and that the target mean return is 8%. Since binary weights are not relevant for these constraints, we place 0 in the corresponding matrix elements. The remaining rows of the matrix are inequality constraints that restrict the weights of each stock to lie between 0.03 and 0.30 or be 0. We use the values of $\kappa_l$ and $\kappa_h$ to ensure that $0.03v_i^+ \le w_i \le 0.3v_i^+$, where $v_i^+$ is a binary variable. If $v_i^+$ equals 1, the weight of stock $i$ must lie within the range of 0.03 to 0.30. Otherwise, if it is more optimal for the weight of stock $i$ to be 0, then $v_i^+= 0$, and $w_i$ is also equal to 0.
+
+
 Continuing with the prebious  numerical example we  seek a portfolio with an average annualized return of 8%, with no short sales allowed, and the weights of the portfolio must sum to 1. We now add the constraint that a stock can only have a weight greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%) or else it must have a value of 0.
 
 The first two rows of this A matrix are the equality constraints that the sum of weights equals 1 and that the target mean is 8%. For the binary weights (the six additional elements in the vector $x$), a 0 is placed in the matrix since binary weights are not relevant for these constraints. The rest of the rows represent inequality constraints to
@@ -629,7 +634,7 @@ model.optimize()
 if model.status == gp.GRB.OPTIMAL:
     print("Solution found!")
     for i in range(12):
-        print(f"w[{i}] = {w[i].x}")
+        print(f"w[{i}] = {np.round(w[i].x,4)}")
 else:
     print("No solution found.")
 ```
