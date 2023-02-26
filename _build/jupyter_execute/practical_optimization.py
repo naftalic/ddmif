@@ -168,8 +168,8 @@ print("optimal x:", x.value)
 # \begin{aligned}
 # &\text{maximize } &&3x_1 + 2x_2 \\
 # &\text{subject to } &&x_1 + x_2 \leq 4 \\
-# &\text{subject to } &&x_1 \ge 0 \\
-# &\text{subject to } &&x_2 \ge 0 \\
+# &&&x_1 \ge 0 \\
+# &&&x_2 \ge 0 \\
 # &&&x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
 # \end{aligned}
 # $$ 
