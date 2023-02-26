@@ -180,6 +180,7 @@ print("optimal x:", x.value)
 
 
 import cvxpy as cp
+import mosek
 
 # Define the variables
 x1 = cp.Variable(integer=True)
