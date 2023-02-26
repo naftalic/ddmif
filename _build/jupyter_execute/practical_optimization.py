@@ -84,35 +84,3 @@ print("Optimal value of y:", y.x)
 
 
 # ## Using Mosek
-
-# In[3]:
-
-
-import mosek
-
-# Create a new optimization task
-with mosek.Env() as env:
-    with env.Task() as task:
-        # Set the optimization sense to maximize
-        task.putobjsense(mosek.objsense.maximize)
-
-        # Define the variables
-        x_idx = task.appndvars(1)
-        y_idx = task.appndvars(1)
-
-        # Define the objective function
-        task.putcj(x_idx, 2)
-        task.putcj(y_idx, 3)
-
-        # Add the constraints
-        task.putconbound(0, mosek.boundkey.up, 4)
-        task.putaij(0, x_idx, 1)
-        task.putaij(0, y_idx, 1)
-
-        # Optimize the task
-        task.optimize()
-
-        # Print the optimal values of x and y
-        print("Optimal value of x:", task.getxx(x_idx)[0])
-        print("Optimal value of y:", task.getxx(y_idx)[0])
-
