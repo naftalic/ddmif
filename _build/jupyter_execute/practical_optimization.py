@@ -187,14 +187,14 @@ x1 = cp.Variable(integer=True)
 x2 = cp.Variable(integer=True)
 
 # Define the objective function
-obj = cp.Minimize(3*x1 + 2*x2)
+obj = cp.Maximize(3*x1 + 2*x2)
 
 # Define the constraints
 constr = [x1 + x2 <= 4]
 
 # Create the problem instance and solve it
 prob = cp.Problem(obj, constr)
-prob.solve(solver=cp.MOSEK, verbose= True)
+prob.solve(solver=cp.GUROBI)
 
 # Print the optimal solution and optimal value
 print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
