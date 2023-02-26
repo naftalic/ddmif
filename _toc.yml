@@ -11,6 +11,7 @@ chapters:
  - file: fundamental_factors
  - file: economic_factors
  - file: portfolio_weights
+ - file: practical_optimization
  - file: rebalancing_and_transactions_costs
 # - file: tax_management
 # - file: leverage
