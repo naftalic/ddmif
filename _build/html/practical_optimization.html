@@ -385,23 +385,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simple-linear-programing-lp-model">
-   Simple Linear Programing (LP) model
+  <a class="reference internal nav-link" href="#simple-linear-programing-model">
+   Simple Linear Programing model
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-cvxpy">
-     Using cvxpy
+     Using CVXPY
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-gurobipy">
-     Using gurobipy
+     Using GUROBIPY
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-mosek">
-     Using mosek
+     Using MOSEK
     </a>
    </li>
   </ul>
@@ -455,23 +455,23 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simple-linear-programing-lp-model">
-   Simple Linear Programing (LP) model
+  <a class="reference internal nav-link" href="#simple-linear-programing-model">
+   Simple Linear Programing model
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-cvxpy">
-     Using cvxpy
+     Using CVXPY
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-gurobipy">
-     Using gurobipy
+     Using GUROBIPY
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-mosek">
-     Using mosek
+     Using MOSEK
     </a>
    </li>
   </ul>
@@ -512,27 +512,36 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="practical-optimization">
 <h1>Practical Optimization<a class="headerlink" href="#practical-optimization" title="Permalink to this headline">#</a></h1>
+<p>Optimization is a powerful tool that is widely used in practice to solve real-world problems. Optimization problems arise in a variety of fields such as finance, engineering, operations research, and machine learning. These problems often involve decision-making under constraints, where one needs to find the best possible solution given the available resources.</p>
+<p>By using optimization techniques, we can identify the optimal solution that satisfies the given constraints and minimizes or maximizes the objective function. This allows us to make better decisions and achieve our desired outcomes more efficiently.</p>
+<p>In finance, optimization is used to solve problems such as portfolio optimization, asset allocation, and risk management. In engineering, optimization is used to design and optimize systems such as transportation networks, communication systems, and manufacturing processes. In operations research, optimization is used to solve problems such as production planning, inventory management, and supply chain optimization.</p>
+<p>Optimization is also widely used in machine learning to train models and make predictions. In machine learning, optimization techniques are used to find the optimal parameters of a model that best fits the data and minimizes the error.</p>
+<p>In this chapter, we will discuss examples of linear programming (LP), binary optimization, and mixed-integer programming (MIP).
+We will introduce the widely used optimization libraries such as CVXPY, GurobiPy, and Mosek Fusion that can be used to solve optimization problems effectively. These libraries provide user-friendly interfaces to model and solve optimization problems using a variety of algorithms and solvers.</p>
+<p>First, we will discuss LP, which is a technique to optimize a linear objective function subject to linear constraints.
+Next, we will cover binary optimization, which involves decision-making in scenarios where the variables can only take binary values of 0 or 1.
+Lastly, we will delve into mixed-integer programming, which involves optimization problems where some or all of the variables can take both continuous and discrete values.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="simple-linear-programing-lp-model">
-<h1>Simple Linear Programing (LP) model<a class="headerlink" href="#simple-linear-programing-lp-model" title="Permalink to this headline">#</a></h1>
-<p>Let us consider the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="simple-linear-programing-model">
+<h1>Simple Linear Programing model<a class="headerlink" href="#simple-linear-programing-model" title="Permalink to this headline">#</a></h1>
+<p>Let us start by considering the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:</p>
 <p>Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
 Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
 The profit for each unit of Product A is $5, and the profit for each unit of Product B is $4.
 The objective is to maximize the company’s profit subject to the available resources. Let’s call the number of units of Product A produced <span class="math notranslate nohighlight">\(x_1\)</span> and the number of units of Product B produced <span class="math notranslate nohighlight">\(x_2\)</span>. Then, the LP model is:</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \begin{aligned}
-&amp;\text{Maximize } &amp;&amp;5x_1 + 4x_2 \
-&amp;\text{Subject to } &amp;&amp;2x_1 + 3x_2 \le 80 &amp;&amp;\text{(labor constraint for Product A)} \
-&amp;&amp;&amp;3x_1 + 2x_2 \le 60 &amp;&amp;\text{(labor constraint for Product B)} \
-&amp;&amp;&amp;3x_1 + 2x_2 \le 100 &amp;&amp;\text{(material constraint for both products)} \
+&amp;\text{Maximize } &amp;&amp;5x_1 + 4x_2 \\
+&amp;\text{Subject to } &amp;&amp;2x_1 + 3x_2 \le 80 &amp;&amp;\text{(labor constraint for Product A)} \\
+&amp;&amp;&amp;3x_1 + 2x_2 \le 60 &amp;&amp;\text{(labor constraint for Product B)} \\
+&amp;&amp;&amp;3x_1 + 2x_2 \le 100 &amp;&amp;\text{(material constraint for both products)} \\
 &amp;&amp;&amp;x_1, x_2 \ge 0 &amp;&amp;\text{(non-negativity constraint)}
 \end{aligned}
-\]</div>
+\end{split}\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
 <section id="using-cvxpy">
-<h2>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
+<h2>Using CVXPY<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -559,7 +568,7 @@ Optimal solution: [ 4. 24.]
 </div>
 </section>
 <section id="using-gurobipy">
-<h2>Using gurobipy<a class="headerlink" href="#using-gurobipy" title="Permalink to this headline">#</a></h2>
+<h2>Using GUROBIPY<a class="headerlink" href="#using-gurobipy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
@@ -592,7 +601,7 @@ Optimal solution: [4.000000000000003, 24.0]
 </div>
 </section>
 <section id="using-mosek">
-<h2>Using mosek<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h2>
+<h2>Using MOSEK<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek.fusion</span> <span class="k">as</span> <span class="nn">mf</span>
