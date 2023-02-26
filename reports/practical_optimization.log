@@ -19,55 +19,57 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 import cvxpy as cp
 
-# Define problem data
-A = [[1, 1, 0], [0, 1, 1]]
-b = [1, 1]
+# Define the variables
+x1 = cp.Variable(integer=True)
+x2 = cp.Variable(integer=True)
 
-# Define binary decision variables
-x = cp.Variable(3, boolean=True)
+# Define the objective function
+obj = cp.Maximize(3*x1 + 2*x2)
 
-# Define objective function
-obj = cp.sum(x)
+# Define the constraints
+constr = [x1 + x2 <= 4]
 
-# Define constraints
-constraints = [A[i] @ x > b[i] for i in range(len(b))]
-constraints.append(x[0] >= 0) # x1 is binary
-constraints.append(x[1] >= 0) # x2 is binary
-constraints.append(x[2] >= 0) # x3 is binary
-
-# Define problem instance and solve it
-prob = cp.Problem(cp.Minimize(obj), constraints)
+# Create the problem instance and solve it
+prob = cp.Problem(obj, constr)
 prob.solve(solver=cp.MOSEK)
 
-# Print results
-print("CVXPY Solution:")
-print("status:", prob.status)
-print("optimal value:", prob.value)
-print("optimal x:", x.value)
+# Print the optimal solution and optimal value
+print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
+print("Optimal value: {}".format(prob.value))
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNotImplementedError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[4], line 14[0m
-[1;32m     11[0m obj [38;5;241m=[39m cp[38;5;241m.[39msum(x)
-[1;32m     13[0m [38;5;66;03m# Define constraints[39;00m
-[0;32m---> 14[0m constraints [38;5;241m=[39m [A[i] [38;5;241m@[39m x [38;5;241m>[39m b[i] [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(b))]
-[1;32m     15[0m constraints[38;5;241m.[39mappend(x[[38;5;241m0[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x1 is binary[39;00m
-[1;32m     16[0m constraints[38;5;241m.[39mappend(x[[38;5;241m1[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x2 is binary[39;00m
+[0;31mSolverError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[5], line 15[0m
+[1;32m     13[0m [38;5;66;03m# Create the problem instance and solve it[39;00m
+[1;32m     14[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(obj, constr)
+[0;32m---> 15[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43msolver[49m[38;5;241;43m=[39;49m[43mcp[49m[38;5;241;43m.[39;49m[43mMOSEK[49m[43m)[49m
+[1;32m     17[0m [38;5;66;03m# Print the optimal solution and optimal value[39;00m
+[1;32m     18[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal solution: x1 = [39m[38;5;132;01m{}[39;00m[38;5;124m, x2 = [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(x1[38;5;241m.[39mvalue, x2[38;5;241m.[39mvalue))
 
-Cell [0;32mIn[4], line 14[0m, in [0;36m<listcomp>[0;34m(.0)[0m
-[1;32m     11[0m obj [38;5;241m=[39m cp[38;5;241m.[39msum(x)
-[1;32m     13[0m [38;5;66;03m# Define constraints[39;00m
-[0;32m---> 14[0m constraints [38;5;241m=[39m [[43mA[49m[43m[[49m[43mi[49m[43m][49m[43m [49m[38;5;241;43m@[39;49m[43m [49m[43mx[49m[43m [49m[38;5;241;43m>[39;49m[43m [49m[43mb[49m[43m[[49m[43mi[49m[43m][49m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(b))]
-[1;32m     15[0m constraints[38;5;241m.[39mappend(x[[38;5;241m0[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x1 is binary[39;00m
-[1;32m     16[0m constraints[38;5;241m.[39mappend(x[[38;5;241m1[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x2 is binary[39;00m
+File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493[0m, in [0;36mProblem.solve[0;34m(self, *args, **kwargs)[0m
+[1;32m    491[0m [38;5;28;01melse[39;00m:
+[1;32m    492[0m     solve_func [38;5;241m=[39m Problem[38;5;241m.[39m_solve
+[0;32m--> 493[0m [38;5;28;01mreturn[39;00m [43msolve_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
 
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/expressions/expression.py:737[0m, in [0;36mExpression.__gt__[0;34m(self, other)[0m
-[1;32m    734[0m [38;5;28;01mdef[39;00m [38;5;21m__gt__[39m([38;5;28mself[39m, other: [38;5;124m"[39m[38;5;124mExpression[39m[38;5;124m"[39m):
-[1;32m    735[0m [38;5;250m    [39m[38;5;124;03m"""Unsupported.[39;00m
-[1;32m    736[0m [38;5;124;03m    """[39;00m
-[0;32m--> 737[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m([38;5;124m"[39m[38;5;124mStrict inequalities are not allowed.[39m[38;5;124m"[39m)
+File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:1068[0m, in [0;36mProblem._solve[0;34m(self, solver, warm_start, verbose, gp, qcp, requires_grad, enforce_dpp, ignore_dpp, canon_backend, **kwargs)[0m
+[1;32m   1066[0m end [38;5;241m=[39m time[38;5;241m.[39mtime()
+[1;32m   1067[0m [38;5;28mself[39m[38;5;241m.[39m_solve_time [38;5;241m=[39m end [38;5;241m-[39m start
+[0;32m-> 1068[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43munpack_results[49m[43m([49m[43msolution[49m[43m,[49m[43m [49m[43msolving_chain[49m[43m,[49m[43m [49m[43minverse_data[49m[43m)[49m
+[1;32m   1069[0m [38;5;28;01mif[39;00m verbose:
+[1;32m   1070[0m     [38;5;28mprint[39m(_FOOTER)
 
-[0;31mNotImplementedError[0m: Strict inequalities are not allowed.
-NotImplementedError: Strict inequalities are not allowed.
+File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:1393[0m, in [0;36mProblem.unpack_results[0;34m(self, solution, chain, inverse_data)[0m
+[1;32m   1391[0m     warnings[38;5;241m.[39mwarn(INF_OR_UNB_MESSAGE)
+[1;32m   1392[0m [38;5;28;01mif[39;00m solution[38;5;241m.[39mstatus [38;5;129;01min[39;00m s[38;5;241m.[39mERROR:
+[0;32m-> 1393[0m     [38;5;28;01mraise[39;00m error[38;5;241m.[39mSolverError(
+[1;32m   1394[0m             [38;5;124m"[39m[38;5;124mSolver [39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m failed. [39m[38;5;124m"[39m [38;5;241m%[39m chain[38;5;241m.[39msolver[38;5;241m.[39mname() [38;5;241m+[39m
+[1;32m   1395[0m             [38;5;124m"[39m[38;5;124mTry another solver, or solve with verbose=True for more [39m[38;5;124m"[39m
+[1;32m   1396[0m             [38;5;124m"[39m[38;5;124minformation.[39m[38;5;124m"[39m)
+[1;32m   1398[0m [38;5;28mself[39m[38;5;241m.[39munpack(solution)
+[1;32m   1399[0m [38;5;28mself[39m[38;5;241m.[39m_solver_stats [38;5;241m=[39m SolverStats([38;5;28mself[39m[38;5;241m.[39m_solution[38;5;241m.[39mattr,
+[1;32m   1400[0m                                  chain[38;5;241m.[39msolver[38;5;241m.[39mname())
+
+[0;31mSolverError[0m: Solver 'MOSEK' failed. Try another solver, or solve with verbose=True for more information.
+SolverError: Solver 'MOSEK' failed. Try another solver, or solve with verbose=True for more information.
 
