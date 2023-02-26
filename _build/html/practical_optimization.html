@@ -455,14 +455,16 @@ title="Print to PDF"
 Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
 The profit for each unit of Product A is <span class="math notranslate nohighlight">\(5, and the profit for each unit of Product B is \)</span>4.
 The objective is to maximize the company’s profit subject to the available resources. Let’s call the number of units of Product A produced <span class="math notranslate nohighlight">\(x_1\)</span> and the number of units of Product B produced <span class="math notranslate nohighlight">\(x_2\)</span>. Then, the LP model is:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
-&amp;\text{Maximize} &amp;5x1 + 4x2 \
+&amp;\text{Maximize} &amp;5x1 + 4x2 \\
 &amp;\text{Subject to}
-&amp;2x1 + 3x2 &lt;= 80 \quad\text{(labor constraint for Product A)} \
-&amp;&amp;3x1 + 2x2 &lt;= 60 \quad\text{(labor constraint for Product B)} \
-&amp;&amp;3x1 + 2x2 &lt;= 100 \quad\text{(material constraint for both products)} \
-&amp;&amp;x1, x2 &gt;= 0 \quad\text{(non-negativity constraint)}</p>
+&amp;2x1 + 3x2 &lt;= 80 \quad\text{(labor constraint for Product A)} \\
+&amp;&amp;3x1 + 2x2 &lt;= 60 \quad\text{(labor constraint for Product B)} \\
+&amp;&amp;3x1 + 2x2 &lt;= 100 \quad\text{(material constraint for both products)} \\
+&amp;&amp;x1, x2 &gt;= 0 \quad\text{(non-negativity constraint)}
+\end{split}\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="using-cvxpy">
@@ -551,12 +553,15 @@ Optimal solution: [4.000000000000003, 24.0]
 <span class="n">M</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 <span class="c1"># Print the results</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value:&quot;</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">primalObjValue</span><span class="p">())</span> 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: [ 4. 24.]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value: 116.0
+Optimal solution: [ 4. 24.]
 </pre></div>
 </div>
 </div>
