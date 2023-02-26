@@ -442,8 +442,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#goal-programming">
-   Goal programming
+  <a class="reference internal nav-link" href="#multi-objective-optimization">
+   Multi-objective optimization
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -536,8 +536,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#goal-programming">
-   Goal programming
+  <a class="reference internal nav-link" href="#multi-objective-optimization">
+   Multi-objective optimization
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -846,12 +846,12 @@ Optimal value: 12.0
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="goal-programming">
-<h1>Goal programming<a class="headerlink" href="#goal-programming" title="Permalink to this headline">#</a></h1>
-<p>Goal programming is a mathematical programming technique used to solve decision-making problems that involve multiple, conflicting objectives. It is often used in situations where there is no clear trade-off between objectives and all objectives are important.</p>
-<p>In goal programming, the decision maker identifies a set of goals or objectives to be achieved, and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. The goals or objectives are expressed as deviations from desired or target values, and the model seeks to minimize these deviations subject to the constraints.</p>
-<p>The goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. In some cases, the goals or objectives may be conflicting, meaning that achieving one may come at the expense of the other. Goal programming allows the decision maker to balance these conflicting objectives and find a solution that achieves a satisfactory compromise.</p>
-<p>As an example of a simple goal programming model suppose a company wants to maximize their profits, but also wants to ensure that they don’t produce more than a certain amount of waste. They have three goals:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="multi-objective-optimization">
+<h1>Multi-objective optimization<a class="headerlink" href="#multi-objective-optimization" title="Permalink to this headline">#</a></h1>
+<p>Goal programming, also known as multi-objective optimization, is a technique used to solve decision-making problems that involve multiple, often conflicting objectives. It is particularly useful in situations where there is no clear trade-off between objectives and all objectives are important.</p>
+<p>In goal programming, the decision maker identifies a set of goals or objectives to be achieved and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. These goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. The model seeks to minimize these deviations subject to the constraints.</p>
+<p>The goals or objectives can be conflicting, meaning that achieving one may come at the expense of the other. In such cases, the decision maker must balance these conflicting objectives and find a solution that achieves a satisfactory compromise. This can be done by assigning weights to each objective, where higher weights indicate higher priority. Alternatively, penalty functions can be used to penalize deviations from certain objectives more heavily than others.</p>
+<p>For example, a company wants to maximize their profits, but also wants to ensure that they don’t produce more than a certain amount of waste. They have three goals:</p>
 <ul class="simple">
 <li><p>Maximize profits</p></li>
 <li><p>Minimize waste produced</p></li>
@@ -861,12 +861,12 @@ Optimal value: 12.0
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-&amp;\text{Minimize } &amp;&amp;z_1 + z_2 + z_3\\
+&amp;\text{minimize } &amp;&amp;z_1 + z_2 + z_3\\
 &amp;\text{where}
 &amp;&amp;z_1 = | \text{profit} - \text{target_profit}|\\
 &amp;&amp;&amp;z_2 = | \text{waste} - \text{target_waste}|\\
 &amp;&amp;&amp;z_3 = |x - \text{target_production}|\\
-&amp;\text{Subject to}
+&amp;\text{subject to}
 &amp;&amp;\text{profit} = p \cdot x\\
 &amp;&amp;&amp;\text{waste} = w \cdot x\\
 &amp;&amp;&amp;x \geq 0\\
