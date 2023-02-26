@@ -104,7 +104,7 @@ print("Optimal solution:", x.level())
 $$
 \begin{align*}
 &\text{minimize} &x1 + x2 + x3 & \\
-&\text{subject to} &x1 + x2 > 1 \\
+&\text{subject to} &x1 + x2 \ge 2 \\
 & & x2 + x3 \le 1 \\
 & & x1, x2, x3 \quad\text{are binary variables}
 \end{align*}
@@ -115,7 +115,7 @@ import cvxpy as cp
 
 # Define problem data
 A = [[1, 1, 0], [0, 1, 1]]
-b = [1, 1]
+b = [2, 1]
 
 # Define binary decision variables
 x = cp.Variable(3, boolean=True)
@@ -124,82 +124,20 @@ x = cp.Variable(3, boolean=True)
 obj = cp.sum(x)
 
 # Define constraints
-constraints = [A[i] @ x > b[i] for i in range(len(b))]
-constraints.append(x[0] >= 0) # x1 is binary
-constraints.append(x[1] >= 0) # x2 is binary
-constraints.append(x[2] >= 0) # x3 is binary
+constraints = [
+    A[0] @ x >= b[0],
+    A[1] @ x <= b[1]
+]
 
-# Define problem instance and solve it
-prob = cp.Problem(cp.Minimize(obj), constraints)
-prob.solve(solver=cp.MOSEK)
-
-# Print results
-print("CVXPY Solution:")
-print("status:", prob.status)
-print("optimal value:", prob.value)
-print("optimal x:", x.value)
-```
-
-```{code-cell}
-import gurobipy as gp
-
-# Define problem data
-A = [[1, 1, 0], [0, 1, 1]]
-b = [1, 1]
-
-# Create a new optimization model
-model = gp.Model("binary_optimization")
-
-# Define binary decision variables
-x = model.addVars(3, vtype=gp.GRB.BINARY, name="x")
-
-# Define objective function
-obj = gp.quicksum(x[i] for i in range(len(x)))
-model.setObjective(obj, gp.GRB.MINIMIZE)
-
-# Define constraints
-for i in range(len(b)):
-    model.addConstr(A[i] @ [x[i] for i in range(len(x))] > b[i])
-
-# Solve problem
-model.optimize()
-
-# Print results
-print("Gurobi Solution:")
-print("status:", model.Status)
-print("optimal value:", model.ObjVal)
-print("optimal x:", [x[i].X for i in range(len(x))])
-```
-
-```{code-cell}
-import mosek.fusion as mf
-
-# Define problem data
-A = [[1, 1, 0], [0, 1, 1]]
-b = [1, 1]
-
-# Create a new Fusion model
-M = mf.Model("Binary Optimization")
-
-# Define binary decision variables
-x = M.variable("x", 3, vtype=mf.VariableType.Binary)
-
-# Define objective function
-obj = M.sum(x)
-
-# Define constraints
-for i in range(len(b)):
-    M.constraint(A[i] @ x, mf.ConstraintType.Greater, b[i])
-
-# Set the objective and constraints
-M.objective(mf.ObjectiveSense.Minimize, obj)
+# Define the problem
+problem = cp.Problem(cp.Minimize(obj), constraints)
 
 # Solve the problem
-M.solve()
+problem.solve(solver=cp.GUROBI)
 
 # Print results
-print("Mosek Fusion Solution:")
-print("status:", M.getProblemStatus(mf.SolutionType.Primal))
-print("optimal value:", obj.level())
-print("optimal x:", x.level())
+print("CVXPY + GUROBI Solution:")
+print("status:", problem.status)
+print("optimal value:", obj.value)
+print("optimal x:", x.value)
 ```
