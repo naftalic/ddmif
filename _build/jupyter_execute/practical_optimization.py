@@ -71,7 +71,6 @@ print("Optimal solution:", [x[i].x for i in range(2)])
 
 import mosek.fusion as mf
 
-# Create a Mosek Fusion environment
 M = mf.Model('LP example')
 
 # Define variables
@@ -180,34 +179,28 @@ import mosek.fusion as mf
 A = [[1, 1, 0], [0, 1, 1]]
 b = [1, 1]
 
-# Create a new Fusion environment
-env = mf.Env()
-
 # Create a new Fusion model
-with env:
-    # Define binary decision variables
-    x = env.variable(3, vtype=mf.VariableType.Binary)
+M = mf.Model("Binary Optimization")
 
-    # Define objective function
-    obj = env.sum(x)
+# Define binary decision variables
+x = M.variable("x", 3, vtype=mf.VariableType.Binary)
 
-    # Define constraints
-    for i in range(len(b)):
-        env.constraint(A[i] @ x, mf.ConstraintType.Greater, b[i])
+# Define objective function
+obj = M.sum(x)
 
-    # Create a new Fusion problem instance
-    task = env.problem("Binary Optimization")
+# Define constraints
+for i in range(len(b)):
+    M.constraint(A[i] @ x, mf.ConstraintType.Greater, b[i])
 
-    # Set the objective and constraints
-    task.objective(obj, mf.ObjectiveSense.Minimize)
-    task.constraints.addAll(env.getConstraints())
+# Set the objective and constraints
+M.objective(mf.ObjectiveSense.Minimize, obj)
 
-    # Solve the problem
-    task.solve()
+# Solve the problem
+M.solve()
 
-    # Print results
-    print("Mosek Fusion Solution:")
-    print("status:", task.getProblemStatus(mosek.streamtype.msg))
-    print("optimal value:", obj.level())
-    print("optimal x:", x.level())
+# Print results
+print("Mosek Fusion Solution:")
+print("status:", M.getProblemStatus(mf.SolutionType.Primal))
+print("optimal value:", obj.level())
+print("optimal x:", x.level())
 
