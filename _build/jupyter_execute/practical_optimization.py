@@ -202,7 +202,11 @@ print("Optimal value: {}".format(prob.value))
 
 
 # # Nonlinear programming problem
-# Suppose we want to minimize the function $f(x) = x_1^2 + x_2^2$ subject to the constraint $x_1 + x_2 \geq 1$. We can express this as an optimization problem:
+# Nonlinear optimization is a type of optimization problem where the objective function or the constraints are nonlinear. Unlike linear optimization, nonlinear optimization problems can be more complex to solve due to the non-convexity of the objective function and/or constraints. 
+# 
+# In this example, we will consider a simple nonlinear optimization problem of minimizing a quadratic function subject to a linear constraint. We want to minimize the function $f(x) = x_1^2 + x_2^2$ subject to the constraint $x_1 + x_2 \geq 1$. This problem can be solved using nonlinear optimization techniques such as gradient descent, Newton's method, or quasi-Newton methods. However, we will use cvxpy, a Python library for convex optimization, to solve this problem.
+# 
+# We can express this as an optimization problem:
 # 
 # $$
 # \begin{aligned}
