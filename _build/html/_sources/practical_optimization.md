@@ -35,7 +35,7 @@ $$
 
 Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
 
-# Using cvxpy
+## Using cvxpy
 
 ```{code-cell}
 import cvxpy as cp
@@ -52,7 +52,7 @@ print("Optimal value:", prob.value)
 print("Optimal solution:", x.value)
 ```
 
-# Using gurobipy
+## Using gurobipy
 
 ```{code-cell}
 import gurobipy as gp
@@ -72,7 +72,7 @@ print("Optimal value:", model.objVal)
 print("Optimal solution:", [x[i].x for i in range(2)])
 ```
 
-# Using mosek
+## Using mosek
 ```{code-cell}
 import mosek.fusion as mf
 
@@ -110,3 +110,43 @@ $$
 \end{align*}
 $$ 
 
+
+```{code-cell}
+import cvxpy as cp
+import gurobipy as gp
+from gurobipy import GRB
+import mosek
+
+# Define binary optimization problem
+x = cp.Variable(3, boolean=True)
+objective = cp.Minimize(x[0] + x[1] + x[2])
+constraints = [x[0] + x[1] <= 1, x[1] + x[2] <= 1]
+problem = cp.Problem(objective, constraints)
+
+# Solve using CVXPY
+solver = cp.MOSEK
+problem.solve(solver=solver)
+
+# Print results
+print("CVXPY Solution:")
+print("status:", problem.status)
+print("optimal value:", problem.value)
+print("optimal x:", x.value)
+
+# Solve using Gurobi
+model = gp.Model()
+model.setParam('OutputFlag', 0)
+x = model.addMVar(3, vtype=GRB.BINARY)
+obj = x[0] + x[1] + x[2]
+model.setObjective(obj)
+model.addConstr(x[0] + x[1] <= 1)
+model.addConstr(x[1] + x[2] <= 1)
+model.setParam('OutputFlag', 0)
+model.optimize()
+
+# Print results
+print("Gurobi Solution:")
+print("status:", model.status)
+print("optimal value:", model.objVal)
+print("optimal x:", x.X)
+```{code-cell}
