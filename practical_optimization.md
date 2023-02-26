@@ -180,6 +180,7 @@ Here, we want to find integer values for $x_1$ and $x_2$ that satisfy the constr
 ## Using CVXPY + MOSEK
 ```{code-cell}
 import cvxpy as cp
+import mosek
 
 # Define the variables
 x1 = cp.Variable(integer=True)
