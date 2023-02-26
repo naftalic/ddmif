@@ -453,17 +453,17 @@ title="Print to PDF"
 <p>Let us consider the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:</p>
 <p>Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
 Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
-The profit for each unit of Product A is <span class="math notranslate nohighlight">\(5, and the profit for each unit of Product B is \)</span>4.
+The profit for each unit of Product A is $5, and the profit for each unit of Product B is $4.
 The objective is to maximize the company’s profit subject to the available resources. Let’s call the number of units of Product A produced <span class="math notranslate nohighlight">\(x_1\)</span> and the number of units of Product B produced <span class="math notranslate nohighlight">\(x_2\)</span>. Then, the LP model is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
 &amp;\text{Maximize} &amp;5x1 + 4x2 \\
 &amp;\text{Subject to}
-&amp;2x1 + 3x2 &lt;= 80 \quad\text{(labor constraint for Product A)} \\
-&amp;&amp;3x1 + 2x2 &lt;= 60 \quad\text{(labor constraint for Product B)} \\
-&amp;&amp;3x1 + 2x2 &lt;= 100 \quad\text{(material constraint for both products)} \\
-&amp;&amp;x1, x2 &gt;= 0 \quad\text{(non-negativity constraint)}
+&amp;2x1 + 3x2 &lt;= 80   \quad &amp;\text{(labor constraint for Product A)} \\
+&amp;&amp;3x1 + 2x2 &lt;= 60  \quad &amp;\text{(labor constraint for Product B)} \\
+&amp;&amp;3x1 + 2x2 &lt;= 100 \quad &amp;\text{(material constraint for both products)} \\
+&amp;&amp;x1, x2 &gt;= 0      \quad &amp;\text{(non-negativity constraint)}
 \end{align*}
 \end{split}\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
