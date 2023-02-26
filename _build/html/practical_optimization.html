@@ -724,7 +724,7 @@ optimal x: [1. 1. 0.]
 <span class="n">x2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Define the objective function</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span>
 
 <span class="c1"># Define the constraints</span>
 <span class="n">constr</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">]</span>
@@ -744,172 +744,169 @@ optimal x: [1. 1. 0.]
                                      CVXPY                                     
                                      v1.3.0                                    
 ===============================================================================
-(CVXPY) Feb 25 11:58:31 PM: Your problem has 2 variables, 1 constraints, and 0 parameters.
+(CVXPY) Feb 26 12:00:07 AM: Your problem has 2 variables, 1 constraints, and 0 parameters.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: It is compliant with the following grammars: DCP, DQCP
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: It is compliant with the following grammars: DCP, DQCP
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: (If you need to solve this problem multiple times, but with different data, consider using parameters.)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: (If you need to solve this problem multiple times, but with different data, consider using parameters.)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: CVXPY will first compile your problem; then, it will invoke a numerical solver to obtain a solution.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: CVXPY will first compile your problem; then, it will invoke a numerical solver to obtain a solution.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
                                   Compilation                                  
 -------------------------------------------------------------------------------
-(CVXPY) Feb 25 11:58:31 PM: Compiling problem (target solver=MOSEK).
+(CVXPY) Feb 26 12:00:07 AM: Compiling problem (target solver=MOSEK).
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Reduction chain: FlipObjective -&gt; Dcp2Cone -&gt; CvxAttr2Constr -&gt; ConeMatrixStuffing -&gt; MOSEK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Reduction chain: Dcp2Cone -&gt; CvxAttr2Constr -&gt; ConeMatrixStuffing -&gt; MOSEK
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Applying reduction FlipObjective
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Applying reduction Dcp2Cone
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Applying reduction Dcp2Cone
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Applying reduction CvxAttr2Constr
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Applying reduction CvxAttr2Constr
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Applying reduction ConeMatrixStuffing
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Applying reduction ConeMatrixStuffing
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Applying reduction MOSEK
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Applying reduction MOSEK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Finished problem compilation (took 3.364e-03 seconds).
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Finished problem compilation (took 3.017e-03 seconds).
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------------------------------------------
                                 Numerical solver                               
 -------------------------------------------------------------------------------
-(CVXPY) Feb 25 11:58:31 PM: Invoking solver MOSEK  to obtain a solution.
+(CVXPY) Feb 26 12:00:07 AM: Invoking solver MOSEK  to obtain a solution.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Problem
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Problem
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Name                   :                 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Name                   :                 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Objective sense        : minimize        
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Objective sense        : minimize        
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Type                   : LO (linear optimization problem)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Type                   : LO (linear optimization problem)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Constraints            : 1               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Constraints            : 1               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Affine conic cons.     : 0               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Affine conic cons.     : 0               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Disjunctive cons.      : 0               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Disjunctive cons.      : 0               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Cones                  : 0               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Cones                  : 0               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Scalar variables       : 2               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Scalar variables       : 2               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Matrix variables       : 0               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Matrix variables       : 0               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Integer variables      : 2               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Integer variables      : 2               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Optimizer started.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Optimizer started.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Mixed integer optimizer started.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Mixed integer optimizer started.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Threads used: 10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Threads used: 10
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Presolve started.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Presolve started.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Presolve terminated. Time = 0.00, probing time =  0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Presolve terminated. Time = 0.00, probing time =  0.00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Clique table size: 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Clique table size: 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: BRANCHES RELAXS   ACT_NDS  DEPTH    BEST_INT_OBJ         BEST_RELAX_OBJ       REL_GAP(%)  TIME  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: BRANCHES RELAXS   ACT_NDS  DEPTH    BEST_INT_OBJ         BEST_RELAX_OBJ       REL_GAP(%)  TIME  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Objective of best integer solution : 0.000000000000e+00      
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Objective of best integer solution : 0.000000000000e+00      
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Best objective bound               : Not available.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Best objective bound               : Not available.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Initial feasible solution objective: 0.000000000000e+00      
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Initial feasible solution objective: 0.000000000000e+00      
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Construct solution objective       : Not employed
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Construct solution objective       : Not employed
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: User objective cut value           : Not employed
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: User objective cut value           : Not employed
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Number of cuts generated           : 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Number of cuts generated           : 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Number of branches                 : 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Number of branches                 : 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Number of relaxations solved       : 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Number of relaxations solved       : 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Number of interior point iterations: 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Number of interior point iterations: 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Number of simplex iterations       : 0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Number of simplex iterations       : 0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Time spend presolving the root     : 0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Time spend presolving the root     : 0.00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Time spend optimizing the root     : 0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Time spend optimizing the root     : 0.00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Mixed integer optimizer terminated. Time: 0.00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Mixed integer optimizer terminated. Time: 0.00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Optimizer terminated. Time: 0.01    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Optimizer terminated. Time: 0.01    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM: Integer solution solution summary
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM: Integer solution solution summary
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Problem status  : PRIMAL_INFEASIBLE_OR_UNBOUNDED
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Problem status  : PRIMAL_INFEASIBLE_OR_UNBOUNDED
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Solution status : UNKNOWN
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Solution status : UNKNOWN
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 25 11:58:31 PM:   Primal.  obj: 0.0000000000e+00    nrm: 0e+00    Viol.  con: 0e+00    var: 0e+00    itg: 0e+00  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(CVXPY) Feb 26 12:00:07 AM:   Primal.  obj: 0.0000000000e+00    nrm: 0e+00    Viol.  con: 0e+00    var: 0e+00    itg: 0e+00  
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>

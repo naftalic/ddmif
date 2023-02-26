@@ -187,7 +187,7 @@ x1 = cp.Variable(integer=True)
 x2 = cp.Variable(integer=True)
 
 # Define the objective function
-obj = cp.Maximize(3*x1 + 2*x2)
+obj = cp.Minimize(3*x1 + 2*x2)
 
 # Define the constraints
 constr = [x1 + x2 <= 4]
