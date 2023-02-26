@@ -166,7 +166,7 @@ print("optimal x:", x.value)
 # 
 # $$
 # \begin{aligned}
-# &\text{minimize } &&3x_1 + 2x_2 \\
+# &\text{maximize } &&3x_1 + 2x_2 \\
 # &\text{subject to } &&x_1 + x_2 \leq 4 \\
 # &&&x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
 # \end{aligned}
@@ -180,25 +180,22 @@ print("optimal x:", x.value)
 
 
 import cvxpy as cp
-import numpy as np
 
-# Define the problem data
-c = np.array([1, 2, 3])
-A = np.array([
-    [-1, -1, 0],
-    [0, 1, 1],
-])
-b = np.array([-2, 1])
+# Define the variables
+x1 = cp.Variable(integer=True)
+x2 = cp.Variable(integer=True)
 
-# Define the binary variables
-x = cp.Variable(3, boolean=True)
+# Define the objective function
+obj = cp.Maximize(3*x1 + 2*x2)
 
-# Define the problem and solve
-prob = cp.Problem(cp.Minimize(c @ x),
-                 [A @ x >= b, x >= 0])
+# Define the constraints
+constr = [x1 + x2 <= 4]
+
+# Create the problem instance and solve it
+prob = cp.Problem(obj, constr)
 prob.solve(solver=cp.MOSEK)
 
-# Print the optimal solution and objective value
-print("Optimal value:", prob.value)
-print("Optimal x:", x.value)
+# Print the optimal solution and optimal value
+print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
+print("Optimal value: {}".format(prob.value))
 
