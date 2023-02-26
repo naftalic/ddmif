@@ -7,17 +7,17 @@
 # 
 # Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
 # Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
-# The profit for each unit of Product A is $5, and the profit for each unit of Product B is $4.
+# The profit for each unit of Product A is \$5, and the profit for each unit of Product B is \$4.
 # The objective is to maximize the company's profit subject to the available resources. Let's call the number of units of Product A produced $x_1$ and the number of units of Product B produced $x_2$. Then, the LP model is:
 # 
 # $$
 # \begin{align*}
 # &\text{Maximize} &5x1 + 4x2 \\
 # &\text{Subject to}
-# &2x1 + 3x2 <= 80 \quad\text{(labor constraint for Product A)} \\
-# &&3x1 + 2x2 <= 60 \quad\text{(labor constraint for Product B)} \\
-# &&3x1 + 2x2 <= 100 \quad\text{(material constraint for both products)} \\
-# &&x1, x2 >= 0 \quad\text{(non-negativity constraint)}
+# &2x1 + 3x2 <= 80   \quad &\text{(labor constraint for Product A)} \\
+# &&3x1 + 2x2 <= 60  \quad &\text{(labor constraint for Product B)} \\
+# &&3x1 + 2x2 <= 100 \quad &\text{(material constraint for both products)} \\
+# &&x1, x2 >= 0      \quad &\text{(non-negativity constraint)}
 # \end{align*}
 # $$
 # 
