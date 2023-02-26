@@ -458,12 +458,11 @@ The objective is to maximize the company’s profit subject to the available res
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-&amp;\text{Maximize} &amp;5x1 + 4x2 \\
-&amp;\text{Subject to}
-&amp;2x1 + 3x2 &lt;= 80   \quad &amp;\text{(labor constraint for Product A)} \\
-&amp;&amp;3x1 + 2x2 &lt;= 60  \quad &amp;\text{(labor constraint for Product B)} \\
-&amp;&amp;3x1 + 2x2 &lt;= 100 \quad &amp;\text{(material constraint for both products)} \\
-&amp;&amp;x1, x2 &gt;= 0      \quad &amp;\text{(non-negativity constraint)}
+&amp;\text{Maximize} &amp;5x1 + 4x2 &amp; \\
+&amp;\text{Subject to} &amp;2x1 + 3x2 &lt;= 80   \quad &amp;\text{(labor constraint for Product A)} \\
+&amp; &amp;3x1 + 2x2 &lt;= 60  \quad &amp;\text{(labor constraint for Product B)} \\
+&amp; &amp;3x1 + 2x2 &lt;= 100 \quad &amp;\text{(material constraint for both products)} \\
+&amp; &amp;x1, x2 &gt;= 0      \quad &amp;\text{(non-negativity constraint)}
 \end{align*}
 \end{split}\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
