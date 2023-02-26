@@ -30,6 +30,7 @@ $$
 &&3x1 + 2x2 <= 60 \quad\text{(labor constraint for Product B)} \\
 &&3x1 + 2x2 <= 100 \quad\text{(material constraint for both products)} \\
 &&x1, x2 >= 0 \quad\text{(non-negativity constraint)}
+\end{align*}
 $$
 
 Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
