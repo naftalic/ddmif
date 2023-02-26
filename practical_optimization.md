@@ -14,9 +14,23 @@ kernelspec:
 ---
 
 # Practical Optimization
+Optimization is a powerful tool that is widely used in practice to solve real-world problems. Optimization problems arise in a variety of fields such as finance, engineering, operations research, and machine learning. These problems often involve decision-making under constraints, where one needs to find the best possible solution given the available resources.
 
-# Simple Linear Programing (LP) model
-Let us consider the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:
+By using optimization techniques, we can identify the optimal solution that satisfies the given constraints and minimizes or maximizes the objective function. This allows us to make better decisions and achieve our desired outcomes more efficiently.
+
+In finance, optimization is used to solve problems such as portfolio optimization, asset allocation, and risk management. In engineering, optimization is used to design and optimize systems such as transportation networks, communication systems, and manufacturing processes. In operations research, optimization is used to solve problems such as production planning, inventory management, and supply chain optimization.
+
+Optimization is also widely used in machine learning to train models and make predictions. In machine learning, optimization techniques are used to find the optimal parameters of a model that best fits the data and minimizes the error.
+
+In this chapter, we will discuss examples of linear programming (LP), binary optimization, and mixed-integer programming (MIP).
+We will introduce the widely used optimization libraries such as CVXPY, GurobiPy, and Mosek Fusion that can be used to solve optimization problems effectively. These libraries provide user-friendly interfaces to model and solve optimization problems using a variety of algorithms and solvers.
+
+First, we will discuss LP, which is a technique to optimize a linear objective function subject to linear constraints. 
+Next, we will cover binary optimization, which involves decision-making in scenarios where the variables can only take binary values of 0 or 1. 
+Lastly, we will delve into mixed-integer programming, which involves optimization problems where some or all of the variables can take both continuous and discrete values.
+
+# Simple Linear Programing model
+Let us start by considering the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:
 
 Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
 Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
@@ -25,17 +39,17 @@ The objective is to maximize the company's profit subject to the available resou
 
 $$
 \begin{aligned}
-&\text{Maximize } &&5x_1 + 4x_2 \
-&\text{Subject to } &&2x_1 + 3x_2 \le 80 &&\text{(labor constraint for Product A)} \
-&&&3x_1 + 2x_2 \le 60 &&\text{(labor constraint for Product B)} \
-&&&3x_1 + 2x_2 \le 100 &&\text{(material constraint for both products)} \
+&\text{Maximize } &&5x_1 + 4x_2 \\
+&\text{Subject to } &&2x_1 + 3x_2 \le 80 &&\text{(labor constraint for Product A)} \\
+&&&3x_1 + 2x_2 \le 60 &&\text{(labor constraint for Product B)} \\
+&&&3x_1 + 2x_2 \le 100 &&\text{(material constraint for both products)} \\
 &&&x_1, x_2 \ge 0 &&\text{(non-negativity constraint)}
 \end{aligned}
 $$
 
 Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
 
-## Using cvxpy
+## Using CVXPY
 
 ```{code-cell}
 import cvxpy as cp
@@ -52,7 +66,7 @@ print("Optimal value:", prob.value)
 print("Optimal solution:", x.value)
 ```
 
-## Using gurobipy
+## Using GUROBIPY
 
 ```{code-cell}
 import gurobipy as gp
@@ -72,7 +86,7 @@ print("Optimal value:", model.objVal)
 print("Optimal solution:", [x[i].x for i in range(2)])
 ```
 
-## Using mosek
+## Using MOSEK
 ```{code-cell}
 import mosek.fusion as mf
 
