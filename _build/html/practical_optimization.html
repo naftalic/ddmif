@@ -424,8 +424,20 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
-     Using CVXPY + MOSEK
+    <a class="reference internal nav-link" href="#id1">
+     Using CVXPY + GUROBI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-programming-problem">
+   Nonlinear programming problem
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Using CVXPY + GUROBI
     </a>
    </li>
   </ul>
@@ -494,8 +506,20 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
-     Using CVXPY + MOSEK
+    <a class="reference internal nav-link" href="#id1">
+     Using CVXPY + GUROBI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-programming-problem">
+   Nonlinear programming problem
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Using CVXPY + GUROBI
     </a>
    </li>
   </ul>
@@ -702,7 +726,7 @@ optimal x: [1. 1. 0.]
 <section class="tex2jax_ignore mathjax_ignore" id="mixed-integer-programming-problem">
 <h1>Mixed-integer programming problem<a class="headerlink" href="#mixed-integer-programming-problem" title="Permalink to this headline">#</a></h1>
 <p>In many real-world problems, we encounter situations where decision variables must take on integer values. For example, in production planning, the number of items produced must be an integer value. MIP provides a way to find optimal solutions to these types of problems.</p>
-<p>In this example, we will solve a very simple MIP problem using CVXPY and MOSEK solver. Suppose we want to maximize the following objective function:</p>
+<p>In this example, we will solve a very simple MIP problem using CVXPY and GUROBI solver. Suppose we want to maximize the following objective function:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -711,9 +735,9 @@ optimal x: [1. 1. 0.]
 &amp;&amp;&amp;x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
 \end{aligned}
 \end{split}\]</div>
-<p>Here, we want to find integer values for <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using cvxpy.</p>
-<section id="using-cvxpy-mosek">
-<h2>Using CVXPY + MOSEK<a class="headerlink" href="#using-cvxpy-mosek" title="Permalink to this headline">#</a></h2>
+<p>Here, we want to find integer values for <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using CVXPY.</p>
+<section id="id1">
+<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -742,6 +766,52 @@ optimal x: [1. 1. 0.]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = None, x2 = None
 Optimal value: 2000000012.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="nonlinear-programming-problem">
+<h1>Nonlinear programming problem<a class="headerlink" href="#nonlinear-programming-problem" title="Permalink to this headline">#</a></h1>
+<p>Suppose we want to minimize the function <span class="math notranslate nohighlight">\(f(x) = x_1^2 + x_2^2\)</span> subject to the constraint <span class="math notranslate nohighlight">\(x_1 + x_2 \geq 1\)</span>. We can express this as an optimization problem:</p>
+<p>\begin{aligned}
+&amp;\text{minimize } &amp;&amp;x_1^2 + x_2^2 <br />
+&amp;\text{subject to } &amp;&amp;x_1 + x_2 \geq 1 <br />
+\end{aligned}</p>
+<p>To solve this problem using CVXPY, we first define the optimization variables and the objective function:</p>
+<section id="id2">
+<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="c1"># Define the optimization variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Define the constraint</span>
+<span class="n">constraint</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create the optimization problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraint</span><span class="p">)</span>
+
+<span class="c1"># Solve the problem using the Mosek solver</span>
+<span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
+
+<span class="c1"># Print the optimal solution</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x1 =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x2 =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution:
+x1 = 0.5000000010554145
+x2 = 0.5000000032136651
 </pre></div>
 </div>
 </div>

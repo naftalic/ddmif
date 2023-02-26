@@ -162,7 +162,7 @@ print("optimal x:", x.value)
 # # Mixed-integer programming problem
 # In many real-world problems, we encounter situations where decision variables must take on integer values. For example, in production planning, the number of items produced must be an integer value. MIP provides a way to find optimal solutions to these types of problems.
 # 
-# In this example, we will solve a very simple MIP problem using CVXPY and MOSEK solver. Suppose we want to maximize the following objective function:
+# In this example, we will solve a very simple MIP problem using CVXPY and GUROBI solver. Suppose we want to maximize the following objective function:
 # 
 # $$
 # \begin{aligned}
@@ -172,9 +172,9 @@ print("optimal x:", x.value)
 # \end{aligned}
 # $$ 
 # 
-# Here, we want to find integer values for $x_1$ and $x_2$ that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using cvxpy.
+# Here, we want to find integer values for $x_1$ and $x_2$ that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using CVXPY.
 # 
-# ## Using CVXPY + MOSEK
+# ## Using CVXPY + GUROBI
 
 # In[5]:
 
@@ -199,4 +199,42 @@ prob.solve(solver=cp.GUROBI)
 # Print the optimal solution and optimal value
 print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
 print("Optimal value: {}".format(prob.value))
+
+
+# # Nonlinear programming problem
+# Suppose we want to minimize the function $f(x) = x_1^2 + x_2^2$ subject to the constraint $x_1 + x_2 \geq 1$. We can express this as an optimization problem:
+# 
+# \begin{aligned}
+# &\text{minimize } &&x_1^2 + x_2^2 \
+# &\text{subject to } &&x_1 + x_2 \geq 1 \
+# \end{aligned}
+# 
+# To solve this problem using CVXPY, we first define the optimization variables and the objective function:
+# 
+# ## Using CVXPY + GUROBI
+
+# In[6]:
+
+
+import cvxpy as cp
+
+# Define the optimization variables
+x = cp.Variable(2)
+
+# Define the objective function
+objective = cp.Minimize(cp.sum_squares(x))
+
+# Define the constraint
+constraint = [x[0] + x[1] >= 1]
+
+# Create the optimization problem
+problem = cp.Problem(objective, constraint)
+
+# Solve the problem using the Mosek solver
+problem.solve(solver=cp.MOSEK)
+
+# Print the optimal solution
+print("Optimal solution:")
+print("x1 =", x[0].value)
+print("x2 =", x[1].value)
 
