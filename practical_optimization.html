@@ -436,8 +436,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
+     Using CVXPY + MOSEK
     </a>
    </li>
   </ul>
@@ -518,8 +518,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
+     Using CVXPY + MOSEK
     </a>
    </li>
   </ul>
@@ -751,7 +751,7 @@ optimal x: [1. 1. 0.]
 <span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span>
 
 <span class="c1"># Define the constraints</span>
-<span class="n">constr</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">constr</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">x1</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x2</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># Create the problem instance and solve it</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">constr</span><span class="p">)</span>
@@ -764,8 +764,8 @@ optimal x: [1. 1. 0.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = None, x2 = None
-Optimal value: 2000000012.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = 4.0, x2 = -0.0
+Optimal value: 12.0
 </pre></div>
 </div>
 </div>
@@ -779,9 +779,9 @@ Optimal value: 2000000012.0
 &amp;\text{minimize } &amp;&amp;x_1^2 + x_2^2 <br />
 &amp;\text{subject to } &amp;&amp;x_1 + x_2 \geq 1 <br />
 \end{aligned}</p>
-<p>To solve this problem using CVXPY, we first define the optimization variables and the objective function:</p>
-<section id="id2">
-<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>To solve this problem using MOSEK, we first define the optimization variables and the objective function:</p>
+<section id="using-cvxpy-mosek">
+<h2>Using CVXPY + MOSEK<a class="headerlink" href="#using-cvxpy-mosek" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -801,17 +801,15 @@ Optimal value: 2000000012.0
 <span class="c1"># Solve the problem using the Mosek solver</span>
 <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
 
-<span class="c1"># Print the optimal solution</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x1 =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x2 =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># Print the optimal solution and optimal value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution: x1 = </span><span class="si">{}</span><span class="s2">, x2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">x2</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution:
-x1 = 0.5000000010554145
-x2 = 0.5000000032136651
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = 4.0, x2 = -0.0
+Optimal value: 12.0
 </pre></div>
 </div>
 </div>

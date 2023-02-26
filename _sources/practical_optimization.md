@@ -190,7 +190,7 @@ x2 = cp.Variable(integer=True)
 obj = cp.Maximize(3*x1 + 2*x2)
 
 # Define the constraints
-constr = [x1 + x2 <= 4]
+constr = [x1 + x2 <= 4, x1>=0, x2>=0]
 
 # Create the problem instance and solve it
 prob = cp.Problem(obj, constr)
@@ -210,9 +210,9 @@ Suppose we want to minimize the function $f(x) = x_1^2 + x_2^2$ subject to the c
 &\text{subject to } &&x_1 + x_2 \geq 1 \
 \end{aligned}
 
-To solve this problem using CVXPY, we first define the optimization variables and the objective function:
+To solve this problem using MOSEK, we first define the optimization variables and the objective function:
 
-## Using CVXPY + GUROBI
+## Using CVXPY + MOSEK
 ```{code-cell}
 import cvxpy as cp
 
@@ -231,8 +231,7 @@ problem = cp.Problem(objective, constraint)
 # Solve the problem using the Mosek solver
 problem.solve(solver=cp.MOSEK)
 
-# Print the optimal solution
-print("Optimal solution:")
-print("x1 =", x[0].value)
-print("x2 =", x[1].value)
+# Print the optimal solution and optimal value
+print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
+print("Optimal value: {}".format(prob.value))
 ```
