@@ -774,7 +774,9 @@ Optimal value: 12.0
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-programming-problem">
 <h1>Nonlinear programming problem<a class="headerlink" href="#nonlinear-programming-problem" title="Permalink to this headline">#</a></h1>
-<p>Suppose we want to minimize the function <span class="math notranslate nohighlight">\(f(x) = x_1^2 + x_2^2\)</span> subject to the constraint <span class="math notranslate nohighlight">\(x_1 + x_2 \geq 1\)</span>. We can express this as an optimization problem:</p>
+<p>Nonlinear optimization is a type of optimization problem where the objective function or the constraints are nonlinear. Unlike linear optimization, nonlinear optimization problems can be more complex to solve due to the non-convexity of the objective function and/or constraints.</p>
+<p>In this example, we will consider a simple nonlinear optimization problem of minimizing a quadratic function subject to a linear constraint. We want to minimize the function <span class="math notranslate nohighlight">\(f(x) = x_1^2 + x_2^2\)</span> subject to the constraint <span class="math notranslate nohighlight">\(x_1 + x_2 \geq 1\)</span>. This problem can be solved using nonlinear optimization techniques such as gradient descent, Newton’s method, or quasi-Newton methods. However, we will use cvxpy, a Python library for convex optimization, to solve this problem.</p>
+<p>We can express this as an optimization problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
