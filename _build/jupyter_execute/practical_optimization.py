@@ -12,13 +12,13 @@
 # The objective is to maximize the company's profit subject to the available resources. Let's call the number of units of Product A produced $x_1$ and the number of units of Product B produced $x_2$. Then, the LP model is:
 # 
 # $$
-# \begin{align*}
-# &\text{Maximize} &5x1 + 4x2 & \\
-# &\text{Subject to} &2x1 + 3x2 <= 80   \quad &\text{(labor constraint for Product A)} \\
-# & &3x1 + 2x2 <= 60  \quad &\text{(labor constraint for Product B)} \\
-# & &3x1 + 2x2 <= 100 \quad &\text{(material constraint for both products)} \\
-# & &x1, x2 >= 0      \quad &\text{(non-negativity constraint)}
-# \end{align*}
+# \begin{aligned}
+# &\text{Maximize } &&5x_1 + 4x_2 \
+# &\text{Subject to } &&2x_1 + 3x_2 \le 80 &&\text{(labor constraint for Product A)} \
+# &&&3x_1 + 2x_2 \le 60 &&\text{(labor constraint for Product B)} \
+# &&&3x_1 + 2x_2 \le 100 &&\text{(material constraint for both products)} \
+# &&&x_1, x_2 \ge 0 &&\text{(non-negativity constraint)}
+# \end{aligned}
 # $$
 # 
 # Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
@@ -96,6 +96,7 @@ print("Optimal solution:", x.level())
 
 
 # # Binary optimization problem 
+# ## using CVXPY + GUROBI
 # $$
 # \begin{aligned}
 # &\text{minimize } &&x_1 + x_2 + x_3 \\
@@ -138,3 +139,38 @@ print("status:", problem.status)
 print("optimal value:", obj.value)
 print("optimal x:", x.value)
 
+
+# In this implementation, we first define the problem data, including the binary decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the GUROBI solver by passing solver=cp.GUROBI to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.
+# 
+# # Mixed-integer programming problem
+# ## using CVXPY + MOSEK
+
+# In[5]:
+
+
+import cvxpy as cp
+
+# Define problem data
+A = [[1, 2], [-1, 1]]
+b = [3, 1]
+
+# Define integer decision variables
+x = cp.Variable(2, integer=True)
+
+# Define objective function
+obj = cp.Minimize(cp.sum_squares(A @ x - b))
+
+# Define the problem
+problem = cp.Problem(obj)
+
+# Solve the problem
+problem.solve(solver=cp.MOSEK)
+
+# Print results
+print("CVXPY + MOSEK Solution:")
+print("status:", problem.status)
+print("optimal value:", obj.value)
+print("optimal x:", x.value)
+
+
+# In this implementation, we first define the problem data, including the integer decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the MOSEK solver by passing solver=cp.MOSEK to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.

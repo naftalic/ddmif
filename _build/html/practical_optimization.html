@@ -410,6 +410,25 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#binary-optimization-problem">
    Binary optimization problem
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy-gurobi">
+     using CVXPY + GUROBI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mixed-integer-programming-problem">
+   Mixed-integer programming problem
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
+     using CVXPY + MOSEK
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -461,6 +480,25 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#binary-optimization-problem">
    Binary optimization problem
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy-gurobi">
+     using CVXPY + GUROBI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mixed-integer-programming-problem">
+   Mixed-integer programming problem
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy-mosek">
+     using CVXPY + MOSEK
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -483,15 +521,15 @@ Product B requires 3 hours of labor and 2 pounds of material to produce one unit
 The profit for each unit of Product A is $5, and the profit for each unit of Product B is $4.
 The objective is to maximize the company’s profit subject to the available resources. Let’s call the number of units of Product A produced <span class="math notranslate nohighlight">\(x_1\)</span> and the number of units of Product B produced <span class="math notranslate nohighlight">\(x_2\)</span>. Then, the LP model is:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-&amp;\text{Maximize} &amp;5x1 + 4x2 &amp; \\
-&amp;\text{Subject to} &amp;2x1 + 3x2 &lt;= 80   \quad &amp;\text{(labor constraint for Product A)} \\
-&amp; &amp;3x1 + 2x2 &lt;= 60  \quad &amp;\text{(labor constraint for Product B)} \\
-&amp; &amp;3x1 + 2x2 &lt;= 100 \quad &amp;\text{(material constraint for both products)} \\
-&amp; &amp;x1, x2 &gt;= 0      \quad &amp;\text{(non-negativity constraint)}
-\end{align*}
-\end{split}\]</div>
+\[
+\begin{aligned}
+&amp;\text{Maximize } &amp;&amp;5x_1 + 4x_2 \
+&amp;\text{Subject to } &amp;&amp;2x_1 + 3x_2 \le 80 &amp;&amp;\text{(labor constraint for Product A)} \
+&amp;&amp;&amp;3x_1 + 2x_2 \le 60 &amp;&amp;\text{(labor constraint for Product B)} \
+&amp;&amp;&amp;3x_1 + 2x_2 \le 100 &amp;&amp;\text{(material constraint for both products)} \
+&amp;&amp;&amp;x_1, x_2 \ge 0 &amp;&amp;\text{(non-negativity constraint)}
+\end{aligned}
+\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
 <section id="using-cvxpy">
 <h2>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
@@ -595,6 +633,8 @@ Optimal solution: [ 4. 24.]
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="binary-optimization-problem">
 <h1>Binary optimization problem<a class="headerlink" href="#binary-optimization-problem" title="Permalink to this headline">#</a></h1>
+<section id="using-cvxpy-gurobi">
+<h2>using CVXPY + GUROBI<a class="headerlink" href="#using-cvxpy-gurobi" title="Permalink to this headline">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -647,6 +687,52 @@ optimal x: [1. 1. 0.]
 </div>
 </div>
 </div>
+<p>In this implementation, we first define the problem data, including the binary decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the GUROBI solver by passing solver=cp.GUROBI to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mixed-integer-programming-problem">
+<h1>Mixed-integer programming problem<a class="headerlink" href="#mixed-integer-programming-problem" title="Permalink to this headline">#</a></h1>
+<section id="using-cvxpy-mosek">
+<h2>using CVXPY + MOSEK<a class="headerlink" href="#using-cvxpy-mosek" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="c1"># Define problem data</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Define integer decision variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define objective function</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span>
+
+<span class="c1"># Define the problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="c1"># Solve the problem</span>
+<span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CVXPY + MOSEK Solution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">problem</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CVXPY + MOSEK Solution:
+status: optimal
+optimal value: 1.0000000075471824
+optimal x: [ 1. -1.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this implementation, we first define the problem data, including the integer decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the MOSEK solver by passing solver=cp.MOSEK to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
