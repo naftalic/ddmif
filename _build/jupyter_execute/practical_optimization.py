@@ -194,7 +194,7 @@ constr = [x1 + x2 <= 4]
 
 # Create the problem instance and solve it
 prob = cp.Problem(obj, constr)
-prob.solve(solver=cp.MOSEK)
+prob.solve(solver=MOSEK)
 
 # Print the optimal solution and optimal value
 print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
