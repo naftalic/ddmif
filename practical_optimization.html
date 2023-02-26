@@ -381,7 +381,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-cvxpy">
-   Using cvxpy
+   Using CVXPY
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-gurobipy">
+   Using Gurobipy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mosek">
+   Using Mosek
   </a>
  </li>
 </ul>
@@ -405,7 +415,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-cvxpy">
-   Using cvxpy
+   Using CVXPY
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-gurobipy">
+   Using Gurobipy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-mosek">
+   Using Mosek
   </a>
  </li>
 </ul>
@@ -424,17 +444,17 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-&amp;\text{Maximize}\quad 2x + 3y
+&amp;\text{Maximize}\quad &amp;2x + 3y\\
 &amp;\text{Subject to:}
-x + y \le 4\\
-x \ge 0\\
-y \ge 0\\
+&amp;x + y \le 4\\
+&amp;&amp;x \ge 0\\
+&amp;&amp;y \ge 0\\
 \end{align*}
 \end{split}\]</div>
 <p>To solve this problem using cvxpy, gurobipy, and mosek, we will need to install these libraries first. Here are the installation commands for each library using pip:</p>
 <p>Once we have these libraries installed, we can write the code to solve the LP model using each of them.</p>
 <section id="using-cvxpy">
-<h2>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
+<h2>Using CVXPY<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -468,6 +488,158 @@ y \ge 0\\
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of x: 0.0
 Optimal value of y: 4.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-gurobipy">
+<h2>Using Gurobipy<a class="headerlink" href="#using-gurobipy" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="c1"># Create a new model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>
+
+<span class="c1"># Define the variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">lb</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">lb</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span>
+
+<span class="c1"># Add the objective function to the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">setObjective</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">MAXIMIZE</span><span class="p">)</span>
+
+<span class="c1"># Add the constraints</span>
+<span class="n">model</span><span class="o">.</span><span class="n">addConstr</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Optimize the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+
+<span class="c1"># Print the optimal values of x and y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of y:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Restricted license - for non-production use only - expires 2024-10-28
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (mac64[arm])
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU model: Apple M1 Pro
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thread count: 10 physical cores, 10 logical processors, using up to 10 threads
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimize a model with 1 rows, 2 columns and 2 nonzeros
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model fingerprint: 0xcb2c77f1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient statistics:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Matrix range     [1e+00, 1e+00]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Objective range  [2e+00, 3e+00]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Bounds range     [0e+00, 0e+00]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  RHS range        [4e+00, 4e+00]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Presolve removed 1 rows and 2 columns
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Presolve time: 0.00s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Presolve: All rows and columns removed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration    Objective       Primal Inf.    Dual Inf.      Time
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       0    1.2000000e+01   0.000000e+00   0.000000e+00      0s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solved in 0 iterations and 0.01 seconds (0.00 work units)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal objective  1.200000000e+01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of x: 0.0
+Optimal value of y: 4.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-mosek">
+<h2>Using Mosek<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek</span>
+
+<span class="c1"># Create a new optimization task</span>
+<span class="k">with</span> <span class="n">mosek</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span> <span class="k">as</span> <span class="n">env</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">Task</span><span class="p">()</span> <span class="k">as</span> <span class="n">task</span><span class="p">:</span>
+        <span class="c1"># Set the optimization sense to maximize</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putobjsense</span><span class="p">(</span><span class="n">mosek</span><span class="o">.</span><span class="n">objsense</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span>
+
+        <span class="c1"># Define the variables</span>
+        <span class="n">x_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Define the objective function</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putcj</span><span class="p">(</span><span class="n">x_idx</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putcj</span><span class="p">(</span><span class="n">y_idx</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+        <span class="c1"># Add the constraints</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putconbound</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mosek</span><span class="o">.</span><span class="n">boundkey</span><span class="o">.</span><span class="n">up</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putaij</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">putaij</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Optimize the task</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+
+        <span class="c1"># Print the optimal values of x and y</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of x:&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">getxx</span><span class="p">(</span><span class="n">x_idx</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of y:&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">getxx</span><span class="p">(</span><span class="n">y_idx</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">task</span><span class="o">.</span><span class="n">putobjsense</span><span class="p">(</span><span class="n">mosek</span><span class="o">.</span><span class="n">objsense</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Define the variables</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">x_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">y_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Define the objective function</span>
+
+<span class="ne">AttributeError</span>: &#39;Task&#39; object has no attribute &#39;appndvars&#39;
 </pre></div>
 </div>
 </div>
