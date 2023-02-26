@@ -6,11 +6,13 @@
 # Let us consider the following simple Linear Programing Model:
 # 
 # $$
+# \begin{align*}
 # &\text{Maximize}\quad 2x + 3y
 # &\text{Subject to:}
 # x + y \le 4\\
 # x \ge 0\\
 # y \ge 0\\
+# \end{align*}
 # $$
 # 
 # To solve this problem using cvxpy, gurobipy, and mosek, we will need to install these libraries first. Here are the installation commands for each library using pip:
