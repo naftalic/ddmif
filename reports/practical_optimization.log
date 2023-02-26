@@ -17,44 +17,51 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+import cvxpy as cp
+import gurobipy as gp
+from gurobipy import GRB
 import mosek
 
-# Create a new optimization task
-with mosek.Env() as env:
-    with env.Task() as task:
-        # Set the optimization sense to maximize
-        task.putobjsense(mosek.objsense.maximize)
+# Define binary optimization problem
+x = cp.Variable(3, boolean=True)
+objective = cp.Minimize(x[0] + x[1] + x[2])
+constraints = [x[0] + x[1] <= 1, x[1] + x[2] <= 1]
+problem = cp.Problem(objective, constraints)
 
-        # Define the variables
-        x_idx = task.appndvars(1)
-        y_idx = task.appndvars(1)
+# Solve using CVXPY
+solver = cp.MOSEK
+problem.solve(solver=solver)
 
-        # Define the objective function
-        task.putcj(x_idx, 2)
-        task.putcj(y_idx, 3)
+# Print results
+print("CVXPY Solution:")
+print("status:", problem.status)
+print("optimal value:", problem.value)
+print("optimal x:", x.value)
 
-        # Add the constraints
-        task.putconbound(0, mosek.boundkey.up, 4)
-        task.putaij(0, x_idx, 1)
-        task.putaij(0, y_idx, 1)
+# Solve using Gurobi
+model = gp.Model()
+model.setParam('OutputFlag', 0)
+x = model.addMVar(3, vtype=GRB.BINARY)
+obj = x[0] + x[1] + x[2]
+model.setObjective(obj)
+model.addConstr(x[0] + x[1] <= 1)
+model.addConstr(x[1] + x[2] <= 1)
+model.setParam('OutputFlag', 0)
+model.optimize()
 
-        # Optimize the task
-        task.optimize()
+# Print results
+print("Gurobi Solution:")
+print("status:", model.status)
+print("optimal value:", model.objVal)
+print("optimal x:", x.X)
+```{code-cell}
 
-        # Print the optimal values of x and y
-        print("Optimal value of x:", task.getxx(x_idx)[0])
-        print("Optimal value of y:", task.getxx(y_idx)[0])
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-Cell [0;32mIn[3], line 10[0m
-[1;32m      7[0m task[38;5;241m.[39mputobjsense(mosek[38;5;241m.[39mobjsense[38;5;241m.[39mmaximize)
-[1;32m      9[0m [38;5;66;03m# Define the variables[39;00m
-[0;32m---> 10[0m x_idx [38;5;241m=[39m [43mtask[49m[38;5;241;43m.[39;49m[43mappndvars[49m([38;5;241m1[39m)
-[1;32m     11[0m y_idx [38;5;241m=[39m task[38;5;241m.[39mappndvars([38;5;241m1[39m)
-[1;32m     13[0m [38;5;66;03m# Define the objective function[39;00m
+[0;36m  Cell [0;32mIn[4], line 38[0;36m[0m
+[0;31m    ```{code-cell}[0m
+[0m    ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-[0;31mAttributeError[0m: 'Task' object has no attribute 'appndvars'
-AttributeError: 'Task' object has no attribute 'appndvars'
+SyntaxError: invalid syntax (965974895.py, line 38)
 

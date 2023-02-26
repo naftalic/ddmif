@@ -388,21 +388,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#simple-linear-programing-lp-model">
    Simple Linear Programing (LP) model
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-cvxpy">
-   Using cvxpy
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-gurobipy">
-   Using gurobipy
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-mosek">
-   Using mosek
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy">
+     Using cvxpy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-gurobipy">
+     Using gurobipy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-mosek">
+     Using mosek
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -432,21 +434,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#simple-linear-programing-lp-model">
    Simple Linear Programing (LP) model
   </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-cvxpy">
-   Using cvxpy
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-gurobipy">
-   Using gurobipy
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-mosek">
-   Using mosek
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-cvxpy">
+     Using cvxpy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-gurobipy">
+     Using gurobipy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-mosek">
+     Using mosek
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -479,9 +483,8 @@ The objective is to maximize the company’s profit subject to the available res
 \end{align*}
 \end{split}\]</div>
 <p>Now, let’s solve this LP model using cvxpy, gurobipy, and mosek in Python</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="using-cvxpy">
-<h1>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h1>
+<section id="using-cvxpy">
+<h2>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -507,8 +510,8 @@ Optimal solution: [ 4. 24.]
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="using-gurobipy">
-<h1>Using gurobipy<a class="headerlink" href="#using-gurobipy" title="Permalink to this headline">#</a></h1>
+<section id="using-gurobipy">
+<h2>Using gurobipy<a class="headerlink" href="#using-gurobipy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
@@ -540,8 +543,8 @@ Optimal solution: [4.000000000000003, 24.0]
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="using-mosek">
-<h1>Using mosek<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h1>
+<section id="using-mosek">
+<h2>Using mosek<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek.fusion</span> <span class="k">as</span> <span class="nn">mf</span>
@@ -588,6 +591,59 @@ Optimal solution: [ 4. 24.]
 &amp; &amp;x1, x2, x3 \quad\text{are binary variables}
 \end{align*}
 \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import cvxpy as cp
+import gurobipy as gp
+from gurobipy import GRB
+import mosek
+
+# Define binary optimization problem
+x = cp.Variable(3, boolean=True)
+objective = cp.Minimize(x[0] + x[1] + x[2])
+constraints = [x[0] + x[1] &lt;= 1, x[1] + x[2] &lt;= 1]
+problem = cp.Problem(objective, constraints)
+
+# Solve using CVXPY
+solver = cp.MOSEK
+problem.solve(solver=solver)
+
+# Print results
+print(&quot;CVXPY Solution:&quot;)
+print(&quot;status:&quot;, problem.status)
+print(&quot;optimal value:&quot;, problem.value)
+print(&quot;optimal x:&quot;, x.value)
+
+# Solve using Gurobi
+model = gp.Model()
+model.setParam(&#39;OutputFlag&#39;, 0)
+x = model.addMVar(3, vtype=GRB.BINARY)
+obj = x[0] + x[1] + x[2]
+model.setObjective(obj)
+model.addConstr(x[0] + x[1] &lt;= 1)
+model.addConstr(x[1] + x[2] &lt;= 1)
+model.setParam(&#39;OutputFlag&#39;, 0)
+model.optimize()
+
+# Print results
+print(&quot;Gurobi Solution:&quot;)
+print(&quot;status:&quot;, model.status)
+print(&quot;optimal value:&quot;, model.objVal)
+print(&quot;optimal x:&quot;, x.X)
+```{code-cell}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  Cell In[4], line 38
+    ```{code-cell}
+    ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
