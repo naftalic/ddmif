@@ -596,14 +596,14 @@ Optimal solution: [ 4. 24.]
 <section class="tex2jax_ignore mathjax_ignore" id="binary-optimization-problem">
 <h1>Binary optimization problem<a class="headerlink" href="#binary-optimization-problem" title="Permalink to this headline">#</a></h1>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \begin{aligned}
-&amp;\text{minimize } &amp;&amp;x_1 + x_2 + x_3 \
-&amp;\text{subject to } &amp;&amp;x_1 + x_2 \ge 2 \
-&amp;&amp;&amp;x_2 + x_3 \le 1 \
+&amp;\text{minimize } &amp;&amp;x_1 + x_2 + x_3 \\
+&amp;\text{subject to } &amp;&amp;x_1 + x_2 \ge 2 \\
+&amp;&amp;&amp;x_2 + x_3 \le 1 \\
 &amp;&amp;&amp;x_1, x_2, x_3 \text{ are binary variables}
 \end{aligned}
-\]</div>
+\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
