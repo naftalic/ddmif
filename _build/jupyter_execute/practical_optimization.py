@@ -18,12 +18,13 @@
 # Lastly, we will delve into mixed-integer programming, which involves optimization problems where some or all of the variables can take both continuous and discrete values.
 # 
 # # Simple Linear Programing model
-# Let us start by considering the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:
+# Let's consider a simple example of a company that produces two products, Product A and Product B, to illustrate the usefulness of optimization in practice.
 # 
-# Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
-# Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
-# The profit for each unit of Product A is \$5, and the profit for each unit of Product B is \$4.
-# The objective is to maximize the company's profit subject to the available resources. Let's call the number of units of Product A produced $x_1$ and the number of units of Product B produced $x_2$. Then, the LP model is:
+# To produce one unit of Product A, the company requires 2 hours of labor and 3 pounds of material. The company has 80 hours of labor available and 120 pounds of material available. To produce one unit of Product B, the company requires 3 hours of labor and 2 pounds of material. The company has 60 hours of labor available and 100 pounds of material available. The profit for each unit of Product A is \$5, and the profit for each unit of Product B is \$4. The objective is to maximize the company's profit subject to the available resources.
+# 
+# Optimization is useful in practice because it helps us make better decisions by finding the best possible solution to a problem given certain constraints. In this case, the LP model helps us determine the optimal number of units of Product A and Product B that the company should produce to maximize its profit while staying within the available resources.
+# 
+# Let's call the number of units of Product A produced $x_1$ and the number of units of Product B produced $x_2$. Then, the LP model is:
 # 
 # $$
 # \begin{aligned}
@@ -35,7 +36,7 @@
 # \end{aligned}
 # $$
 # 
-# Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
+# We can use various optimization solvers such as CVXPY, GUROBIPY, and MOSEK in Python to solve this LP model and find the optimal solution.
 # 
 # ## Using CVXPY
 
@@ -110,7 +111,11 @@ print("Optimal solution:", x.level())
 
 
 # # Binary optimization problem 
-# ## using CVXPY + GUROBI
+# In optimization, one of the most common types of problems is the Mixed Integer Programming (MIP) problem. This is a mathematical optimization problem where some of the variables are restricted to be integers. Binary Optimization, where the variables can only take on values of 0 or 1, is a special case of MIP.
+# 
+# In this context, we will solve a binary optimization problem using CVXPY and GUROBI. The problem is to minimize the objective function $x_1 + x_2 + x_3$, subject to the constraints $x_1 + x_2 \ge 2$, $x_2 + x_3 \le 1$, and $x_1, x_2, x_3$ are binary variables. 
+# 
+# ## Using CVXPY + GUROBI
 # $$
 # \begin{aligned}
 # &\text{minimize } &&x_1 + x_2 + x_3 \\
@@ -154,37 +159,46 @@ print("optimal value:", obj.value)
 print("optimal x:", x.value)
 
 
-# In this implementation, we first define the problem data, including the binary decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the GUROBI solver by passing solver=cp.GUROBI to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.
-# 
 # # Mixed-integer programming problem
-# ## using CVXPY + MOSEK
+# In many real-world problems, we encounter situations where decision variables must take on integer values. For example, in production planning, the number of items produced must be an integer value. MIP provides a way to find optimal solutions to these types of problems.
+# 
+# In this example, we will solve a very simple MIP problem using CVXPY and MOSEK solver. Suppose we want to maximize the following objective function:
+# 
+# $$
+# \begin{align*}
+# \text{maximize } &3x_1 + 2x_2 \\
+# \text{subject to } &x_1 + x_2 \leq 4 \\
+# &x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
+# \end{align*}
+# $$
+# 
+# Here, we want to find integer values for $x_1$ and $x_2$ that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using cvxpy.
+# 
+# ## Using CVXPY + MOSEK
 
 # In[5]:
 
 
 import cvxpy as cp
+import numpy as np
 
-# Define problem data
-A = [[1, 2], [-1, 1]]
-b = [3, 1]
+# Define the problem data
+c = np.array([1, 2, 3])
+A = np.array([
+    [-1, -1, 0],
+    [0, 1, 1],
+])
+b = np.array([-2, 1])
 
-# Define integer decision variables
-x = cp.Variable(2, integer=True)
+# Define the binary variables
+x = cp.Variable(3, boolean=True)
 
-# Define objective function
-obj = cp.Minimize(cp.sum_squares(A @ x - b))
+# Define the problem and solve
+prob = cp.Problem(cp.Minimize(c @ x),
+                 [A @ x >= b, x >= 0])
+prob.solve(solver=cp.MOSEK)
 
-# Define the problem
-problem = cp.Problem(obj)
+# Print the optimal solution and objective value
+print("Optimal value:", prob.value)
+print("Optimal x:", x.value)
 
-# Solve the problem
-problem.solve(solver=cp.MOSEK)
-
-# Print results
-print("CVXPY + MOSEK Solution:")
-print("status:", problem.status)
-print("optimal value:", obj.value)
-print("optimal x:", x.value)
-
-
-# In this implementation, we first define the problem data, including the integer decision variables, the objective function, and the constraints. We then create a CVXPY problem instance using the cp.Problem constructor, with the objective function and constraints as arguments. We solve the problem using the MOSEK solver by passing solver=cp.MOSEK to the solve method of the problem instance. Finally, we print the results using the value attribute of the objective function and decision variables.
