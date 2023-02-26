@@ -24,12 +24,11 @@ The objective is to maximize the company's profit subject to the available resou
 
 $$
 \begin{align*}
-&\text{Maximize} &5x1 + 4x2 \\
-&\text{Subject to}
-&2x1 + 3x2 <= 80   \quad &\text{(labor constraint for Product A)} \\
-&&3x1 + 2x2 <= 60  \quad &\text{(labor constraint for Product B)} \\
-&&3x1 + 2x2 <= 100 \quad &\text{(material constraint for both products)} \\
-&&x1, x2 >= 0      \quad &\text{(non-negativity constraint)}
+&\text{Maximize} &5x1 + 4x2 & \\
+&\text{Subject to} &2x1 + 3x2 <= 80   \quad &\text{(labor constraint for Product A)} \\
+& &3x1 + 2x2 <= 60  \quad &\text{(labor constraint for Product B)} \\
+& &3x1 + 2x2 <= 100 \quad &\text{(material constraint for both products)} \\
+& &x1, x2 >= 0      \quad &\text{(non-negativity constraint)}
 \end{align*}
 $$
 
