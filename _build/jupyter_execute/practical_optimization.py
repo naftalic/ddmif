@@ -165,12 +165,12 @@ print("optimal x:", x.value)
 # In this example, we will solve a very simple MIP problem using CVXPY and MOSEK solver. Suppose we want to maximize the following objective function:
 # 
 # $$
-# \begin{align*}
-# \text{maximize } &3x_1 + 2x_2 \\
-# \text{subject to } &x_1 + x_2 \leq 4 \\
-# &x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
-# \end{align*}
-# $$
+# \begin{aligned}
+# &\text{minimize } &&3x_1 + 2x_2 \\
+# &\text{subject to } &&x_1 + x_2 \leq 4 \\
+# &&&x_1, x_2 \in \mathbb{Z}, \text{ where $\mathbb{Z}$ denotes the set of integers}
+# \end{aligned}
+# $$ 
 # 
 # Here, we want to find integer values for $x_1$ and $x_2$ that satisfy the constraints and maximize the objective function. This is a very simple example, but it can help us understand the basic syntax and structure of solving MIP problems using cvxpy.
 # 
