@@ -15,6 +15,7 @@ kernelspec:
 
 # Practical Optimization
 
+# Simple Linear Programing (LP) model
 Let us consider the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:
 
 Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
@@ -99,5 +100,13 @@ M.solve()
 print("Optimal value:", M.primalObjValue()) 
 print("Optimal solution:", x.level())
 ```    
-    
+ 
+$$
+\begin{align*}
+&\text{minimize} &x1 + x2 + x3 & \\
+&\text{subject to} &x1 + x2 le 1 \\
+& &x2 + x3 \le 1 \\
+& &x1, x2, x3 \quad\text{are binary variables}
+\end{align*}
+$$ 
 
