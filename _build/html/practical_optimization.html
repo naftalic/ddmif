@@ -858,20 +858,23 @@ Optimal value: 12.0
 <li><p>Achieve a certain level of production</p></li>
 </ul>
 <p>Let <span class="math notranslate nohighlight">\(x\)</span> be the amount of product produced, <span class="math notranslate nohighlight">\(p\)</span> be the profit per unit sold, and <span class="math notranslate nohighlight">\(w\)</span> be the amount of waste produced per unit produced. Then we can formulate the following goal programming model:</p>
-<p>\begin{aligned}
-&amp;\text{Minimize } &amp;&amp;z_1 + z_2 + z_3\
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp;\text{Minimize } &amp;&amp;z_1 + z_2 + z_3\\
 &amp;\text{where}
-&amp;&amp;z_1 = | \text{profit} - \text{target_profit}|\
-&amp;&amp;&amp;z_2 = | \text{waste} - \text{target_waste}|\
-&amp;&amp;&amp;z_3 = |x - \text{target_production}|\
+&amp;&amp;z_1 = | \text{profit} - \text{target_profit}|\\
+&amp;&amp;&amp;z_2 = | \text{waste} - \text{target_waste}|\\
+&amp;&amp;&amp;z_3 = |x - \text{target_production}|\\
 &amp;\text{Subject to}
-&amp;&amp;\text{profit} = p \cdot x\
-&amp;&amp;&amp;\text{waste} = w \cdot x\
-&amp;&amp;&amp;x \geq 0\
-&amp;&amp;&amp;\text{profit} \geq \text{target_profit}\
-&amp;&amp;&amp;\text{waste} \leq \text{target_waste}\
+&amp;&amp;\text{profit} = p \cdot x\\
+&amp;&amp;&amp;\text{waste} = w \cdot x\\
+&amp;&amp;&amp;x \geq 0\\
+&amp;&amp;&amp;\text{profit} \geq \text{target_profit}\\
+&amp;&amp;&amp;\text{waste} \leq \text{target_waste}\\
 &amp;&amp;&amp;x = \text{target_production}
-\end{aligned}</p>
+\end{aligned}
+\end{split}\]</div>
 <p>where target_profit, target_waste, and target_production are the company’s goals for each respective metric.</p>
 <p>We can solve this model using the CVXPY package with the GUROBI solver. Here’s the code:</p>
 <section id="id2">

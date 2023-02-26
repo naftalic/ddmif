@@ -261,6 +261,7 @@ print("Optimal value: {}".format(prob.value))
 #  
 # Let $x$ be the amount of product produced, $p$ be the profit per unit sold, and $w$ be the amount of waste produced per unit produced. Then we can formulate the following goal programming model:
 # 
+# $$
 # \begin{aligned}
 # &\text{Minimize } &&z_1 + z_2 + z_3\\
 # &\text{where}
@@ -275,6 +276,7 @@ print("Optimal value: {}".format(prob.value))
 # &&&\text{waste} \leq \text{target_waste}\\
 # &&&x = \text{target_production}
 # \end{aligned}
+# $$
 # 
 # where target_profit, target_waste, and target_production are the company's goals for each respective metric.
 # 
