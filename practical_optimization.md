@@ -27,14 +27,11 @@ $$
 
 To solve this problem using cvxpy, gurobipy, and mosek, we will need to install these libraries first. Here are the installation commands for each library using pip:
 
-```{code-cell}
-pip install cvxpy
-pip install gurobipy
-pip install mosek
-```
 
 Once we have these libraries installed, we can write the code to solve the LP model using each of them.
+
 ## Using cvxpy
+
 ```{code-cell}
 import cvxpy as cp
 
