@@ -96,7 +96,7 @@ print("Optimal value:", M.primalObjValue())
 print("Optimal solution:", x.level())
 
 
-#  
+# # Binary optimization problem 
 # $$
 # \begin{align*}
 # &\text{minimize} &x1 + x2 + x3 & \\
@@ -146,5 +146,4 @@ print("Gurobi Solution:")
 print("status:", model.status)
 print("optimal value:", model.objVal)
 print("optimal x:", x.X)
-```{code-cell}
 
