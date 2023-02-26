@@ -3,85 +3,91 @@
 
 # # Practical Optimization
 # 
-# Let us consider the following simple Linear Programing Model:
+# Let us consider the following simple Linear Programing (LP) model for a company that produces two products, Product A and Product B:
+# 
+# Product A requires 2 hours of labor and 3 pounds of material to produce one unit. The company has 80 hours of labor available and 120 pounds of material available.
+# Product B requires 3 hours of labor and 2 pounds of material to produce one unit. The company has 60 hours of labor available and 100 pounds of material available.
+# The profit for each unit of Product A is $5, and the profit for each unit of Product B is $4.
+# The objective is to maximize the company's profit subject to the available resources. Let's call the number of units of Product A produced $x_1$ and the number of units of Product B produced $x_2$. Then, the LP model is:
 # 
 # $$
 # \begin{align*}
-# &\text{Maximize}\quad &2x + 3y\\
+# &\text{Maximize} &5x1 + 4x2 \\
 # &\text{Subject to}
-# &x + y \le 4\\
-# &&x \ge 0\\
-# &&y \ge 0\\
-# \end{align*}
-# $$
+# &2x1 + 3x2 <= 80 \quad\text{(labor constraint for Product A)} \\
+# &&3x1 + 2x2 <= 60 \quad\text{(labor constraint for Product B)} \\
+# &&3x1 + 2x2 <= 100 \quad\text{(material constraint for both products)} \\
+# &&x1, x2 >= 0 \quad\text{(non-negativity constraint)}
 # 
-# To solve this problem using cvxpy, gurobipy, and mosek, we will need to install these libraries first. Here are the installation commands for each library using pip:
+# Now, let's solve this LP model using cvxpy, gurobipy, and mosek in Python
 # 
-# 
-# Once we have these libraries installed, we can write the code to solve the LP model using each of them.
-# 
-# ## Using CVXPY
+# # Using cvxpy
 
 # In[1]:
 
 
 import cvxpy as cp
 
-# Define the variables
-x = cp.Variable()
-y = cp.Variable()
+x = cp.Variable(2, nonneg=True)
+objective = cp.Maximize(5*x[0] + 4*x[1])
+constraints = [2*x[0] + 3*x[1] <= 80,
+               3*x[0] + 2*x[1] <= 60,
+               3*x[0] + 2*x[1] <= 100]
+prob = cp.Problem(objective, constraints)
+prob.solve()
 
-# Define the objective function
-objective = cp.Maximize(2*x + 3*y)
-
-# Define the constraints
-constraints = [
-    x + y <= 4,
-    x >= 0,
-    y >= 0
-]
-
-# Define the problem
-problem = cp.Problem(objective, constraints)
-
-# Solve the problem
-problem.solve()
-
-# Print the optimal values of x and y
-print("Optimal value of x:", x.value)
-print("Optimal value of y:", y.value)
+print("Optimal value:", prob.value)
+print("Optimal solution:", x.value)
 
 
-# ## Using Gurobipy
+# # Using gurobipy
 
 # In[2]:
 
 
 import gurobipy as gp
 
-# Create a new model
 model = gp.Model()
 model.setParam('OutputFlag', 0)
 
-# Define the variables
-x = model.addVar(lb=0, name="x")
-y = model.addVar(lb=0, name="y")
-
-# Define the objective function
-objective = 2*x + 3*y
-
-# Add the objective function to the model
-model.setObjective(objective, gp.GRB.MAXIMIZE)
-
-# Add the constraints
-model.addConstr(x + y <= 4, "c1")
-
-# Optimize the model
+x = model.addVars(2, lb=0, vtype=gp.GRB.CONTINUOUS)
+objective = 5*x[0] + 4*x[1]
+model.setObjective(objective, sense=gp.GRB.MAXIMIZE)
+model.addConstr(2*x[0] + 3*x[1] <= 80)
+model.addConstr(3*x[0] + 2*x[1] <= 60)
+model.addConstr(3*x[0] + 2*x[1] <= 100)
 model.optimize()
 
-# Print the optimal values of x and y
-print("Optimal value of x:", x.x)
-print("Optimal value of y:", y.x)
+print("Optimal value:", model.objVal)
+print("Optimal solution:", [x[i].x for i in range(2)])
 
 
-# ## Using Mosek
+# # Using mosek
+
+# In[3]:
+
+
+import mosek.fusion as mf
+
+# Create a Mosek Fusion environment
+M = mf.Model('LP example')
+
+# Define variables
+x = M.variable('x', 2, mf.Domain.greaterThan(0.0))
+
+# Define objective
+c = [5.0, 4.0]
+M.objective('obj', mf.ObjectiveSense.Maximize, mf.Expr.dot(c, x))
+
+# Define constraints
+A = [[2.0, 3.0], [3.0, 2.0], [3.0, 2.0]]
+b = [80.0, 60.0, 100.0]
+for i in range(len(A)):
+    M.constraint('c{}'.format(i), mf.Expr.dot(A[i], x), mf.Domain.lessThan(b[i]))
+
+# Solve the problem
+M.solve()
+
+# Print the results
+print("Optimal solution:", x.level())
+
