@@ -423,23 +423,6 @@ x \ge 0\\
 y \ge 0\\
 \end{split}\]</div>
 <p>To solve this problem using cvxpy, gurobipy, and mosek, we will need to install these libraries first. Here are the installation commands for each library using pip:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cvxpy</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">gurobipy</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">mosek</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-    <span class="n">pip</span> <span class="n">install</span> <span class="n">cvxpy</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
-</div>
 <p>Once we have these libraries installed, we can write the code to solve the LP model using each of them.</p>
 <section id="using-cvxpy">
 <h2>Using cvxpy<a class="headerlink" href="#using-cvxpy" title="Permalink to this headline">#</a></h2>
@@ -470,6 +453,12 @@ y \ge 0\\
 <span class="c1"># Print the optimal values of x and y</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of y:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of x: 0.0
+Optimal value of y: 4.0
 </pre></div>
 </div>
 </div>
