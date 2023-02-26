@@ -582,7 +582,7 @@ Optimal value of y: 4.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solved in 0 iterations and 0.01 seconds (0.00 work units)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solved in 0 iterations and 0.00 seconds (0.00 work units)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal objective  1.200000000e+01
@@ -597,53 +597,6 @@ Optimal value of y: 4.0
 </section>
 <section id="using-mosek">
 <h2>Using Mosek<a class="headerlink" href="#using-mosek" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek</span>
-
-<span class="c1"># Create a new optimization task</span>
-<span class="k">with</span> <span class="n">mosek</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span> <span class="k">as</span> <span class="n">env</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">env</span><span class="o">.</span><span class="n">Task</span><span class="p">()</span> <span class="k">as</span> <span class="n">task</span><span class="p">:</span>
-        <span class="c1"># Set the optimization sense to maximize</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putobjsense</span><span class="p">(</span><span class="n">mosek</span><span class="o">.</span><span class="n">objsense</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span>
-
-        <span class="c1"># Define the variables</span>
-        <span class="n">x_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">y_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># Define the objective function</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putcj</span><span class="p">(</span><span class="n">x_idx</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putcj</span><span class="p">(</span><span class="n">y_idx</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
-        <span class="c1"># Add the constraints</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putconbound</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">mosek</span><span class="o">.</span><span class="n">boundkey</span><span class="o">.</span><span class="n">up</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putaij</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">putaij</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># Optimize the task</span>
-        <span class="n">task</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
-
-        <span class="c1"># Print the optimal values of x and y</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of x:&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">getxx</span><span class="p">(</span><span class="n">x_idx</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of y:&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">getxx</span><span class="p">(</span><span class="n">y_idx</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">task</span><span class="o">.</span><span class="n">putobjsense</span><span class="p">(</span><span class="n">mosek</span><span class="o">.</span><span class="n">objsense</span><span class="o">.</span><span class="n">maximize</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Define the variables</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">x_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">y_idx</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">appndvars</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Define the objective function</span>
-
-<span class="ne">AttributeError</span>: &#39;Task&#39; object has no attribute &#39;appndvars&#39;
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 
