@@ -599,7 +599,7 @@ Optimal solution: [ 4. 24.]
 \[\begin{split}
 \begin{align*}
 &amp;\text{minimize} &amp;x1 + x2 + x3 &amp; \\
-&amp;\text{subject to} &amp;x1 + x2 &gt; 1 \\
+&amp;\text{subject to} &amp;x1 + x2 \ge 2 \\
 &amp; &amp; x2 + x3 \le 1 \\
 &amp; &amp; x1, x2, x3 \quad\text{are binary variables}
 \end{align*}
@@ -610,7 +610,7 @@ Optimal solution: [ 4. 24.]
 
 <span class="c1"># Define problem data</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># Define binary decision variables</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">boolean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -619,117 +619,30 @@ Optimal solution: [ 4. 24.]
 <span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># Define constraints</span>
-<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))]</span>
-<span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x1 is binary</span>
-<span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x2 is binary</span>
-<span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x3 is binary</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span>
 
-<span class="c1"># Define problem instance and solve it</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span>
-<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
+<span class="c1"># Define the problem</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span>
+
+<span class="c1"># Solve the problem</span>
+<span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
 
 <span class="c1"># Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CVXPY Solution:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CVXPY + GUROBI Solution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">problem</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Define constraints</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))]</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x1 is binary</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x2 is binary</span>
-
-<span class="nn">Cell In[4], line 14,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Define constraints</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))]</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x1 is binary</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x2 is binary</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/expressions/expression.py:737,</span> in <span class="ni">Expression.__gt__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Expression&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Unsupported.</span>
-<span class="g g-Whitespace">    </span><span class="mi">736</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">737</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Strict inequalities are not allowed.&quot;</span><span class="p">)</span>
-
-<span class="ne">NotImplementedError</span>: Strict inequalities are not allowed.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
-
-<span class="c1"># Define problem data</span>
-<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Create a new optimization model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s2">&quot;binary_optimization&quot;</span><span class="p">)</span>
-
-<span class="c1"># Define binary decision variables</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVars</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">BINARY</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-
-<span class="c1"># Define objective function</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">quicksum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">setObjective</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gp</span><span class="o">.</span><span class="n">GRB</span><span class="o">.</span><span class="n">MINIMIZE</span><span class="p">)</span>
-
-<span class="c1"># Define constraints</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)):</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">addConstr</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-
-<span class="c1"># Solve problem</span>
-<span class="n">model</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
-
-<span class="c1"># Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gurobi Solution:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Status</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">ObjVal</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">X</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek.fusion</span> <span class="k">as</span> <span class="nn">mf</span>
-
-<span class="c1"># Define problem data</span>
-<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Create a new Fusion model</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s2">&quot;Binary Optimization&quot;</span><span class="p">)</span>
-
-<span class="c1"># Define binary decision variables</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="n">mf</span><span class="o">.</span><span class="n">VariableType</span><span class="o">.</span><span class="n">Binary</span><span class="p">)</span>
-
-<span class="c1"># Define objective function</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># Define constraints</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)):</span>
-    <span class="n">M</span><span class="o">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">ConstraintType</span><span class="o">.</span><span class="n">Greater</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-
-<span class="c1"># Set the objective and constraints</span>
-<span class="n">M</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">ObjectiveSense</span><span class="o">.</span><span class="n">Minimize</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
-
-<span class="c1"># Solve the problem</span>
-<span class="n">M</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-
-<span class="c1"># Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mosek Fusion Solution:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">getProblemStatus</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">SolutionType</span><span class="o">.</span><span class="n">Primal</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CVXPY + GUROBI Solution:
+status: optimal
+optimal value: 2.0
+optimal x: [1. 1. 0.]
 </pre></div>
 </div>
 </div>
