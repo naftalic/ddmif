@@ -205,10 +205,12 @@ print("Optimal value: {}".format(prob.value))
 # Nonlinear programming problem
 Suppose we want to minimize the function $f(x) = x_1^2 + x_2^2$ subject to the constraint $x_1 + x_2 \geq 1$. We can express this as an optimization problem:
 
+$$
 \begin{aligned}
-&\text{minimize } &&x_1^2 + x_2^2 \
-&\text{subject to } &&x_1 + x_2 \geq 1 \
+&\text{minimize } &&x_1^2 + x_2^2 \\
+&\text{subject to } &&x_1 + x_2 \geq 1 
 \end{aligned}
+$$
 
 To solve this problem using MOSEK, we first define the optimization variables and the objective function:
 
