@@ -98,9 +98,9 @@ print("Optimal solution:", x.level())
 # # Binary optimization problem 
 # $$
 # \begin{aligned}
-# &\text{minimize } &&x_1 + x_2 + x_3 \
-# &\text{subject to } &&x_1 + x_2 \ge 2 \
-# &&&x_2 + x_3 \le 1 \
+# &\text{minimize } &&x_1 + x_2 + x_3 \\
+# &\text{subject to } &&x_1 + x_2 \ge 2 \\
+# &&&x_2 + x_3 \le 1 \\
 # &&&x_1, x_2, x_3 \text{ are binary variables}
 # \end{aligned}
 # $$
