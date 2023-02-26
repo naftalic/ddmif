@@ -559,7 +559,6 @@ Optimal solution: [4.000000000000003, 24.0]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mosek.fusion</span> <span class="k">as</span> <span class="nn">mf</span>
 
-<span class="c1"># Create a Mosek Fusion environment</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s1">&#39;LP example&#39;</span><span class="p">)</span>
 
 <span class="c1"># Define variables</span>
@@ -707,36 +706,30 @@ Optimal solution: [ 4. 24.]
 <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
-<span class="c1"># Create a new Fusion environment</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">Env</span><span class="p">()</span>
-
 <span class="c1"># Create a new Fusion model</span>
-<span class="k">with</span> <span class="n">env</span><span class="p">:</span>
-    <span class="c1"># Define binary decision variables</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="n">mf</span><span class="o">.</span><span class="n">VariableType</span><span class="o">.</span><span class="n">Binary</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="s2">&quot;Binary Optimization&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Define objective function</span>
-    <span class="n">obj</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Define binary decision variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="n">mf</span><span class="o">.</span><span class="n">VariableType</span><span class="o">.</span><span class="n">Binary</span><span class="p">)</span>
 
-    <span class="c1"># Define constraints</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)):</span>
-        <span class="n">env</span><span class="o">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">ConstraintType</span><span class="o">.</span><span class="n">Greater</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="c1"># Define objective function</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="c1"># Create a new Fusion problem instance</span>
-    <span class="n">task</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">problem</span><span class="p">(</span><span class="s2">&quot;Binary Optimization&quot;</span><span class="p">)</span>
+<span class="c1"># Define constraints</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)):</span>
+    <span class="n">M</span><span class="o">.</span><span class="n">constraint</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">ConstraintType</span><span class="o">.</span><span class="n">Greater</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-    <span class="c1"># Set the objective and constraints</span>
-    <span class="n">task</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">ObjectiveSense</span><span class="o">.</span><span class="n">Minimize</span><span class="p">)</span>
-    <span class="n">task</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">getConstraints</span><span class="p">())</span>
+<span class="c1"># Set the objective and constraints</span>
+<span class="n">M</span><span class="o">.</span><span class="n">objective</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">ObjectiveSense</span><span class="o">.</span><span class="n">Minimize</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
 
-    <span class="c1"># Solve the problem</span>
-    <span class="n">task</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="c1"># Solve the problem</span>
+<span class="n">M</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
-    <span class="c1"># Print results</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mosek Fusion Solution:&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">getProblemStatus</span><span class="p">(</span><span class="n">mosek</span><span class="o">.</span><span class="n">streamtype</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mosek Fusion Solution:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="n">getProblemStatus</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">SolutionType</span><span class="o">.</span><span class="n">Primal</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value:&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">level</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
