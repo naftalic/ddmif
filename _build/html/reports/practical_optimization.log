@@ -17,15 +17,44 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-pip install cvxpy
-pip install gurobipy
-pip install mosek
+import mosek
+
+# Create a new optimization task
+with mosek.Env() as env:
+    with env.Task() as task:
+        # Set the optimization sense to maximize
+        task.putobjsense(mosek.objsense.maximize)
+
+        # Define the variables
+        x_idx = task.appndvars(1)
+        y_idx = task.appndvars(1)
+
+        # Define the objective function
+        task.putcj(x_idx, 2)
+        task.putcj(y_idx, 3)
+
+        # Add the constraints
+        task.putconbound(0, mosek.boundkey.up, 4)
+        task.putaij(0, x_idx, 1)
+        task.putaij(0, y_idx, 1)
+
+        # Optimize the task
+        task.optimize()
+
+        # Print the optimal values of x and y
+        print("Optimal value of x:", task.getxx(x_idx)[0])
+        print("Optimal value of y:", task.getxx(y_idx)[0])
 ------------------
 
-[0;36m  Cell [0;32mIn[1], line 1[0;36m[0m
-[0;31m    pip install cvxpy[0m
-[0m        ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[3], line 10[0m
+[1;32m      7[0m task[38;5;241m.[39mputobjsense(mosek[38;5;241m.[39mobjsense[38;5;241m.[39mmaximize)
+[1;32m      9[0m [38;5;66;03m# Define the variables[39;00m
+[0;32m---> 10[0m x_idx [38;5;241m=[39m [43mtask[49m[38;5;241;43m.[39;49m[43mappndvars[49m([38;5;241m1[39m)
+[1;32m     11[0m y_idx [38;5;241m=[39m task[38;5;241m.[39mappndvars([38;5;241m1[39m)
+[1;32m     13[0m [38;5;66;03m# Define the objective function[39;00m
 
-SyntaxError: invalid syntax (211323114.py, line 1)
+[0;31mAttributeError[0m: 'Task' object has no attribute 'appndvars'
+AttributeError: 'Task' object has no attribute 'appndvars'
 
