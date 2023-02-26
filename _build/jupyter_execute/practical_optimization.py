@@ -100,9 +100,9 @@ print("Optimal solution:", x.level())
 # $$
 # \begin{align*}
 # &\text{minimize} &x1 + x2 + x3 & \\
-# &\text{subject to} &x1 + x2 le 1 \\
-# & &x2 + x3 \le 1 \\
-# & &x1, x2, x3 \quad\text{are binary variables}
+# &\text{subject to} &x1 + x2 > 1 \\
+# & & x2 + x3 \le 1 \\
+# & & x1, x2, x3 \quad\text{are binary variables}
 # \end{align*}
 # $$
 
@@ -110,40 +110,104 @@ print("Optimal solution:", x.level())
 
 
 import cvxpy as cp
-import gurobipy as gp
-from gurobipy import GRB
-import mosek
 
-# Define binary optimization problem
+# Define problem data
+A = [[1, 1, 0], [0, 1, 1]]
+b = [1, 1]
+
+# Define binary decision variables
 x = cp.Variable(3, boolean=True)
-objective = cp.Minimize(x[0] + x[1] + x[2])
-constraints = [x[0] + x[1] <= 1, x[1] + x[2] <= 1]
-problem = cp.Problem(objective, constraints)
 
-# Solve using CVXPY
-solver = cp.MOSEK
-problem.solve(solver=solver)
+# Define objective function
+obj = cp.sum(x)
+
+# Define constraints
+constraints = [A[i] @ x > b[i] for i in range(len(b))]
+constraints.append(x[0] >= 0) # x1 is binary
+constraints.append(x[1] >= 0) # x2 is binary
+constraints.append(x[2] >= 0) # x3 is binary
+
+# Define problem instance and solve it
+prob = cp.Problem(cp.Minimize(obj), constraints)
+prob.solve(solver=cp.MOSEK)
 
 # Print results
 print("CVXPY Solution:")
-print("status:", problem.status)
-print("optimal value:", problem.value)
+print("status:", prob.status)
+print("optimal value:", prob.value)
 print("optimal x:", x.value)
 
-# Solve using Gurobi
-model = gp.Model()
-model.setParam('OutputFlag', 0)
-x = model.addMVar(3, vtype=GRB.BINARY)
-obj = x[0] + x[1] + x[2]
-model.setObjective(obj)
-model.addConstr(x[0] + x[1] <= 1)
-model.addConstr(x[1] + x[2] <= 1)
-model.setParam('OutputFlag', 0)
+
+# In[ ]:
+
+
+import gurobipy as gp
+
+# Define problem data
+A = [[1, 1, 0], [0, 1, 1]]
+b = [1, 1]
+
+# Create a new optimization model
+model = gp.Model("binary_optimization")
+
+# Define binary decision variables
+x = model.addVars(3, vtype=gp.GRB.BINARY, name="x")
+
+# Define objective function
+obj = gp.quicksum(x[i] for i in range(len(x)))
+model.setObjective(obj, gp.GRB.MINIMIZE)
+
+# Define constraints
+for i in range(len(b)):
+    model.addConstr(A[i] @ [x[i] for i in range(len(x))] > b[i])
+
+# Solve problem
 model.optimize()
 
 # Print results
 print("Gurobi Solution:")
-print("status:", model.status)
-print("optimal value:", model.objVal)
-print("optimal x:", x.X)
+print("status:", model.Status)
+print("optimal value:", model.ObjVal)
+print("optimal x:", [x[i].X for i in range(len(x))])
+
+
+# In[ ]:
+
+
+import mosek.fusion as mf
+
+# Define problem data
+A = [[1, 1, 0], [0, 1, 1]]
+b = [1, 1]
+
+# Create a new Fusion environment
+env = mf.Env()
+
+# Create a new Fusion model
+with env:
+    # Define binary decision variables
+    x = env.variable(3, vtype=mf.VariableType.Binary)
+
+    # Define objective function
+    obj = env.sum(x)
+
+    # Define constraints
+    for i in range(len(b)):
+        env.constraint(A[i] @ x, mf.ConstraintType.Greater, b[i])
+
+    # Create a new Fusion problem instance
+    task = env.problem("Binary Optimization")
+
+    # Set the objective and constraints
+    task.objective(obj, mf.ObjectiveSense.Minimize)
+    task.constraints.addAll(env.getConstraints())
+
+    # Solve the problem
+    task.solve()
+
+    # Print results
+    print("Mosek Fusion Solution:")
+    print("status:", task.getProblemStatus(mosek.streamtype.msg))
+    print("optimal value:", obj.level())
+    print("optimal x:", x.level())
 

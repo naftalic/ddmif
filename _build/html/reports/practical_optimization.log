@@ -18,50 +18,56 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import cvxpy as cp
-import gurobipy as gp
-from gurobipy import GRB
-import mosek
 
-# Define binary optimization problem
+# Define problem data
+A = [[1, 1, 0], [0, 1, 1]]
+b = [1, 1]
+
+# Define binary decision variables
 x = cp.Variable(3, boolean=True)
-objective = cp.Minimize(x[0] + x[1] + x[2])
-constraints = [x[0] + x[1] <= 1, x[1] + x[2] <= 1]
-problem = cp.Problem(objective, constraints)
 
-# Solve using CVXPY
-solver = cp.MOSEK
-problem.solve(solver=solver)
+# Define objective function
+obj = cp.sum(x)
+
+# Define constraints
+constraints = [A[i] @ x > b[i] for i in range(len(b))]
+constraints.append(x[0] >= 0) # x1 is binary
+constraints.append(x[1] >= 0) # x2 is binary
+constraints.append(x[2] >= 0) # x3 is binary
+
+# Define problem instance and solve it
+prob = cp.Problem(cp.Minimize(obj), constraints)
+prob.solve(solver=cp.MOSEK)
 
 # Print results
 print("CVXPY Solution:")
-print("status:", problem.status)
-print("optimal value:", problem.value)
+print("status:", prob.status)
+print("optimal value:", prob.value)
 print("optimal x:", x.value)
-
-# Solve using Gurobi
-model = gp.Model()
-model.setParam('OutputFlag', 0)
-x = model.addMVar(3, vtype=GRB.BINARY)
-obj = x[0] + x[1] + x[2]
-model.setObjective(obj)
-model.addConstr(x[0] + x[1] <= 1)
-model.addConstr(x[1] + x[2] <= 1)
-model.setParam('OutputFlag', 0)
-model.optimize()
-
-# Print results
-print("Gurobi Solution:")
-print("status:", model.status)
-print("optimal value:", model.objVal)
-print("optimal x:", x.X)
-```{code-cell}
-
 ------------------
 
-[0;36m  Cell [0;32mIn[4], line 38[0;36m[0m
-[0;31m    ```{code-cell}[0m
-[0m    ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNotImplementedError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[4], line 14[0m
+[1;32m     11[0m obj [38;5;241m=[39m cp[38;5;241m.[39msum(x)
+[1;32m     13[0m [38;5;66;03m# Define constraints[39;00m
+[0;32m---> 14[0m constraints [38;5;241m=[39m [A[i] [38;5;241m@[39m x [38;5;241m>[39m b[i] [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(b))]
+[1;32m     15[0m constraints[38;5;241m.[39mappend(x[[38;5;241m0[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x1 is binary[39;00m
+[1;32m     16[0m constraints[38;5;241m.[39mappend(x[[38;5;241m1[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x2 is binary[39;00m
 
-SyntaxError: invalid syntax (965974895.py, line 38)
+Cell [0;32mIn[4], line 14[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m     11[0m obj [38;5;241m=[39m cp[38;5;241m.[39msum(x)
+[1;32m     13[0m [38;5;66;03m# Define constraints[39;00m
+[0;32m---> 14[0m constraints [38;5;241m=[39m [[43mA[49m[43m[[49m[43mi[49m[43m][49m[43m [49m[38;5;241;43m@[39;49m[43m [49m[43mx[49m[43m [49m[38;5;241;43m>[39;49m[43m [49m[43mb[49m[43m[[49m[43mi[49m[43m][49m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(b))]
+[1;32m     15[0m constraints[38;5;241m.[39mappend(x[[38;5;241m0[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x1 is binary[39;00m
+[1;32m     16[0m constraints[38;5;241m.[39mappend(x[[38;5;241m1[39m] [38;5;241m>[39m[38;5;241m=[39m [38;5;241m0[39m) [38;5;66;03m# x2 is binary[39;00m
+
+File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/expressions/expression.py:737[0m, in [0;36mExpression.__gt__[0;34m(self, other)[0m
+[1;32m    734[0m [38;5;28;01mdef[39;00m [38;5;21m__gt__[39m([38;5;28mself[39m, other: [38;5;124m"[39m[38;5;124mExpression[39m[38;5;124m"[39m):
+[1;32m    735[0m [38;5;250m    [39m[38;5;124;03m"""Unsupported.[39;00m
+[1;32m    736[0m [38;5;124;03m    """[39;00m
+[0;32m--> 737[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m([38;5;124m"[39m[38;5;124mStrict inequalities are not allowed.[39m[38;5;124m"[39m)
+
+[0;31mNotImplementedError[0m: Strict inequalities are not allowed.
+NotImplementedError: Strict inequalities are not allowed.
 
