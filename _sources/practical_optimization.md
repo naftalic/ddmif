@@ -243,3 +243,75 @@ problem.solve(solver=cp.MOSEK)
 print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
 print("Optimal value: {}".format(prob.value))
 ```
+
+# Goal programming
+Goal programming is a mathematical programming technique used to solve decision-making problems that involve multiple, conflicting objectives. It is often used in situations where there is no clear trade-off between objectives and all objectives are important.
+
+In goal programming, the decision maker identifies a set of goals or objectives to be achieved, and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. The goals or objectives are expressed as deviations from desired or target values, and the model seeks to minimize these deviations subject to the constraints.
+
+The goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. In some cases, the goals or objectives may be conflicting, meaning that achieving one may come at the expense of the other. Goal programming allows the decision maker to balance these conflicting objectives and find a solution that achieves a satisfactory compromise.
+
+As an example of a simple goal programming model suppose a company wants to maximize their profits, but also wants to ensure that they don't produce more than a certain amount of waste. They have three goals:
+
+* Maximize profits
+* Minimize waste produced
+* Achieve a certain level of production
+ 
+Let $x$ be the amount of product produced, $p$ be the profit per unit sold, and $w$ be the amount of waste produced per unit produced. Then we can formulate the following goal programming model:
+
+\begin{aligned}
+&\text{Minimize } &&z_1 + z_2 + z_3\\
+&\text{where}
+&&z_1 = | \text{profit} - \text{target_profit}|\\
+&&&z_2 = | \text{waste} - \text{target_waste}|\\
+&&&z_3 = |x - \text{target_production}|\\
+&\text{Subject to}
+&&\text{profit} = p \cdot x\\
+&&&\text{waste} = w \cdot x\\
+&&&x \geq 0\\
+&&&\text{profit} \geq \text{target_profit}\\
+&&&\text{waste} \leq \text{target_waste}\\
+&&&x = \text{target_production}
+\end{aligned}
+
+where target_profit, target_waste, and target_production are the company's goals for each respective metric.
+
+We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
+
+## Using CVXPY + GUROBI
+```{code-cell}
+import cvxpy as cp
+import numpy as np
+
+# Define the problem data
+p = 10  # profit per unit sold
+w = 0.5  # waste per unit produced
+target_profit = 1000
+target_waste = 500
+target_production = 200
+
+# Define the decision variables
+x = cp.Variable()
+
+# Define the constraints
+constraints = [x >= 0,
+               p * x >= target_profit,
+               w * x <= target_waste,
+               x == target_production]
+
+# Define the objective function
+objective = cp.Minimize(cp.abs(p * x - target_profit) +
+                        cp.abs(w * x - target_waste) +
+                        cp.abs(x - target_production))
+
+# Solve the problem
+prob = cp.Problem(objective, constraints)
+prob.solve(solver=cp.GUROBI)
+
+# Print the results
+print("Status: ", prob.status)
+print("Optimal value: ", prob.value)
+print("Optimal x: ", x.value)
+print("Profit: ", p * x.value)
+print("Waste: ", w * x.value)
+```

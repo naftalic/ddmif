@@ -441,6 +441,18 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goal-programming">
+   Goal programming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Using CVXPY + GUROBI
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -519,6 +531,18 @@ title="Print to PDF"
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-cvxpy-mosek">
      Using CVXPY + MOSEK
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goal-programming">
+   Goal programming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Using CVXPY + GUROBI
     </a>
    </li>
   </ul>
@@ -816,6 +840,87 @@ Optimal value: 12.0
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = 4.0, x2 = -0.0
 Optimal value: 12.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="goal-programming">
+<h1>Goal programming<a class="headerlink" href="#goal-programming" title="Permalink to this headline">#</a></h1>
+<p>Goal programming is a mathematical programming technique used to solve decision-making problems that involve multiple, conflicting objectives. It is often used in situations where there is no clear trade-off between objectives and all objectives are important.</p>
+<p>In goal programming, the decision maker identifies a set of goals or objectives to be achieved, and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. The goals or objectives are expressed as deviations from desired or target values, and the model seeks to minimize these deviations subject to the constraints.</p>
+<p>The goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. In some cases, the goals or objectives may be conflicting, meaning that achieving one may come at the expense of the other. Goal programming allows the decision maker to balance these conflicting objectives and find a solution that achieves a satisfactory compromise.</p>
+<p>As an example of a simple goal programming model suppose a company wants to maximize their profits, but also wants to ensure that they don’t produce more than a certain amount of waste. They have three goals:</p>
+<ul class="simple">
+<li><p>Maximize profits</p></li>
+<li><p>Minimize waste produced</p></li>
+<li><p>Achieve a certain level of production</p></li>
+</ul>
+<p>Let <span class="math notranslate nohighlight">\(x\)</span> be the amount of product produced, <span class="math notranslate nohighlight">\(p\)</span> be the profit per unit sold, and <span class="math notranslate nohighlight">\(w\)</span> be the amount of waste produced per unit produced. Then we can formulate the following goal programming model:</p>
+<p>\begin{aligned}
+&amp;\text{Minimize } &amp;&amp;z_1 + z_2 + z_3\
+&amp;\text{where}
+&amp;&amp;z_1 = | \text{profit} - \text{target_profit}|\
+&amp;&amp;&amp;z_2 = | \text{waste} - \text{target_waste}|\
+&amp;&amp;&amp;z_3 = |x - \text{target_production}|\
+&amp;\text{Subject to}
+&amp;&amp;\text{profit} = p \cdot x\
+&amp;&amp;&amp;\text{waste} = w \cdot x\
+&amp;&amp;&amp;x \geq 0\
+&amp;&amp;&amp;\text{profit} \geq \text{target_profit}\
+&amp;&amp;&amp;\text{waste} \leq \text{target_waste}\
+&amp;&amp;&amp;x = \text{target_production}
+\end{aligned}</p>
+<p>where target_profit, target_waste, and target_production are the company’s goals for each respective metric.</p>
+<p>We can solve this model using the CVXPY package with the GUROBI solver. Here’s the code:</p>
+<section id="id2">
+<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define the problem data</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># profit per unit sold</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># waste per unit produced</span>
+<span class="n">target_profit</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">target_waste</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">target_production</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># Define the decision variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+
+<span class="c1"># Define the constraints</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="n">p</span> <span class="o">*</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">target_profit</span><span class="p">,</span>
+               <span class="n">w</span> <span class="o">*</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">target_waste</span><span class="p">,</span>
+               <span class="n">x</span> <span class="o">==</span> <span class="n">target_production</span><span class="p">]</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">target_profit</span><span class="p">)</span> <span class="o">+</span>
+                        <span class="n">cp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">target_waste</span><span class="p">)</span> <span class="o">+</span>
+                        <span class="n">cp</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">target_production</span><span class="p">))</span>
+
+<span class="c1"># Solve the problem</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
+
+<span class="c1"># Print the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status: &quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: &quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal x: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Profit: &quot;</span><span class="p">,</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waste: &quot;</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  optimal
+Optimal value:  1400.0
+Optimal x:  200.0
+Profit:  2000.0
+Waste:  100.0
 </pre></div>
 </div>
 </div>
