@@ -8,7 +8,7 @@
 # $$
 # \begin{align*}
 # &\text{Maximize}\quad &2x + 3y\\
-# &\text{Subject to:}
+# &\text{Subject to}
 # &x + y \le 4\\
 # &&x \ge 0\\
 # &&y \ge 0\\
@@ -61,6 +61,7 @@ import gurobipy as gp
 
 # Create a new model
 model = gp.Model()
+model.setParam('OutputFlag', 0)
 
 # Define the variables
 x = model.addVar(lb=0, name="x")
