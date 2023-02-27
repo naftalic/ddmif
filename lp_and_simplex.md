@@ -16,7 +16,7 @@ kernelspec:
 
 # Theory of linear programing and the Simplex method
 
-First, we will briefly discuss the **primal-dual theory** with a few examples. Consider the Factory problem that was discussed earlier:
+First, we will briefly discuss the **primal-dual theory** with a few examples. Consider the following linear programing problem:
 
 $$
 \begin{aligned}
