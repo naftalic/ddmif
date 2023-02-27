@@ -1,1 +1,1 @@
-This repository accompanies the material for the class "Data-Driven Methods in Finance." It includes various functions that will be used to evaluate submissions in the internal forecasting competition.
+This repository contains materials for the "Data-Driven Methods in Finance" course, including a set of functions that will be used to assess entries in the internal forecasting competition.
