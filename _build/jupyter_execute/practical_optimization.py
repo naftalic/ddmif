@@ -281,8 +281,6 @@ print("Optimal value: {}".format(prob.value))
 # where target profit, target waste, and target production are the company's goals for each respective metric.
 # 
 # We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
-# 
-# ## Using CVXPY + GUROBI
 
 # In[7]:
 
@@ -323,7 +321,7 @@ print("Profit: ", p * x.value)
 print("Waste: ", w * x.value)
 
 
-# # Blended Multiobjective Optimization
+# ## Blended Multiobjective Optimization
 # The above problem is actually a blended multiobjective optimization problem, where we aim to minimize a linear combination of multiple objectives. Blended multiobjective optimization involves finding a solution that optimizes multiple objectives by combining them into a single objective using weighted coefficients.
 # 
 # In the following example, we aim to minimize a linear combination of two decision variables, $x_1$ and $x_2$, subject to two linear constraints. The objective function is defined as $0.4x_1 + 0.6x_2$, which is a weighted sum of the two decision variables. The weights of the decision variables determine their relative importance in the optimization process.
@@ -340,8 +338,7 @@ print("Waste: ", w * x.value)
 # 
 # Here, the problem is subject to two linear constraints, which are defined as $-2x_1 + 3x_2 \geq 6$ and $3x_1 + 2x_2 \geq 12$. These constraints represent the feasible region of the problem, where the solution must lie. Additionally, we have the non-negative constraint $x_1, x_2 \geq 0$, which means that the decision variables cannot be negative.
 # 
-# Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and Gurobi:
-# ## Using CVXPY + GUROBI
+# Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and GUROBI:
 
 # In[8]:
 
@@ -374,7 +371,7 @@ print("Optimal value =", prob.value)
 print("Optimal solution =", x.value)
 
 
-# # Hierarchical Multiobjective Optimization
+# ## Hierarchical Multiobjective Optimization
 # Hierarchical multiobjective optimization problem involves optimizing multiple conflicting objectives in a hierarchical manner, where the objectives at each level depend on the solutions found at the previous level.
 # 
 # As for example let's look at the following system that define two levels of objectives.
@@ -395,9 +392,7 @@ print("Optimal solution =", x.value)
 # The problem involves solving a hierarchical multiobjective optimization problem, where the second level objective function is dependent on the optimal value of the first level objective function. The first level objective function is to minimize the sum of squares of the decision variables, subject to the constraint $g(x)$. The second level objective function is to minimize the Euclidean distance between the decision variables and a fixed point $\begin{bmatrix}1 \ 1\end{bmatrix}$, subject to the constraint $h(x)$ and the constraint $f_1(x) \leq f_1^*$.
 # 
 # 
-# Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and Gurobi:
-# 
-# ## Using CVXPY + GUROBI
+# Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and GUROBI:
 
 # In[9]:
 
