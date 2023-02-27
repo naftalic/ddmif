@@ -14,7 +14,7 @@ kernelspec:
 ---
 
 
-# Theory of linear programing and the Simplex method
+# A2) Theory of linear programing and the Simplex method
 
 First, we will briefly discuss the **primal-dual theory** with a few examples. Consider the following linear programing problem:
 
