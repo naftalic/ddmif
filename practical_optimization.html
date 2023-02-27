@@ -980,7 +980,8 @@ Waste:  100.0
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="blended-multiobjective-optimization">
 <h1>Blended Multiobjective Optimization<a class="headerlink" href="#blended-multiobjective-optimization" title="Permalink to this headline">#</a></h1>
-<p>A blended multiobjective optimization problem involves finding a solution that minimizes a weighted sum of multiple objectives. Here is an example:</p>
+<p>The above problem is actually a blended multiobjective optimization problem, where we aim to minimize a linear combination of multiple objectives. Blended multiobjective optimization involves finding a solution that optimizes multiple objectives by combining them into a single objective using weighted coefficients.</p>
+<p>In the following example, we aim to minimize a linear combination of two decision variables, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>, subject to two linear constraints. The objective function is defined as <span class="math notranslate nohighlight">\(0.4x_1 + 0.6x_2\)</span>, which is a weighted sum of the two decision variables. The weights of the decision variables determine their relative importance in the optimization process.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -991,7 +992,7 @@ Waste:  100.0
 &amp; &amp;&amp;x_1, x_2 \geq 0 \\
 \end{aligned}
 \end{split}\]</div>
-<p>In this example, we want to minimize a linear combination of two objectives, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>, subject to two linear constraints.</p>
+<p>Here, the problem is subject to two linear constraints, which are defined as <span class="math notranslate nohighlight">\(-2x_1 + 3x_2 \geq 6\)</span> and <span class="math notranslate nohighlight">\(3x_1 + 2x_2 \geq 12\)</span>. These constraints represent the feasible region of the problem, where the solution must lie. Additionally, we have the non-negative constraint <span class="math notranslate nohighlight">\(x_1, x_2 \geq 0\)</span>, which means that the decision variables cannot be negative.</p>
 <p>Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and Gurobi:</p>
 <section id="id3">
 <h2>Using CVXPY + GUROBI<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
@@ -1037,23 +1038,21 @@ Optimal solution = [1.84615385 3.23076923]
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="hierarchical-multiobjective-optimization">
 <h1>Hierarchical Multiobjective Optimization<a class="headerlink" href="#hierarchical-multiobjective-optimization" title="Permalink to this headline">#</a></h1>
-<p>A hierarchical multiobjective optimization problem involves optimizing multiple objectives in a hierarchical manner. Here is an example:</p>
+<p>Hierarchical multiobjective optimization problem involves optimizing multiple conflicting objectives in a hierarchical manner, where the objectives at each level depend on the solutions found at the previous level.</p>
+<p>As for example let’s look at the following system that define two levels of objectives.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
+\[
 \begin{aligned}
-&amp;\text{maximize} &amp;&amp; f_1(x) \\
-&amp;\text{subject to} &amp;&amp; g(x) \leq 0 \\
+&amp; \text{minimize} &amp;&amp; f_1(x) = x_1^2 + x_2^2 \
+&amp; \text{subject to} &amp;&amp; g(x) = x_1 + x_2 - 1 \leq 0 \
+&amp; &amp;&amp; \
+&amp; \text{minimize} &amp;&amp; f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
+&amp; \text{subject to} &amp;&amp; h(x) = x_1 - x_2 - 1 \leq 0 \
+&amp; &amp;&amp; f_1(x) \leq f_1^* \
 \end{aligned}
-\end{split}\]</div>
-<p>For the minimization problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-&amp;\text{minimize} &amp;&amp; f_2(x) \\
-&amp;\text{subject to} &amp;&amp; h(x) \leq 0 \
-\end{aligned}
-\end{split}\]</div>
-<p>In this example, we first maximize f1(x) subject to a constraint g(x) &lt;= 0. Then, we minimize f2(x) subject to a constraint h(x) &lt;= 0.</p>
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the decision variables, <span class="math notranslate nohighlight">\(f_1(x)\)</span> and <span class="math notranslate nohighlight">\(f_2(x)\)</span> are the first and second level objective functions, <span class="math notranslate nohighlight">\(g(x)\)</span> and <span class="math notranslate nohighlight">\(h(x)\)</span> are the first and second level constraints, and <span class="math notranslate nohighlight">\(f_1^*\)</span> is the optimal value of the first level objective function.</p>
+<p>The problem involves solving a hierarchical multiobjective optimization problem, where the second level objective function is dependent on the optimal value of the first level objective function. The first level objective function is to minimize the sum of squares of the decision variables, subject to the constraint <span class="math notranslate nohighlight">\(g(x)\)</span>. The second level objective function is to minimize the Euclidean distance between the decision variables and a fixed point <span class="math notranslate nohighlight">\(\begin{bmatrix}1 \ 1\end{bmatrix}\)</span>, subject to the constraint <span class="math notranslate nohighlight">\(h(x)\)</span> and the constraint <span class="math notranslate nohighlight">\(f_1(x) \leq f_1^*\)</span>.</p>
 <p>Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and Gurobi:</p>
 <section id="id4">
 <h2>Using CVXPY + GUROBI<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
