@@ -113,6 +113,10 @@ plt.plot(w,sr)
 plt.show()
 ```
 
+Since the objective function is not convex, we can use a non-convex optimization solver like the SLSQP algorithm from the SciPy library in Python.
+
+Here's an implementation:
+
 ```{code-cell}
 import numpy as np
 from scipy.optimize import minimize
