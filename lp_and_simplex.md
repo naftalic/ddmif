@@ -272,7 +272,7 @@ $$
 and 
 
 $$
-\mathbf b^T\mathbf v^*= (40,120)\cdot (16,6)=1360,
+\mathbf b^T\mathbf v^*= (40,120)\cdot (16,6)=1360.
 $$
 
 # KKT conditions for optimality
