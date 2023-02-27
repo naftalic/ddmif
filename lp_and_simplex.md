@@ -246,9 +246,9 @@ Therefore, the optimal value of the dual problem, $\mathbf v\cdot \mathbf b$, pr
 Note that this holds true for both maximizing and minimizing problems.
 
 # Complementary slackness
-Complementary slackness is a fundamental theorem in linear programming that relates the optimal solutions of the primal and dual problems. It states that if a constraint is binding (i.e., its slack is zero) in the primal problem, then the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.
+Complementary slackness is a fundamental concept in linear programming that links the primal and dual problems' optimal solutions. Specifically, it states that when a constraint is binding (i.e., its slack is zero) in the primal problem, the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.
 
-Formally, for a feasible solution $(\mathbf x, \mathbf v)$ to the primal-dual pair, the complementary slackness conditions are:
+For a feasible solution $(\mathbf x, \mathbf v)$ to the primal-dual pair, the complementary slackness conditions are:
 
 $$
 \begin{aligned}
@@ -258,13 +258,13 @@ $$
 \end{aligned}
 $$
 
-Furthermore, the primal-dual value equality theorem states that the optimal objective values of the primal and dual problems are equal:
+The primal-dual value equality theorem further states that the optimal objective values of the primal and dual problems are equal:
 
 $$
 \qquad \mathbf c^T \mathbf x^* = \mathbf b^T \mathbf v^* \quad\text{(primal-dual value equality)}.
 $$
 
-Therefore, if the primal problem is a maximization problem, the optimal value of the primal problem is equal to the optimal value of the dual problem, which is a minimization problem. In our example, we have
+Therefore, if the primal problem is a maximization problem, the optimal value of the primal problem is equal to the optimal value of the dual problem, which is a minimization problem. In the given example, we can verify that:
 
 $$
 \mathbf c^T \mathbf x^* = (40,50)\cdot (24,8)=1360,
@@ -276,7 +276,7 @@ $$
 \mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360
 $$
 
-which confirms the primal-dual value equality theorem.
+confirming the primal-dual value equality theorem.
 
 # KKT conditions for optimality
 
