@@ -513,28 +513,36 @@ print("Optimal solution =", x.value)
 
 
 import numpy as np
-import cvxpy as cp
-from cvxpy import quad_form
+from scipy.optimize import minimize
 
-# Generate some random data
-np.random.seed(1)
+# Define the objective function
+def objective_function(x, r, rf, Sigma):
+    return -(r.T @ x - rf) / np.sqrt(x.T @ Sigma @ x)
+
+# Define the constraints
+def constraint1(x):
+    return np.sum(x) - 1
+
+def constraint2(x):
+    return x
+
+# Set the initial guess and bounds
 n = 3
-r = np.random.rand(n)
-Sigma = np.random.rand(n, n)
-Sigma = Sigma @ Sigma.T
+x0 = np.ones(n) / n
+bounds = [(0, None) for i in range(n)]
+
+# Set the problem data
+r = np.array([0.08, 0.1, 0.12])
 rf = 0.05
-gamma = 1
+Sigma = np.array([[0.05, 0.02, 0.01], [0.02, 0.06, 0.03], [0.01, 0.03, 0.04]])
 
-# Define variables and problem
-x = cp.Variable(n)
-objective = cp.Maximize(r @ x - rf * cp.sum(x) - gamma/2 * quad_form(x, Sigma))
-constraints = [cp.sum(x) == 1, x >= 0]
-problem = cp.Problem(objective, constraints)
+# Define the problem object
+problem = {'type': 'eq', 'fun': constraint1}
+problem2 = {'type': 'ineq', 'fun': constraint2}
 
-# Solve problem using Gurobi solver
-problem.solve(solver=cp.GUROBI)
+# Solve the problem
+result = minimize(objective_function, x0, args=(r, rf, Sigma), method='SLSQP', bounds=bounds, constraints=[problem, problem2])
 
-# Print optimal value and solution
-print("Optimal value: ", problem.value)
-print("Optimal solution: ", x.value)
+# Print the solution
+print(result)
 
