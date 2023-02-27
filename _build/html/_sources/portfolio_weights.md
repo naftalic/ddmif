@@ -63,7 +63,7 @@ w^TΣw &= w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_{1,2} + 2w_1w_3σ_
 \end{aligned}
 $$
 
-where $ρ_{1,2}, ρ_{1,3}, and ρ_{2,3}$ are the correlation coefficients between the returns of stocks 1 and 2, stocks 1 and 3, and stocks 2 and 3, respectively.
+where $ρ_{1,2}$, $ρ_{1,3}$, and $ρ_{2,3}$ are the correlation coefficients between the returns of stocks 1 and 2, stocks 1 and 3, and stocks 2 and 3, respectively.
 The portfolio variance now depends on the variances of the individual stocks as well as the covariances between all possible pairs of stocks. The risk of the portfolio will depend on the strengths and directions of these pairwise relationships. If the three stocks are all positively correlated, for example, then the portfolio variance and risk will be higher than if the stocks are negatively correlated or uncorrelated.
 
 
