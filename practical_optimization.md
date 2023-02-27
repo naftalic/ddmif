@@ -263,16 +263,16 @@ $$
 \begin{aligned}
 &\text{minimize } &&z_1 + z_2 + z_3\\
 &\text{where}
-&&z_1 = | \text{profit} - \text{target\_profit}|\\
-&&&z_2 = | \text{waste} - \text{target\_waste}|\\
-&&&z_3 = |x - \text{target_production}|\\
+&&z_1 = | \text{profit} - \text{target profit}|\\
+&&&z_2 = | \text{waste} - \text{target waste}|\\
+&&&z_3 = |x - \text{target production}|\\
 &\text{subject to}
 &&\text{profit} = p \cdot x\\
 &&&\text{waste} = w \cdot x\\
 &&&x \geq 0\\
-&&&\text{profit} \geq \text{target\_profit}\\
-&&&\text{waste} \leq \text{target\_waste}\\
-&&&x = \text{target\_production}
+&&&\text{profit} \geq \text{target profit}\\
+&&&\text{waste} \leq \text{target waste}\\
+&&&x = \text{target production}
 \end{aligned}
 $$
 
