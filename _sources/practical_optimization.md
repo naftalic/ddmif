@@ -263,20 +263,20 @@ $$
 \begin{aligned}
 &\text{minimize } &&z_1 + z_2 + z_3\\
 &\text{where}
-&&z_1 = | \text{profit} - \text{target_profit}|\\
-&&&z_2 = | \text{waste} - \text{target_waste}|\\
-&&&z_3 = |x - \text{target_production}|\\
+&&z_1 = | \text{profit} - \text{target profit}|\\
+&&&z_2 = | \text{waste} - \text{target waste}|\\
+&&&z_3 = |x - \text{target production}|\\
 &\text{subject to}
 &&\text{profit} = p \cdot x\\
 &&&\text{waste} = w \cdot x\\
 &&&x \geq 0\\
-&&&\text{profit} \geq \text{target_profit}\\
-&&&\text{waste} \leq \text{target_waste}\\
-&&&x = \text{target_production}
+&&&\text{profit} \geq \text{target profit}\\
+&&&\text{waste} \leq \text{target waste}\\
+&&&x = \text{target production}
 \end{aligned}
 $$
 
-where target_profit, target_waste, and target_production are the company's goals for each respective metric.
+where target profit, target waste, and target production are the company's goals for each respective metric.
 
 We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
 
@@ -317,3 +317,110 @@ print("Optimal x: ", x.value)
 print("Profit: ", p * x.value)
 print("Waste: ", w * x.value)
 ```
+
+# Blended Multiobjective Optimization
+A blended multiobjective optimization problem involves finding a solution that minimizes a weighted sum of multiple objectives. Here is an example:
+
+$$
+\begin{aligned}
+&\text{minimize} && 0.4x_1 + 0.6x_2 \\
+&\text{subject to} 
+&&-2x_1 + 3x_2 \geq 6 \\
+& &&3x_1 + 2x_2 \geq 12 \\
+& &&x_1, x_2 \geq 0 \\
+\end{aligned}
+$$
+
+In this example, we want to minimize a linear combination of two objectives, $x_1$ and $x_2$, subject to two linear constraints.
+
+Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and Gurobi:
+## Using CVXPY + GUROBI
+```{code-cell}
+import cvxpy as cp
+from gurobipy import *
+
+# Define the problem data
+n = 2
+m = 2
+A = np.array([[-2, 3], [3, 2]])
+b = np.array([6, 12])
+c = np.array([0.4, 0.6])
+
+# Define the decision variables
+x = cp.Variable(n)
+
+# Define the objective function
+obj = cp.Minimize(c @ x)
+
+# Define the constraints
+constraints = [A @ x >= b, x >= 0]
+
+# Solve the problem using CVXPY and Gurobi
+prob = cp.Problem(obj, constraints)
+prob.solve(solver=GUROBI)
+
+# Print the optimal value and the optimal solution
+print("Optimal value =", prob.value)
+print("Optimal solution =", x.value)
+```
+
+
+# Hierarchical Multiobjective Optimization
+A hierarchical multiobjective optimization problem involves optimizing multiple objectives in a hierarchical manner. Here is an example:
+
+$$
+\begin{aligned}
+&\text{maximize} && f_1(x) \\
+&\text{subject to} && g(x) \leq 0 \\
+\end{aligned}
+$$
+
+For the minimization problem:
+
+$$
+\begin{aligned}
+&\text{minimize} && f_2(x) \\
+&\text{subject to} && h(x) \leq 0 \
+\end{aligned}
+$$
+
+In this example, we first maximize f1(x) subject to a constraint g(x) <= 0. Then, we minimize f2(x) subject to a constraint h(x) <= 0.
+
+Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and Gurobi:
+
+## Using CVXPY + GUROBI
+```{code-cell}
+import cvxpy as cp
+from gurobipy import *
+
+# Define the problem data
+n = 2
+
+# Define the decision variables
+x = cp.Variable(n)
+
+# Define the first level objective function and constraint
+f1 = cp.sum_squares(x)
+g = x[0] + x[1] - 1
+
+# Define the second level objective function and constraint
+f2 = cp.norm(x - [1, 0], 2)
+h = x[0] - x[1] - 1
+
+# Define the hierarchy
+hierarchy = [f1, f2]
+
+# Define the constraints
+constraints = [g <= 0, h <= 0]
+
+# Solve the problem using CVXPY and Gurobi
+prob = cp.hierarchy_problem(hierarchy, constraints)
+prob.solve(solver=GUROBI)
+
+# Print the optimal value and the optimal solution for each level
+for i, level in enumerate(prob.levels):
+    print("Level", i+1)
+    print("Optimal value =", level.value)
+    print("Optimal solution =", level.variables()[0].value)
+```
+
