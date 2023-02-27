@@ -567,7 +567,7 @@ c2 : slack = 0.0 , shadow price= 6.0 , (120.0, 60.0, 160.0)
 \qquad s_2 &amp;= 0. \\
 \end{aligned}
 \end{split}\]</div>
-<p>That is, the cost coefficients, <span class="math notranslate nohighlight">\(\mathbf c = (c_1, c_2)\)</span>, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal <span class="math notranslate nohighlight">\(x^\*\)</span> are <span class="math notranslate nohighlight">\((25, 66.667)\)</span> and <span class="math notranslate nohighlight">\((25, 66.667)\)</span>. Similarly, the RHS constraints, <span class="math notranslate nohighlight">\(\mathbf b = (b_1, b_2)\)</span>, have values of 40 and 120 and can change to within the values <span class="math notranslate nohighlight">\((30, 80)\)</span> and <span class="math notranslate nohighlight">\((60, 160)\)</span> without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.</p>
+<p>That is, the cost coefficients, <span class="math notranslate nohighlight">\(\mathbf c = (c_1, c_2)\)</span>, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal <span class="math notranslate nohighlight">\(x^*\)</span> are <span class="math notranslate nohighlight">\((25, 66.667)\)</span> and <span class="math notranslate nohighlight">\((25, 66.667)\)</span>. Similarly, the RHS constraints, <span class="math notranslate nohighlight">\(\mathbf b = (b_1, b_2)\)</span>, have values of 40 and 120 and can change to within the values <span class="math notranslate nohighlight">\((30, 80)\)</span> and <span class="math notranslate nohighlight">\((60, 160)\)</span> without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.</p>
 <p><strong>Is it possible to infer the optimal <span class="math notranslate nohighlight">\(z\)</span> or at least bound its value without solving the LP model?</strong></p>
 <p>The above objective is <span class="math notranslate nohighlight">\(40𝑥_1 + 50𝑥_2\)</span> can be bounded using the first constraint and the fact that both decision variables are non-negative</p>
 <div class="math notranslate nohighlight">
@@ -816,7 +816,7 @@ Hence, discrete feasible sets are NOT convex.</p>
 \[
 \mathbf c\cdot (\mathbf x^{(t+1)}-\mathbf x^{(t)})=\lambda \mathbf c\cdot\Delta\mathbf x=\lambda(\Delta\mathbf x)^2\ge 0,
 \]</div>
-<p>unless <span class="math notranslate nohighlight">\(\mathbf x^{(t+1)}=\mathbf x^{(t)}=\mathbf x^\*\)</span>. In that case, <span class="math notranslate nohighlight">\(\mathbf x^\*\)</span> is the local max which is equal to the global max and the solution cannot improve.</p>
+<p>unless <span class="math notranslate nohighlight">\(\mathbf x^{(t+1)}=\mathbf x^{(t)}=\mathbf x^*\)</span>. In that case, <span class="math notranslate nohighlight">\(\mathbf x^*\)</span> is the local max which is equal to the global max and the solution cannot improve.</p>
 <p>If all constraints are linear, their feasible is convex:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -840,17 +840,17 @@ Hence, discrete feasible sets are NOT convex.</p>
 <p>If all inequalities are strict, we can take a small step in ALL directions from the interior point without losing feasibility. Then,  <span class="math notranslate nohighlight">\(\mathbf c=\Delta x\)</span> will always improve the maximize problem. Hence, no interior point can be optimal.</p>
 <p>Unique optimal must be an extreme point.</p>
 <p>Why?</p>
-<p>Consider optimal <span class="math notranslate nohighlight">\(\mathbf x^\*\)</span> for the maximize problem <span class="math notranslate nohighlight">\(\mathbf c^T\mathbf x\)</span>. If <span class="math notranslate nohighlight">\(\mathbf x^\*\)</span> is NOT extreme of the feasible, then it must be the weighted average of two other feasible solutions <span class="math notranslate nohighlight">\(\mathbf x^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\mathbf x^{(2)}\)</span>. That is</p>
+<p>Consider optimal <span class="math notranslate nohighlight">\(\mathbf x^*\)</span> for the maximize problem <span class="math notranslate nohighlight">\(\mathbf c^T\mathbf x\)</span>. If <span class="math notranslate nohighlight">\(\mathbf x^*\)</span> is NOT extreme of the feasible, then it must be the weighted average of two other feasible solutions <span class="math notranslate nohighlight">\(\mathbf x^{(1)}\)</span> and <span class="math notranslate nohighlight">\(\mathbf x^{(2)}\)</span>. That is</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf x^\*=(1-\lambda)\mathbf x^{(1)}+\lambda \mathbf x^{(2)},\quad 0\lt\lambda\gt1
+\mathbf x^*=(1-\lambda)\mathbf x^{(1)}+\lambda \mathbf x^{(2)},\quad 0\lt\lambda\gt1
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf c\cdot\mathbf x^\*=(1-\lambda)\mathbf c\cdot\mathbf x^{(1)}+\lambda \mathbf c\cdot\mathbf x^{(2)}.
+\mathbf c\cdot\mathbf x^*=(1-\lambda)\mathbf c\cdot\mathbf x^{(1)}+\lambda \mathbf c\cdot\mathbf x^{(2)}.
 \]</div>
-<p>If the objective of the two endpoints differs, their average <span class="math notranslate nohighlight">\(\mathbf c\cdot\mathbf x^\*\)</span> must be lower than the higher, and thus <span class="math notranslate nohighlight">\(\mathbf x^\*\)</span> is not optimal. If the two endpoints are equal, there are multiple optimal and <span class="math notranslate nohighlight">\(\mathbf x^\*\)</span> is not unique. We conclude that the LP solution can be unique only if it is an extreme point of the feasible. If LP has any optimal solution, it follows that it has one at an extreme point of its feasible.</p>
+<p>If the objective of the two endpoints differs, their average <span class="math notranslate nohighlight">\(\mathbf c\cdot\mathbf x^*\)</span> must be lower than the higher, and thus <span class="math notranslate nohighlight">\(\mathbf x^*\)</span> is not optimal. If the two endpoints are equal, there are multiple optimal and <span class="math notranslate nohighlight">\(\mathbf x^*\)</span> is not unique. We conclude that the LP solution can be unique only if it is an extreme point of the feasible. If LP has any optimal solution, it follows that it has one at an extreme point of its feasible.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="a-few-remarks">
 <h1>A few remarks:<a class="headerlink" href="#a-few-remarks" title="Permalink to this headline">#</a></h1>
@@ -1061,7 +1061,7 @@ t=1       &amp; N &amp; B  &amp; N &amp; B &amp; \\
 \lambda &amp;  &amp; 40  &amp;  &amp; \boxed{24} &amp; \text{Improve step}: \lambda=\text{min}\{-x_j/\Delta  x_j: \Delta x_j\le 0\}\\ 
 \end{array}
 \end{split}\]</div>
-<p>Again, we are looking for an improved solution by solving for the improved direction and step. We solve <span class="math notranslate nohighlight">\(\Delta x\)</span> for <span class="math notranslate nohighlight">\(x_3\)</span> and <span class="math notranslate nohighlight">\(x_4\)</span> to replace the current basic variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>. This is done as before, resulting in the best improvement direction using <span class="math notranslate nohighlight">\(\Delta\mathbf x\)</span> for <span class="math notranslate nohighlight">\(x_4\)</span> with the largest change to the objective. But, the minimal step turns out to be negative, and thus the search stops. The local optimum is global because it is an LP model over continuance variables and convex domain. <span class="math notranslate nohighlight">\(\mathbf{x}^\*=\mathbf{x}^{(2)}\)</span> is optimal with max objective of <span class="math notranslate nohighlight">\(1360\)</span>.</p>
+<p>Again, we are looking for an improved solution by solving for the improved direction and step. We solve <span class="math notranslate nohighlight">\(\Delta x\)</span> for <span class="math notranslate nohighlight">\(x_3\)</span> and <span class="math notranslate nohighlight">\(x_4\)</span> to replace the current basic variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>. This is done as before, resulting in the best improvement direction using <span class="math notranslate nohighlight">\(\Delta\mathbf x\)</span> for <span class="math notranslate nohighlight">\(x_4\)</span> with the largest change to the objective. But, the minimal step turns out to be negative, and thus the search stops. The local optimum is global because it is an LP model over continuance variables and convex domain. <span class="math notranslate nohighlight">\(\mathbf{x}^*=\mathbf{x}^{(2)}\)</span> is optimal with max objective of <span class="math notranslate nohighlight">\(1360\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{lccccl}
@@ -1285,7 +1285,7 @@ t=3       &amp; B &amp; B &amp; B &amp; B &amp; N &amp; N &amp; \\
 \lambda &amp;  &amp;   &amp;  &amp;  &amp;  &amp;  &amp; \text{Improve step}: \lambda=\text{min}\{-x_j/\Delta  x_j: \Delta x_j\le 0\}\\ 
 \end{array}
 \end{split}\]</div>
-<p>It follows that <span class="math notranslate nohighlight">\(\mathbf{x}^{(3)}=\mathbf{x}^\*\)</span> is optimal.</p>
+<p>It follows that <span class="math notranslate nohighlight">\(\mathbf{x}^{(3)}=\mathbf{x}^*\)</span> is optimal.</p>
 </section>
 
     <script type="text/x-thebe-config">
