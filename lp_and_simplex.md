@@ -64,7 +64,7 @@ $$
 (x^*,z)=((24,8),1360).
 $$
 
-In addition, the Python solution shows that
+The Gurobi output also shows the sensitivity analysis results for the problem:
 
 $$
 \begin{aligned}
@@ -76,8 +76,6 @@ $$
 \qquad s_2 &= 0. \\
 \end{aligned}
 $$
-
-The Gurobi output also shows the sensitivity analysis results for the problem:
 
 * The cost coefficients, $c_1$ and $c_2$, have values of 40 and 50, respectively. The ranges in which they are allowed to change without affecting the optimal solution are $(25, 66.667)$ and $(25, 66.667)$, respectively.
 * The right-hand side values of the constraints, $b_1$ and $b_2$, have values of 40 and 120, respectively. They can change to within the values $(30, 80)$ and $(60, 160)$, respectively, without affecting the optimal solution mix.
