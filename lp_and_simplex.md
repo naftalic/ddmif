@@ -73,7 +73,7 @@ $$
 \end{aligned}
 $$
 
-That is, the cost coefficients, $\mathbf c = (c_1, c_2)$, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal $x^\*$ are $(25, 66.667)$ and $(25, 66.667)$. Similarly, the RHS constraints, $\mathbf b = (b_1, b_2)$, have values of 40 and 120 and can change to within the values $(30, 80)$ and $(60, 160)$ without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.
+That is, the cost coefficients, $\mathbf c = (c_1, c_2)$, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal $x^*$ are $(25, 66.667)$ and $(25, 66.667)$. Similarly, the RHS constraints, $\mathbf b = (b_1, b_2)$, have values of 40 and 120 and can change to within the values $(30, 80)$ and $(60, 160)$ without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.
 
 **Is it possible to infer the optimal $z$ or at least bound its value without solving the LP model?**
 
@@ -342,7 +342,7 @@ $$
 \mathbf c\cdot (\mathbf x^{(t+1)}-\mathbf x^{(t)})=\lambda \mathbf c\cdot\Delta\mathbf x=\lambda(\Delta\mathbf x)^2\ge 0,
 $$
 
-unless $\mathbf x^{(t+1)}=\mathbf x^{(t)}=\mathbf x^\*$. In that case, $\mathbf x^\*$ is the local max which is equal to the global max and the solution cannot improve.
+unless $\mathbf x^{(t+1)}=\mathbf x^{(t)}=\mathbf x^*$. In that case, $\mathbf x^*$ is the local max which is equal to the global max and the solution cannot improve.
 
 If all constraints are linear, their feasible is convex:
 
@@ -378,19 +378,19 @@ Unique optimal must be an extreme point.
 
 Why? 
 
-Consider optimal $\mathbf x^\*$ for the maximize problem $\mathbf c^T\mathbf x$. If $\mathbf x^\*$ is NOT extreme of the feasible, then it must be the weighted average of two other feasible solutions $\mathbf x^{(1)}$ and $\mathbf x^{(2)}$. That is 
+Consider optimal $\mathbf x^*$ for the maximize problem $\mathbf c^T\mathbf x$. If $\mathbf x^*$ is NOT extreme of the feasible, then it must be the weighted average of two other feasible solutions $\mathbf x^{(1)}$ and $\mathbf x^{(2)}$. That is 
 
 $$
-\mathbf x^\*=(1-\lambda)\mathbf x^{(1)}+\lambda \mathbf x^{(2)},\quad 0\lt\lambda\gt1
+\mathbf x^*=(1-\lambda)\mathbf x^{(1)}+\lambda \mathbf x^{(2)},\quad 0\lt\lambda\gt1
 $$
 
 and
 
 $$
-\mathbf c\cdot\mathbf x^\*=(1-\lambda)\mathbf c\cdot\mathbf x^{(1)}+\lambda \mathbf c\cdot\mathbf x^{(2)}.
+\mathbf c\cdot\mathbf x^*=(1-\lambda)\mathbf c\cdot\mathbf x^{(1)}+\lambda \mathbf c\cdot\mathbf x^{(2)}.
 $$
 
-If the objective of the two endpoints differs, their average $\mathbf c\cdot\mathbf x^\*$ must be lower than the higher, and thus $\mathbf x^\*$ is not optimal. If the two endpoints are equal, there are multiple optimal and $\mathbf x^\*$ is not unique. We conclude that the LP solution can be unique only if it is an extreme point of the feasible. If LP has any optimal solution, it follows that it has one at an extreme point of its feasible.
+If the objective of the two endpoints differs, their average $\mathbf c\cdot\mathbf x^*$ must be lower than the higher, and thus $\mathbf x^*$ is not optimal. If the two endpoints are equal, there are multiple optimal and $\mathbf x^*$ is not unique. We conclude that the LP solution can be unique only if it is an extreme point of the feasible. If LP has any optimal solution, it follows that it has one at an extreme point of its feasible.
 
 # A few remarks:
 
@@ -624,7 +624,7 @@ t=1       & N & B  & N & B & \\
 \end{array}
 $$
 
-Again, we are looking for an improved solution by solving for the improved direction and step. We solve $\Delta x$ for $x_3$ and $x_4$ to replace the current basic variables $x_1$ and $x_2$. This is done as before, resulting in the best improvement direction using $\Delta\mathbf x$ for $x_4$ with the largest change to the objective. But, the minimal step turns out to be negative, and thus the search stops. The local optimum is global because it is an LP model over continuance variables and convex domain. $\mathbf{x}^\*=\mathbf{x}^{(2)}$ is optimal with max objective of $1360$.
+Again, we are looking for an improved solution by solving for the improved direction and step. We solve $\Delta x$ for $x_3$ and $x_4$ to replace the current basic variables $x_1$ and $x_2$. This is done as before, resulting in the best improvement direction using $\Delta\mathbf x$ for $x_4$ with the largest change to the objective. But, the minimal step turns out to be negative, and thus the search stops. The local optimum is global because it is an LP model over continuance variables and convex domain. $\mathbf{x}^*=\mathbf{x}^{(2)}$ is optimal with max objective of $1360$.
 
 $$
 \begin{array}{lccccl}
@@ -854,7 +854,7 @@ t=3       & B & B & B & B & N & N & \\
 \end{array}
 $$
 
-It follows that $\mathbf{x}^{(3)}=\mathbf{x}^\*$ is optimal.
+It follows that $\mathbf{x}^{(3)}=\mathbf{x}^*$ is optimal.
 
 
 
