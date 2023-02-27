@@ -276,7 +276,7 @@ $$
 \end{aligned}
 $$
 
-where target_profit, target_waste, and target_production are the company's goals for each respective metric.
+where $target_profit$, $target_waste$, and $target_production$ are the company's goals for each respective metric.
 
 We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
 
