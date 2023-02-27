@@ -494,20 +494,17 @@ print("Optimal solution =", x.value)
 
 
 # # Sharpe Ratio maximization
-# Suppose we have a portfolio with $n$ assets and we want to allocate a fraction $x_i$ of our total investment in asset $i$ such that the expected return of the portfolio is maximized while keeping the risk under control. Let $r_i$ be the expected return of asset $i$, $\sigma_i$ be the standard deviation of asset $i$, and $w_i$ be the weight of asset $i$ in the portfolio. We can formulate this problem as:
+# To maximize the Sharpe ratio, we need to use the formula:
 # 
 # $$
-# \begin{aligned}
-# \text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \\
-# \text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \\
-# & \boldsymbol{x} \ge 0
-# \end{aligned}
+# \text{Sharpe Ratio} = (r_p - r_f) / σ_p
 # $$
 # 
+# where $r_p$ is the expected return of the portfolio, $r_f$ is the risk-free rate, and $σ_p$ is the standard deviation of the portfolio returns. The goal is to find the portfolio weights that maximize the Sharpe ratio.
 # 
-# Since the objective function is not convex, we can use a non-convex optimization solver like the SLSQP algorithm from the SciPy library in Python.
+# We can solve this optimization problem using a similar code structure as before. First, we generate a set of random portfolio weights, calculate the expected returns and standard deviation of the portfolio, and then calculate the Sharpe ratio for each portfolio. Finally, we find the portfolio with the highest Sharpe ratio.
 # 
-# Here's an implementation:
+# In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.
 
 # In[11]:
 
@@ -515,34 +512,34 @@ print("Optimal solution =", x.value)
 import numpy as np
 from scipy.optimize import minimize
 
+# Example data
+np.random.seed(123)
+n_assets = 5
+n_obs = 100
+mu = np.random.randn(n_assets)
+cov = np.random.randn(n_assets, n_assets)
+cov = cov.T.dot(cov)
+rf = 0.02
+
 # Define the objective function
-def objective_function(x, r, rf, Sigma):
-    return -(r.T @ x - rf) / np.sqrt(x.T @ Sigma @ x)
+def objective(x):
+    ret = np.dot(mu, x)
+    risk = np.sqrt(np.dot(x.T, np.dot(cov, x)))
+    return -(ret - rf) / risk
 
 # Define the constraints
-def constraint1(x):
-    return np.sum(x) - 1
+constraints = ({'type': 'eq', 'fun': lambda x: np.sum(x) - 1})
 
-def constraint2(x):
-    return x
+# Define the bounds
+bounds = tuple((0, 1) for i in range(n_assets))
 
-# Set the initial guess and bounds
-n = 3
-x0 = np.ones(n) / n
-bounds = [(0, None) for i in range(n)]
+# Define the initial guess
+x0 = np.random.randn(n_assets)
 
-# Set the problem data
-r = np.array([0.08, 0.1, 0.12])
-rf = 0.05
-Sigma = np.array([[0.05, 0.02, 0.01], [0.02, 0.06, 0.03], [0.01, 0.03, 0.04]])
+# Solve the optimization problem
+result = minimize(objective, x0, method='SLSQP', bounds=bounds, constraints=constraints)
 
-# Define the problem object
-problem = {'type': 'eq', 'fun': constraint1}
-problem2 = {'type': 'ineq', 'fun': constraint2}
-
-# Solve the problem
-result = minimize(objective_function, x0, args=(r, rf, Sigma), method='SLSQP', bounds=bounds, constraints=[problem, problem2])
-
-# Print the solution
-print(result)
+# Print the optimal portfolio weights and Sharpe ratio
+print(f"Optimal weights: {result.x}")
+print(f"Sharpe ratio: {-result.fun:.4f}")
 
