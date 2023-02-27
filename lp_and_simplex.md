@@ -280,7 +280,7 @@ confirming the primal-dual value equality theorem.
 
 # KKT conditions for optimality
 
-The Karush–Kuhn–Tucker (KKT) conditions provide a necessary and sufficient condition for LP optimality. For maximizing the objective, $\mathbf c^T \mathbf x$, the following conditions must be satisfied:
+The Karush-Kuhn-Tucker (KKT) conditions are necessary and sufficient conditions for linear programming (LP) optimality. To maximize the objective $\mathbf c^T \mathbf x$, the following conditions must be satisfied:
 
 Primal feasibility:
 
@@ -309,7 +309,10 @@ $$
 \end{aligned}
 $$
 
-These conditions ensure that the primal and dual solutions are feasible and that the primal and dual objectives are equal at the optimal point, as well as satisfying the complementary slackness condition.
+These conditions ensure that the primal and dual solutions are feasible and that the primal and dual objectives are equal at the optimal point. Additionally, the complementary slackness condition requires that if a constraint in the primal problem is binding (i.e., its slack is zero), then the corresponding dual variable must be positive, and vice versa. This condition implies that the product of the primal and dual variables associated with each constraint is zero.
+
+Overall, the KKT conditions are used to determine the optimal solution for a linear programming problem.
+
 # Improving search
 If $\mathbf x$ is feasible, the goal is to *improve* the solution from $\mathbf x^{(t)}$ to $\mathbf x^{(t+1)}$ via
 
