@@ -373,12 +373,11 @@ As for example let's look at the following system that define two levels of obje
 
 $$
 \begin{aligned}
-& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \
-& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 0 \
-& && \
-& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
-& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \
-& && f_1(x) \leq f_1^* \
+& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \\
+& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 0 \\
+& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
+& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \\
+& && f_1(x) \leq f_1^* 
 \end{aligned}
 $$
 
