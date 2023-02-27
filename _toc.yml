@@ -13,6 +13,7 @@ chapters:
  - file: portfolio_weights
  - file: rebalancing_and_transactions_costs
  - file: practical_optimization
+ - file: lp_and_simplex
 # - file: tax_management
 # - file: leverage
 # - file: market_neutral
