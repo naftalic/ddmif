@@ -492,3 +492,62 @@ prob.solve(solver=cp.GUROBI)
 print("Optimal value =", prob.value)
 print("Optimal solution =", x.value)
 
+
+# # Sharpe Ratio maximization
+# Suppose we have a portfolio with $n$ assets and we want to allocate a fraction $x_i$ of our total investment in asset $i$ such that the expected return of the portfolio is maximized while keeping the risk under control. Let $r_i$ be the expected return of asset $i$, $\sigma_i$ be the standard deviation of asset $i$, and $w_i$ be the weight of asset $i$ in the portfolio. We can formulate this problem as:
+# 
+# $$
+# \begin{aligned}
+# \text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
+# \text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \
+# & \boldsymbol{x} \succeq 0
+# \end{aligned}
+# $$
+# 
+# where the numerator of the objective function is the expected return of the portfolio and the denominator is the risk of the portfolio (measured by the standard deviation).
+# 
+# To solve this problem using CVXPY and Gurobi, we can use the following code:
+
+# In[11]:
+
+
+import cvxpy as cp
+import numpy as np
+import gurobipy as grb
+
+# Define the data
+np.random.seed(1)
+n = 5
+r = np.random.rand(n)  # expected returns
+sigma = np.random.rand(n)  # standard deviations
+cov = np.diag(sigma)  # covariance matrix
+target_return = 0.05  # target expected return
+
+# Define the variables
+w = cp.Variable(n)
+
+# Define the constraints
+constraints = [
+    cp.sum(w) == 1,  # budget constraint
+    w >= 0  # long-only constraint
+]
+
+# Define the objective function
+objective = cp.Maximize((r @ w) / cp.sqrt(cp.quad_form(w, cov)))
+
+# Define the problem
+prob = cp.Problem(objective, constraints)
+
+# Solve the problem using Gurobi
+prob.solve(solver=cp.GUROBI)
+
+# Print the results
+print("Optimal portfolio:")
+for i in range(n):
+    print(f"Asset {i+1}: {w.value[i]:.4f}")
+print(f"Expected return: {(r @ w.value):.4f}")
+print(f"Standard deviation: {cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
+print(f"Sharpe ratio: {(r @ w.value) / cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
+
+
+# This code generates random data for $n=5$ assets and solves the optimization problem using Gurobi. The optimal portfolio weights, expected return, standard deviation, and Sharpe ratio are printed at the end.
