@@ -258,7 +258,7 @@ $$
 Thus,
 
 $$
-\qquad \mathbf c^T \mathbf x^*=\mathbf b^T\mathbf v^* \text{(primal-dual value equality)}.
+\qquad \mathbf c^T \mathbf x^* = \mathbf b^T \mathbf v^* \quad\text{(primal-dual value equality)}.
 $$
 
 and the max optimal primal equals the min of optimal dual.
@@ -266,13 +266,13 @@ and the max optimal primal equals the min of optimal dual.
 In our example, 
 
 $$
-\mathbf c^T\mathbf x^*= (40,50)\cdot (24,8)=1360,
+\mathbf c^T \mathbf x^* = (40,50)\cdot (24,8)=1360,
 $$
 
 and 
 
 $$
-\mathbf b^T\mathbf v^*= (40,120)\cdot (16,6)=1360.
+\mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360.
 $$
 
 # KKT conditions for optimality
