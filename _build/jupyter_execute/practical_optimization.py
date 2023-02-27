@@ -440,3 +440,55 @@ print("Level 2")
 print("Optimal value =", prob.value)
 print("Optimal solution =", x.value)
 
+
+# # Risk-adjusted portfolio optimization
+# Risk-adjusted portfolio optimization is a common problem in finance, where the goal is to find the optimal allocation of assets that maximizes expected returns while minimizing risks. One common approach to risk-adjusted portfolio optimization is the mean-variance optimization model developed by Harry Markowitz. The model assumes that investors are risk-averse and seek to maximize the expected return while minimizing the variance of their portfolio.
+# 
+# The mean-variance optimization model can be expressed mathematically as follows:
+# 
+# $$
+# \begin{aligned}
+# & \text{maximize} && \mu^T x - \gamma x^T \Sigma x \\
+# & \text{subject to} && \sum_{i=1}^n x_i = 1 \\
+# & && x \geq 0
+# \end{aligned}
+# $$
+# 
+# where $\mu$ is a vector of expected returns for each asset, $\Sigma$ is the covariance matrix of asset returns, $x$ is a vector of weights for each asset, and $\gamma$ is a scalar that represents the risk aversion of the investor.
+# 
+# The parameter $\gamma$ can be adjusted to reflect the risk aversion of the investor. A higher value of $\gamma$ indicates a higher level of risk aversion, leading to a portfolio with lower expected returns but also lower risk. On the other hand, a lower value of $\gamma$ indicates a lower level of risk aversion, leading to a portfolio with higher expected returns but also higher risk.
+# 
+# In the following example, we randomly generated expected returns and covariance matrix for a portfolio of three assets. We set the risk aversion parameter $\gamma$ to 0.5. We defined the decision variables, objective function, and constraints using CVXPY. We then solved the problem using the Gurobi solver through the CVXPY interface. Finally, we printed out the optimal value and optimal solution of the problem.
+
+# In[10]:
+
+
+import cvxpy as cp
+import numpy as np
+import gurobipy as gp
+
+# Define the problem data
+n = 3
+np.random.seed(1)
+mu = np.abs(np.random.randn(n))
+Sigma = np.abs(np.random.randn(n, n))
+Sigma = Sigma.T @ Sigma
+gamma = 0.5
+
+# Define the decision variables
+x = cp.Variable(n)
+
+# Define the objective function
+objective = cp.Maximize(mu.T @ x - gamma * cp.quad_form(x, Sigma))
+
+# Define the constraints
+constraints = [cp.sum(x) == 1, x >= 0]
+
+# Solve the problem using CVXPY and Gurobi solver
+prob = cp.Problem(objective, constraints)
+prob.solve(solver=cp.GUROBI)
+
+# Print the optimal value and the optimal solution
+print("Optimal value =", prob.value)
+print("Optimal solution =", x.value)
+
