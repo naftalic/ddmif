@@ -44,7 +44,7 @@ The higher the variance of the stock, the higher the risk of the portfolio. Simi
 Suppose we have a portfolio consisting of two stocks with weights $w_1$ and $w_2$. In this case, the portfolio variance is given by
 
 $$
-w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + 2w_1w_2σ_1,2
+w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + 2w_1w_2σ_{1,2}
 $$
 
 The portfolio variance depends on the variances of the individual stocks as well as the covariance between them. If the two stocks are highly positively correlated (i.e., the covariance between them is positive), then the portfolio variance will be higher, indicating higher risk. Conversely, if the two stocks are highly negatively correlated (i.e., the covariance between them is negative), then the portfolio variance will be lower, indicating lower risk.
@@ -53,7 +53,7 @@ The portfolio variance depends on the variances of the individual stocks as well
 Suppose we have a portfolio consisting of three stocks with weights $w_1$, $w_2$, and $w_3$. In this case, the portfolio variance is given by
 
 $$
-w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_1,2 + 2w_1w_3σ_1,3 + 2w_2w_3σ_2,3
+w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_{1,2} + 2w_1w_3σ_{1,3} + 2w_2w_3σ_{2,3}
 $$
 
 The portfolio variance now depends on the variances of the individual stocks as well as the covariances between all possible pairs of stocks. The risk of the portfolio will depend on the strengths and directions of these pairwise relationships. If the three stocks are all positively correlated, for example, then the portfolio variance and risk will be higher than if the stocks are negatively correlated or uncorrelated.
