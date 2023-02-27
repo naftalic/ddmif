@@ -18,54 +18,52 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import cvxpy as cp
+import numpy as np
+import gurobipy as grb
 
-# Define the problem data
-n = 2
+# Define the data
+np.random.seed(1)
+n = 5
+r = np.random.rand(n)  # expected returns
+sigma = np.random.rand(n)  # standard deviations
+cov = np.diag(sigma)  # covariance matrix
+target_return = 0.05  # target expected return
 
-# Define the decision variables
-x = cp.Variable(n)
-
-# Define the first level objective function and constraint
-f1 = cp.sum_squares(x)
-g = x[0] + x[1] - 1
-
-# Define the second level objective function and constraint
-f2 = cp.norm(x - [1, 0], 2)
-h = x[0] - x[1] - 1
-
-# Define the hierarchy
-hierarchy = [f1, f2]
+# Define the variables
+w = cp.Variable(n)
 
 # Define the constraints
-constraints = [g <= 0, h <= 0]
+constraints = [
+    cp.sum(w) == 1,  # budget constraint
+    w >= 0  # long-only constraint
+]
 
-# Solve the problem using CVXPY
-prob = cp.Problem(cp.Minimize(hierarchy[0]), constraints)
-prob.solve()
+# Define the objective function
+objective = cp.Maximize((r @ w) / cp.sqrt(cp.quad_form(w, cov)))
 
-# Print the optimal value and the optimal solution for the first level
-print("Level 1")
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+# Define the problem
+prob = cp.Problem(objective, constraints)
 
-# Solve the problem using CVXPY
-prob = cp.Problem(cp.Maximize(hierarchy[1]), constraints)
-prob.solve()
+# Solve the problem using Gurobi
+prob.solve(solver=cp.GUROBI)
 
-# Print the optimal value and the optimal solution for the second level
-print("Level 2")
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+# Print the results
+print("Optimal portfolio:")
+for i in range(n):
+    print(f"Asset {i+1}: {w.value[i]:.4f}")
+print(f"Expected return: {(r @ w.value):.4f}")
+print(f"Standard deviation: {cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
+print(f"Sharpe ratio: {(r @ w.value) / cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mDCPError[0m                                  Traceback (most recent call last)
-Cell [0;32mIn[9], line 34[0m
-[1;32m     32[0m [38;5;66;03m# Solve the problem using CVXPY[39;00m
-[1;32m     33[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(cp[38;5;241m.[39mMaximize(hierarchy[[38;5;241m1[39m]), constraints)
-[0;32m---> 34[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43m)[49m
-[1;32m     36[0m [38;5;66;03m# Print the optimal value and the optimal solution for the second level[39;00m
-[1;32m     37[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mLevel 2[39m[38;5;124m"[39m)
+Cell [0;32mIn[11], line 29[0m
+[1;32m     26[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(objective, constraints)
+[1;32m     28[0m [38;5;66;03m# Solve the problem using Gurobi[39;00m
+[0;32m---> 29[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43msolver[49m[38;5;241;43m=[39;49m[43mcp[49m[38;5;241;43m.[39;49m[43mGUROBI[49m[43m)[49m
+[1;32m     31[0m [38;5;66;03m# Print the results[39;00m
+[1;32m     32[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal portfolio:[39m[38;5;124m"[39m)
 
 File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493[0m, in [0;36mProblem.solve[0;34m(self, *args, **kwargs)[0m
 [1;32m    491[0m [38;5;28;01melse[39;00m:
@@ -119,9 +117,17 @@ File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/
 [1;32m    105[0m     append [38;5;241m=[39m build_non_disciplined_error_msg(problem, [38;5;124m'[39m[38;5;124mDGP[39m[38;5;124m'[39m)
 
 [0;31mDCPError[0m: Problem does not follow DCP rules. Specifically:
-The objective is not DCP, even though each sub-expression is.
-You are trying to maximize a function that is convex.
+The objective is not DCP. Its following subexpressions are not:
+power(QuadForm(var497, [[0.09233859 0.         0.         0.         0.        ]
+ [0.         0.18626021 0.         0.         0.        ]
+ [0.         0.         0.34556073 0.         0.        ]
+ [0.         0.         0.         0.39676747 0.        ]
+ [0.         0.         0.         0.         0.53881673]]), 0.5)
 DCPError: Problem does not follow DCP rules. Specifically:
-The objective is not DCP, even though each sub-expression is.
-You are trying to maximize a function that is convex.
+The objective is not DCP. Its following subexpressions are not:
+power(QuadForm(var497, [[0.09233859 0.         0.         0.         0.        ]
+ [0.         0.18626021 0.         0.         0.        ]
+ [0.         0.         0.34556073 0.         0.        ]
+ [0.         0.         0.         0.39676747 0.        ]
+ [0.         0.         0.         0.         0.53881673]]), 0.5)
 
