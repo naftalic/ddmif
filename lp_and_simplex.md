@@ -114,24 +114,24 @@ $$
 In the above notation: 
 
 $$
-\begin{align}
+\begin{aligned}
 &d_1=v_1+4v_2, \\
 &d_2=2v_2+3v_2,\qquad \text{and}\\
 &h=40v_1+120v_2.
-\end{align}
+\end{aligned}
 $$ 
 
 How do we choose the best coefficients $v_1$, and $v_2$? We must ensure that $d_1\ge 40$ and $d_2\ge 50$, and we want $h$ to be as **small** as possible under these constraints. This is again an LP model which is called the **dual** to the primal set
 
 $$
-\begin{align}
+\begin{aligned}
 &\text{min}\\
 &\qquad h=40v_1 + 120v_2\\
 &\text{s.t.}\\
 &\qquad 1v_1 + 4v_2 \ge 40\\
 &\qquad 2v_1 + 3v_2 \ge 50\\
 &\qquad v_1, v_2 \ge 0.
-\end{align} 
+\end{aligned} 
 $$
 
 In general, the dual to the primal LP is another LP model that is derived from it in the following way:
@@ -142,25 +142,25 @@ In general, the dual to the primal LP is another LP model that is derived from i
 Hence, for the max primal 
 
 $$
-\begin{align}
+\begin{aligned}
 &\max \\
 &\qquad\mathbf c\cdot\mathbf x,\\
 &\text{s.t.}\\
 &\qquad\mathbf A\mathbf x\le \mathbf b,\\
 &\qquad\mathbf x \ge 0,
-\end{align}
+\end{aligned}
 $$ 
 
 the corresponding dual, is
 
 $$
-\begin{align}
+\begin{aligned}
 &\min \\
 &\qquad\mathbf b\cdot\mathbf v,\\
 &\text{s.t.}\\
 &\qquad\mathbf A^T\mathbf v\ge \mathbf c,\\
 &\qquad\mathbf v\ge 0.
-\end{align}
+\end{aligned}
 $$ 
 
 The interpretation is that we solve for $\mathbf v$, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, $\mathbf c$.
@@ -196,14 +196,14 @@ for con in m.getConstrs(): # constraints
 In addition, as shown above
 
 $$
-\begin{align}
+\begin{aligned}
 \qquad b_1 &= 40~(30,80),\\
 \qquad b_2 &= 120~(60,160),\\
 \qquad c_1 &= 40~(25, 66.667),~\text{with shadow price } 24, \\
 \qquad c_2 &= 50~(30, 80),~\text{with shadow price } 8,\\
 \qquad s_1 &= 0, \\
 \qquad s_2 &= 0. \\
-\end{align}
+\end{aligned}
 $$
 
 The dual's decision variables, $\mathbf v$, are the primal's shadow prices and the dual's $\mathbf b$ and $\mathbf c$ correspond with their primal values. Lastly, the dual's shadow prices are the primal's decision variables. 
@@ -248,11 +248,11 @@ That is, for maximize objective problem, the dual objective provides a natural u
 In case of zero slack, standardized system, or feasible binding set of points
 
 $$
-\begin{align}
-&(\mathbf c-\mathbf v\mathbf A)\cdot \mathbf x=0 ~~~\text{(primal complementary slackness)},\\
+\begin{aligned}
+&(\mathbf c-\mathbf v\mathbf A)\cdot \mathbf x=0 \quad\text{(primal complementary slackness)},\\
 &\text{and}\\
-&\mathbf v\cdot (\mathbf A\mathbf x- \mathbf b)=0 ~~~\text{(dual complementary slackness)}.\\
-\end{align}
+&\mathbf v\cdot (\mathbf A\mathbf x- \mathbf b)=0 \quad\text{(dual complementary slackness)}.\\
+\end{aligned}
 $$
 
 Thus,
@@ -282,28 +282,28 @@ The Karush–Kuhn–Tucker (KKT) provides a necessary and sufficient condition f
 Primal feasibility:
 
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf A\mathbf x\le \mathbf b\\
 &\mathbf x\ge 0
-\end{align}
+\end{aligned}
 $$
 
 Dual feasibility:
 
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf A\mathbf x\le \mathbf b\\
 &\mathbf x\ge 0
-\end{align}
+\end{aligned}
 $$
 
 Complementary slackness:
 
 $$
-\begin{align}
+\begin{aligned}
 &(\mathbf c-\mathbf v\mathbf A)\mathbf x=0\\
 &\mathbf v(\mathbf A \mathbf x- \mathbf b)=0.
-\end{align}
+\end{aligned}
 $$
 
 # Improving search
@@ -405,19 +405,19 @@ $3x_1-2x_2\le0.$
 Minmax:
 
 $$
-\begin{align}
+\begin{aligned}
 &\quad\text{min}\\
 &\quad\quad f\\
 &\quad\text{s.t.} \\
 &\quad \quad f\ge 3x_1+2x_2+x_3\\
 &\quad \quad  f\ge x_1+x_2.\\
-\end{align}
+\end{aligned}
 $$
 
 Min deviation:
 
 $$
-\begin{align}
+\begin{aligned}
 &\quad\text{min}\\
 &\quad\quad 4|x_1-x_2|\\
 \\
@@ -428,7 +428,7 @@ $$
 &\quad\text{s.t.}\\
 &\quad\quad x_1-x_2=s_1^+-s_1^-\\
 &\quad\quad s_1^+,s_1^-\ge0
-\end{align}
+\end{aligned}
 $$
 
 # The Simplex Algorithm
@@ -438,14 +438,14 @@ The algorithm is designed to improve the solution by moving from an extreme poin
 Consider the following standard LP model of the Factory probelm with $x_1$, $x_2$ decision varibales and $x_3$, $x_4$ slack varibales:
 
 $$
-\begin{align}
+\begin{aligned}
 &\quad\text{max}\\
 &\quad\quad z=40x_1+50x_2\\
 &\quad\text{s.t.}\\
 &\quad\quad x_1+2x_2+x_3=40\\
 &\quad\quad 4x_1+3x_2+x_4=120\\
 &\quad\quad x_1,x_2,x_3,x_4\ge0
-\end{align}
+\end{aligned}
 $$
 
 Then, we insert the input parameters, $\mathbf A$, $\mathbf b$, and $\mathbf c$, into a tabular format  
@@ -671,7 +671,7 @@ As for another example for solving a LP using the Simplex, we will solve the Top
 Solve the folowing LP problem using the Simplex method:
 
 $$
-\begin{align}
+\begin{aligned}
 &\quad\text{max}\\
 &\quad\quad z=12x_1+9x_2\\
 &\quad\text{s.t.}\\
@@ -680,7 +680,7 @@ $$
 &\quad\quad x_1+x_2 \le 1750\\
 &\quad\quad 4x_1+2x_2 \le 4800\\
 &\quad\quad x_1,x_2\ge0
-\end{align}
+\end{aligned}
 $$
 
 ```{code-cell}
