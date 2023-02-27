@@ -30,7 +30,7 @@ $w$ is a vector of portfolio weights, where $w_i$ is the weight of stock $i$ in 
 
 Here are some examples of why $w^TΣw$ is a measure of risk for portfolios of 1, 2, and 3 stocks:
 
-## Portfolio of 1 stock:
+## Portfolio of one stock:
 Suppose we have a portfolio consisting of only one stock. In this case, the portfolio variance simplifies to the variance of the single stock multiplied by the square of its weight in the portfolio. That is,
 
 $$
@@ -40,7 +40,7 @@ $$
 where $σ_1^2$ is the variance of the single stock.
 The higher the variance of the stock, the higher the risk of the portfolio. Similarly, if the weight of the stock in the portfolio is high, then the portfolio variance will be higher and the risk will also be higher.
 
-## Portfolio of 2 stocks:
+## Portfolio of two stocks:
 Suppose we have a portfolio consisting of two stocks with weights $w_1$ and $w_2$. In this case, the portfolio variance is given by
 
 $$
@@ -49,7 +49,7 @@ $$
 
 The portfolio variance depends on the variances of the individual stocks as well as the covariance between them. If the two stocks are highly positively correlated (i.e., the covariance between them is positive), then the portfolio variance will be higher, indicating higher risk. Conversely, if the two stocks are highly negatively correlated (i.e., the covariance between them is negative), then the portfolio variance will be lower, indicating lower risk.
 
-## Portfolio of 3 stocks:
+## Portfolio of three stocks:
 Suppose we have a portfolio consisting of three stocks with weights $w_1$, $w_2$, and $w_3$. In this case, the portfolio variance is given by
 
 $$
