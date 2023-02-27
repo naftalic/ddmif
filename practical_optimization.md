@@ -263,20 +263,20 @@ $$
 \begin{aligned}
 &\text{minimize } &&z_1 + z_2 + z_3\\
 &\text{where}
-&&z_1 = | \text{profit} - \text{target_profit}|\\
-&&&z_2 = | \text{waste} - \text{target_waste}|\\
+&&z_1 = | \text{profit} - \text{target\_profit}|\\
+&&&z_2 = | \text{waste} - \text{target\_waste}|\\
 &&&z_3 = |x - \text{target_production}|\\
 &\text{subject to}
 &&\text{profit} = p \cdot x\\
 &&&\text{waste} = w \cdot x\\
 &&&x \geq 0\\
-&&&\text{profit} \geq \text{target_profit}\\
-&&&\text{waste} \leq \text{target_waste}\\
-&&&x = \text{target_production}
+&&&\text{profit} \geq \text{target\_profit}\\
+&&&\text{waste} \leq \text{target\_waste}\\
+&&&x = \text{target\_production}
 \end{aligned}
 $$
 
-where $target_profit$, $target_waste$, and $target_production$ are the company's goals for each respective metric.
+where target profit, target waste, and target production are the company's goals for each respective metric.
 
 We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
 
