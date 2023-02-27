@@ -131,5 +131,5 @@ initial_guess = np.array([0.5])
 result = minimize(objective, initial_guess, method='SLSQP', bounds=bounds)
 
 print(f"Optimal value: {-result.fun:.4f}")
-print(f"Optimal w: {w[np.argmax(-objective(w))]:.4f}")
+print(f"Optimal value: {result.x[0]:.4f}")
 ```
