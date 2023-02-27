@@ -1162,53 +1162,43 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">grb</span>
 
 <span class="c1"># Define the data</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># expected returns</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># standard deviations</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>  <span class="c1"># covariance matrix</span>
-<span class="n">target_return</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># target expected return</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">])</span> <span class="c1"># expected returns of assets</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># risk-free rate</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">]])</span> <span class="c1"># covariance matrix of returns</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
 <span class="c1"># Define the variables</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># Define the constraints</span>
-<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># budget constraint</span>
-    <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">0</span>  <span class="c1"># long-only constraint</span>
-<span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Define the objective function</span>
-<span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">((</span><span class="n">r</span> <span class="o">@</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="n">cp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">cov</span><span class="p">)))</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">rf</span><span class="p">)</span> <span class="o">/</span> <span class="n">cp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Sigma</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
 
-<span class="c1"># Define the problem</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="c1"># Define the constraints</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># Solve the problem using Gurobi</span>
-<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
+<span class="c1"># Formulate the problem and solve</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="n">objective</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
-<span class="c1"># Print the results</span>
+<span class="c1"># Print the solution</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal portfolio:&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Asset </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected return: </span><span class="si">{</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Standard deviation: </span><span class="si">{</span><span class="n">cp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">cov</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sharpe ratio: </span><span class="si">{</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">cov</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sharpe ratio = &quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">DCPError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Solve the problem using Gurobi</span>
-<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="c1"># Print the results</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal portfolio:&quot;</span><span class="p">)</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">21</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Formulate the problem and solve</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="n">objective</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="c1"># Print the solution</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal portfolio:&quot;</span><span class="p">)</span>
 
 <span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493,</span> in <span class="ni">Problem.solve</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">491</span> <span class="k">else</span><span class="p">:</span>
@@ -1263,11 +1253,9 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 
 <span class="ne">DCPError</span>: Problem does not follow DCP rules. Specifically:
 <span class="n">The</span> <span class="n">objective</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">DCP</span><span class="o">.</span> <span class="n">Its</span> <span class="n">following</span> <span class="n">subexpressions</span> <span class="n">are</span> <span class="ow">not</span><span class="p">:</span>
-<span class="n">power</span><span class="p">(</span><span class="n">QuadForm</span><span class="p">(</span><span class="n">var497</span><span class="p">,</span> <span class="p">[[</span><span class="mf">0.09233859</span> <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]</span>
- <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.18626021</span> <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]</span>
- <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.34556073</span> <span class="mf">0.</span>         <span class="mf">0.</span>        <span class="p">]</span>
- <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.39676747</span> <span class="mf">0.</span>        <span class="p">]</span>
- <span class="p">[</span><span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.</span>         <span class="mf">0.53881673</span><span class="p">]]),</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">power</span><span class="p">(</span><span class="n">QuadForm</span><span class="p">(</span><span class="n">var497</span><span class="p">,</span> <span class="p">[[</span><span class="mf">0.05</span> <span class="mf">0.02</span> <span class="mf">0.01</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.02</span> <span class="mf">0.06</span> <span class="mf">0.03</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.01</span> <span class="mf">0.03</span> <span class="mf">0.04</span><span class="p">]]),</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
