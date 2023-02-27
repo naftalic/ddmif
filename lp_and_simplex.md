@@ -256,7 +256,9 @@ Therefore, the optimal value of the dual problem, $\mathbf v\cdot \mathbf b$, pr
 Note that this holds true for both maximizing and minimizing problems.
 
 # Complementary slackness
-Complementary slackness is a condition that relates the optimal solutions of the primal and dual LP problems. Specifically, if a binding constraint is active in the primal problem, then the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.
+Complementary slackness is a fundamental theorem in linear programming that relates the optimal solutions of the primal and dual problems. It states that if a constraint is binding (i.e., its slack is zero) in the primal problem, then the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.
+
+Formally, for a feasible solution $(\mathbf x, \mathbf v)$ to the primal-dual pair, the complementary slackness conditions are:
 
 $$
 \begin{aligned}
@@ -266,25 +268,13 @@ $$
 \end{aligned}
 $$
 
-Using the primal complementary slackness condition, we have
-
-$$
-\begin{aligned}
-(\mathbf c-\mathbf v\mathbf A)\cdot \mathbf x &= (40,50)-(24,8)\cdot \begin{pmatrix}3\\ 2 \end{pmatrix}
-\end{aligned}
-$$
-
-
-
-Thus,
+Furthermore, the primal-dual value equality theorem states that the optimal objective values of the primal and dual problems are equal:
 
 $$
 \qquad \mathbf c^T \mathbf x^* = \mathbf b^T \mathbf v^* \quad\text{(primal-dual value equality)}.
 $$
 
-and the max optimal primal equals the min of optimal dual.
-
-In our example, 
+Therefore, if the primal problem is a maximization problem, the optimal value of the primal problem is equal to the optimal value of the dual problem, which is a minimization problem. In our example, we have
 
 $$
 \mathbf c^T \mathbf x^* = (40,50)\cdot (24,8)=1360,
@@ -293,12 +283,14 @@ $$
 and 
 
 $$
-\mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360.
+\mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360
 $$
+
+which confirms the primal-dual value equality theorem.
 
 # KKT conditions for optimality
 
-The Karush–Kuhn–Tucker (KKT) provides a necessary and sufficient condition for LP optimality. In short, for maximizing the objective, $\mathbf c^T \mathbf x$, the following is required
+The Karush–Kuhn–Tucker (KKT) conditions provide a necessary and sufficient condition for LP optimality. For maximizing the objective, $\mathbf c^T \mathbf x$, the following conditions must be satisfied:
 
 Primal feasibility:
 
@@ -313,8 +305,8 @@ Dual feasibility:
 
 $$
 \begin{aligned}
-&\mathbf A\mathbf x\le \mathbf b\\
-&\mathbf x\ge 0
+&\mathbf A^T\mathbf v\ge \mathbf c\\
+&\mathbf v\ge 0
 \end{aligned}
 $$
 
@@ -322,11 +314,12 @@ Complementary slackness:
 
 $$
 \begin{aligned}
-&(\mathbf c-\mathbf v\mathbf A)\mathbf x=0\\
-&\mathbf v(\mathbf A \mathbf x- \mathbf b)=0.
+&(\mathbf c-\mathbf A^T\mathbf v)\mathbf x=0\\
+&\mathbf v^T(\mathbf A \mathbf x- \mathbf b)=0.
 \end{aligned}
 $$
 
+These conditions ensure that the primal and dual solutions are feasible and that the primal and dual objectives are equal at the optimal point, as well as satisfying the complementary slackness condition.
 # Improving search
 If $\mathbf x$ is feasible, the goal is to *improve* the solution from $\mathbf x^{(t)}$ to $\mathbf x^{(t+1)}$ via
 
