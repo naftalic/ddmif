@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8) Tax Management" href="tax_management.html" />
+    <link rel="next" title="8) Rebalancing and transactions costs" href="rebalancing_and_transactions_costs.html" />
     <link rel="prev" title="6) The Economic Factor Model" href="economic_factors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -147,43 +147,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tax_management.html">
-   8) Tax Management
+  <a class="reference internal" href="rebalancing_and_transactions_costs.html">
+   8) Rebalancing and transactions costs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="leverage.html">
-   9) Leverage
+  <a class="reference internal" href="practical_optimization.html">
+   A1) Hands-on Optimization
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="market_neutral.html">
-   10) Market Neutral
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian_alpha.html">
-   11) Bayesian Alpha
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="performance_measurement_and_attribution.html">
-   12) Performance Measurement and Attribution
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="backtesting.html">
-   13) Backtesting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_performance.html">
-   14) Portfolio Performance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
+  <a class="reference internal" href="lp_and_simplex.html">
+   A2) Theory of linear programing and the Simplex method
   </a>
  </li>
 </ul>
@@ -415,6 +390,28 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risk-of-portfolio-measure">
+   Risk of Portfolio Measure
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-one-stock">
+     Portfolio of one stock:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-two-stocks">
+     Portfolio of two stocks:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-three-stocks">
+     Portfolio of three stocks:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ad-hoc-methods">
    Ad hoc methods
   </a>
@@ -598,6 +595,28 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risk-of-portfolio-measure">
+   Risk of Portfolio Measure
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-one-stock">
+     Portfolio of one stock:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-two-stocks">
+     Portfolio of two stocks:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#portfolio-of-three-stocks">
+     Portfolio of three stocks:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ad-hoc-methods">
    Ad hoc methods
   </a>
@@ -771,11 +790,46 @@ title="Print to PDF"
 <p>In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.</p>
 <p>There are several ways to generate stock weights, ranging from simple methods like equal weighting or market capitalization weighting to more complex techniques based on modern portfolio theory. For portfolio managers who manage against a benchmark, there are additional weighting possibilities, such as ensuring the weighted-average factor exposures of the portfolio match those of the benchmark or maximizing excess expected return while limiting tracking error.</p>
 <p>To minimize tracking error or risk when weighting stocks, the manager needs to know each stock’s expected return, risk or variance, and covariances among stocks. Additionally, the manager may want to impose constraints on the portfolio creation process, such as prohibiting short sales or upholding diversification rules. The manager can then use a quadratic optimizer to determine the optimal weights for the portfolio.</p>
-<p>We begin by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio’s total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="risk-of-portfolio-measure">
+<h1>Risk of Portfolio Measure<a class="headerlink" href="#risk-of-portfolio-measure" title="Permalink to this headline">#</a></h1>
+<p>In finance, the risk of an investment is typically defined as the likelihood of losing money or not achieving the expected return. One way to quantify the risk of a portfolio of stocks is by using the variance or standard deviation of the portfolio returns, which reflects the degree of dispersion or variability of those returns around their mean.</p>
+<p>The covariance matrix, Σ, represents the pairwise relationships between the returns of the individual stocks in the portfolio. Specifically, the <span class="math notranslate nohighlight">\((i,j)\)</span>th element of Σ is the covariance between the returns of stocks <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(w\)</span> is a vector of portfolio weights, where <span class="math notranslate nohighlight">\(w_i\)</span> is the weight of stock <span class="math notranslate nohighlight">\(i\)</span> in the portfolio. The product <span class="math notranslate nohighlight">\(w^TΣw\)</span> gives the portfolio variance, which is a measure of the risk of the portfolio.</p>
+<p>Here are some examples of why <span class="math notranslate nohighlight">\(w^TΣw\)</span> is a measure of risk for portfolios of 1, 2, and 3 stocks:</p>
+<section id="portfolio-of-one-stock">
+<h2>Portfolio of one stock:<a class="headerlink" href="#portfolio-of-one-stock" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have a portfolio consisting of only one stock. In this case, the portfolio variance simplifies to the variance of the single stock multiplied by the square of its weight in the portfolio. That is,</p>
+<div class="math notranslate nohighlight">
+\[
+w^TΣw = w_1^2σ_1^2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(σ_1^2\)</span> is the variance of the single stock.
+The higher the variance of the stock, the higher the risk of the portfolio. Similarly, if the weight of the stock in the portfolio is high, then the portfolio variance will be higher and the risk will also be higher.</p>
+</section>
+<section id="portfolio-of-two-stocks">
+<h2>Portfolio of two stocks:<a class="headerlink" href="#portfolio-of-two-stocks" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have a portfolio consisting of two stocks with weights <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span>. In this case, the portfolio variance is given by</p>
+<div class="math notranslate nohighlight">
+\[
+w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + 2w_1w_2σ_{1,2}
+\]</div>
+<p>The portfolio variance depends on the variances of the individual stocks as well as the covariance between them. If the two stocks are highly positively correlated (i.e., the covariance between them is positive), then the portfolio variance will be higher, indicating higher risk. Conversely, if the two stocks are highly negatively correlated (i.e., the covariance between them is negative), then the portfolio variance will be lower, indicating lower risk.</p>
+</section>
+<section id="portfolio-of-three-stocks">
+<h2>Portfolio of three stocks:<a class="headerlink" href="#portfolio-of-three-stocks" title="Permalink to this headline">#</a></h2>
+<p>Suppose we have a portfolio consisting of three stocks with weights <span class="math notranslate nohighlight">\(w_1\)</span>, <span class="math notranslate nohighlight">\(w_2\)</span>, and <span class="math notranslate nohighlight">\(w_3\)</span>. In this case, the portfolio variance is given by</p>
+<div class="math notranslate nohighlight">
+\[
+w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_{1,2} + 2w_1w_3σ_{1,3} + 2w_2w_3σ_{2,3}
+\]</div>
+<p>The portfolio variance now depends on the variances of the individual stocks as well as the covariances between all possible pairs of stocks. The risk of the portfolio will depend on the strengths and directions of these pairwise relationships. If the three stocks are all positively correlated, for example, then the portfolio variance and risk will be higher than if the stocks are negatively correlated or uncorrelated.</p>
+<p>We continue by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio’s total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="ad-hoc-methods">
 <h1>Ad hoc methods<a class="headerlink" href="#ad-hoc-methods" title="Permalink to this headline">#</a></h1>
-<p>After selecting the stocks for a portfolio, there are several ad hoc methods for determining the portfolio weights. The two most common are equal weighting and value weighting.</p>
+<p>After selecting the stocks for a portfolio, there are several informal methods for determining the portfolio weights. The two most common are equal weighting and value weighting.</p>
 <p>Equal weighting assigns the same weight to every stock, regardless of market capitalization or other factors. For example, if there are 10 stocks in the portfolio, each stock will have a weight of 0.1 (= 1/10). While this approach is simple and quick, it does not consider the expected returns or risks of the stocks and may not be suitable for portfolios where such information is available.</p>
 <p>Value weighting, on the other hand, assigns weights proportional to the stocks’ market capitalizations. For example, if the market capitalization of stock A is twice as great as that of stock B, then the weight of stock A will also be twice the weight of stock B. This method ensures that the portfolio’s performance matches that of the market average, but it still does not reflect the expected returns or risks of individual stocks.</p>
 <p>There are variations of value weighting, such as weighting stocks by the square root or cube root of their market capitalization, which reduces bias towards large stocks. Another ad hoc weighting method is price weighting, where the portfolio manager buys the same number of shares in each stock so that the weights are proportional to the stock prices. This is how the Dow Jones Industrial Average and the Nikkei 225 are calculated.</p>
@@ -783,7 +837,7 @@ title="Print to PDF"
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mean-variance-optimization-method">
 <h1>Mean-variance optimization method<a class="headerlink" href="#mean-variance-optimization-method" title="Permalink to this headline">#</a></h1>
-<p>Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the ex-ante risks and expected returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio’s risk and return explicitly.</p>
+<p>Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the <strong>ex-ante</strong> risks and <strong>expected</strong> returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio’s risk and return explicitly.</p>
 <p>However, MVO has its limitations, as estimation errors could result in overweighting certain outlier stocks with low variances or high means. To mitigate this risk, additional portfolio constraints, such as short-sale, diversification, or sector constraints, may be imposed to limit the maximum and minimum stock weights. It is crucial to strike a balance between the constraints to avoid contradiction.</p>
 <p>The portfolio manager’s role is to carefully evaluate the estimation errors and decide on the necessary constraints, while allowing the optimizer to handle the rest. Nonetheless, caution must be taken not to over-constrain the portfolio and avoid hindering the full investment of the portfolio.</p>
 <section id="no-constraints">
@@ -1692,10 +1746,10 @@ w[11] = 1.0
             <p class="prev-next-title">6) The Economic Factor Model</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="tax_management.html" title="next page">
+    <a class='right-next' id="next-link" href="rebalancing_and_transactions_costs.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">8) Tax Management</p>
+        <p class="prev-next-title">8) Rebalancing and transactions costs</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
