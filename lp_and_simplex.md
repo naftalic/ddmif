@@ -16,7 +16,11 @@ kernelspec:
 
 # A2) Theory of linear programing and the Simplex method
 
-First, we will briefly discuss the **primal-dual theory** with a few examples. Consider the following linear programing problem:
+In this section, we will discuss the theory of linear programming and the simplex method. Linear programming is a mathematical technique used to optimize a linear objective function subject to linear equality and inequality constraints. The simplex method is an algorithm used to solve linear programming problems.
+
+To begin, let us consider the **primal-dual theory** with a few examples. The primal-dual theory states that every linear programming problem has a dual problem, and the optimal values of the primal and dual problems are equal.
+
+Now, let's look at an example linear programming problem:
 
 $$
 \begin{aligned}
@@ -54,7 +58,7 @@ print('*'*100)
 print('*'*100)
 ```
 
-Here, the optimal solution is 
+The optimal solution to the linear programming problem is given by
 
 $$
 (x^*,z)=((24,8),1360).
@@ -73,45 +77,51 @@ $$
 \end{aligned}
 $$
 
-That is, the cost coefficients, $\mathbf c = (c_1, c_2)$, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal $x^*$ are $(25, 66.667)$ and $(25, 66.667)$. Similarly, the RHS constraints, $\mathbf b = (b_1, b_2)$, have values of 40 and 120 and can change to within the values $(30, 80)$ and $(60, 160)$ without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.
+The Gurobi output also shows the sensitivity analysis results for the problem:
 
-**Is it possible to infer the optimal $z$ or at least bound its value without solving the LP model?**
+* The cost coefficients, $c_1$ and $c_2$, have values of 40 and 50, respectively. The ranges in which they are allowed to change without affecting the optimal solution are $(25, 66.667)$ and $(25, 66.667)$, respectively.
+* The right-hand side values of the constraints, $b_1$ and $b_2$, have values of 40 and 120, respectively. They can change to within the values $(30, 80)$ and $(60, 160)$, respectively, without affecting the optimal solution mix.
+* The shadow prices of the constraints are 16 and 6 for $b_1$ and $b_2$, respectively.
+* There is no slack in either constraint.
 
-The above objective is $40𝑥_1 + 50𝑥_2$ can be bounded using the first constraint and the fact that both decision variables are non-negative
+
+**Can we infer the optimal value of $z$, or at least bound its value, without solving the LP model?** 
+
+One way to do this is by using the first constraint and the fact that both decision variables are non-negative. The objective function is $40𝑥_1 + 50𝑥_2$, which can be bounded as follows:
 
 $$
 40𝑥_1 + 50𝑥_2<=40\times(x_1 + 2𝑥_2)=40x_1 + 80𝑥_2\le 1600.
 $$
 
-Can we do better? 
+Therefore, the optimal value of $z$ must be less than or equal to 1600.
 
-Let's use the second constraint,
+Is it possible to obtain a tighter bound on the optimal value of $z$? We can use the second constraint to derive another bound:
 
 $$
 40𝑥_1 + 50𝑥_2<=50/3\times(4𝑥_1 + 3𝑥_2)=66.67x_1 + 50𝑥_2=2000
 $$
 
-but, here, the value 2000 is higher than the best upper bound we have so far, which is 1600.
+However, this bound is actually looser than the previous bound we obtained using the first constraint, which was 1600. Therefore, using the second constraint does not provide a better bound in this case.
 
-Systematically, we can write that
+Systematically, we can write:
 
 $$
 40𝑥_1 + 50𝑥_2\le d_1x_1 +d_2x_2 \le h,
 $$
 
-and let $h$ be the upper bound on the maximum of the objective. The trick is that we will use the constraint equations to infer $d_1, d_2$ and $h$. That is, we multiply the first constraint by $v_1\ge0$, the second by $v_2\ge0$, and then add the two:
+where $h$ is an upper bound on the maximum of the objective. To infer $d_1$, $d_2$, and $h$, we can multiply the first constraint by $v_1\ge0$, the second by $v_2\ge0$, and then add the two:
 
 $$
 v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 $$
 
-or
+which gives us:
 
 $$
 (v_1+4v_2)x_1+(2v_2+3v_2)x_2\le 40v_1+120v_2.
 $$
 
-In the above notation: 
+Therefore, we can infer that:
 
 $$
 \begin{aligned}
@@ -121,7 +131,7 @@ $$
 \end{aligned}
 $$ 
 
-How do we choose the best coefficients $v_1$, and $v_2$? We must ensure that $d_1\ge 40$ and $d_2\ge 50$, and we want $h$ to be as **small** as possible under these constraints. This is again an LP model which is called the **dual** to the primal set
+How can we determine the best coefficients $v_1$ and $v_2$? We must ensure that $d_1\geq 40$ and $d_2\geq 50$, and we want $h$ to be as **small** as possible while satisfying these constraints. This is an LP model called the **dual** of the primal problem:
 
 $$
 \begin{aligned}
@@ -134,12 +144,7 @@ $$
 \end{aligned} 
 $$
 
-In general, the dual to the primal LP is another LP model that is derived from it in the following way:
-* Each variable in the primal becomes a constraint in the dual
-* Each constraint in the primal becomes a variable in the dual
-* The objective direction is inversed: maximum in the primal becomes minimum in the dual, and vice versa. 
-
-Hence, for the max primal 
+In general, the dual of a primal LP is another LP that is obtained by interchanging the roles of variables and constraints, and changing the objective from maximizing to minimizing, or vice versa. Specifically, if the primal problem is:
 
 $$
 \begin{aligned}
@@ -151,7 +156,7 @@ $$
 \end{aligned}
 $$ 
 
-the corresponding dual, is
+then the dual problem is:
 
 $$
 \begin{aligned}
@@ -163,14 +168,16 @@ $$
 \end{aligned}
 $$ 
 
-The interpretation is that we solve for $\mathbf v$, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, $\mathbf c$.
+The dual LP provides a lower bound on the optimal value of the primal LP.
 
-Solving for $v$ using Python, we find that the optimal is  
+To determine the optimal values of $v_1$ and $v_2$, we can solve the dual LP using Python or other LP solvers. For this problem, the optimal values are:
 
 $$
 (v^*,h)=((16,6),1360).
 $$
 
+Therefore, we can use $d_1=16+4\cdot 6=40$, $d_2=2\cdot 16+3\cdot 6=50$, and $h=1360$ as the optimal coefficients and upper bound for the primal LP.
+The interpretation is that we solve for $\mathbf v$, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, $\mathbf c$. 
 
 ```{code-cell}
 m = Model()    
@@ -193,7 +200,7 @@ for con in m.getConstrs(): # constraints
           con.pi,',', (con.RHS, con.SARHSLow, con.SARHSUp))
 ```
 
-In addition, as shown above
+Furthermore, as demonstrated earlier,
 
 $$
 \begin{aligned}
@@ -206,20 +213,22 @@ $$
 \end{aligned}
 $$
 
-The dual's decision variables, $\mathbf v$, are the primal's shadow prices and the dual's $\mathbf b$ and $\mathbf c$ correspond with their primal values. Lastly, the dual's shadow prices are the primal's decision variables. 
+The primal's shadow prices are the dual's decision variables, and the dual's $\mathbf b$ and $\mathbf c$ correspond to the primal's values. Moreover, the dual's shadow prices are the primal's decision variables.
 
-The primal-dual correspondence gives us more flexibility in solving the LP model. In cases where the dual is simpler, we can solve it instead of the primal. 
+The primal-dual relationship provides us with additional flexibility in solving LP models. When the dual is simpler, we can solve it instead of the primal.
 
 Few other properties emerge from the primal-dual relationship:
 
 # Weak duality
-Consider the difference between the primal and dual objectives:
+Weak duality refers to the fundamental property of linear programming that the optimal value of the dual problem is always less than or equal to the optimal value of the primal problem. In other words, the dual objective function provides a natural lower bound for the primal objective function.
+
+To see this, consider the difference between the primal and dual objectives:
 
 $$
 \mathbf c\cdot \mathbf x-\mathbf v\cdot \mathbf b. 
 $$
 
-This equation can be expended by adding and subtracting $\mathbf v\cdot\mathbf A\mathbf x$. That is 
+Expanding this equation by adding and subtracting $\mathbf v\cdot\mathbf A\mathbf x$, we have:
 
 $$
 \begin{aligned}
@@ -229,20 +238,22 @@ $$
 \end{aligned}
 $$
 
-But, for our maximize objective problem 
+Since $\mathbf A\mathbf x\le \mathbf b$ for the primal and $\mathbf c-\mathbf v\mathbf A\le0$ for the dual, we have:
 
 $$
 \mathbf c-\mathbf v\mathbf A\le0, \qquad\text{and}\qquad
 \mathbf A\mathbf x- \mathbf b\le0.
 $$
 
-Hence, 
+which implies that 
 
 $$
-\qquad \mathbf c\cdot \mathbf x\le\mathbf v\cdot \mathbf b
+\mathbf c\cdot \mathbf x-\mathbf v\cdot \mathbf b \le 0.
 $$
 
-That is, for maximize objective problem, the dual objective provides a natural upper bound assuming all points are feasible.
+Therefore, the optimal value of the dual problem, $\mathbf v\cdot \mathbf b$, provides a lower bound for the optimal value of the primal problem, $\mathbf c\cdot \mathbf x$.
+
+Note that this holds true for both maximizing and minimizing problems.
 
 # Complementary slackness
 In case of zero slack, standardized system, or feasible binding set of points
