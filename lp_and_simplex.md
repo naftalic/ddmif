@@ -666,7 +666,7 @@ $$
 
 # Top Brass Trophy 
 
-As for another example for solving a LP using the Simplex, we will solve the Top Brass Trophy problem from Chapter 5 in Rardin's book.
+As for another example for solving a LP using the Simplex, we will solve the Top Brass Trophy problem from Chapter 5 in Rardin's book: "Optimization in Operations Research."
 
 Solve the folowing LP problem using the Simplex method:
 
