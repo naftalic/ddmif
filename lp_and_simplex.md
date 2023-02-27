@@ -165,6 +165,7 @@ $$
 \end{aligned}
 $$ 
 
+The interpretation is that we solve for $\mathbf v$, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, $\mathbf c$. 
 The dual LP provides a lower bound on the optimal value of the primal LP.
 
 To determine the optimal values of $v_1$ and $v_2$, we can solve the dual LP using Python or other LP solvers. For this problem, the optimal values are:
@@ -174,7 +175,6 @@ $$
 $$
 
 Therefore, we can use $d_1=16+4\cdot 6=40$, $d_2=2\cdot 16+3\cdot 6=50$, and $h=1360$ as the optimal coefficients and upper bound for the primal LP.
-The interpretation is that we solve for $\mathbf v$, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, $\mathbf c$. 
 
 ```{code-cell}
 m = Model()    
