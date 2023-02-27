@@ -342,7 +342,7 @@ $$
 \mathbf c\cdot (\mathbf x^{(t+1)}-\mathbf x^{(t)})=\lambda \mathbf c\cdot\Delta\mathbf x=\lambda(\Delta\mathbf x)^2\ge 0,
 $$
 
-unless $$\mathbf{x}^{(t+1)}=\mathbf{x}^{(t)}=\mathbf{x}^*$$. In that case, $$\mathbf{x}^*$$ is the local max which is equal to the global max and the solution cannot improve.
+unless $\mathbf x^{(t+1)}=\mathbf x^{(t)}=\mathbf x^\*$. In that case, $\mathbf x^\*$ is the local max which is equal to the global max and the solution cannot improve.
 
 If all constraints are linear, their feasible is convex:
 
