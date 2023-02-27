@@ -515,29 +515,24 @@ import cvxpy as cp
 import numpy as np
 
 # Define the data
-r = np.array([0.1, 0.2, 0.15]) # expected returns of assets
-rf = 0.05 # risk-free rate
-Sigma = np.array([[0.05, 0.02, 0.01], [0.02, 0.06, 0.03], [0.01, 0.03, 0.04]]) # covariance matrix of returns
-n = len(r)
+r = np.array([0.08, 0.10, 0.12])
+rf = 0.05
+Sigma = np.array([[0.05, 0.02, 0.01],
+                  [0.02, 0.06, 0.03],
+                  [0.01, 0.03, 0.04]])
 
 # Define the variables
-x = cp.Variable(n)
+x = cp.Variable(3)
 
-# Define the objective function
-objective = (r.T @ x - rf) / cp.sqrt(x.T @ Sigma @ x)
-
-# Define the constraints
+# Define the problem
+objective = cp.Maximize((r.T @ x - rf) / cp.quad_form(x, Sigma))
 constraints = [cp.sum(x) == 1, x >= 0]
+problem = cp.Problem(objective, constraints)
 
-# Formulate the problem and solve
-prob = cp.Problem(cp.Maximize(objective), constraints)
-prob.solve()
+# Solve the problem
+problem.solve(solver=cp.GUROBI)
 
-# Print the solution
-print("Optimal portfolio:")
-print("x = ", x.value)
-print("Optimal value:")
-print("Sharpe ratio = ", prob.value)
+# Print the optimal value and solution
+print("Optimal value:", problem.value)
+print("Optimal solution:", x.value)
 
-
-# This code generates random data for $n=5$ assets and solves the optimization problem using Gurobi. The optimal portfolio weights, expected return, standard deviation, and Sharpe ratio are printed at the end.
