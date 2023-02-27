@@ -256,7 +256,7 @@ Therefore, the optimal value of the dual problem, $\mathbf v\cdot \mathbf b$, pr
 Note that this holds true for both maximizing and minimizing problems.
 
 # Complementary slackness
-In case of zero slack, standardized system, or feasible binding set of points
+Complementary slackness is a condition that relates the optimal solutions of the primal and dual LP problems. Specifically, if a binding constraint is active in the primal problem, then the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.
 
 $$
 \begin{aligned}
@@ -265,6 +265,15 @@ $$
 &\mathbf v\cdot (\mathbf A\mathbf x- \mathbf b)=0 \quad\text{(dual complementary slackness)}.\\
 \end{aligned}
 $$
+
+Using the primal complementary slackness condition, we have
+$$
+\begin{aligned}
+(\mathbf c-\mathbf v\mathbf A)\cdot \mathbf x &= (40,50)-(24,8)\cdot \begin{pmatrix}3\\ 2 \end{pmatrix}
+\end{aligned}
+$$
+
+
 
 Thus,
 
