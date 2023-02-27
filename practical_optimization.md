@@ -488,39 +488,42 @@ Suppose we have a portfolio with $n$ assets and we want to allocate a fraction $
 
 $$
 \begin{aligned}
-\text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
+\text{maximize} \quad \boldsymbol{r}^T\boldsymbol{x} - r_f \sum_{i=1}^n x_i - \frac{\gamma}{2} \boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x} \\
 \text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \
 & \boldsymbol{x} \succeq 0
 \end{aligned}
 $$
 
-where the numerator of the objective function is the expected return of the portfolio and the denominator is the risk of the portfolio (measured by the standard deviation).
+
+where $\gamma > 0$ is a parameter that controls the level of risk aversion. The numerator of the objective function is the expected return of the portfolio and the denominator is the risk of the portfolio (measured by the standard deviation).
 
 To solve this problem using CVXPY and Gurobi, we can use the following code:
 
 ```{code-cell}
-import cvxpy as cp
 import numpy as np
+import cvxpy as cp
+from cvxpy import quad_form
 
-# Define the data
-r = np.array([0.08, 0.10, 0.12])
+# Generate some random data
+np.random.seed(1)
+n = 3
+r = np.random.rand(n)
+Sigma = np.random.rand(n, n)
+Sigma = Sigma @ Sigma.T
 rf = 0.05
-Sigma = np.array([[0.05, 0.02, 0.01],
-                  [0.02, 0.06, 0.03],
-                  [0.01, 0.03, 0.04]])
+gamma = 1
 
-# Define the variables
-x = cp.Variable(3)
-
-# Define the problem
-objective = cp.Maximize((r.T @ x - rf) / cp.quad_form(x, Sigma))
+# Define variables and problem
+x = cp.Variable(n)
+objective = cp.Maximize(r @ x - rf * cp.sum(x) - gamma/2 * quad_form(x, Sigma))
 constraints = [cp.sum(x) == 1, x >= 0]
 problem = cp.Problem(objective, constraints)
 
-# Solve the problem
+# Solve problem using Gurobi solver
 problem.solve(solver=cp.GUROBI)
 
-# Print the optimal value and solution
-print("Optimal value:", problem.value)
-print("Optimal solution:", x.value)
+# Print optimal value and solution
+print("Optimal value: ", problem.value)
+print("Optimal solution: ", x.value)
+
 ```
