@@ -121,33 +121,17 @@ Here's an implementation:
 import numpy as np
 from scipy.optimize import minimize
 
-# Define the objective function
-def objective_function(x, r, Sigma):
-    return -(r.T @ x ) / np.sqrt(x.T @ Sigma @ x)
+w = np.linspace(0, 1, 100)
+sr = (0.3*20*w + 0.2*10*(1-w))/np.sqrt(9*w**2 + 16*(1-w)**2)
 
-# Define the constraints
-def constraint1(x):
-    return np.sum(x) - 1
+def objective(x):
+    return -sr[np.argmax(sr)]
 
-def constraint2(x):
-    return x
+bounds = [(0, 1)]
+initial_guess = np.array([0.5])
 
-# Set the initial guess and bounds
-n = 2
-x0 = np.ones(n) / n
-bounds = [(0, None) for i in range(n)]
+result = minimize(objective, initial_guess, method='SLSQP', bounds=bounds)
 
-# Set the problem data
-r = np.array([6, 2])
-Sigma = np.array([[9, 0], [0, 16]])
-
-# Define the problem object
-problem = {'type': 'eq', 'fun': constraint1}
-problem2 = {'type': 'ineq', 'fun': constraint2}
-
-# Solve the problem
-result = minimize(objective_function, x0, args=(r, Sigma), method='SLSQP', bounds=bounds, constraints=[problem, problem2])
-
-# Print the solution
-print(result)
+print(f"Optimal value: {-result.fun:.4f}")
+print(f"Optimal w: {w[np.argmax(sr)]:.4f}")
 ```
