@@ -447,32 +447,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#blended-multiobjective-optimization">
+     Blended Multiobjective Optimization
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#blended-multiobjective-optimization">
-   Blended Multiobjective Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Using CVXPY + GUROBI
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-multiobjective-optimization">
-   Hierarchical Multiobjective Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#hierarchical-multiobjective-optimization">
+     Hierarchical Multiobjective Optimization
     </a>
    </li>
   </ul>
@@ -565,32 +546,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#blended-multiobjective-optimization">
+     Blended Multiobjective Optimization
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#blended-multiobjective-optimization">
-   Blended Multiobjective Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Using CVXPY + GUROBI
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-multiobjective-optimization">
-   Hierarchical Multiobjective Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Using CVXPY + GUROBI
+    <a class="reference internal nav-link" href="#hierarchical-multiobjective-optimization">
+     Hierarchical Multiobjective Optimization
     </a>
    </li>
   </ul>
@@ -925,8 +887,6 @@ Optimal value: 12.0
 \end{split}\]</div>
 <p>where target profit, target waste, and target production are the company’s goals for each respective metric.</p>
 <p>We can solve this model using the CVXPY package with the GUROBI solver. Here’s the code:</p>
-<section id="id2">
-<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -976,10 +936,8 @@ Waste:  100.0
 </div>
 </div>
 </div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="blended-multiobjective-optimization">
-<h1>Blended Multiobjective Optimization<a class="headerlink" href="#blended-multiobjective-optimization" title="Permalink to this headline">#</a></h1>
+<section id="blended-multiobjective-optimization">
+<h2>Blended Multiobjective Optimization<a class="headerlink" href="#blended-multiobjective-optimization" title="Permalink to this headline">#</a></h2>
 <p>The above problem is actually a blended multiobjective optimization problem, where we aim to minimize a linear combination of multiple objectives. Blended multiobjective optimization involves finding a solution that optimizes multiple objectives by combining them into a single objective using weighted coefficients.</p>
 <p>In the following example, we aim to minimize a linear combination of two decision variables, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>, subject to two linear constraints. The objective function is defined as <span class="math notranslate nohighlight">\(0.4x_1 + 0.6x_2\)</span>, which is a weighted sum of the two decision variables. The weights of the decision variables determine their relative importance in the optimization process.</p>
 <div class="math notranslate nohighlight">
@@ -993,9 +951,7 @@ Waste:  100.0
 \end{aligned}
 \end{split}\]</div>
 <p>Here, the problem is subject to two linear constraints, which are defined as <span class="math notranslate nohighlight">\(-2x_1 + 3x_2 \geq 6\)</span> and <span class="math notranslate nohighlight">\(3x_1 + 2x_2 \geq 12\)</span>. These constraints represent the feasible region of the problem, where the solution must lie. Additionally, we have the non-negative constraint <span class="math notranslate nohighlight">\(x_1, x_2 \geq 0\)</span>, which means that the decision variables cannot be negative.</p>
-<p>Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and Gurobi:</p>
-<section id="id3">
-<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and GUROBI:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -1035,9 +991,8 @@ Optimal solution = [1.84615385 3.23076923]
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="hierarchical-multiobjective-optimization">
-<h1>Hierarchical Multiobjective Optimization<a class="headerlink" href="#hierarchical-multiobjective-optimization" title="Permalink to this headline">#</a></h1>
+<section id="hierarchical-multiobjective-optimization">
+<h2>Hierarchical Multiobjective Optimization<a class="headerlink" href="#hierarchical-multiobjective-optimization" title="Permalink to this headline">#</a></h2>
 <p>Hierarchical multiobjective optimization problem involves optimizing multiple conflicting objectives in a hierarchical manner, where the objectives at each level depend on the solutions found at the previous level.</p>
 <p>As for example let’s look at the following system that define two levels of objectives.</p>
 <div class="math notranslate nohighlight">
@@ -1053,9 +1008,7 @@ Optimal solution = [1.84615385 3.23076923]
 \end{split}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the decision variables, <span class="math notranslate nohighlight">\(f_1(x)\)</span> and <span class="math notranslate nohighlight">\(f_2(x)\)</span> are the first and second level objective functions, <span class="math notranslate nohighlight">\(g(x)\)</span> and <span class="math notranslate nohighlight">\(h(x)\)</span> are the first and second level constraints, and <span class="math notranslate nohighlight">\(f_1^*\)</span> is the optimal value of the first level objective function.</p>
 <p>The problem involves solving a hierarchical multiobjective optimization problem, where the second level objective function is dependent on the optimal value of the first level objective function. The first level objective function is to minimize the sum of squares of the decision variables, subject to the constraint <span class="math notranslate nohighlight">\(g(x)\)</span>. The second level objective function is to minimize the Euclidean distance between the decision variables and a fixed point <span class="math notranslate nohighlight">\(\begin{bmatrix}1 \ 1\end{bmatrix}\)</span>, subject to the constraint <span class="math notranslate nohighlight">\(h(x)\)</span> and the constraint <span class="math notranslate nohighlight">\(f_1(x) \leq f_1^*\)</span>.</p>
-<p>Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and Gurobi:</p>
-<section id="id4">
-<h2>Using CVXPY + GUROBI<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and GUROBI:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
