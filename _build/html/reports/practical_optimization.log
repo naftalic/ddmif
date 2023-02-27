@@ -18,59 +18,42 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import cvxpy as cp
-import mosek
+from gurobipy import *
 
-# Define the variables
-x1 = cp.Variable(integer=True)
-x2 = cp.Variable(integer=True)
+# Define the problem data
+n = 2
+m = 2
+A = np.array([[-2, 3], [3, 2]])
+b = np.array([6, 12])
+c = np.array([0.4, 0.6])
+
+# Define the decision variables
+x = cp.Variable(n)
 
 # Define the objective function
-obj = cp.Minimize(3*x1 + 2*x2)
+obj = cp.Minimize(c @ x)
 
 # Define the constraints
-constr = [x1 + x2 <= 4]
+constraints = [A @ x >= b, x >= 0]
 
-# Create the problem instance and solve it
-prob = cp.Problem(obj, constr)
-prob.solve(solver=cp.MOSEK, verbose= True)
+# Solve the problem using CVXPY and Gurobi
+prob = cp.Problem(obj, constraints)
+prob.solve(solver=GUROBI)
 
-# Print the optimal solution and optimal value
-print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
-print("Optimal value: {}".format(prob.value))
+# Print the optimal value and the optimal solution
+print("Optimal value =", prob.value)
+print("Optimal solution =", x.value)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mSolverError[0m                               Traceback (most recent call last)
-Cell [0;32mIn[5], line 16[0m
-[1;32m     14[0m [38;5;66;03m# Create the problem instance and solve it[39;00m
-[1;32m     15[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(obj, constr)
-[0;32m---> 16[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43msolver[49m[38;5;241;43m=[39;49m[43mcp[49m[38;5;241;43m.[39;49m[43mMOSEK[49m[43m,[49m[43m [49m[43mverbose[49m[38;5;241;43m=[39;49m[43m [49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
-[1;32m     18[0m [38;5;66;03m# Print the optimal solution and optimal value[39;00m
-[1;32m     19[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal solution: x1 = [39m[38;5;132;01m{}[39;00m[38;5;124m, x2 = [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(x1[38;5;241m.[39mvalue, x2[38;5;241m.[39mvalue))
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[8], line 22[0m
+[1;32m     20[0m [38;5;66;03m# Solve the problem using CVXPY and Gurobi[39;00m
+[1;32m     21[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(obj, constraints)
+[0;32m---> 22[0m prob[38;5;241m.[39msolve(solver[38;5;241m=[39m[43mGUROBI[49m)
+[1;32m     24[0m [38;5;66;03m# Print the optimal value and the optimal solution[39;00m
+[1;32m     25[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal value =[39m[38;5;124m"[39m, prob[38;5;241m.[39mvalue)
 
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493[0m, in [0;36mProblem.solve[0;34m(self, *args, **kwargs)[0m
-[1;32m    491[0m [38;5;28;01melse[39;00m:
-[1;32m    492[0m     solve_func [38;5;241m=[39m Problem[38;5;241m.[39m_solve
-[0;32m--> 493[0m [38;5;28;01mreturn[39;00m [43msolve_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:1068[0m, in [0;36mProblem._solve[0;34m(self, solver, warm_start, verbose, gp, qcp, requires_grad, enforce_dpp, ignore_dpp, canon_backend, **kwargs)[0m
-[1;32m   1066[0m end [38;5;241m=[39m time[38;5;241m.[39mtime()
-[1;32m   1067[0m [38;5;28mself[39m[38;5;241m.[39m_solve_time [38;5;241m=[39m end [38;5;241m-[39m start
-[0;32m-> 1068[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43munpack_results[49m[43m([49m[43msolution[49m[43m,[49m[43m [49m[43msolving_chain[49m[43m,[49m[43m [49m[43minverse_data[49m[43m)[49m
-[1;32m   1069[0m [38;5;28;01mif[39;00m verbose:
-[1;32m   1070[0m     [38;5;28mprint[39m(_FOOTER)
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:1393[0m, in [0;36mProblem.unpack_results[0;34m(self, solution, chain, inverse_data)[0m
-[1;32m   1391[0m     warnings[38;5;241m.[39mwarn(INF_OR_UNB_MESSAGE)
-[1;32m   1392[0m [38;5;28;01mif[39;00m solution[38;5;241m.[39mstatus [38;5;129;01min[39;00m s[38;5;241m.[39mERROR:
-[0;32m-> 1393[0m     [38;5;28;01mraise[39;00m error[38;5;241m.[39mSolverError(
-[1;32m   1394[0m             [38;5;124m"[39m[38;5;124mSolver [39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m failed. [39m[38;5;124m"[39m [38;5;241m%[39m chain[38;5;241m.[39msolver[38;5;241m.[39mname() [38;5;241m+[39m
-[1;32m   1395[0m             [38;5;124m"[39m[38;5;124mTry another solver, or solve with verbose=True for more [39m[38;5;124m"[39m
-[1;32m   1396[0m             [38;5;124m"[39m[38;5;124minformation.[39m[38;5;124m"[39m)
-[1;32m   1398[0m [38;5;28mself[39m[38;5;241m.[39munpack(solution)
-[1;32m   1399[0m [38;5;28mself[39m[38;5;241m.[39m_solver_stats [38;5;241m=[39m SolverStats([38;5;28mself[39m[38;5;241m.[39m_solution[38;5;241m.[39mattr,
-[1;32m   1400[0m                                  chain[38;5;241m.[39msolver[38;5;241m.[39mname())
-
-[0;31mSolverError[0m: Solver 'MOSEK' failed. Try another solver, or solve with verbose=True for more information.
-SolverError: Solver 'MOSEK' failed. Try another solver, or solve with verbose=True for more information.
+[0;31mNameError[0m: name 'GUROBI' is not defined
+NameError: name 'GUROBI' is not defined
 
