@@ -1018,7 +1018,7 @@ Waste:  100.0
 
 <span class="c1"># Solve the problem using CVXPY and Gurobi</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
-<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">GUROBI</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
 
 <span class="c1"># Print the optimal value and the optimal solution</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
@@ -1027,16 +1027,8 @@ Waste:  100.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">22</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1"># Solve the problem using CVXPY and Gurobi</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">GUROBI</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="c1"># Print the optimal value and the optimal solution</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;GUROBI&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = 2.676923076923077
+Optimal solution = [1.84615385 3.23076923]
 </pre></div>
 </div>
 </div>
@@ -1092,13 +1084,27 @@ Waste:  100.0
 
 <span class="c1"># Solve the problem using CVXPY and Gurobi</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">hierarchy_problem</span><span class="p">(</span><span class="n">hierarchy</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
-<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">GUROBI</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
 
 <span class="c1"># Print the optimal value and the optimal solution for each level</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">levels</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Level&quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution =&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">variables</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">25</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">h</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="c1"># Solve the problem using CVXPY and Gurobi</span>
+<span class="ne">---&gt; </span><span class="mi">25</span> <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">hierarchy_problem</span><span class="p">(</span><span class="n">hierarchy</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Print the optimal value and the optimal solution for each level</span>
+
+<span class="ne">AttributeError</span>: module &#39;cvxpy&#39; has no attribute &#39;hierarchy_problem&#39;
 </pre></div>
 </div>
 </div>
