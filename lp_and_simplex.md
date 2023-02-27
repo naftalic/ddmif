@@ -267,6 +267,7 @@ $$
 $$
 
 Using the primal complementary slackness condition, we have
+
 $$
 \begin{aligned}
 (\mathbf c-\mathbf v\mathbf A)\cdot \mathbf x &= (40,50)-(24,8)\cdot \begin{pmatrix}3\\ 2 \end{pmatrix}
