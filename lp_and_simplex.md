@@ -79,9 +79,8 @@ $$
 
 * The cost coefficients, $c_1$ and $c_2$, have values of 40 and 50, respectively. The ranges in which they are allowed to change without affecting the optimal solution are $(25, 66.667)$ and $(25, 66.667)$, respectively.
 * The right-hand side values of the constraints, $b_1$ and $b_2$, have values of 40 and 120, respectively. They can change to within the values $(30, 80)$ and $(60, 160)$, respectively, without affecting the optimal solution mix.
-* The shadow prices of the constraints are 16 and 6 for $b_1$ and $b_2$, respectively.
-* There is no slack in either constraint.
-
+* The shadow prices of the constraints are 16 and 6 for $b_1$ and $b_2$, respectively. (The shadow price is the change in the optimal objective value of the linear program per unit increase in the right-hand side of a constraint.)
+* There is no slack in either constraint. (Slack variables are non-negative variables that are introduced to convert inequalities into equations.)
 
 **Can we infer the optimal value of $z$, or at least bound its value, without solving the LP model?** 
 
