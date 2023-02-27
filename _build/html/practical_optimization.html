@@ -1149,13 +1149,13 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 <h1>Sharpe Ratio maximization<a class="headerlink" href="#sharpe-ratio-maximization" title="Permalink to this headline">#</a></h1>
 <p>Suppose we have a portfolio with <span class="math notranslate nohighlight">\(n\)</span> assets and we want to allocate a fraction <span class="math notranslate nohighlight">\(x_i\)</span> of our total investment in asset <span class="math notranslate nohighlight">\(i\)</span> such that the expected return of the portfolio is maximized while keeping the risk under control. Let <span class="math notranslate nohighlight">\(r_i\)</span> be the expected return of asset <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\sigma_i\)</span> be the standard deviation of asset <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(w_i\)</span> be the weight of asset <span class="math notranslate nohighlight">\(i\)</span> in the portfolio. We can formulate this problem as:</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \begin{aligned}
-\text{maximize} \quad &amp; \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
-\text{subject to} \quad &amp; \boldsymbol{e}^T \boldsymbol{x} = 1 \
-&amp; \boldsymbol{x} \succeq 0
+\text{maximize} \quad &amp; \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \\
+\text{subject to} \quad &amp; \boldsymbol{e}^T \boldsymbol{x} = 1 \\
+&amp; \boldsymbol{x} \ge 0
 \end{aligned}
-\]</div>
+\end{split}\]</div>
 <p>Since the objective function is not convex, we can use a non-convex optimization solver like the SLSQP algorithm from the SciPy library in Python.</p>
 <p>Here’s an implementation:</p>
 <div class="cell docutils container">

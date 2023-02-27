@@ -488,9 +488,9 @@ Suppose we have a portfolio with $n$ assets and we want to allocate a fraction $
 
 $$
 \begin{aligned}
-\text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
-\text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \
-& \boldsymbol{x} \succeq 0
+\text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \\
+\text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \\
+& \boldsymbol{x} \ge 0
 \end{aligned}
 $$
 
