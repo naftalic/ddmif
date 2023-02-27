@@ -151,6 +151,11 @@ const thebe_selector_output = ".output, .cell_output"
    8) Rebalancing and transactions costs
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="practical_optimization.html">
+   Appendix A) Hands-on Optimization
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -564,6 +569,57 @@ The equations for Stock A and Stock B’s returns are given as</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/basic_models_3_0.png" src="_images/basic_models_3_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span> <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Sigma</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Define the constraints</span>
+<span class="k">def</span> <span class="nf">constraint1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">constraint2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="c1"># Set the initial guess and bounds</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="c1"># Set the problem data</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">]])</span>
+
+<span class="c1"># Define the problem object</span>
+<span class="n">problem</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">constraint1</span><span class="p">}</span>
+<span class="n">problem2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">constraint2</span><span class="p">}</span>
+
+<span class="c1"># Solve the problem</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="n">problem</span><span class="p">,</span> <span class="n">problem2</span><span class="p">])</span>
+
+<span class="c1"># Print the solution</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully
+ success: True
+  status: 0
+     fun: -2.061552570517261
+       x: [ 8.424e-01  1.576e-01]
+     nit: 6
+     jac: [ 2.787e-04 -1.489e-03]
+    nfev: 18
+    njev: 6
+</pre></div>
+</div>
 </div>
 </div>
 </section>

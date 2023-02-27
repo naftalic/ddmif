@@ -100,3 +100,40 @@ print( w[np.argmax(sr)], np.max(sr) )
 plt.plot(w,sr)
 plt.show()
 
+
+# In[4]:
+
+
+import numpy as np
+from scipy.optimize import minimize
+
+# Define the objective function
+def objective_function(x, r, Sigma):
+    return -(r.T @ x ) / np.sqrt(x.T @ Sigma @ x)
+
+# Define the constraints
+def constraint1(x):
+    return np.sum(x) - 1
+
+def constraint2(x):
+    return x
+
+# Set the initial guess and bounds
+n = 2
+x0 = np.ones(n) / n
+bounds = [(0, None) for i in range(n)]
+
+# Set the problem data
+r = np.array([6, 2])
+Sigma = np.array([[9, 0], [0, 16]])
+
+# Define the problem object
+problem = {'type': 'eq', 'fun': constraint1}
+problem2 = {'type': 'ineq', 'fun': constraint2}
+
+# Solve the problem
+result = minimize(objective_function, x0, args=(r, Sigma), method='SLSQP', bounds=bounds, constraints=[problem, problem2])
+
+# Print the solution
+print(result)
+
