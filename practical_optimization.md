@@ -501,41 +501,31 @@ To solve this problem using CVXPY and Gurobi, we can use the following code:
 ```{code-cell}
 import cvxpy as cp
 import numpy as np
-import gurobipy as grb
 
 # Define the data
-np.random.seed(1)
-n = 5
-r = np.random.rand(n)  # expected returns
-sigma = np.random.rand(n)  # standard deviations
-cov = np.diag(sigma)  # covariance matrix
-target_return = 0.05  # target expected return
+r = np.array([0.1, 0.2, 0.15]) # expected returns of assets
+rf = 0.05 # risk-free rate
+Sigma = np.array([[0.05, 0.02, 0.01], [0.02, 0.06, 0.03], [0.01, 0.03, 0.04]]) # covariance matrix of returns
+n = len(r)
 
 # Define the variables
-w = cp.Variable(n)
-
-# Define the constraints
-constraints = [
-    cp.sum(w) == 1,  # budget constraint
-    w >= 0  # long-only constraint
-]
+x = cp.Variable(n)
 
 # Define the objective function
-objective = cp.Maximize((r @ w) / cp.sqrt(cp.quad_form(w, cov)))
+objective = (r.T @ x - rf) / cp.sqrt(x.T @ Sigma @ x)
 
-# Define the problem
-prob = cp.Problem(objective, constraints)
+# Define the constraints
+constraints = [cp.sum(x) == 1, x >= 0]
 
-# Solve the problem using Gurobi
-prob.solve(solver=cp.GUROBI)
+# Formulate the problem and solve
+prob = cp.Problem(cp.Maximize(objective), constraints)
+prob.solve()
 
-# Print the results
+# Print the solution
 print("Optimal portfolio:")
-for i in range(n):
-    print(f"Asset {i+1}: {w.value[i]:.4f}")
-print(f"Expected return: {(r @ w.value):.4f}")
-print(f"Standard deviation: {cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
-print(f"Sharpe ratio: {(r @ w.value) / cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
+print("x = ", x.value)
+print("Optimal value:")
+print("Sharpe ratio = ", prob.value)
 ```
 
 This code generates random data for $n=5$ assets and solves the optimization problem using Gurobi. The optimal portfolio weights, expected return, standard deviation, and Sharpe ratio are printed at the end.
