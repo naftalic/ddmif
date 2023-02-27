@@ -403,7 +403,7 @@ f1 = cp.sum_squares(x)
 g = x[0] + x[1] - 1
 
 # Define the second level objective function and constraint
-f2 = cp.norm(x - [1, 0], 2)
+f2 = cp.norm(x - [1, 1], 2)
 h = x[0] - x[1] - 1
 
 # Define the hierarchy
@@ -421,8 +421,11 @@ print("Level 1")
 print("Optimal value =", prob.value)
 print("Optimal solution =", x.value)
 
+# Update the constraints for the second level
+constraints.append(f1 <= hierarchy[0].value)
+
 # Solve the problem using CVXPY
-prob = cp.Problem(cp.Maximize(hierarchy[1]), constraints)
+prob = cp.Problem(cp.Minimize(hierarchy[1]), constraints)
 prob.solve()
 
 # Print the optimal value and the optimal solution for the second level
