@@ -494,7 +494,9 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="a2-theory-of-linear-programing-and-the-simplex-method">
 <h1>A2) Theory of linear programing and the Simplex method<a class="headerlink" href="#a2-theory-of-linear-programing-and-the-simplex-method" title="Permalink to this headline">#</a></h1>
-<p>First, we will briefly discuss the <strong>primal-dual theory</strong> with a few examples. Consider the following linear programing problem:</p>
+<p>In this section, we will discuss the theory of linear programming and the simplex method. Linear programming is a mathematical technique used to optimize a linear objective function subject to linear equality and inequality constraints. The simplex method is an algorithm used to solve linear programming problems.</p>
+<p>To begin, let us consider the <strong>primal-dual theory</strong> with a few examples. The primal-dual theory states that every linear programming problem has a dual problem, and the optimal values of the primal and dual problems are equal.</p>
+<p>Now, let’s look at an example linear programming problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -550,12 +552,12 @@ c2 : slack = 0.0 , shadow price= 6.0 , (120.0, 60.0, 160.0)
 </div>
 </div>
 </div>
-<p>Here, the optimal solution is</p>
+<p>The optimal solution to the linear programming problem is given by</p>
 <div class="math notranslate nohighlight">
 \[
 (x^*,z)=((24,8),1360).
 \]</div>
-<p>In addition, the Python solution shows that</p>
+<p>The Gurobi output also shows the sensitivity analysis results for the problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -567,36 +569,41 @@ c2 : slack = 0.0 , shadow price= 6.0 , (120.0, 60.0, 160.0)
 \qquad s_2 &amp;= 0. \\
 \end{aligned}
 \end{split}\]</div>
-<p>That is, the cost coefficients, <span class="math notranslate nohighlight">\(\mathbf c = (c_1, c_2)\)</span>, have values 40 and 50, and the ranges in which they are allowed to change without affecting the optimal <span class="math notranslate nohighlight">\(x^*\)</span> are <span class="math notranslate nohighlight">\((25, 66.667)\)</span> and <span class="math notranslate nohighlight">\((25, 66.667)\)</span>. Similarly, the RHS constraints, <span class="math notranslate nohighlight">\(\mathbf b = (b_1, b_2)\)</span>, have values of 40 and 120 and can change to within the values <span class="math notranslate nohighlight">\((30, 80)\)</span> and <span class="math notranslate nohighlight">\((60, 160)\)</span> without affecting the optimal solution mix. Also, the shadow prices of the RHS constraints are 16 and 6, and there is no slack.</p>
-<p><strong>Is it possible to infer the optimal <span class="math notranslate nohighlight">\(z\)</span> or at least bound its value without solving the LP model?</strong></p>
-<p>The above objective is <span class="math notranslate nohighlight">\(40𝑥_1 + 50𝑥_2\)</span> can be bounded using the first constraint and the fact that both decision variables are non-negative</p>
+<ul class="simple">
+<li><p>The cost coefficients, <span class="math notranslate nohighlight">\(c_1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span>, have values of 40 and 50, respectively. The ranges in which they are allowed to change without affecting the optimal solution are <span class="math notranslate nohighlight">\((25, 66.667)\)</span> and <span class="math notranslate nohighlight">\((25, 66.667)\)</span>, respectively.</p></li>
+<li><p>The right-hand side values of the constraints, <span class="math notranslate nohighlight">\(b_1\)</span> and <span class="math notranslate nohighlight">\(b_2\)</span>, have values of 40 and 120, respectively. They can change to within the values <span class="math notranslate nohighlight">\((30, 80)\)</span> and <span class="math notranslate nohighlight">\((60, 160)\)</span>, respectively, without affecting the optimal solution mix.</p></li>
+<li><p>The shadow prices of the constraints are 16 and 6 for <span class="math notranslate nohighlight">\(b_1\)</span> and <span class="math notranslate nohighlight">\(b_2\)</span>, respectively. (The shadow price is the change in the optimal objective value of the linear program per unit increase in the right-hand side of a constraint.)</p></li>
+<li><p>There is no slack in either constraint. (Slack variables are non-negative variables that are introduced to convert inequalities into equations.)</p></li>
+</ul>
+<p><strong>Can we infer the optimal value of <span class="math notranslate nohighlight">\(z\)</span>, or at least bound its value, without solving the LP model?</strong></p>
+<p>One way to do this is by using the first constraint and the fact that both decision variables are non-negative. The objective function is <span class="math notranslate nohighlight">\(40𝑥_1 + 50𝑥_2\)</span>, which can be bounded as follows:</p>
 <div class="math notranslate nohighlight">
 \[
 40𝑥_1 + 50𝑥_2&lt;=40\times(x_1 + 2𝑥_2)=40x_1 + 80𝑥_2\le 1600.
 \]</div>
-<p>Can we do better?</p>
-<p>Let’s use the second constraint,</p>
+<p>Therefore, the optimal value of <span class="math notranslate nohighlight">\(z\)</span> must be less than or equal to 1600.</p>
+<p>Is it possible to obtain a tighter bound on the optimal value of <span class="math notranslate nohighlight">\(z\)</span>? We can use the second constraint to derive another bound:</p>
 <div class="math notranslate nohighlight">
 \[
 40𝑥_1 + 50𝑥_2&lt;=50/3\times(4𝑥_1 + 3𝑥_2)=66.67x_1 + 50𝑥_2=2000
 \]</div>
-<p>but, here, the value 2000 is higher than the best upper bound we have so far, which is 1600.</p>
-<p>Systematically, we can write that</p>
+<p>However, this bound is actually looser than the previous bound we obtained using the first constraint, which was 1600. Therefore, using the second constraint does not provide a better bound in this case.</p>
+<p>Systematically, we can write:</p>
 <div class="math notranslate nohighlight">
 \[
 40𝑥_1 + 50𝑥_2\le d_1x_1 +d_2x_2 \le h,
 \]</div>
-<p>and let <span class="math notranslate nohighlight">\(h\)</span> be the upper bound on the maximum of the objective. The trick is that we will use the constraint equations to infer <span class="math notranslate nohighlight">\(d_1, d_2\)</span> and <span class="math notranslate nohighlight">\(h\)</span>. That is, we multiply the first constraint by <span class="math notranslate nohighlight">\(v_1\ge0\)</span>, the second by <span class="math notranslate nohighlight">\(v_2\ge0\)</span>, and then add the two:</p>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> is an upper bound on the maximum of the objective. To infer <span class="math notranslate nohighlight">\(d_1\)</span>, <span class="math notranslate nohighlight">\(d_2\)</span>, and <span class="math notranslate nohighlight">\(h\)</span>, we can multiply the first constraint by <span class="math notranslate nohighlight">\(v_1\ge0\)</span>, the second by <span class="math notranslate nohighlight">\(v_2\ge0\)</span>, and then add the two:</p>
 <div class="math notranslate nohighlight">
 \[
 v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 \]</div>
-<p>or</p>
+<p>which gives us:</p>
 <div class="math notranslate nohighlight">
 \[
 (v_1+4v_2)x_1+(2v_2+3v_2)x_2\le 40v_1+120v_2.
 \]</div>
-<p>In the above notation:</p>
+<p>Therefore, we can infer that:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -605,7 +612,7 @@ v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 &amp;h=40v_1+120v_2.
 \end{aligned}
 \end{split}\]</div>
-<p>How do we choose the best coefficients <span class="math notranslate nohighlight">\(v_1\)</span>, and <span class="math notranslate nohighlight">\(v_2\)</span>? We must ensure that <span class="math notranslate nohighlight">\(d_1\ge 40\)</span> and <span class="math notranslate nohighlight">\(d_2\ge 50\)</span>, and we want <span class="math notranslate nohighlight">\(h\)</span> to be as <strong>small</strong> as possible under these constraints. This is again an LP model which is called the <strong>dual</strong> to the primal set</p>
+<p>How can we determine the best coefficients <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>? We must ensure that <span class="math notranslate nohighlight">\(d_1\geq 40\)</span> and <span class="math notranslate nohighlight">\(d_2\geq 50\)</span>, and we want <span class="math notranslate nohighlight">\(h\)</span> to be as <strong>small</strong> as possible while satisfying these constraints. This is an LP model called the <strong>dual</strong> of the primal problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -617,13 +624,7 @@ v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 &amp;\qquad v_1, v_2 \ge 0.
 \end{aligned} 
 \end{split}\]</div>
-<p>In general, the dual to the primal LP is another LP model that is derived from it in the following way:</p>
-<ul class="simple">
-<li><p>Each variable in the primal becomes a constraint in the dual</p></li>
-<li><p>Each constraint in the primal becomes a variable in the dual</p></li>
-<li><p>The objective direction is inversed: maximum in the primal becomes minimum in the dual, and vice versa.</p></li>
-</ul>
-<p>Hence, for the max primal</p>
+<p>In general, the dual of a primal LP is another LP that is obtained by interchanging the roles of variables and constraints, and changing the objective from maximizing to minimizing, or vice versa. Specifically, if the primal problem is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -634,7 +635,7 @@ v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 &amp;\qquad\mathbf x \ge 0,
 \end{aligned}
 \end{split}\]</div>
-<p>the corresponding dual, is</p>
+<p>then the dual problem is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -645,12 +646,14 @@ v_1(1x_1 + 2𝑥_2)+v_2(4𝑥_1 + 3𝑥_2)\le 40v_1+120v_2
 &amp;\qquad\mathbf v\ge 0.
 \end{aligned}
 \end{split}\]</div>
-<p>The interpretation is that we solve for <span class="math notranslate nohighlight">\(\mathbf v\)</span>, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, <span class="math notranslate nohighlight">\(\mathbf c\)</span>.</p>
-<p>Solving for <span class="math notranslate nohighlight">\(v\)</span> using Python, we find that the optimal is</p>
+<p>The interpretation is that we solve for <span class="math notranslate nohighlight">\(\mathbf v\)</span>, the shadow prices of the primal, by constraining the shadow prices with the cost coefficients, <span class="math notranslate nohighlight">\(\mathbf c\)</span>.
+The dual LP provides a lower bound on the optimal value of the primal LP.</p>
+<p>To determine the optimal values of <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>, we can solve the dual LP using Python or other LP solvers. For this problem, the optimal values are:</p>
 <div class="math notranslate nohighlight">
 \[
 (v^*,h)=((16,6),1360).
 \]</div>
+<p>Therefore, we can use <span class="math notranslate nohighlight">\(d_1=16+4\cdot 6=40\)</span>, <span class="math notranslate nohighlight">\(d_2=2\cdot 16+3\cdot 6=50\)</span>, and <span class="math notranslate nohighlight">\(h=1360\)</span> as the optimal coefficients and upper bound for the primal LP.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>    
@@ -687,7 +690,7 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 </div>
 </div>
 </div>
-<p>In addition, as shown above</p>
+<p>Furthermore, as demonstrated earlier,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -699,18 +702,19 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 \qquad s_2 &amp;= 0. \\
 \end{aligned}
 \end{split}\]</div>
-<p>The dual’s decision variables, <span class="math notranslate nohighlight">\(\mathbf v\)</span>, are the primal’s shadow prices and the dual’s <span class="math notranslate nohighlight">\(\mathbf b\)</span> and <span class="math notranslate nohighlight">\(\mathbf c\)</span> correspond with their primal values. Lastly, the dual’s shadow prices are the primal’s decision variables.</p>
-<p>The primal-dual correspondence gives us more flexibility in solving the LP model. In cases where the dual is simpler, we can solve it instead of the primal.</p>
+<p>The primal’s shadow prices are the dual’s decision variables, and the dual’s <span class="math notranslate nohighlight">\(\mathbf b\)</span> and <span class="math notranslate nohighlight">\(\mathbf c\)</span> correspond to the primal’s values. Moreover, the dual’s shadow prices are the primal’s decision variables.</p>
+<p>The primal-dual relationship provides us with additional flexibility in solving LP models. When the dual is simpler, we can solve it instead of the primal.</p>
 <p>Few other properties emerge from the primal-dual relationship:</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="weak-duality">
 <h1>Weak duality<a class="headerlink" href="#weak-duality" title="Permalink to this headline">#</a></h1>
-<p>Consider the difference between the primal and dual objectives:</p>
+<p>Weak duality refers to the fundamental property of linear programming that the optimal value of the dual problem is always less than or equal to the optimal value of the primal problem. In other words, the dual objective function provides a natural lower bound for the primal objective function.</p>
+<p>To see this, consider the difference between the primal and dual objectives:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf c\cdot \mathbf x-\mathbf v\cdot \mathbf b. 
 \]</div>
-<p>This equation can be expended by adding and subtracting <span class="math notranslate nohighlight">\(\mathbf v\cdot\mathbf A\mathbf x\)</span>. That is</p>
+<p>Expanding this equation by adding and subtracting <span class="math notranslate nohighlight">\(\mathbf v\cdot\mathbf A\mathbf x\)</span>, we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -719,22 +723,18 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 &amp;\qquad (\mathbf c-\mathbf v\mathbf A)\cdot\mathbf x+ \mathbf v\cdot(\mathbf A\mathbf x- \mathbf b).\\
 \end{aligned}
 \end{split}\]</div>
-<p>But, for our maximize objective problem</p>
+<p>Since <span class="math notranslate nohighlight">\(\mathbf A\mathbf x\le \mathbf b\)</span> for the primal and <span class="math notranslate nohighlight">\(\mathbf c-\mathbf v\mathbf A\le0\)</span> for the dual, we have that</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf c-\mathbf v\mathbf A\le0, \qquad\text{and}\qquad
-\mathbf A\mathbf x- \mathbf b\le0.
+\mathbf c\cdot \mathbf x-\mathbf v\cdot \mathbf b \le 0.
 \]</div>
-<p>Hence,</p>
-<div class="math notranslate nohighlight">
-\[
-\qquad \mathbf c\cdot \mathbf x\le\mathbf v\cdot \mathbf b
-\]</div>
-<p>That is, for maximize objective problem, the dual objective provides a natural upper bound assuming all points are feasible.</p>
+<p>Therefore, the optimal value of the dual problem, <span class="math notranslate nohighlight">\(\mathbf v\cdot \mathbf b\)</span>, provides a lower bound for the optimal value of the primal problem, <span class="math notranslate nohighlight">\(\mathbf c\cdot \mathbf x\)</span>.</p>
+<p>Note that this holds true for both maximizing and minimizing problems.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="complementary-slackness">
 <h1>Complementary slackness<a class="headerlink" href="#complementary-slackness" title="Permalink to this headline">#</a></h1>
-<p>In case of zero slack, standardized system, or feasible binding set of points</p>
+<p>Complementary slackness is a fundamental concept in linear programming that links the primal and dual problems’ optimal solutions. Specifically, it states that when a constraint is binding (i.e., its slack is zero) in the primal problem, the corresponding dual variable must be positive, and vice versa. This implies that the product of the primal and dual variables associated with each constraint is zero.</p>
+<p>For a feasible solution <span class="math notranslate nohighlight">\((\mathbf x, \mathbf v)\)</span> to the primal-dual pair, the complementary slackness conditions are:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -743,13 +743,12 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 &amp;\mathbf v\cdot (\mathbf A\mathbf x- \mathbf b)=0 \quad\text{(dual complementary slackness)}.\\
 \end{aligned}
 \end{split}\]</div>
-<p>Thus,</p>
+<p>The primal-dual value equality theorem further states that the optimal objective values of the primal and dual problems are equal:</p>
 <div class="math notranslate nohighlight">
 \[
 \qquad \mathbf c^T \mathbf x^* = \mathbf b^T \mathbf v^* \quad\text{(primal-dual value equality)}.
 \]</div>
-<p>and the max optimal primal equals the min of optimal dual.</p>
-<p>In our example,</p>
+<p>Therefore, if the primal problem is a maximization problem, the optimal value of the primal problem is equal to the optimal value of the dual problem, which is a minimization problem. In the given example, we can verify that:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbf c^T \mathbf x^* = (40,50)\cdot (24,8)=1360,
@@ -757,12 +756,13 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360.
+\mathbf b^T \mathbf v^* = (40,120)\cdot (16,6)=1360
 \]</div>
+<p>confirming the primal-dual value equality theorem.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="kkt-conditions-for-optimality">
 <h1>KKT conditions for optimality<a class="headerlink" href="#kkt-conditions-for-optimality" title="Permalink to this headline">#</a></h1>
-<p>The Karush–Kuhn–Tucker (KKT) provides a necessary and sufficient condition for LP optimality. In short, for maximizing the objective, <span class="math notranslate nohighlight">\(\mathbf c^T \mathbf x\)</span>, the following is required</p>
+<p>The Karush-Kuhn-Tucker (KKT) conditions are necessary and sufficient conditions for linear programming (LP) optimality. To maximize the objective <span class="math notranslate nohighlight">\(\mathbf c^T \mathbf x\)</span>, the following conditions must be satisfied:</p>
 <p>Primal feasibility:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -775,18 +775,20 @@ c2 : slack = 0.0 , shadow price= 8.0 , (50.0, 30.0, 80.0)
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-&amp;\mathbf A\mathbf x\le \mathbf b\\
-&amp;\mathbf x\ge 0
+&amp;\mathbf A^T\mathbf v\ge \mathbf c\\
+&amp;\mathbf v\ge 0
 \end{aligned}
 \end{split}\]</div>
 <p>Complementary slackness:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-&amp;(\mathbf c-\mathbf v\mathbf A)\mathbf x=0\\
-&amp;\mathbf v(\mathbf A \mathbf x- \mathbf b)=0.
+&amp;(\mathbf c-\mathbf A^T\mathbf v)\mathbf x=0\\
+&amp;\mathbf v^T(\mathbf A \mathbf x- \mathbf b)=0.
 \end{aligned}
 \end{split}\]</div>
+<p>These conditions ensure that the primal and dual solutions are feasible and that the primal and dual objectives are equal at the optimal point. Additionally, the complementary slackness condition requires that if a constraint in the primal problem is binding (i.e., its slack is zero), then the corresponding dual variable must be positive, and vice versa. This condition implies that the product of the primal and dual variables associated with each constraint is zero.</p>
+<p>Overall, the KKT conditions are used to determine the optimal solution for a linear programming problem.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="improving-search">
 <h1>Improving search<a class="headerlink" href="#improving-search" title="Permalink to this headline">#</a></h1>
