@@ -244,7 +244,7 @@ print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
 print("Optimal value: {}".format(prob.value))
 ```
 
-# Multi-objective optimization
+# Multiobjective optimization
 Goal programming, also known as multi-objective optimization, is a technique used to solve decision-making problems that involve multiple, often conflicting objectives. It is particularly useful in situations where there is no clear trade-off between objectives and all objectives are important.
 
 In goal programming, the decision maker identifies a set of goals or objectives to be achieved and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. These goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. The model seeks to minimize these deviations subject to the constraints.
