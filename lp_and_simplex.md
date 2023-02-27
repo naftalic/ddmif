@@ -235,14 +235,7 @@ $$
 \end{aligned}
 $$
 
-Since $\mathbf A\mathbf x\le \mathbf b$ for the primal and $\mathbf c-\mathbf v\mathbf A\le0$ for the dual, we have:
-
-$$
-\mathbf c-\mathbf v\mathbf A\le0, \qquad\text{and}\qquad
-\mathbf A\mathbf x- \mathbf b\le0.
-$$
-
-which implies that 
+Since $\mathbf A\mathbf x\le \mathbf b$ for the primal and $\mathbf c-\mathbf v\mathbf A\le0$ for the dual, we have that 
 
 $$
 \mathbf c\cdot \mathbf x-\mathbf v\cdot \mathbf b \le 0.
