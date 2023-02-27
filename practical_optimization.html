@@ -1149,15 +1149,15 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 <h1>Sharpe Ratio maximization<a class="headerlink" href="#sharpe-ratio-maximization" title="Permalink to this headline">#</a></h1>
 <p>Suppose we have a portfolio with <span class="math notranslate nohighlight">\(n\)</span> assets and we want to allocate a fraction <span class="math notranslate nohighlight">\(x_i\)</span> of our total investment in asset <span class="math notranslate nohighlight">\(i\)</span> such that the expected return of the portfolio is maximized while keeping the risk under control. Let <span class="math notranslate nohighlight">\(r_i\)</span> be the expected return of asset <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\sigma_i\)</span> be the standard deviation of asset <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(w_i\)</span> be the weight of asset <span class="math notranslate nohighlight">\(i\)</span> in the portfolio. We can formulate this problem as:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
+\[
 \begin{aligned}
-\text{maximize} \quad \boldsymbol{r}^T\boldsymbol{x} - r_f \sum_{i=1}^n x_i - \frac{\gamma}{2} \boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x} \\
+\text{maximize} \quad &amp; \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
 \text{subject to} \quad &amp; \boldsymbol{e}^T \boldsymbol{x} = 1 \
 &amp; \boldsymbol{x} \succeq 0
 \end{aligned}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\gamma &gt; 0\)</span> is a parameter that controls the level of risk aversion. The numerator of the objective function is the expected return of the portfolio and the denominator is the risk of the portfolio (measured by the standard deviation).</p>
-<p>To solve this problem using CVXPY and Gurobi, we can use the following code:</p>
+\]</div>
+<p>Since the objective function is not convex, we can use a non-convex optimization solver like the SLSQP algorithm from the SciPy library in Python.</p>
+<p>Here’s an implementation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
