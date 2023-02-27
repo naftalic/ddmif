@@ -246,14 +246,14 @@ print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
 print("Optimal value: {}".format(prob.value))
 
 
-# # Goal programming
-# Goal programming is a mathematical programming technique used to solve decision-making problems that involve multiple, conflicting objectives. It is often used in situations where there is no clear trade-off between objectives and all objectives are important.
+# # Multi-objective optimization
+# Goal programming, also known as multi-objective optimization, is a technique used to solve decision-making problems that involve multiple, often conflicting objectives. It is particularly useful in situations where there is no clear trade-off between objectives and all objectives are important.
 # 
-# In goal programming, the decision maker identifies a set of goals or objectives to be achieved, and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. The goals or objectives are expressed as deviations from desired or target values, and the model seeks to minimize these deviations subject to the constraints.
+# In goal programming, the decision maker identifies a set of goals or objectives to be achieved and then formulates a mathematical model that minimizes the deviations from those goals. The model typically includes decision variables, constraints, and a set of goals or objectives to be achieved. These goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. The model seeks to minimize these deviations subject to the constraints.
 # 
-# The goals or objectives can be of different types, such as maximizing or minimizing a certain quantity, achieving a certain level of performance, or meeting specific requirements. In some cases, the goals or objectives may be conflicting, meaning that achieving one may come at the expense of the other. Goal programming allows the decision maker to balance these conflicting objectives and find a solution that achieves a satisfactory compromise.
+# The goals or objectives can be conflicting, meaning that achieving one may come at the expense of the other. In such cases, the decision maker must balance these conflicting objectives and find a solution that achieves a satisfactory compromise. This can be done by assigning weights to each objective, where higher weights indicate higher priority. Alternatively, penalty functions can be used to penalize deviations from certain objectives more heavily than others.
 # 
-# As an example of a simple goal programming model suppose a company wants to maximize their profits, but also wants to ensure that they don't produce more than a certain amount of waste. They have three goals:
+# For example, a company wants to maximize their profits, but also wants to ensure that they don't produce more than a certain amount of waste. They have three goals:
 # 
 # * Maximize profits
 # * Minimize waste produced
@@ -263,12 +263,12 @@ print("Optimal value: {}".format(prob.value))
 # 
 # $$
 # \begin{aligned}
-# &\text{Minimize } &&z_1 + z_2 + z_3\\
+# &\text{minimize } &&z_1 + z_2 + z_3\\
 # &\text{where}
 # &&z_1 = | \text{profit} - \text{target_profit}|\\
 # &&&z_2 = | \text{waste} - \text{target_waste}|\\
 # &&&z_3 = |x - \text{target_production}|\\
-# &\text{Subject to}
+# &\text{subject to}
 # &&\text{profit} = p \cdot x\\
 # &&&\text{waste} = w \cdot x\\
 # &&&x \geq 0\\
