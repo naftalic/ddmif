@@ -9,10 +9,48 @@
 # 
 # To minimize tracking error or risk when weighting stocks, the manager needs to know each stock's expected return, risk or variance, and covariances among stocks. Additionally, the manager may want to impose constraints on the portfolio creation process, such as prohibiting short sales or upholding diversification rules. The manager can then use a quadratic optimizer to determine the optimal weights for the portfolio.
 # 
-# We begin by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio's total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.
+# # Risk of Portfolio Measure
+# In finance, the risk of an investment is typically defined as the likelihood of losing money or not achieving the expected return. One way to quantify the risk of a portfolio of stocks is by using the variance or standard deviation of the portfolio returns, which reflects the degree of dispersion or variability of those returns around their mean.
+# 
+# The covariance matrix, Σ, represents the pairwise relationships between the returns of the individual stocks in the portfolio. Specifically, the $(i,j)$th element of Σ is the covariance between the returns of stocks $i$ and $j$.
+# 
+# $w$ is a vector of portfolio weights, where $w_i$ is the weight of stock $i$ in the portfolio. The product $w^TΣw$ gives the portfolio variance, which is a measure of the risk of the portfolio.
+# 
+# Here are some examples of why $w^TΣw$ is a measure of risk for portfolios of 1, 2, and 3 stocks:
+# 
+# ## Portfolio of one stock:
+# Suppose we have a portfolio consisting of only one stock. In this case, the portfolio variance simplifies to the variance of the single stock multiplied by the square of its weight in the portfolio. That is,
+# 
+# $$
+# w^TΣw = w_1^2σ_1^2
+# $$
+# 
+# where $σ_1^2$ is the variance of the single stock.
+# The higher the variance of the stock, the higher the risk of the portfolio. Similarly, if the weight of the stock in the portfolio is high, then the portfolio variance will be higher and the risk will also be higher.
+# 
+# ## Portfolio of two stocks:
+# Suppose we have a portfolio consisting of two stocks with weights $w_1$ and $w_2$. In this case, the portfolio variance is given by
+# 
+# $$
+# w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + 2w_1w_2σ_{1,2}
+# $$
+# 
+# The portfolio variance depends on the variances of the individual stocks as well as the covariance between them. If the two stocks are highly positively correlated (i.e., the covariance between them is positive), then the portfolio variance will be higher, indicating higher risk. Conversely, if the two stocks are highly negatively correlated (i.e., the covariance between them is negative), then the portfolio variance will be lower, indicating lower risk.
+# 
+# ## Portfolio of three stocks:
+# Suppose we have a portfolio consisting of three stocks with weights $w_1$, $w_2$, and $w_3$. In this case, the portfolio variance is given by
+# 
+# $$
+# w^TΣw = w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_{1,2} + 2w_1w_3σ_{1,3} + 2w_2w_3σ_{2,3}
+# $$
+# 
+# The portfolio variance now depends on the variances of the individual stocks as well as the covariances between all possible pairs of stocks. The risk of the portfolio will depend on the strengths and directions of these pairwise relationships. If the three stocks are all positively correlated, for example, then the portfolio variance and risk will be higher than if the stocks are negatively correlated or uncorrelated.
+# 
+# 
+# We continue by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio's total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.
 # 
 # # Ad hoc methods
-# After selecting the stocks for a portfolio, there are several ad hoc methods for determining the portfolio weights. The two most common are equal weighting and value weighting.
+# After selecting the stocks for a portfolio, there are several informal methods for determining the portfolio weights. The two most common are equal weighting and value weighting.
 # 
 # Equal weighting assigns the same weight to every stock, regardless of market capitalization or other factors. For example, if there are 10 stocks in the portfolio, each stock will have a weight of 0.1 (= 1/10). While this approach is simple and quick, it does not consider the expected returns or risks of the stocks and may not be suitable for portfolios where such information is available.
 # 
@@ -23,7 +61,7 @@
 # Other ad hoc weighting methods may be used for benchmarked portfolios, which will be discussed later. Ultimately, the choice of weighting method will depend on the portfolio manager's information and objectives.
 # 
 # # Mean-variance optimization method
-# Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the ex-ante risks and expected returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio's risk and return explicitly.
+# Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the **ex-ante** risks and **expected** returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio's risk and return explicitly.
 # 
 # However, MVO has its limitations, as estimation errors could result in overweighting certain outlier stocks with low variances or high means. To mitigate this risk, additional portfolio constraints, such as short-sale, diversification, or sector constraints, may be imposed to limit the maximum and minimum stock weights. It is crucial to strike a balance between the constraints to avoid contradiction.
 # 
