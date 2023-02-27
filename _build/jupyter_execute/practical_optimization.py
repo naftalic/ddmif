@@ -498,16 +498,16 @@ print("Optimal solution =", x.value)
 # 
 # $$
 # \begin{aligned}
-# \text{maximize} \quad \boldsymbol{r}^T\boldsymbol{x} - r_f \sum_{i=1}^n x_i - \frac{\gamma}{2} \boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x} \\
+# \text{maximize} \quad & \frac{\boldsymbol{r}^T\boldsymbol{x} - r_f}{\sqrt{\boldsymbol{x}^T \boldsymbol{\Sigma} \boldsymbol{x}}} \
 # \text{subject to} \quad & \boldsymbol{e}^T \boldsymbol{x} = 1 \
 # & \boldsymbol{x} \succeq 0
 # \end{aligned}
 # $$
 # 
 # 
-# where $\gamma > 0$ is a parameter that controls the level of risk aversion. The numerator of the objective function is the expected return of the portfolio and the denominator is the risk of the portfolio (measured by the standard deviation).
+# Since the objective function is not convex, we can use a non-convex optimization solver like the SLSQP algorithm from the SciPy library in Python.
 # 
-# To solve this problem using CVXPY and Gurobi, we can use the following code:
+# Here's an implementation:
 
 # In[11]:
 
