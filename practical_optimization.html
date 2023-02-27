@@ -458,6 +458,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risk-adjusted-portfolio-optimization">
+   Risk-adjusted portfolio optimization
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -556,6 +561,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risk-adjusted-portfolio-optimization">
+   Risk-adjusted portfolio optimization
+  </a>
  </li>
 </ul>
 
@@ -1068,6 +1078,62 @@ Optimal solution = [3.57372553e-06 3.57373444e-06]
 </div>
 </div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="risk-adjusted-portfolio-optimization">
+<h1>Risk-adjusted portfolio optimization<a class="headerlink" href="#risk-adjusted-portfolio-optimization" title="Permalink to this headline">#</a></h1>
+<p>Risk-adjusted portfolio optimization is a common problem in finance, where the goal is to find the optimal allocation of assets that maximizes expected returns while minimizing risks. One common approach to risk-adjusted portfolio optimization is the mean-variance optimization model developed by Harry Markowitz. The model assumes that investors are risk-averse and seek to maximize the expected return while minimizing the variance of their portfolio.</p>
+<p>The mean-variance optimization model can be expressed mathematically as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp; \text{maximize} &amp;&amp; \mu^T x - \gamma x^T \Sigma x \\
+&amp; \text{subject to} &amp;&amp; \sum_{i=1}^n x_i = 1 \\
+&amp; &amp;&amp; x \geq 0
+\end{aligned}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is a vector of expected returns for each asset, <span class="math notranslate nohighlight">\(\Sigma\)</span> is the covariance matrix of asset returns, <span class="math notranslate nohighlight">\(x\)</span> is a vector of weights for each asset, and <span class="math notranslate nohighlight">\(\gamma\)</span> is a scalar that represents the risk aversion of the investor.</p>
+<p>The parameter <span class="math notranslate nohighlight">\(\gamma\)</span> can be adjusted to reflect the risk aversion of the investor. A higher value of <span class="math notranslate nohighlight">\(\gamma\)</span> indicates a higher level of risk aversion, leading to a portfolio with lower expected returns but also lower risk. On the other hand, a lower value of <span class="math notranslate nohighlight">\(\gamma\)</span> indicates a lower level of risk aversion, leading to a portfolio with higher expected returns but also higher risk.</p>
+<p>In the following example, we randomly generated expected returns and covariance matrix for a portfolio of three assets. We set the risk aversion parameter <span class="math notranslate nohighlight">\(\gamma\)</span> to 0.5. We defined the decision variables, objective function, and constraints using CVXPY. We then solved the problem using the Gurobi solver through the CVXPY interface. Finally, we printed out the optimal value and optimal solution of the problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="c1"># Define the problem data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">Sigma</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Sigma</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Define the decision variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Define the objective function</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">))</span>
+
+<span class="c1"># Define the constraints</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Solve the problem using CVXPY and Gurobi solver</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
+
+<span class="c1"># Print the optimal value and the optimal solution</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = -0.42612462629217096
+Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
