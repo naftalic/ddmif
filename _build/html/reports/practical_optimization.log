@@ -22,38 +22,44 @@ from gurobipy import *
 
 # Define the problem data
 n = 2
-m = 2
-A = np.array([[-2, 3], [3, 2]])
-b = np.array([6, 12])
-c = np.array([0.4, 0.6])
 
 # Define the decision variables
 x = cp.Variable(n)
 
-# Define the objective function
-obj = cp.Minimize(c @ x)
+# Define the first level objective function and constraint
+f1 = cp.sum_squares(x)
+g = x[0] + x[1] - 1
+
+# Define the second level objective function and constraint
+f2 = cp.norm(x - [1, 0], 2)
+h = x[0] - x[1] - 1
+
+# Define the hierarchy
+hierarchy = [f1, f2]
 
 # Define the constraints
-constraints = [A @ x >= b, x >= 0]
+constraints = [g <= 0, h <= 0]
 
 # Solve the problem using CVXPY and Gurobi
-prob = cp.Problem(obj, constraints)
-prob.solve(solver=GUROBI)
+prob = cp.hierarchy_problem(hierarchy, constraints)
+prob.solve(solver=cp.GUROBI)
 
-# Print the optimal value and the optimal solution
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+# Print the optimal value and the optimal solution for each level
+for i, level in enumerate(prob.levels):
+    print("Level", i+1)
+    print("Optimal value =", level.value)
+    print("Optimal solution =", level.variables()[0].value)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[8], line 22[0m
-[1;32m     20[0m [38;5;66;03m# Solve the problem using CVXPY and Gurobi[39;00m
-[1;32m     21[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(obj, constraints)
-[0;32m---> 22[0m prob[38;5;241m.[39msolve(solver[38;5;241m=[39m[43mGUROBI[49m)
-[1;32m     24[0m [38;5;66;03m# Print the optimal value and the optimal solution[39;00m
-[1;32m     25[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal value =[39m[38;5;124m"[39m, prob[38;5;241m.[39mvalue)
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[9], line 25[0m
+[1;32m     22[0m constraints [38;5;241m=[39m [g [38;5;241m<[39m[38;5;241m=[39m [38;5;241m0[39m, h [38;5;241m<[39m[38;5;241m=[39m [38;5;241m0[39m]
+[1;32m     24[0m [38;5;66;03m# Solve the problem using CVXPY and Gurobi[39;00m
+[0;32m---> 25[0m prob [38;5;241m=[39m [43mcp[49m[38;5;241;43m.[39;49m[43mhierarchy_problem[49m(hierarchy, constraints)
+[1;32m     26[0m prob[38;5;241m.[39msolve(solver[38;5;241m=[39mcp[38;5;241m.[39mGUROBI)
+[1;32m     28[0m [38;5;66;03m# Print the optimal value and the optimal solution for each level[39;00m
 
-[0;31mNameError[0m: name 'GUROBI' is not defined
-NameError: name 'GUROBI' is not defined
+[0;31mAttributeError[0m: module 'cvxpy' has no attribute 'hierarchy_problem'
+AttributeError: module 'cvxpy' has no attribute 'hierarchy_problem'
 

@@ -365,7 +365,7 @@ constraints = [A @ x >= b, x >= 0]
 
 # Solve the problem using CVXPY and Gurobi
 prob = cp.Problem(obj, constraints)
-prob.solve(solver=GUROBI)
+prob.solve(solver=cp.GUROBI)
 
 # Print the optimal value and the optimal solution
 print("Optimal value =", prob.value)
@@ -397,7 +397,7 @@ print("Optimal solution =", x.value)
 # 
 # ## Using CVXPY + GUROBI
 
-# In[ ]:
+# In[9]:
 
 
 import cvxpy as cp
@@ -425,7 +425,7 @@ constraints = [g <= 0, h <= 0]
 
 # Solve the problem using CVXPY and Gurobi
 prob = cp.hierarchy_problem(hierarchy, constraints)
-prob.solve(solver=GUROBI)
+prob.solve(solver=cp.GUROBI)
 
 # Print the optimal value and the optimal solution for each level
 for i, level in enumerate(prob.levels):
