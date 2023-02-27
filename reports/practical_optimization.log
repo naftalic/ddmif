@@ -19,51 +19,41 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 import cvxpy as cp
 import numpy as np
-import gurobipy as grb
 
 # Define the data
-np.random.seed(1)
-n = 5
-r = np.random.rand(n)  # expected returns
-sigma = np.random.rand(n)  # standard deviations
-cov = np.diag(sigma)  # covariance matrix
-target_return = 0.05  # target expected return
+r = np.array([0.1, 0.2, 0.15]) # expected returns of assets
+rf = 0.05 # risk-free rate
+Sigma = np.array([[0.05, 0.02, 0.01], [0.02, 0.06, 0.03], [0.01, 0.03, 0.04]]) # covariance matrix of returns
+n = len(r)
 
 # Define the variables
-w = cp.Variable(n)
-
-# Define the constraints
-constraints = [
-    cp.sum(w) == 1,  # budget constraint
-    w >= 0  # long-only constraint
-]
+x = cp.Variable(n)
 
 # Define the objective function
-objective = cp.Maximize((r @ w) / cp.sqrt(cp.quad_form(w, cov)))
+objective = (r.T @ x - rf) / cp.sqrt(x.T @ Sigma @ x)
 
-# Define the problem
-prob = cp.Problem(objective, constraints)
+# Define the constraints
+constraints = [cp.sum(x) == 1, x >= 0]
 
-# Solve the problem using Gurobi
-prob.solve(solver=cp.GUROBI)
+# Formulate the problem and solve
+prob = cp.Problem(cp.Maximize(objective), constraints)
+prob.solve()
 
-# Print the results
+# Print the solution
 print("Optimal portfolio:")
-for i in range(n):
-    print(f"Asset {i+1}: {w.value[i]:.4f}")
-print(f"Expected return: {(r @ w.value):.4f}")
-print(f"Standard deviation: {cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
-print(f"Sharpe ratio: {(r @ w.value) / cp.sqrt(cp.quad_form(w.value, cov)).value:.4f}")
+print("x = ", x.value)
+print("Optimal value:")
+print("Sharpe ratio = ", prob.value)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mDCPError[0m                                  Traceback (most recent call last)
-Cell [0;32mIn[11], line 29[0m
-[1;32m     26[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(objective, constraints)
-[1;32m     28[0m [38;5;66;03m# Solve the problem using Gurobi[39;00m
-[0;32m---> 29[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43msolver[49m[38;5;241;43m=[39;49m[43mcp[49m[38;5;241;43m.[39;49m[43mGUROBI[49m[43m)[49m
-[1;32m     31[0m [38;5;66;03m# Print the results[39;00m
-[1;32m     32[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal portfolio:[39m[38;5;124m"[39m)
+Cell [0;32mIn[11], line 21[0m
+[1;32m     19[0m [38;5;66;03m# Formulate the problem and solve[39;00m
+[1;32m     20[0m prob [38;5;241m=[39m cp[38;5;241m.[39mProblem(cp[38;5;241m.[39mMaximize(objective), constraints)
+[0;32m---> 21[0m [43mprob[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43m)[49m
+[1;32m     23[0m [38;5;66;03m# Print the solution[39;00m
+[1;32m     24[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal portfolio:[39m[38;5;124m"[39m)
 
 File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493[0m, in [0;36mProblem.solve[0;34m(self, *args, **kwargs)[0m
 [1;32m    491[0m [38;5;28;01melse[39;00m:
@@ -118,16 +108,12 @@ File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/
 
 [0;31mDCPError[0m: Problem does not follow DCP rules. Specifically:
 The objective is not DCP. Its following subexpressions are not:
-power(QuadForm(var497, [[0.09233859 0.         0.         0.         0.        ]
- [0.         0.18626021 0.         0.         0.        ]
- [0.         0.         0.34556073 0.         0.        ]
- [0.         0.         0.         0.39676747 0.        ]
- [0.         0.         0.         0.         0.53881673]]), 0.5)
+power(QuadForm(var497, [[0.05 0.02 0.01]
+ [0.02 0.06 0.03]
+ [0.01 0.03 0.04]]), 0.5)
 DCPError: Problem does not follow DCP rules. Specifically:
 The objective is not DCP. Its following subexpressions are not:
-power(QuadForm(var497, [[0.09233859 0.         0.         0.         0.        ]
- [0.         0.18626021 0.         0.         0.        ]
- [0.         0.         0.34556073 0.         0.        ]
- [0.         0.         0.         0.39676747 0.        ]
- [0.         0.         0.         0.         0.53881673]]), 0.5)
+power(QuadForm(var497, [[0.05 0.02 0.01]
+ [0.02 0.06 0.03]
+ [0.01 0.03 0.04]]), 0.5)
 
