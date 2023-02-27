@@ -552,7 +552,7 @@ for con in m.getConstrs(): # constraints
 # In addition, $\lambda$ must be non-negative and sufficiently small not to take the improved solution outside of the feasible region. Hence,
 # 
 # $$
-# \lambda=\text{min}\bigg\(-\frac{x_j}{\Delta  x_j}: \Delta x_j\le 0\bigg\)
+# \lambda=\text{min}\{-\frac{x_j}{\Delta  x_j}: \Delta x_j\le 0\}
 # $$
 # 
 # $$
