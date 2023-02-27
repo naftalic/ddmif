@@ -377,7 +377,7 @@ $$
 \end{align*}
 $$
 
-Finally, we can substitute the value of λ into the expression for $w$ to obtain a closed-form solution for $w$:
+Finally, we can substitute the value of λ into the expression for $w$ to obtain a closed-form solution for $w:$
 
 $$
 \begin{align*}
