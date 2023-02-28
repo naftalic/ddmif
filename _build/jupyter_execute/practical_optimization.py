@@ -44,6 +44,7 @@
 
 
 import cvxpy as cp
+import numpy as np
 
 x = cp.Variable(2, nonneg=True)
 objective = cp.Maximize(5*x[0] + 4*x[1])
@@ -282,7 +283,7 @@ print("Optimal value: {}".format(np.round(problem.value,3)))
 # 
 # We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
 
-# In[ ]:
+# In[7]:
 
 
 import cvxpy as cp
@@ -340,7 +341,7 @@ print("Waste: ", w * x.value)
 # 
 # Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and GUROBI:
 
-# In[ ]:
+# In[8]:
 
 
 import cvxpy as cp
@@ -391,7 +392,7 @@ print("Optimal solution =", x.value)
 # 
 # Here is the code to solve the hierarchical multiobjective optimization problem using CVXPY and GUROBI:
 
-# In[ ]:
+# In[9]:
 
 
 import cvxpy as cp
@@ -445,7 +446,7 @@ except cp.error.SolverError:
 # 
 # In the following example, we randomly generated expected returns and covariance matrix for a portfolio of three assets. We set the risk aversion parameter $\gamma$ to 0.5. We defined the decision variables, objective function, and constraints using CVXPY. We then solved the problem using the Gurobi solver through the CVXPY interface. Finally, we printed out the optimal value and optimal solution of the problem.
 
-# In[ ]:
+# In[10]:
 
 
 import cvxpy as cp
@@ -491,7 +492,7 @@ print("Optimal solution =", x.value)
 # 
 # In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.
 
-# In[ ]:
+# In[11]:
 
 
 import numpy as np

@@ -54,6 +54,7 @@ We can use various optimization solvers such as CVXPY, GUROBIPY, and MOSEK in Py
 
 ```{code-cell}
 import cvxpy as cp
+import numpy as np
 
 x = cp.Variable(2, nonneg=True)
 objective = cp.Maximize(5*x[0] + 4*x[1])
