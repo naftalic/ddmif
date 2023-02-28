@@ -84,4 +84,22 @@ $$
 
 To account for different stocks having different transaction costs, transaction costs can be modeled as proportional to the liquidity of each stock, considering the bid-ask spread and the price impact. The trading cost can be assumed to be inversely proportional to the average trading volume of each stock. In this case, elements of $c$ would have different signs and absolute values.
 
+# Portfolio Construction
+Portfolio construction always adheres to the principle of selecting a portfolio with the optimal combination of expected return and risk, regardless of any constraints or costs that may arise. When managing against a benchmark, the goal is to find the best combination of expected excess return and tracking error. Transactions costs are a new factor to consider when determining the optimal portfolio or tracking portfolio, but they do not change the selection principle itself.
 
+## The Optimal Portfolio with Transactions Costs
+When optimizing a portfolio with transactions costs, we can frame the problem as minimizing risk for a given expected return, or as maximizing the risk-adjusted return, which is defined as the expected return minus the variance. To account for transactions costs, we must recalculate the expected return of the portfolio, which now includes subtracting the cost from the ending portfolio value and the expected return. The effective expected return has three components: the gross expected return, the transactions cost expressed as a fraction of the portfolio value, and the time value of the transactions cost. However, for realistic values of transactions cost and expected return, the time value is negligible, so we can ignore it.
+
+To express the risk-adjusted return, we use additional notation, such as the expected return vector $μ$ and the variance-covariance matrix of stock returns $\Sigma$. The risk-aversion parameter is denoted as $A$, where a value of 2 means that the portfolio manager would tolerate a 1% increase in variance if the expected return increased by 2%. The risk-adjusted return is then calculated as the expected return minus $A$ times the variance of the prospective portfolio return.
+
+Considering transactions costs, the effective risk-adjusted return is expressed as the expected return of the prospective portfolio minus the transactions costs, minus $A$ times the variance of the prospective portfolio return. 
+
+$$
+\begin{aligen}
+\text{effective reisk-adjusted return} &= \mu_P-(w^a-w^b)^Tc-A\sigma^2_P\\
+\end{aligen}
+$$
+
+Maximizing the effective risk-adjusted return subject to relevant constraints gives us the optimal portfolio. However, the effective risk-adjusted return is highly nonlinear since the transactions cost vector depends on the weight vector, so conventional quadratic optimization techniques cannot be used to solve this problem.
+
+# The tracking portfolio with transactions costs
