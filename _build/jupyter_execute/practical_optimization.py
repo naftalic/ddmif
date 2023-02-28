@@ -529,6 +529,6 @@ x0 = np.random.randn(n_assets)
 result = minimize(objective, x0, method='SLSQP', bounds=bounds, constraints=constraints)
 
 # Print the optimal portfolio weights and Sharpe ratio
-print(f"Optimal weights: {result.x}")
+print(f"Optimal weights: {np.round(result.x,3)}")
 print(f"Sharpe ratio: {-result.fun:.4f}")
 
