@@ -405,7 +405,7 @@ h = x[0] - x[1] - 1
 
 # Define the objective functions
 f1 = cp.sum_squares(x)
-f2 = cp.norm(x - cp.array([1, 1]), 2)
+f2 = cp.norm(x - np.array([1, 1]), 2)
 
 # Define problem 1
 problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
@@ -445,7 +445,7 @@ except cp.error.SolverError:
 # 
 # In the following example, we randomly generated expected returns and covariance matrix for a portfolio of three assets. We set the risk aversion parameter $\gamma$ to 0.5. We defined the decision variables, objective function, and constraints using CVXPY. We then solved the problem using the Gurobi solver through the CVXPY interface. Finally, we printed out the optimal value and optimal solution of the problem.
 
-# In[ ]:
+# In[10]:
 
 
 import cvxpy as cp
@@ -491,7 +491,7 @@ print("Optimal solution =", x.value)
 # 
 # In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.
 
-# In[ ]:
+# In[11]:
 
 
 import numpy as np
