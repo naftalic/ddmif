@@ -946,10 +946,10 @@ Optimal value: 0.5
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status: &quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: &quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal x: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Profit: &quot;</span><span class="p">,</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waste: &quot;</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal x: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Profit: &quot;</span><span class="p">,</span> <span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waste: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1005,14 +1005,14 @@ Waste:  100.0
 <span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
 
 <span class="c1"># Print the optimal value and the optimal solution</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = 2.676923076923077
-Optimal solution = [1.84615385 3.23076923]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = 2.677
+Optimal solution = [1.846 3.231]
 </pre></div>
 </div>
 </div>
@@ -1056,23 +1056,28 @@ Optimal solution = [1.84615385 3.23076923]
 <span class="n">f1_star</span> <span class="o">=</span> <span class="n">problem1</span><span class="o">.</span><span class="n">value</span>
 <span class="n">x1_star</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of f1: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">problem1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal decision variables: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x1_star</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    
 <span class="c1"># Define problem 2 with f1_star constraint</span>
 <span class="n">problem2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">f2</span><span class="p">),</span> <span class="p">[</span><span class="n">h</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f1</span> <span class="o">&lt;=</span> <span class="n">f1_star</span><span class="p">])</span>
 
 <span class="c1"># Solve problem 2</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">problem2</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of f2: &quot;</span><span class="p">,</span> <span class="n">problem2</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value of f2: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">problem2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
     <span class="n">x2_star</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal decision variables: &quot;</span><span class="p">,</span> <span class="n">x2_star</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal decision variables: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x2_star</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="k">except</span> <span class="n">cp</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">SolverError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solver failed to find optimal value for problem2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f2:  1.4142135589686502
-Optimal decision variables:  [4.76941908e-09 4.51928495e-11]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f1:  0.0
+Optimal decision variables:  [-0. -0.]
+Optimal value of f2:  1.414
+Optimal decision variables:  [0. 0.]
 </pre></div>
 </div>
 </div>

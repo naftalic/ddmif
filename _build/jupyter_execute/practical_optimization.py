@@ -316,10 +316,10 @@ prob.solve(solver=cp.GUROBI)
 
 # Print the results
 print("Status: ", prob.status)
-print("Optimal value: ", prob.value)
-print("Optimal x: ", x.value)
-print("Profit: ", p * x.value)
-print("Waste: ", w * x.value)
+print("Optimal value: ", np.round(prob.value,3))
+print("Optimal x: ", np.round(x.value,3))
+print("Profit: ", p * np.round(x.value,3))
+print("Waste: ", np.round(w * x.value,3))
 
 
 # ## Blended Multiobjective Optimization
@@ -368,8 +368,8 @@ prob = cp.Problem(obj, constraints)
 prob.solve(solver=cp.GUROBI)
 
 # Print the optimal value and the optimal solution
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+print("Optimal value =", np.round(prob.value,3))
+print("Optimal solution =", np.round(x.value,3))
 
 
 # ## Hierarchical Multiobjective Optimization
@@ -414,15 +414,18 @@ problem1.solve(solver=cp.GUROBI)
 f1_star = problem1.value
 x1_star = x.value
 
+print("Optimal value of f1: ", np.round(problem1.value,3))
+print("Optimal decision variables: ", np.round(x1_star,3))
+    
 # Define problem 2 with f1_star constraint
 problem2 = cp.Problem(cp.Minimize(f2), [h <= 0, f1 <= f1_star])
 
 # Solve problem 2
 try:
     problem2.solve(solver=cp.GUROBI)
-    print("Optimal value of f2: ", problem2.value)
+    print("Optimal value of f2: ", np.round(problem2.value,3))
     x2_star = x.value
-    print("Optimal decision variables: ", x2_star)
+    print("Optimal decision variables: ", np.round(x2_star,3))
 except cp.error.SolverError:
     print("Solver failed to find optimal value for problem2")
 
