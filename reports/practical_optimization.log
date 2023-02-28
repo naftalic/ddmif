@@ -18,99 +18,46 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import cvxpy as cp
-import numpy as np
-
-# Define the data
-r = np.array([0.08, 0.10, 0.12])
-rf = 0.05
-Sigma = np.array([[0.05, 0.02, 0.01],
-                  [0.02, 0.06, 0.03],
-                  [0.01, 0.03, 0.04]])
 
 # Define the variables
-x = cp.Variable(3)
+x = cp.Variable(2)
 
-# Define the problem
-objective = cp.Maximize((r.T @ x - rf) / cp.quad_form(x, Sigma))
-constraints = [cp.sum(x) == 1, x >= 0]
-problem = cp.Problem(objective, constraints)
+# Define the constraints
+g = x[0] + x[1] - 1
+h = x[0] - x[1] - 1
 
-# Solve the problem
-problem.solve(solver=cp.GUROBI)
+# Define the objective functions
+f1 = cp.sum_squares(x)
+f2 = cp.norm(x - cp.array([1, 1]), 2)
 
-# Print the optimal value and solution
-print("Optimal value:", problem.value)
-print("Optimal solution:", x.value)
+# Define problem 1
+problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
+problem1.solve(solver=cp.GUROBI)
+f1_star = problem1.value
+x1_star = x.value
+
+# Define problem 2 with f1_star constraint
+problem2 = cp.Problem(cp.Minimize(f2), [h <= 0, f1 <= f1_star])
+
+# Solve problem 2
+try:
+    problem2.solve(solver=cp.GUROBI)
+    print("Optimal value of f2: ", problem2.value)
+    x2_star = x.value
+    print("Optimal decision variables: ", x2_star)
+except cp.error.SolverError:
+    print("Solver failed to find optimal value for problem2")
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mDCPError[0m                                  Traceback (most recent call last)
-Cell [0;32mIn[11], line 20[0m
-[1;32m     17[0m problem [38;5;241m=[39m cp[38;5;241m.[39mProblem(objective, constraints)
-[1;32m     19[0m [38;5;66;03m# Solve the problem[39;00m
-[0;32m---> 20[0m [43mproblem[49m[38;5;241;43m.[39;49m[43msolve[49m[43m([49m[43msolver[49m[38;5;241;43m=[39;49m[43mcp[49m[38;5;241;43m.[39;49m[43mGUROBI[49m[43m)[49m
-[1;32m     22[0m [38;5;66;03m# Print the optimal value and solution[39;00m
-[1;32m     23[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal value:[39m[38;5;124m"[39m, problem[38;5;241m.[39mvalue)
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[9], line 12[0m
+[1;32m     10[0m [38;5;66;03m# Define the objective functions[39;00m
+[1;32m     11[0m f1 [38;5;241m=[39m cp[38;5;241m.[39msum_squares(x)
+[0;32m---> 12[0m f2 [38;5;241m=[39m cp[38;5;241m.[39mnorm(x [38;5;241m-[39m [43mcp[49m[38;5;241;43m.[39;49m[43marray[49m([[38;5;241m1[39m, [38;5;241m1[39m]), [38;5;241m2[39m)
+[1;32m     14[0m [38;5;66;03m# Define problem 1[39;00m
+[1;32m     15[0m problem1 [38;5;241m=[39m cp[38;5;241m.[39mProblem(cp[38;5;241m.[39mMinimize(f1), [g [38;5;241m<[39m[38;5;241m=[39m [38;5;241m2[39m])
 
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:493[0m, in [0;36mProblem.solve[0;34m(self, *args, **kwargs)[0m
-[1;32m    491[0m [38;5;28;01melse[39;00m:
-[1;32m    492[0m     solve_func [38;5;241m=[39m Problem[38;5;241m.[39m_solve
-[0;32m--> 493[0m [38;5;28;01mreturn[39;00m [43msolve_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:1054[0m, in [0;36mProblem._solve[0;34m(self, solver, warm_start, verbose, gp, qcp, requires_grad, enforce_dpp, ignore_dpp, canon_backend, **kwargs)[0m
-[1;32m   1051[0m         [38;5;28mself[39m[38;5;241m.[39munpack(chain[38;5;241m.[39mretrieve(soln))
-[1;32m   1052[0m         [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mvalue
-[0;32m-> 1054[0m data, solving_chain, inverse_data [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mget_problem_data[49m[43m([49m
-[1;32m   1055[0m [43m    [49m[43msolver[49m[43m,[49m[43m [49m[43mgp[49m[43m,[49m[43m [49m[43menforce_dpp[49m[43m,[49m[43m [49m[43mignore_dpp[49m[43m,[49m[43m [49m[43mverbose[49m[43m,[49m[43m [49m[43mcanon_backend[49m[43m,[49m[43m [49m[43mkwargs[49m
-[1;32m   1056[0m [43m[49m[43m)[49m
-[1;32m   1058[0m [38;5;28;01mif[39;00m verbose:
-[1;32m   1059[0m     [38;5;28mprint[39m(_NUM_SOLVER_STR)
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:631[0m, in [0;36mProblem.get_problem_data[0;34m(self, solver, gp, enforce_dpp, ignore_dpp, verbose, canon_backend, solver_opts)[0m
-[1;32m    629[0m [38;5;28;01mif[39;00m key [38;5;241m!=[39m [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39mkey:
-[1;32m    630[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39minvalidate()
-[0;32m--> 631[0m     solving_chain [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_construct_chain[49m[43m([49m
-[1;32m    632[0m [43m        [49m[43msolver[49m[38;5;241;43m=[39;49m[43msolver[49m[43m,[49m[43m [49m[43mgp[49m[38;5;241;43m=[39;49m[43mgp[49m[43m,[49m
-[1;32m    633[0m [43m        [49m[43menforce_dpp[49m[38;5;241;43m=[39;49m[43menforce_dpp[49m[43m,[49m
-[1;32m    634[0m [43m        [49m[43mignore_dpp[49m[38;5;241;43m=[39;49m[43mignore_dpp[49m[43m,[49m
-[1;32m    635[0m [43m        [49m[43mcanon_backend[49m[38;5;241;43m=[39;49m[43mcanon_backend[49m[43m,[49m
-[1;32m    636[0m [43m        [49m[43msolver_opts[49m[38;5;241;43m=[39;49m[43msolver_opts[49m[43m)[49m
-[1;32m    637[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39mkey [38;5;241m=[39m key
-[1;32m    638[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39msolving_chain [38;5;241m=[39m solving_chain
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/problems/problem.py:883[0m, in [0;36mProblem._construct_chain[0;34m(self, solver, gp, enforce_dpp, ignore_dpp, canon_backend, solver_opts)[0m
-[1;32m    881[0m candidate_solvers [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_find_candidate_solvers(solver[38;5;241m=[39msolver, gp[38;5;241m=[39mgp)
-[1;32m    882[0m [38;5;28mself[39m[38;5;241m.[39m_sort_candidate_solvers(candidate_solvers)
-[0;32m--> 883[0m [38;5;28;01mreturn[39;00m [43mconstruct_solving_chain[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mcandidate_solvers[49m[43m,[49m[43m [49m[43mgp[49m[38;5;241;43m=[39;49m[43mgp[49m[43m,[49m
-[1;32m    884[0m [43m                               [49m[43menforce_dpp[49m[38;5;241;43m=[39;49m[43menforce_dpp[49m[43m,[49m
-[1;32m    885[0m [43m                               [49m[43mignore_dpp[49m[38;5;241;43m=[39;49m[43mignore_dpp[49m[43m,[49m
-[1;32m    886[0m [43m                               [49m[43mcanon_backend[49m[38;5;241;43m=[39;49m[43mcanon_backend[49m[43m,[49m
-[1;32m    887[0m [43m                               [49m[43msolver_opts[49m[38;5;241;43m=[39;49m[43msolver_opts[49m[43m)[49m
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/reductions/solvers/solving_chain.py:184[0m, in [0;36mconstruct_solving_chain[0;34m(problem, candidates, gp, enforce_dpp, ignore_dpp, canon_backend, solver_opts)[0m
-[1;32m    182[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(problem[38;5;241m.[39mvariables()) [38;5;241m==[39m [38;5;241m0[39m:
-[1;32m    183[0m     [38;5;28;01mreturn[39;00m SolvingChain(reductions[38;5;241m=[39m[ConstantSolver()])
-[0;32m--> 184[0m reductions [38;5;241m=[39m [43m_reductions_for_problem_class[49m[43m([49m[43mproblem[49m[43m,[49m[43m [49m[43mcandidates[49m[43m,[49m[43m [49m[43mgp[49m[43m,[49m[43m [49m[43msolver_opts[49m[43m)[49m
-[1;32m    186[0m [38;5;66;03m# Process DPP status of the problem.[39;00m
-[1;32m    187[0m dpp_context [38;5;241m=[39m [38;5;124m'[39m[38;5;124mdcp[39m[38;5;124m'[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m gp [38;5;28;01melse[39;00m [38;5;124m'[39m[38;5;124mdgp[39m[38;5;124m'[39m
-
-File [0;32m/opt/homebrew/Caskroom/miniconda/base/envs/cvxpy_env/lib/python3.10/site-packages/cvxpy/reductions/solvers/solving_chain.py:102[0m, in [0;36m_reductions_for_problem_class[0;34m(problem, candidates, gp, solver_opts)[0m
-[1;32m     99[0m     [38;5;28;01melif[39;00m problem[38;5;241m.[39mis_dqcp():
-[1;32m    100[0m         append [38;5;241m+[39m[38;5;241m=[39m ([38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;124mHowever, the problem does follow DQCP rules. [39m[38;5;124m"[39m
-[1;32m    101[0m                    [38;5;124m"[39m[38;5;124mConsider calling solve() with `qcp=True`.[39m[38;5;124m"[39m)
-[0;32m--> 102[0m     [38;5;28;01mraise[39;00m DCPError(
-[1;32m    103[0m         [38;5;124m"[39m[38;5;124mProblem does not follow DCP rules. Specifically:[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m [38;5;241m+[39m append)
-[1;32m    104[0m [38;5;28;01melif[39;00m gp [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m problem[38;5;241m.[39mis_dgp():
-[1;32m    105[0m     append [38;5;241m=[39m build_non_disciplined_error_msg(problem, [38;5;124m'[39m[38;5;124mDGP[39m[38;5;124m'[39m)
-
-[0;31mDCPError[0m: Problem does not follow DCP rules. Specifically:
-The objective is not DCP. Its following subexpressions are not:
-([0.08 0.1  0.12] @ var497 + -0.05) / QuadForm(var497, [[0.05 0.02 0.01]
- [0.02 0.06 0.03]
- [0.01 0.03 0.04]])
-DCPError: Problem does not follow DCP rules. Specifically:
-The objective is not DCP. Its following subexpressions are not:
-([0.08 0.1  0.12] @ var497 + -0.05) / QuadForm(var497, [[0.05 0.02 0.01]
- [0.02 0.06 0.03]
- [0.01 0.03 0.04]])
+[0;31mAttributeError[0m: module 'cvxpy' has no attribute 'array'
+AttributeError: module 'cvxpy' has no attribute 'array'
 
