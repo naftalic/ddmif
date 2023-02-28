@@ -868,14 +868,21 @@ Optimal value: 12.0
 <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
 
 <span class="c1"># Print the optimal solution and optimal value</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution: x1 = </span><span class="si">{}</span><span class="s2">, x2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution: x1 = </span><span class="si">{}</span><span class="s2">, x2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = 0.5000000010554145, x2 = 0.5000000032136651
-Optimal value: 0.5000000042690796
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># Print the optimal solution and optimal value</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution: x1 = </span><span class="si">{}</span><span class="s2">, x2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -952,15 +959,6 @@ Optimal value: 0.5000000042690796
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  optimal
-Optimal value:  1400.0
-Optimal x:  200.0
-Profit:  2000.0
-Waste:  100.0
-</pre></div>
-</div>
-</div>
 </div>
 <section id="blended-multiobjective-optimization">
 <h2>Blended Multiobjective Optimization<a class="headerlink" href="#blended-multiobjective-optimization" title="Permalink to this headline">#</a></h2>
@@ -1009,12 +1007,6 @@ Waste:  100.0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = 2.676923076923077
-Optimal solution = [1.84615385 3.23076923]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="hierarchical-multiobjective-optimization">
@@ -1022,16 +1014,16 @@ Optimal solution = [1.84615385 3.23076923]
 <p>Hierarchical Multiobjective Optimization (HMO) is an approach to solving complex optimization problems with multiple objectives that are often conflicting and cannot be optimized simultaneously. In HMO, the objective functions are organized in a hierarchy, where the higher-level objectives are more important than the lower-level objectives. The optimization problem is solved in a hierarchical manner, where the lower-level objectives are optimized subject to the constraints and objectives of the higher-level problems.</p>
 <p>As an example, let’s consider the following example:</p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
 \begin{aligned}
-&amp; \text{minimize} &amp;&amp; f_1(x) = x_1^2 + x_2^2 \
-&amp; \text{subject to} &amp;&amp; g(x) = x_1 + x_2 - 1 \leq 2 \
-&amp;&amp;&amp;\
-&amp; \text{minimize} &amp;&amp; f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
-&amp; \text{subject to} &amp;&amp; h(x) = x_1 - x_2 - 1 \leq 0 \
+&amp; \text{minimize} &amp;&amp; f_1(x) = x_1^2 + x_2^2 \\
+&amp; \text{subject to} &amp;&amp; g(x) = x_1 + x_2 - 1 \leq 2 \\
+&amp;&amp;&amp;\\
+&amp; \text{minimize} &amp;&amp; f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
+&amp; \text{subject to} &amp;&amp; h(x) = x_1 - x_2 - 1 \leq 0 \\
 &amp;&amp;&amp; f_1(x) \leq f_1^*
 \end{aligned}
-\]</div>
+\end{split}\]</div>
 <p>In this example, we have two optimization problems that we want to solve using Python, CVXPY, and GUROBI. In the first problem, we aim to minimize the sum of squares of two real-valued variables, subject to the constraint that the sum of the variables is less than or equal to 1. In the second problem, we want to minimize the Euclidean distance between a two-dimensional real-valued variable and the point [1,1], subject to the constraint that the difference between the variables is less than or equal to 1 and subject to the additional constraint that the value of the objective function from the first problem is less than or equal to a previously calculated value.</p>
 <p>Here is the code to solve the hierarchical multiobjective optimization problem using CVXPY and GUROBI:</p>
 <div class="cell docutils container">
@@ -1066,12 +1058,6 @@ Optimal solution = [1.84615385 3.23076923]
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal decision variables: &quot;</span><span class="p">,</span> <span class="n">x2_star</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">cp</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">SolverError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solver failed to find optimal value for problem2&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f2:  1.4142135589686502
-Optimal decision variables:  [4.76941908e-09 4.51928495e-11]
 </pre></div>
 </div>
 </div>
@@ -1126,12 +1112,6 @@ Optimal decision variables:  [4.76941908e-09 4.51928495e-11]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = -0.42612462629217096
-Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="sharpe-ratio-maximization">
@@ -1179,13 +1159,6 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 <span class="c1"># Print the optimal portfolio weights and Sharpe ratio</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal weights: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sharpe ratio: </span><span class="si">{</span><span class="o">-</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal weights: [0.00000000e+00 9.31419286e-01 6.85807141e-02 0.00000000e+00
- 2.57414458e-16]
-Sharpe ratio: 0.2635
 </pre></div>
 </div>
 </div>

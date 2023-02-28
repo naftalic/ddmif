@@ -240,8 +240,8 @@ problem = cp.Problem(objective, constraint)
 problem.solve(solver=cp.MOSEK)
 
 # Print the optimal solution and optimal value
-print("Optimal solution: x1 = {}, x2 = {}".format(x[0].value, x[1].value))
-print("Optimal value: {}".format(problem.value))
+print("Optimal solution: x1 = {}, x2 = {}".format(np.round(x[0].value,3), np.round(x[1].value,3)))
+print("Optimal value: {}".format(np.round(problem.value,3)))
 ```
 
 # Multiobjective optimization
@@ -372,11 +372,11 @@ As an example, let's consider the following example:
 
 $$
 \begin{aligned}
-& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \
-& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \
-&&&\
-& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
-& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \
+& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \\
+& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \\
+&&&\\
+& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
+& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \\
 &&& f_1(x) \leq f_1^*
 \end{aligned}
 $$
