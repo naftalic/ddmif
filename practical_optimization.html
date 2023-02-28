@@ -1150,51 +1150,7 @@ Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
 <p>where <span class="math notranslate nohighlight">\(r_p\)</span> is the expected return of the portfolio, <span class="math notranslate nohighlight">\(r_f\)</span> is the risk-free rate, and <span class="math notranslate nohighlight">\(σ_p\)</span> is the standard deviation of the portfolio returns. The goal is to find the portfolio weights that maximize the Sharpe ratio.</p>
 <p>We can solve this optimization problem using a similar code structure as before. First, we generate a set of random portfolio weights, calculate the expected returns and standard deviation of the portfolio, and then calculate the Sharpe ratio for each portfolio. Finally, we find the portfolio with the highest Sharpe ratio.</p>
 <p>In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
-
-<span class="c1"># Example data</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
-<span class="n">n_assets</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">n_obs</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_assets</span><span class="p">)</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_assets</span><span class="p">,</span> <span class="n">n_assets</span><span class="p">)</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
-<span class="n">rf</span> <span class="o">=</span> <span class="mf">0.02</span>
-
-<span class="c1"># Define the objective function</span>
-<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">risk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
-    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">ret</span> <span class="o">-</span> <span class="n">rf</span><span class="p">)</span> <span class="o">/</span> <span class="n">risk</span>
-
-<span class="c1"># Define the constraints</span>
-<span class="n">constraints</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">})</span>
-
-<span class="c1"># Define the bounds</span>
-<span class="n">bounds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_assets</span><span class="p">))</span>
-
-<span class="c1"># Define the initial guess</span>
-<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_assets</span><span class="p">)</span>
-
-<span class="c1"># Solve the optimization problem</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">)</span>
-
-<span class="c1"># Print the optimal portfolio weights and Sharpe ratio</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal weights: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sharpe ratio: </span><span class="si">{</span><span class="o">-</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal weights: [0.    0.931 0.069 0.    0.   ]
-Sharpe ratio: 0.2635
-</pre></div>
-</div>
-</div>
-</div>
+<p>to be continued…</p>
 </section>
 
     <script type="text/x-thebe-config">
