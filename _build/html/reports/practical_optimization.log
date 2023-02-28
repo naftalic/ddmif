@@ -19,45 +19,34 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 import cvxpy as cp
 
-# Define the variables
+# Define the optimization variables
 x = cp.Variable(2)
 
-# Define the constraints
-g = x[0] + x[1] - 1
-h = x[0] - x[1] - 1
+# Define the objective function
+objective = cp.Minimize(cp.sum_squares(x))
 
-# Define the objective functions
-f1 = cp.sum_squares(x)
-f2 = cp.norm(x - cp.array([1, 1]), 2)
+# Define the constraint
+constraint = [x[0] + x[1] >= 1]
 
-# Define problem 1
-problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
-problem1.solve(solver=cp.GUROBI)
-f1_star = problem1.value
-x1_star = x.value
+# Create the optimization problem
+problem = cp.Problem(objective, constraint)
 
-# Define problem 2 with f1_star constraint
-problem2 = cp.Problem(cp.Minimize(f2), [h <= 0, f1 <= f1_star])
+# Solve the problem using the Mosek solver
+problem.solve(solver=cp.MOSEK)
 
-# Solve problem 2
-try:
-    problem2.solve(solver=cp.GUROBI)
-    print("Optimal value of f2: ", problem2.value)
-    x2_star = x.value
-    print("Optimal decision variables: ", x2_star)
-except cp.error.SolverError:
-    print("Solver failed to find optimal value for problem2")
+# Print the optimal solution and optimal value
+print("Optimal solution: x1 = {}, x2 = {}".format(np.round(x[0].value,3), np.round(x[1].value,3)))
+print("Optimal value: {}".format(np.round(problem.value,3)))
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-Cell [0;32mIn[9], line 12[0m
-[1;32m     10[0m [38;5;66;03m# Define the objective functions[39;00m
-[1;32m     11[0m f1 [38;5;241m=[39m cp[38;5;241m.[39msum_squares(x)
-[0;32m---> 12[0m f2 [38;5;241m=[39m cp[38;5;241m.[39mnorm(x [38;5;241m-[39m [43mcp[49m[38;5;241;43m.[39;49m[43marray[49m([[38;5;241m1[39m, [38;5;241m1[39m]), [38;5;241m2[39m)
-[1;32m     14[0m [38;5;66;03m# Define problem 1[39;00m
-[1;32m     15[0m problem1 [38;5;241m=[39m cp[38;5;241m.[39mProblem(cp[38;5;241m.[39mMinimize(f1), [g [38;5;241m<[39m[38;5;241m=[39m [38;5;241m2[39m])
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 19[0m
+[1;32m     16[0m problem[38;5;241m.[39msolve(solver[38;5;241m=[39mcp[38;5;241m.[39mMOSEK)
+[1;32m     18[0m [38;5;66;03m# Print the optimal solution and optimal value[39;00m
+[0;32m---> 19[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal solution: x1 = [39m[38;5;132;01m{}[39;00m[38;5;124m, x2 = [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat([43mnp[49m[38;5;241m.[39mround(x[[38;5;241m0[39m][38;5;241m.[39mvalue,[38;5;241m3[39m), np[38;5;241m.[39mround(x[[38;5;241m1[39m][38;5;241m.[39mvalue,[38;5;241m3[39m)))
+[1;32m     20[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mOptimal value: [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(np[38;5;241m.[39mround(problem[38;5;241m.[39mvalue,[38;5;241m3[39m)))
 
-[0;31mAttributeError[0m: module 'cvxpy' has no attribute 'array'
-AttributeError: module 'cvxpy' has no attribute 'array'
+[0;31mNameError[0m: name 'np' is not defined
+NameError: name 'np' is not defined
 

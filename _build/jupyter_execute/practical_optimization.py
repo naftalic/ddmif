@@ -242,8 +242,8 @@ problem = cp.Problem(objective, constraint)
 problem.solve(solver=cp.MOSEK)
 
 # Print the optimal solution and optimal value
-print("Optimal solution: x1 = {}, x2 = {}".format(x[0].value, x[1].value))
-print("Optimal value: {}".format(problem.value))
+print("Optimal solution: x1 = {}, x2 = {}".format(np.round(x[0].value,3), np.round(x[1].value,3)))
+print("Optimal value: {}".format(np.round(problem.value,3)))
 
 
 # # Multiobjective optimization
@@ -282,7 +282,7 @@ print("Optimal value: {}".format(problem.value))
 # 
 # We can solve this model using the CVXPY package with the GUROBI solver. Here's the code:
 
-# In[7]:
+# In[ ]:
 
 
 import cvxpy as cp
@@ -340,7 +340,7 @@ print("Waste: ", w * x.value)
 # 
 # Here is the Python code to solve a the blended multiobjective optimization problem using CVXPY and GUROBI:
 
-# In[8]:
+# In[ ]:
 
 
 import cvxpy as cp
@@ -378,11 +378,11 @@ print("Optimal solution =", x.value)
 # 
 # $$
 # \begin{aligned}
-# & \text{minimize} && f_1(x) = x_1^2 + x_2^2 \
-# & \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \
-# &&&\
-# & \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
-# & \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \
+# & \text{minimize} && f_1(x) = x_1^2 + x_2^2 \\
+# & \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \\
+# &&&\\
+# & \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
+# & \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \\
 # &&& f_1(x) \leq f_1^*
 # \end{aligned}
 # $$
@@ -391,7 +391,7 @@ print("Optimal solution =", x.value)
 # 
 # Here is the code to solve the hierarchical multiobjective optimization problem using CVXPY and GUROBI:
 
-# In[9]:
+# In[ ]:
 
 
 import cvxpy as cp
@@ -445,7 +445,7 @@ except cp.error.SolverError:
 # 
 # In the following example, we randomly generated expected returns and covariance matrix for a portfolio of three assets. We set the risk aversion parameter $\gamma$ to 0.5. We defined the decision variables, objective function, and constraints using CVXPY. We then solved the problem using the Gurobi solver through the CVXPY interface. Finally, we printed out the optimal value and optimal solution of the problem.
 
-# In[10]:
+# In[ ]:
 
 
 import cvxpy as cp
@@ -491,7 +491,7 @@ print("Optimal solution =", x.value)
 # 
 # In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.
 
-# In[11]:
+# In[ ]:
 
 
 import numpy as np
