@@ -370,6 +370,7 @@ Hierarchical Multiobjective Optimization (HMO) is an approach to solving complex
 
 As an example, let's consider the following example:
 
+$$
 \begin{aligned}
 & \text{minimize} && f_1(x) = x_1^2 + x_2^2 \
 & \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \
@@ -378,6 +379,7 @@ As an example, let's consider the following example:
 & \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \
 &&& f_1(x) \leq f_1^*
 \end{aligned}
+$$
 
 In this example, we have two optimization problems that we want to solve using Python, CVXPY, and GUROBI. In the first problem, we aim to minimize the sum of squares of two real-valued variables, subject to the constraint that the sum of the variables is less than or equal to 1. In the second problem, we want to minimize the Euclidean distance between a two-dimensional real-valued variable and the point [1,1], subject to the constraint that the difference between the variables is less than or equal to 1 and subject to the additional constraint that the value of the objective function from the first problem is less than or equal to a previously calculated value.
 
