@@ -380,10 +380,10 @@ print("Optimal solution =", np.round(x.value,3))
 # $$
 # \begin{aligned}
 # & \text{minimize} && f_1(x) = x_1^2 + x_2^2 \\
-# & \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \\
+# & \text{subject to} && g(x) = x_1 + x_2 - 1 \ge 2 \\
 # &&&\\
 # & \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
-# & \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \\
+# & \text{subject to} && h(x) = x_1 - x_2 - 1 \leq -2 \\
 # &&& f_1(x) \leq f_1^*
 # \end{aligned}
 # $$
@@ -396,7 +396,7 @@ print("Optimal solution =", np.round(x.value,3))
 
 
 import cvxpy as cp
-
+import numpy as np
 # Define the variables
 x = cp.Variable(2)
 
@@ -409,7 +409,7 @@ f1 = cp.sum_squares(x)
 f2 = cp.norm(x - np.array([1, 1]), 2)
 
 # Define problem 1
-problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
+problem1 = cp.Problem(cp.Minimize(f1), [g >= 2])
 problem1.solve(solver=cp.GUROBI)
 f1_star = problem1.value
 x1_star = x.value
@@ -418,7 +418,7 @@ print("Optimal value of f1: ", np.round(problem1.value,3))
 print("Optimal decision variables: ", np.round(x1_star,3))
     
 # Define problem 2 with f1_star constraint
-problem2 = cp.Problem(cp.Minimize(f2), [h <= 0, f1 <= f1_star])
+problem2 = cp.Problem(cp.Minimize(f2), [h <= -2, f1 <= f1_star])
 
 # Solve problem 2
 try:
