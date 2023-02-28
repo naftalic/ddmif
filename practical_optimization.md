@@ -240,8 +240,8 @@ problem = cp.Problem(objective, constraint)
 problem.solve(solver=cp.MOSEK)
 
 # Print the optimal solution and optimal value
-print("Optimal solution: x1 = {}, x2 = {}".format(x1.value, x2.value))
-print("Optimal value: {}".format(prob.value))
+print("Optimal solution: x1 = {}, x2 = {}".format(x[0].value, x[1].value))
+print("Optimal value: {}".format(problem.value))
 ```
 
 # Multiobjective optimization
@@ -366,71 +366,54 @@ print("Optimal solution =", x.value)
 ```
 
 ## Hierarchical Multiobjective Optimization
-Hierarchical multiobjective optimization problem involves optimizing multiple conflicting objectives in a hierarchical manner, where the objectives at each level depend on the solutions found at the previous level.
+Hierarchical Multiobjective Optimization (HMO) is an approach to solving complex optimization problems with multiple objectives that are often conflicting and cannot be optimized simultaneously. In HMO, the objective functions are organized in a hierarchy, where the higher-level objectives are more important than the lower-level objectives. The optimization problem is solved in a hierarchical manner, where the lower-level objectives are optimized subject to the constraints and objectives of the higher-level problems.
 
-As for example let's look at the following system that define two levels of objectives.
+As an example, let's consider the following example:
 
-$$
 \begin{aligned}
-& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \\
-& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 0 \\
-& && \\
-& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
-& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \\
-& && f_1(x) \leq f_1^* 
+& \text{minimize} && f_1(x) = x_1^2 + x_2^2 \
+& \text{subject to} && g(x) = x_1 + x_2 - 1 \leq 2 \
+&&&\
+& \text{minimize} && f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \
+& \text{subject to} && h(x) = x_1 - x_2 - 1 \leq 0 \
+&&& f_1(x) \leq f_1^*
 \end{aligned}
-$$
 
-Here, $x_1$ and $x_2$ are the decision variables, $f_1(x)$ and $f_2(x)$ are the first and second level objective functions, $g(x)$ and $h(x)$ are the first and second level constraints, and $f_1^*$ is the optimal value of the first level objective function.
+In this example, we have two optimization problems that we want to solve using Python, CVXPY, and GUROBI. In the first problem, we aim to minimize the sum of squares of two real-valued variables, subject to the constraint that the sum of the variables is less than or equal to 1. In the second problem, we want to minimize the Euclidean distance between a two-dimensional real-valued variable and the point [1,1], subject to the constraint that the difference between the variables is less than or equal to 1 and subject to the additional constraint that the value of the objective function from the first problem is less than or equal to a previously calculated value.
 
-The problem involves solving a hierarchical multiobjective optimization problem, where the second level objective function is dependent on the optimal value of the first level objective function. The first level objective function is to minimize the sum of squares of the decision variables, subject to the constraint $g(x)$. The second level objective function is to minimize the Euclidean distance between the decision variables and a fixed point $\begin{bmatrix}1 \ 1\end{bmatrix}$, subject to the constraint $h(x)$ and the constraint $f_1(x) \leq f_1^*$.
-
-
-Here is the Python code to solve a hierarchical multiobjective optimization problem using CVXPY and GUROBI:
+Here is the code to solve the hierarchical multiobjective optimization problem using CVXPY and GUROBI:
 
 ```{code-cell}
 import cvxpy as cp
 
-# Define the problem data
-n = 2
-
-# Define the decision variables
-x = cp.Variable(n)
-
-# Define the first level objective function and constraint
-f1 = cp.sum_squares(x)
-g = x[0] + x[1] - 1
-
-# Define the second level objective function and constraint
-f2 = cp.norm(x - [1, 1], 2)
-h = x[0] - x[1] - 1
-
-# Define the hierarchy
-hierarchy = [f1, f2]
+# Define the variables
+x = cp.Variable(2)
 
 # Define the constraints
-constraints = [g <= 0, h <= 0]
+g = x[0] + x[1] - 1
+h = x[0] - x[1] - 1
 
-# Solve the problem using CVXPY
-prob = cp.Problem(cp.Minimize(hierarchy[0]), constraints)
-prob.solve()
+# Define the objective functions
+f1 = cp.sum_squares(x)
+f2 = cp.norm(x - cp.array([1, 1]), 2)
 
-# Print the optimal value and the optimal solution for the first level
-print("Level 1")
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+# Define problem 1
+problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
+problem1.solve(solver=cp.GUROBI)
+f1_star = problem1.value
+x1_star = x.value
 
-# Update the constraints for the second level
-constraints.append(f1 <= hierarchy[0].value)
+# Define problem 2 with f1_star constraint
+problem2 = cp.Problem(cp.Minimize(f2), [h <= 0, f1 <= f1_star])
 
-# Solve the problem using CVXPY
-prob = cp.Problem(cp.Minimize(hierarchy[1]), constraints)
-prob.solve()
-
-# Print the optimal value and the optimal solution for the second level
-print("Level 2")
-print("Optimal value =", prob.value)
-print("Optimal solution =", x.value)
+# Solve problem 2
+try:
+    problem2.solve(solver=cp.GUROBI)
+    print("Optimal value of f2: ", problem2.value)
+    x2_star = x.value
+    print("Optimal decision variables: ", x2_star)
+except cp.error.SolverError:
+    print("Solver failed to find optimal value for problem2")
 ```
 
 # Risk-adjusted portfolio optimization
