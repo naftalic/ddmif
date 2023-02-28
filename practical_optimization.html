@@ -1026,10 +1026,10 @@ Optimal solution = [1.846 3.231]
 \[\begin{split}
 \begin{aligned}
 &amp; \text{minimize} &amp;&amp; f_1(x) = x_1^2 + x_2^2 \\
-&amp; \text{subject to} &amp;&amp; g(x) = x_1 + x_2 - 1 \leq 2 \\
+&amp; \text{subject to} &amp;&amp; g(x) = x_1 + x_2 - 1 \ge 2 \\
 &amp;&amp;&amp;\\
 &amp; \text{minimize} &amp;&amp; f_2(x) = \left\lVert x - \begin{bmatrix}1 \ 1\end{bmatrix} \right\rVert_2 \\
-&amp; \text{subject to} &amp;&amp; h(x) = x_1 - x_2 - 1 \leq 0 \\
+&amp; \text{subject to} &amp;&amp; h(x) = x_1 - x_2 - 1 \leq -2 \\
 &amp;&amp;&amp; f_1(x) \leq f_1^*
 \end{aligned}
 \end{split}\]</div>
@@ -1038,7 +1038,7 @@ Optimal solution = [1.846 3.231]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
-
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="c1"># Define the variables</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
@@ -1051,7 +1051,7 @@ Optimal solution = [1.846 3.231]
 <span class="n">f2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Define problem 1</span>
-<span class="n">problem1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">f1</span><span class="p">),</span> <span class="p">[</span><span class="n">g</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">problem1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">f1</span><span class="p">),</span> <span class="p">[</span><span class="n">g</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">problem1</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">GUROBI</span><span class="p">)</span>
 <span class="n">f1_star</span> <span class="o">=</span> <span class="n">problem1</span><span class="o">.</span><span class="n">value</span>
 <span class="n">x1_star</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span>
@@ -1060,7 +1060,7 @@ Optimal solution = [1.846 3.231]
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal decision variables: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x1_star</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
     
 <span class="c1"># Define problem 2 with f1_star constraint</span>
-<span class="n">problem2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">f2</span><span class="p">),</span> <span class="p">[</span><span class="n">h</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f1</span> <span class="o">&lt;=</span> <span class="n">f1_star</span><span class="p">])</span>
+<span class="n">problem2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">f2</span><span class="p">),</span> <span class="p">[</span><span class="n">h</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">f1</span> <span class="o">&lt;=</span> <span class="n">f1_star</span><span class="p">])</span>
 
 <span class="c1"># Solve problem 2</span>
 <span class="k">try</span><span class="p">:</span>
@@ -1074,10 +1074,10 @@ Optimal solution = [1.846 3.231]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f1:  0.0
-Optimal decision variables:  [-0. -0.]
-Optimal value of f2:  1.414
-Optimal decision variables:  [0. 0.]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f1:  4.5
+Optimal decision variables:  [1.5 1.5]
+Optimal value of f2:  0.707
+Optimal decision variables:  [0.5 1.5]
 </pre></div>
 </div>
 </div>
