@@ -627,6 +627,7 @@ Lastly, we will delve into mixed-integer programming, which involves optimizatio
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nonneg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -874,15 +875,8 @@ Optimal value: 12.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">19</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">MOSEK</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># Print the optimal solution and optimal value</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution: x1 = </span><span class="si">{}</span><span class="s2">, x2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
-
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal solution: x1 = 0.5, x2 = 0.5
+Optimal value: 0.5
 </pre></div>
 </div>
 </div>
@@ -959,6 +953,15 @@ Optimal value: 12.0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status:  optimal
+Optimal value:  1400.0
+Optimal x:  200.0
+Profit:  2000.0
+Waste:  100.0
+</pre></div>
+</div>
+</div>
 </div>
 <section id="blended-multiobjective-optimization">
 <h2>Blended Multiobjective Optimization<a class="headerlink" href="#blended-multiobjective-optimization" title="Permalink to this headline">#</a></h2>
@@ -1004,6 +1007,12 @@ Optimal value: 12.0
 <span class="c1"># Print the optimal value and the optimal solution</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal value =&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal solution =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = 2.676923076923077
+Optimal solution = [1.84615385 3.23076923]
 </pre></div>
 </div>
 </div>
@@ -1061,6 +1070,12 @@ Optimal value: 12.0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value of f2:  1.4142135589686502
+Optimal decision variables:  [4.76941908e-09 4.51928495e-11]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -1112,6 +1127,12 @@ Optimal value: 12.0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal value = -0.42612462629217096
+Optimal solution = [7.48557659e-01 2.51442333e-01 8.11454331e-09]
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="sharpe-ratio-maximization">
@@ -1159,6 +1180,13 @@ Optimal value: 12.0
 <span class="c1"># Print the optimal portfolio weights and Sharpe ratio</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal weights: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sharpe ratio: </span><span class="si">{</span><span class="o">-</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal weights: [0.00000000e+00 9.31419286e-01 6.85807141e-02 0.00000000e+00
+ 2.57414458e-16]
+Sharpe ratio: 0.2635
 </pre></div>
 </div>
 </div>
