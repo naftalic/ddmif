@@ -397,7 +397,7 @@ h = x[0] - x[1] - 1
 
 # Define the objective functions
 f1 = cp.sum_squares(x)
-f2 = cp.norm(x - cp.array([1, 1]), 2)
+f2 = cp.norm(x - np.array([1, 1]), 2)
 
 # Define problem 1
 problem1 = cp.Problem(cp.Minimize(f1), [g <= 2])
