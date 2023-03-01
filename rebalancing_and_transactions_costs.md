@@ -129,3 +129,88 @@ $$
 
 subject to the constraint that the sum of weights should be 1 and any other constraints. However, this problem cannot be solved using conventional quadratic optimization techniques because $c$ is a function of $w$.
 
+# Dealing with Cash Flow
+In this section, we explore strategies that portfolio managers can use to minimize transaction costs when dealing with cash inflows or outflows. One approach is to invest cash temporarily in index futures or ETFs until a more suitable time arises to return it to the portfolio. This can help the manager avoid making rushed investment decisions in response to cash movements.
+
+Another method is to purchase specific stocks that are more liquid, enabling the manager to achieve target portfolio weights with fewer transactions. By doing so, transaction costs can be reduced, and the impact of cash flows on the portfolio's performance can be minimized.
+
+## Reducing Transaction Costs with Futures and ETFs
+When managing a portfolio with daily cash inflows and outflows, it may be impractical to adjust the portfolio with every cash movement. For small daily flows, managers can invest net inflows temporarily in cash or rely on a cash buffer to handle small redemptions without significantly impacting portfolio returns. However, for funds with large daily net flows, a large cash reserve can negatively affect portfolio returns, especially in a low interest rate environment. In such cases, managers may need to adjust their exposure using either index futures or ETFs that invest in the same sector or a highly correlated sector.
+
+ETFs that focus on specific sectors are widely available, but futures offer several advantages over ETFs. Futures are more liquid during normal trading hours, can be traded after hours on GLOBEX, and gains are treated as partly long-term and partly short-term for tax purposes. However, managers may face challenges rolling over futures contracts if the horizon for using futures is longer than a few days. Therefore, portfolio managers should carefully consider their options and choose the method that best fits their needs.
+
+## Rebalancing toward Optimal Target Weights
+In order to maintain an optimal mix of stock weights, portfolio managers may need to rebalance the portfolio during periods of cash flows or at the regular rebalancing period. For example, if a portfolio is rebalanced monthly and experiences cash flows at the end of the month, the manager can adjust the portfolio to maintain the original optimal portfolio weights or update the model to achieve new optimal weights. When faced with cash flows at the end of the month, the manager can trade in a way that redirects the portfolio towards the original or new optimal target weights.
+
+To enable the manager to conduct optimal trades, we discuss the algorithm in the following subsections. Although we do not include trading costs in our analysis, we demonstrate that reducing the amount of trading can help to minimize tax costs and direct trading costs.
+
+
+## Standard Rebalancing
+Standard rebalancing involves a portfolio manager aiming to rebalance the portfolio to a target set of stock weights. If the portfolio tracks a benchmark, the target weights will match those of the benchmark. The process involves selling the outperforming stocks and buying the underperforming ones since the last rebalancing date. This is done to ensure that the weights of stocks within the portfolio are restored to their target levels. The weight of stock $i$ in the portfolio before rebalancing is denoted as $w^b_i$, the target weight of each stock $i$ is denoted as $w^a_{i,t+1}$. Other notations include $p_i$ as the price per share of stock $i$, $s^b_i$ as the number of shares held in stock $i$ of the portfolio before rebalancing, and $s^a_{i,t+1}$ as the number of shares implicitly held in the optimal portfolio. The weights of the target portfolio and the current portfolio at any time $t+1$ are given by 
+
+$$
+w^b_{i,t+1} = p_{i,t+1}s^b_{i,t+1}/V_{t+1}
+$$ 
+
+and 
+
+$$
+w^a_{i,t+1} = p_{i,t+1}s^a_{i,t+1}/V_{t+1}
+$$
+
+respectively.
+
+To rebalance the portfolio, one calculates the difference between the target weights and the current portfolio weights and uses this difference to determine the number of shares to buy or sell at time $t+1$. The number of shares of each stock that must be bought or sold is given by $x_{i,t+1}=s^a_{i,t+1}-s^b_{i,t+1}=\frac{w^a_{i,t+1}}{p_{i,t+1}}(V_{t+1}+C_{t+1})-s^b_{i,t+1}$, where $C_{t+1}$ represents any monetary contribution to or withdrawal from the portfolio at time $t+1$. The excess shares $x_{i,t+1}$ are negative if shares need to be sold and positive if shares need to be bought. It's worth noting that these formulas don't account for bid-ask spreads or price impact, both of which can distort the rebalancing process and create additional costs for the portfolio.
+
+# Using Cash Flows to Rebalance without Selling
+To minimize costs associated with rebalancing a portfolio, it can be more advantageous to allow the portfolio to drift towards the optimal target portfolio, rather than making trades to exactly match it. There are tax costs associated with rebalancing, as selling securities with capital gains incurs taxes. Additionally, transaction costs are incurred with each purchase or sale of a security. Instead of selling securities, the portfolio manager can opt to buy more shares of the securities whose weights have fallen below target, which provides a push in the right direction towards the target.
+
+To give the portfolio a push, the manager can use any cash inflows to add, proportionally to the optimal target weights, to all the portfolio's existing positions. A slightly more involved approach is to use an algorithm to invest cash inflows, which will bring the portfolio closer to its optimal weights at a faster pace. The easiest method is to divide the cash inflows among all of the portfolio's securities in amounts proportional to their target weights. For instance, if the portfolio has $C_{t+1}$ in cash to inject at time $t+1$, the manager will purchase $x_{i,t+1}$ of each security, where:
+
+$$
+x_{i,t+1}=C_{t+1}w^a_{i,t+1}/p_{i,t+1}
+$$
+
+The resulting new weights will fall between the weights before adjustment and the optimal target weights, and the proximity to the target weights will depend on the ratio of $C_{t+1}$ to $V_{t+1}$.
+
+# Rebalancing by Purchasing Only Deficient Stocks
+One method for quickly aligning a portfolio with its benchmark weights is to invest new cash only in stocks that are below their target weights. The portfolio is divided into two groups: those stocks that exceed their target weights and those that fall short. To calculate these weights, the symbol $\tilde w^b$ is used to represent the portfolio's weights considering the current value of the portfolio and the cash inflow. The weight of each stock with the cash inflow is determined using the formula $\tilde w^b_{i,t+1}=s^b_{i,t+1}p_{i,t+1}/(V_{t+1+C_{t+1})}$. These portfolio weights are then compared to their corresponding target weights $w^a_{i,t+1}$.
+
+To allocate cash to stocks that are below their target weight, the cash allocated to stock $i$ is determined using the formula $c_{i,t+1}=w^a_{i,t+1}(V_{t+1+C_{t+1}}-s^b_{i,t+1}p_{i,t+1})$. The sum of all cash allocated to these stocks is then calculated and subtracted from $C_{t+1}$ to determine the amount of slack funds. If there are not enough funds to restore deficient stocks to their required weights, the cash distributed to each stock is scaled down proportionally. The number of shares that need to be purchased for each stock is calculated using the formula $w_{i,t+1}=\frac{c_{i,t+1}}{p_{i,t+1}}\frac{C_{t+1}}{\sum\limits_{j=1}^{n_u}c_{j,t+1}}$.
+
+This "buy" system for rebalancing helps the portfolio converge toward the optimal target weights at a faster rate than if new cash were invested in stocks in proportion to their target weights. To calculate the minimum amount of cash inflow required to perfectly rebalance the portfolio without selling, the ratio of the weight of each stock before rebalancing and before new money has been added to the target weight minus one is calculated for each stock. The maximum of these values is then multiplied by the total value of the portfolio $V_{t+1}$ at time $t+1$.
+
+# Approximate Solution to the Optimal Portfolio Problem
+
+Problems specified above to maximize the effective risk-adjusted return or effective tracking-error-adjusted return are not quadratic in $w^a$ and are difficult to solve with conventional quadratic optimizers. In this section we present a simple approximate solution that works very well for most situations.
+Nonlinearity arises because we do not know, before solving the problem, which stock to sell and which stock to buy. If we knew, the problem would be quadratic as usual. Thus, to avoid nonlinearity, we need to determine which stocks to buy and which stocks to sell **before** solving the optimization problem.
+We suggest the following shortcut. First, we can solve the problem **ignoring** the transactions costs. That is, solve
+
+$$
+\max\limits_{w^a} w^a\mu-A(w^a)^T\Sigma w^a
+$$
+
+subject to
+
+$$
+(w^a)^TI=1
+$$
+
+and any other relevant constraints. Call the solution to this problem $w^*=(w^*_1,\cdots, w^*_N)$. Then define the transactions cost vector $c = (c_1,\cdots, c_N)$ using these weights:
+
+$$
+\begin{aligned}
+c_i=
+\begin{cases}
+c\quad &\text{if}\quad w^*_i>w^b_i\\
+-c\quad &\text{if}\quad w^*_i<w^b_i
+\end{cases}
+\end{aligned}
+$$
+
+That is, we determine which stocks to buy and which stocks to sell based on the optimization without considering transactions costs. Once we have determined which stocks to buy and which stocks to sell, we can impose this as a constraint to the optimization problem. 
+
+For example, In the case of Eq. (10.9), the problem to be solved becomes
+subject to
+and any other relevant constraints. Now c is a fixed constraint and does not depend on the value of wa (as long as the additional constraints we imposed are satisfied), and we can solve this problem using a conventional quadratic optimizer.
+
