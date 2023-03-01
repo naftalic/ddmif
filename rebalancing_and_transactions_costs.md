@@ -120,13 +120,13 @@ Note that the last term is constant and does not depend on the weight vector, so
 The tracking-error-aversion parameter $A$ measures the manager's aversion to squared tracking error in the portfolio. The effective tracking-error-adjusted return is given by:
 
 $$
-\text{effective TE-adjusted return} = w^a^T(\mu-c)+w^b^Tc-A[w^a^T\Sigma w^a-2w^a^T\gamma+V(r_B)]
+\text{effective TE-adjusted return} = (w^a)^T(\mu-c)+(w^b)^Tc-A[(w^a)^T\Sigma w^a-2(w^a)^T\gamma+V(r_B)]
 $$
 
 To find the optimal tracking-error portfolio, we need to maximize the effective tracking-error-adjusted return with certain constraints. For this optimization problem, we can ignore the terms that do not include $w^a$ or $c$. Thus, we solve:
 
 $$
-\max\limits_{w^a} w^a^T(\mu-c+2A\gamma)+w^b^Tc-Aw^a^T\Sigma w^a
+\max\limits_{w^a} (w^a)^T(\mu-c+2A\gamma)+(w^b)^Tc-A(w^a)^T\Sigma w^a
 $$
 
 subject to the constraint that the sum of weights should be 1 and any other constraints. However, this problem cannot be solved using conventional quadratic optimization techniques because $c$ is a function of $w$.
