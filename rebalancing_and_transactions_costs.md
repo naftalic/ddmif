@@ -102,4 +102,32 @@ $$
 
 Maximizing the effective risk-adjusted return subject to relevant constraints gives us the optimal portfolio. However, the effective risk-adjusted return is highly nonlinear since the transactions cost vector depends on the weight vector, so conventional quadratic optimization techniques cannot be used to solve this problem.
 
-# The tracking portfolio with transactions costs
+# The Tracking Portfolio with Transactions Costs
+If a portfolio manager is more concerned about minimizing tracking error than overall risk, they should aim to maximize the effective tracking-error-adjusted return instead of the effective risk-adjusted return.
+
+Recall that the portfolio's tracking error (TE) is defined as the standard deviation of the difference between the portfolio return $r_P$ and the benchmark return $r_B$:
+
+$$
+\begin{aligned}
+\text{TE}^2 &= V(r_P)-2C(r_P,r_B)+V(r_B)\\
+&= w^T\Sigma w-2w^T\gamma+V(r_B)\\
+\end{aligned}
+$$
+
+where $\gamma=C(r,r_B)$.
+Note that the last term is constant and does not depend on the weight vector, so only the first two terms will be used in the optimization problem.
+
+The tracking-error-aversion parameter $A$ measures the manager's aversion to squared tracking error in the portfolio. The effective tracking-error-adjusted return is given by:
+
+$$
+\text{effective TE-adjusted return} = w^a^T(\mu-c)+w^b^Tc-A[w^a^T\Sigma w^a-2w^a^T\gamma+V(r_B)]
+$$
+
+To find the optimal tracking-error portfolio, we need to maximize the effective tracking-error-adjusted return with certain constraints. For this optimization problem, we can ignore the terms that do not include $w^a$ or $c$. Thus, we solve:
+
+$$
+\max\limits_{w^a} w^a^T(\mu-c+2A\gamma)+w^b^Tc-Aw^a^T\Sigma w^a
+$$
+
+subject to the constraint that the sum of weights should be 1 and any other constraints. However, this problem cannot be solved using conventional quadratic optimization techniques because $c$ is a function of $w$.
+
