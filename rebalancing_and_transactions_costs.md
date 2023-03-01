@@ -95,9 +95,8 @@ To express the risk-adjusted return, we use additional notation, such as the exp
 Considering transactions costs, the effective risk-adjusted return is expressed as the expected return of the prospective portfolio minus the transactions costs, minus $A$ times the variance of the prospective portfolio return. 
 
 $$
-\begin{aligen}
-\text{effective reisk-adjusted return} &= \mu_P-(w^a-w^b)^Tc-A\sigma^2_P\\
-\end{aligen}
+
+\text{effective reisk-adjusted return} = \mu_P-(w^a-w^b)^Tc-A\sigma^2_P
 $$
 
 Maximizing the effective risk-adjusted return subject to relevant constraints gives us the optimal portfolio. However, the effective risk-adjusted return is highly nonlinear since the transactions cost vector depends on the weight vector, so conventional quadratic optimization techniques cannot be used to solve this problem.
