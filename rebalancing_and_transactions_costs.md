@@ -95,7 +95,6 @@ To express the risk-adjusted return, we use additional notation, such as the exp
 Considering transactions costs, the effective risk-adjusted return is expressed as the expected return of the prospective portfolio minus the transactions costs, minus $A$ times the variance of the prospective portfolio return. 
 
 $$
-
 \text{effective reisk-adjusted return} = \mu_P-(w^a-w^b)^Tc-A\sigma^2_P
 $$
 
