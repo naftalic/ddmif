@@ -494,41 +494,5 @@ print("Optimal solution =", x.value)
 # We can solve this optimization problem using a similar code structure as before. First, we generate a set of random portfolio weights, calculate the expected returns and standard deviation of the portfolio, and then calculate the Sharpe ratio for each portfolio. Finally, we find the portfolio with the highest Sharpe ratio.
 # 
 # In the following example, we generate some random data for 5 assets over 100 observations. We define the objective function as the negative Sharpe ratio of the portfolio, and use the constraints that the weights must sum to 1. We also define the bounds as 0 to 1 for each asset, and use a random initial guess. Then, we solve the optimization problem using the SLSQP solver, and print out the optimal portfolio weights and Sharpe ratio.
-
-# In[11]:
-
-
-import numpy as np
-from scipy.optimize import minimize
-
-# Example data
-np.random.seed(123)
-n_assets = 5
-n_obs = 100
-mu = np.random.randn(n_assets)
-cov = np.random.randn(n_assets, n_assets)
-cov = cov.T.dot(cov)
-rf = 0.02
-
-# Define the objective function
-def objective(x):
-    ret = np.dot(mu, x)
-    risk = np.sqrt(np.dot(x.T, np.dot(cov, x)))
-    return -(ret - rf) / risk
-
-# Define the constraints
-constraints = ({'type': 'eq', 'fun': lambda x: np.sum(x) - 1})
-
-# Define the bounds
-bounds = tuple((0, 1) for i in range(n_assets))
-
-# Define the initial guess
-x0 = np.random.randn(n_assets)
-
-# Solve the optimization problem
-result = minimize(objective, x0, method='SLSQP', bounds=bounds, constraints=constraints)
-
-# Print the optimal portfolio weights and Sharpe ratio
-print(f"Optimal weights: {np.round(result.x,3)}")
-print(f"Sharpe ratio: {-result.fun:.4f}")
-
+# 
+# to be continued...
