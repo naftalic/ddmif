@@ -96,8 +96,7 @@ $$
 \mu^\top = 
 \begin{bmatrix}
 E(r_1)\\
-.\\
-.\\
+\vdots \\
 E(r_N)
 \end{bmatrix}
 $$
@@ -109,8 +108,7 @@ $$
 \begin{bmatrix}
 V(r_1)      & C(r_1,r_2) &\cdots & C(r_1,r_N) \\
 C(r_2,r_1)  & V(r_2)     &\cdots & C(r_2,r_N) \\
-.           & .          &\cdots & .          \\
-.           & .          &\cdots & .          \\
+\vdots      & \vdots     &\cdots & \vdots     \\
 C(r_N,r_1)  & C(r_N,r_2) &\cdots & V(r_N)     \\
 \end{bmatrix}
 $$
