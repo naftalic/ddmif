@@ -108,7 +108,7 @@ $$
 \begin{bmatrix}
 V(r_1)      & C(r_1,r_2) &\cdots & C(r_1,r_N) \\
 C(r_2,r_1)  & V(r_2)     &\cdots & C(r_2,r_N) \\
-\vdots      & \vdots     &\cdots & \vdots     \\
+\vdots      & \vdots     &\ddots & \vdots     \\
 C(r_N,r_1)  & C(r_N,r_2) &\cdots & V(r_N)     \\
 \end{bmatrix}
 $$
