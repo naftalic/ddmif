@@ -168,8 +168,8 @@ For example,
 
 $$
 \begin{aligned}
-&&\max\limits_w w^\top\mu\quad &\text{s.t.}\quad w^\top\Sigma w = \sigma_P, \quad\text{or}\\ 
-&&\min\limits_w w^\top\Sigma w &\text{s.t.}\quad w^\top\mu = \mu_P.
+& \max\limits_w w^\top\mu\quad &\text{s.t.} \quad & w^\top\Sigma w = \sigma_P, \quad \text{or}\\ 
+& \min\limits_w w^\top\Sigma w &\text{s.t.} \quad & w^\top\mu = \mu_P.
 \end{aligned}
 $$
 
