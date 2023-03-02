@@ -166,11 +166,12 @@ In the previous section, we presented the mean-variance optimization problem as 
 The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level $σ_P$, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
 For example,
 
-
 $$
-\max\limits_w w^\top\mu\text{ s.t. } w^\top\Sigma w = \sigma_P \text{ or } \min\limits_w w^\top\Sigma w\text{ s.t. } w^\top\mu = \mu_P.
+\begin{aligned}
+&\max\limits_w w^\top\mu\quad &\text{s.t.}\quad w^\top\Sigma w = \sigma_P, \quad\text{or}\\ 
+&\min\limits_w w^\top\Sigma w &\text{s.t.} w^\top\mu = \mu_P.
+\end{aligned}
 $$
-
 
 In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., $μ_P - Aσ^2$. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.
 
