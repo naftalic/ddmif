@@ -412,8 +412,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ad-hoc-methods">
-   Ad hoc methods
+  <a class="reference internal nav-link" href="#informal-methods">
+   Informal methods
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -456,8 +456,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ad-hoc">
-     Ad hoc
+    <a class="reference internal nav-link" href="#informal">
+     Informal
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -617,8 +617,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ad-hoc-methods">
-   Ad hoc methods
+  <a class="reference internal nav-link" href="#informal-methods">
+   Informal methods
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -661,8 +661,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ad-hoc">
-     Ad hoc
+    <a class="reference internal nav-link" href="#informal">
+     Informal
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -832,16 +832,16 @@ w^TΣw &amp;= w_1^2σ_1^2 + w_2^2σ_2^2 + w_3^2σ_3^2 + 2w_1w_2σ_{1,2} + 2w_1w_
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(ρ_{1,2}\)</span>, <span class="math notranslate nohighlight">\(ρ_{1,3}\)</span>, and <span class="math notranslate nohighlight">\(ρ_{2,3}\)</span> are the correlation coefficients between the returns of stocks 1 and 2, stocks 1 and 3, and stocks 2 and 3, respectively.
 The portfolio variance now depends on the variances of the individual stocks as well as the covariances between all possible pairs of stocks. The risk of the portfolio will depend on the strengths and directions of these pairwise relationships. If the three stocks are all positively correlated, for example, then the portfolio variance and risk will be higher than if the stocks are negatively correlated or uncorrelated.</p>
-<p>We continue by discussing two methods for creating a portfolio that is not managed against a benchmark: ad hoc methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio’s total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including ad hoc weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.</p>
+<p>We continue by discussing two methods for creating a portfolio that is not managed against a benchmark: informal methods that use rules of thumb to weight stocks and the mean-variance optimization method, which minimizes the portfolio’s total risk given its expected return. We then explore the four potential approaches to creating a portfolio that is managed against a specific benchmark, including informal weighting methods, stratification, factor exposure targeting, and tracking-error minimization. Of these techniques, only those that minimize risk have theoretical rigor, but they also require a larger skill set, more time, and more effort than the less quantitatively precise methods.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="ad-hoc-methods">
-<h1>Ad hoc methods<a class="headerlink" href="#ad-hoc-methods" title="Permalink to this headline">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="informal-methods">
+<h1>Informal methods<a class="headerlink" href="#informal-methods" title="Permalink to this headline">#</a></h1>
 <p>After selecting the stocks for a portfolio, there are several informal methods for determining the portfolio weights. The two most common are equal weighting and value weighting.</p>
 <p>Equal weighting assigns the same weight to every stock, regardless of market capitalization or other factors. For example, if there are 10 stocks in the portfolio, each stock will have a weight of 0.1 (= 1/10). While this approach is simple and quick, it does not consider the expected returns or risks of the stocks and may not be suitable for portfolios where such information is available.</p>
 <p>Value weighting, on the other hand, assigns weights proportional to the stocks’ market capitalizations. For example, if the market capitalization of stock A is twice as great as that of stock B, then the weight of stock A will also be twice the weight of stock B. This method ensures that the portfolio’s performance matches that of the market average, but it still does not reflect the expected returns or risks of individual stocks.</p>
-<p>There are variations of value weighting, such as weighting stocks by the square root or cube root of their market capitalization, which reduces bias towards large stocks. Another ad hoc weighting method is price weighting, where the portfolio manager buys the same number of shares in each stock so that the weights are proportional to the stock prices. This is how the Dow Jones Industrial Average and the Nikkei 225 are calculated.</p>
-<p>Other ad hoc weighting methods may be used for benchmarked portfolios, which will be discussed later. Ultimately, the choice of weighting method will depend on the portfolio manager’s information and objectives.</p>
+<p>There are variations of value weighting, such as weighting stocks by the square root or cube root of their market capitalization, which reduces bias towards large stocks. Another informal weighting method is price weighting, where the portfolio manager buys the same number of shares in each stock so that the weights are proportional to the stock prices. This is how the Dow Jones Industrial Average and the Nikkei 225 are calculated.</p>
+<p>Other informal weighting methods may be used for benchmarked portfolios, which will be discussed later. Ultimately, the choice of weighting method will depend on the portfolio manager’s information and objectives.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mean-variance-optimization-method">
 <h1>Mean-variance optimization method<a class="headerlink" href="#mean-variance-optimization-method" title="Permalink to this headline">#</a></h1>
@@ -936,12 +936,12 @@ For example,</p>
 <section class="tex2jax_ignore mathjax_ignore" id="benchmark">
 <h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">#</a></h1>
 <p>Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. <strong>The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it</strong>. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.</p>
-<section id="ad-hoc">
-<h2>Ad hoc<a class="headerlink" href="#ad-hoc" title="Permalink to this headline">#</a></h2>
+<section id="informal">
+<h2>Informal<a class="headerlink" href="#informal" title="Permalink to this headline">#</a></h2>
 <p>A straightforward way to ensure that a benchmarked portfolio closely tracks its benchmark is by using a simple weighting approach. This involves selecting the largest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to include 50 stocks, the 50 stocks with the largest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be computed based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.</p>
 <p>Several approaches exist for adjusting weights to favor preferred stocks. Assuming that the portfolio manager has used the aggregate z-score methodology explained earlier to rank stocks, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) equals zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as <span class="math notranslate nohighlight">\(z_\text{max}\)</span>. Third, compute the z-score multiplier <span class="math notranslate nohighlight">\(m = η/z_\text{max}\)</span>. Finally, compute the new weights of the portfolio using the formula <span class="math notranslate nohighlight">\((w_i + mz_i)\)</span>, where <span class="math notranslate nohighlight">\(w_i\)</span> represents the relative market capitalization weight within the benchmark. After completing these steps, the adjusted portfolio is ready.</p>
 <p>While selecting the largest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the optimal solution. This method does not consider minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark’s total market capitalization, making it an inefficient approach.</p>
-<p>While other ad hoc methods exist, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
+<p>While other informal methods exist, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
 </section>
 <section id="stratification">
 <h2>Stratification<a class="headerlink" href="#stratification" title="Permalink to this headline">#</a></h2>
