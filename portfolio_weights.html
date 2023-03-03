@@ -956,13 +956,17 @@ For example,</p>
 <p>One method of aligning the portfolio with the benchmark is to target the benchmark’s factor exposures as the desired factor exposures for the portfolio. Alternatively, the portfolio’s overall beta relative to the benchmark can be set to approximately 1. This ensures that the portfolio closely tracks the benchmark’s performance.</p>
 <p>The beta of a portfolio relative to its benchmark is calculated as the weighted average of the betas of the individual stocks in the portfolio. Specifically, let β be an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector representing the benchmark beta of each stock, where <span class="math notranslate nohighlight">\(β_i\)</span> is the beta of stock <span class="math notranslate nohighlight">\(i\)</span> with respect to the benchmark. The portfolio beta is then given by the product of the transpose of the portfolio weight vector, <span class="math notranslate nohighlight">\(w^\top\)</span>, and <span class="math notranslate nohighlight">\(β\)</span>. To ensure that the portfolio beta aligns with the benchmark, one approach is to set a constraint on the portfolio beta, such as requiring it to fall within a specified range: <span class="math notranslate nohighlight">\(0.9 \le w^\top β\le 1.1\)</span>. Alternatively, we could add a constraint to the optimization problem directly: <span class="math notranslate nohighlight">\( w^\top β=1\)</span>.</p>
 <p>To expand on the concept of targeting a portfolio’s benchmark beta, we can also specify a range for each of the portfolio’s other factor exposures. This is known as <strong>factor tilting</strong>, where the portfolio is adjusted to increase exposure to certain factors and decrease exposure to others based on market conditions and our view on the factors. For example, if a portfolio manager believes the market will rally, they may wish to have a higher market beta than the benchmark while keeping other factor exposures equal to the benchmark, thus tilting the portfolio towards the market factor.</p>
-<p>The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an <span class="math notranslate nohighlight">\(N x K\)</span> matrix <span class="math notranslate nohighlight">\(B\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the number of relevant factors, and <span class="math notranslate nohighlight">\(β_{i,k}\)</span> is the exposure of stock <span class="math notranslate nohighlight">\(i\)</span> to factor <span class="math notranslate nohighlight">\(k\)</span>. The factor exposure of a portfolio with weight <span class="math notranslate nohighlight">\(w\)</span> is simply <span class="math notranslate nohighlight">\(B^\top w\)</span>. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.</p>
+<p>The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an <span class="math notranslate nohighlight">\(N \times K\)</span> matrix <span class="math notranslate nohighlight">\(B\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the number of relevant factors, and <span class="math notranslate nohighlight">\(β_{i,k}\)</span> is the exposure of stock <span class="math notranslate nohighlight">\(i\)</span> to factor <span class="math notranslate nohighlight">\(k\)</span>. The factor exposure of a portfolio with weight <span class="math notranslate nohighlight">\(w\)</span> is simply <span class="math notranslate nohighlight">\(B^\top w\)</span>. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.</p>
 <p>By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tracking-error-minimization">
 <h1>Tracking-error minimization<a class="headerlink" href="#tracking-error-minimization" title="Permalink to this headline">#</a></h1>
-<p>Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the TE given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint.</p>
-<p>To minimize TE, portfolio managers use the standard deviation of portfolio returns minus benchmark returns:</p>
+<p>Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem:</p>
+<ul class="simple">
+<li><p>one approach minimizes the TE given an expected excess return over the benchmark,</p></li>
+<li><p>while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint.</p></li>
+</ul>
+<p>To minimize TE, portfolio managers use the standard deviation (<span class="math notranslate nohighlight">\(s\)</span>) of portfolio returns minus benchmark returns:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{TE}=s(r_P-r_B)=\sqrt{V(r_P-r_B)}.
@@ -974,7 +978,7 @@ For example,</p>
 V(r_P-r_B)=V(r_P)-2C(r_P,r_B)+V(r_B),
 \]</div>
 <p>we minimize the variance of portfolio returns minus twice the covariance between portfolio returns and benchmark returns (e.g., <span class="math notranslate nohighlight">\(V(r_P)-2C(r_P,r_B)\)</span>) because we cannot control the variance of the benchmark.</p>
-<p>To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean <span class="math notranslate nohighlight">\(μ_P\)</span> will be some excess return over the benchmark. Practically, we should think of <span class="math notranslate nohighlight">\(μ_P\)</span> as the expected return of the benchmark plus a small amount (<span class="math notranslate nohighlight">\(μ_P=\)</span>μ_B+\delta$) that we add according to our desire, and then run the optimization to find the portfolio weights.
+<p>To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean <span class="math notranslate nohighlight">\(μ_P\)</span> will be some excess return <strong>over</strong> the benchmark. Practically, we should think of <span class="math notranslate nohighlight">\(μ_P\)</span> as the expected return of the benchmark plus a small amount (<span class="math notranslate nohighlight">\(μ_P=μ_B+\delta\)</span>) that we add according to our desire, and then run the optimization to find the portfolio weights.
 Hence,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -993,7 +997,7 @@ V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i).
 <p>If we assume that the covariance between the residuals of the stocks is 0, then we can express the variance-covariance matrix of all stock returns as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
+\begin{aligned}
 \Sigma &amp;= 
 \begin{bmatrix}
 \beta_{1,1} &amp; \cdots &amp; \beta_{1,K} \\
@@ -1009,15 +1013,15 @@ C(f_K,f_1) &amp; \cdots &amp; V(f_K)     \\
 \beta_{1,1} &amp; \cdots &amp; \beta_{1,K} \\
 \vdots     &amp; \vdots &amp; \vdots     \\
 \beta_{N,1} &amp; \cdots &amp; \beta_{N,K} \\
-\end{bmatrix}
-+
+\end{bmatrix}\\
+&amp;+
 \begin{bmatrix}
 V(\epsilon_1)     &amp; \cdots &amp; 0 \\
 \vdots     &amp; \vdots &amp; \vdots     \\
 0 &amp; \cdots &amp; V(\epsilon_N)     \\
 \end{bmatrix}\\
 &amp;=B V(f) B^\top +V(\epsilon)
-\end{align}
+\end{aligned}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(B\)</span> is an <span class="math notranslate nohighlight">\(N\times K\)</span> matrix of factor exposures, <span class="math notranslate nohighlight">\(V(f)\)</span> is a <span class="math notranslate nohighlight">\(K\times K\)</span> matrix of factor premium variances and covariances, and <span class="math notranslate nohighlight">\(V(ε)\)</span> is an <span class="math notranslate nohighlight">\(N\times N\)</span> diagonal matrix of error variances.</p>
 <p>With this, we can define the squared tracking error as:</p>
@@ -1148,9 +1152,9 @@ c &amp;= 0
 <p>It follows that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>To provide a detailed illustration of the application, let’s consider a simple portfolio consisting of six stocks. The annualized mean returns for these stocks are as follows: <span class="math notranslate nohighlight">\(μ_1\)</span> = 14.4, <span class="math notranslate nohighlight">\(μ_2\)</span> = 10.19, <span class="math notranslate nohighlight">\(μ_3\)</span> = 9.87, <span class="math notranslate nohighlight">\(μ_4\)</span> = 7.52, <span class="math notranslate nohighlight">\(μ_5\)</span> = 20.05, and <span class="math notranslate nohighlight">\(μ_6\)</span> = 2.66. The variances and covariances are expressed in percentage terms. For instance, the annualized variance for stock 1 is 452.33, which is equivalent to a variance of 452% per year (or a standard deviation of 21.26% per year). Finally, we select the value of <span class="math notranslate nohighlight">\(μ_P\)</span> to reflect an annualized return of 8%.</p>
 <p>Now, we can determine the optimal weights for the six stocks that will minimize the risk while achieving an expected mean return of 8% per year.</p>
@@ -1348,10 +1352,10 @@ The resulting optimization problem has the first two rows of <span class="math n
 <p>To incorporate binary variables as optimization weights, one can create <span class="math notranslate nohighlight">\(v_i^+\)</span> and <span class="math notranslate nohighlight">\(v_i^-\)</span> binary variables for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks. By adding the constraint</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 &amp; v_i^+\kappa_l \le b_i \le v_i^+\kappa_h \\
 &amp; v_i^-\gamma_l \le s_i \le v_i^-\gamma_h \\
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>and setting <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, the weights can fluctuate between 0 and 1, and the constraint <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> ensures that the phantom weights are orthogonal. If <span class="math notranslate nohighlight">\(b_i&gt;0\)</span>, then <span class="math notranslate nohighlight">\(s_i=0\)</span> and vice versa for every stock <span class="math notranslate nohighlight">\(i\)</span>. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.</p>
 </section>
@@ -1360,23 +1364,23 @@ The resulting optimization problem has the first two rows of <span class="math n
 <p>Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 &amp; w_i = w_i^{+} - w_i^{-} \\
 &amp; \sum\limits_{i=1}^N w_i^+ = \sum\limits_{i=1}^N w_i^-\\
 &amp; w_i^+ \ge 0\\
 &amp; w_i^- \ge 0\\
 &amp; \sum\limits_{i=1}^N w_i^+ + \sum\limits_{i=1}^N w_i^- \le 2\\
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(w_i^{+}=b_i\)</span> and <span class="math notranslate nohighlight">\(w_i^{-}=s_i\)</span>.
 These constraints ensure that the sum of the weights of the long stocks equals the sum of the weights of the shorted stocks, creating a dollar-neutral portfolio. The leverage of the portfolio is limited to 2, meaning that the portfolio is 100% long and 100% short of the assets under management.</p>
 <p>If the market-neutral manager wanted to increase the leverage, they could adjust the constraints on the sum of the phantom long and short weights. For example, to create a 130-30 long-short portfolio, one could set <span class="math notranslate nohighlight">\(L_l = 1.3\)</span> and <span class="math notranslate nohighlight">\(L_s = 0.3\)</span> in the following constraints:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
+\begin{aligned}
 &amp; \sum\limits_{i=1}^N w_i^+=L_l\\
 &amp; \sum\limits_{i=1}^N w_i^-=L_s
-\end{align*}
+\end{aligned}
 \end{split}\]</div>
 <p>This would result in a portfolio with long exposure of 130% and short exposure of 30%.</p>
 </section>
@@ -1561,9 +1565,9 @@ w[11] = 1.0
 <p>As before we condense the quadratic programming problem to</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{align*}
+\begin{aligned}
 \min\limits_w 0.5 w^T \Sigma w\quad\text{s.t}\quad Ax \le b
-\end{align*}
+\end{aligned}
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
