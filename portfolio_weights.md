@@ -210,14 +210,16 @@ The beta of a portfolio relative to its benchmark is calculated as the weighted 
 
 To expand on the concept of targeting a portfolio's benchmark beta, we can also specify a range for each of the portfolio's other factor exposures. This is known as **factor tilting**, where the portfolio is adjusted to increase exposure to certain factors and decrease exposure to others based on market conditions and our view on the factors. For example, if a portfolio manager believes the market will rally, they may wish to have a higher market beta than the benchmark while keeping other factor exposures equal to the benchmark, thus tilting the portfolio towards the market factor.
 
-The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an $N x K$ matrix $B$, where $K$ is the number of relevant factors, and $β_{i,k}$ is the exposure of stock $i$ to factor $k$. The factor exposure of a portfolio with weight $w$ is simply $B^\top w$. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.
+The factor exposure of a portfolio is determined by the weighted average of the factor exposures of individual stocks. We can represent this with an $N \times K$ matrix $B$, where $K$ is the number of relevant factors, and $β_{i,k}$ is the exposure of stock $i$ to factor $k$. The factor exposure of a portfolio with weight $w$ is simply $B^\top w$. Therefore, we can add a general factor exposure constraint to ensure the portfolio is tilted towards certain factors.
 
 By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.
 
 # Tracking-error minimization
-Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem: one approach minimizes the TE given an expected excess return over the benchmark, while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint. 
+Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem: 
+* one approach minimizes the TE given an expected excess return over the benchmark, 
+* while the other maximizes the expected excess return over the benchmark subject to a maximum TE constraint. 
 
-To minimize TE, portfolio managers use the standard deviation of portfolio returns minus benchmark returns:
+To minimize TE, portfolio managers use the standard deviation ($s$) of portfolio returns minus benchmark returns:
 
 $$
 \text{TE}=s(r_P-r_B)=\sqrt{V(r_P-r_B)}.
@@ -234,7 +236,7 @@ $$
 
 we minimize the variance of portfolio returns minus twice the covariance between portfolio returns and benchmark returns (e.g., $V(r_P)-2C(r_P,r_B)$) because we cannot control the variance of the benchmark.
 
-To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean $μ_P$ will be some excess return over the benchmark. Practically, we should think of $μ_P$ as the expected return of the benchmark plus a small amount ($μ_P=$μ_B+\delta$) that we add according to our desire, and then run the optimization to find the portfolio weights.
+To find the portfolio that minimizes tracking error, we need to solve the quadratic minimization problem. The same quadratic programming routine used in the preceding section can solve this problem as well. Typically, the chosen portfolio mean $μ_P$ will be some excess return **over** the benchmark. Practically, we should think of $μ_P$ as the expected return of the benchmark plus a small amount ($μ_P=μ_B+\delta$) that we add according to our desire, and then run the optimization to find the portfolio weights.
 Hence,
 
 $$
@@ -270,8 +272,8 @@ C(f_K,f_1) & \cdots & V(f_K)     \\
 \beta_{1,1} & \cdots & \beta_{1,K} \\
 \vdots     & \vdots & \vdots     \\
 \beta_{N,1} & \cdots & \beta_{N,K} \\
-\end{bmatrix}
-+
+\end{bmatrix}\\
+&+
 \begin{bmatrix}
 V(\epsilon_1)     & \cdots & 0 \\
 \vdots     & \vdots & \vdots     \\
