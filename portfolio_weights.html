@@ -857,8 +857,7 @@ Thus,</p>
 \mu^\top = 
 \begin{bmatrix}
 E(r_1)\\
-.\\
-.\\
+\vdots \\
 E(r_N)
 \end{bmatrix}
 \end{split}\]</div>
@@ -869,8 +868,7 @@ E(r_N)
 \begin{bmatrix}
 V(r_1)      &amp; C(r_1,r_2) &amp;\cdots &amp; C(r_1,r_N) \\
 C(r_2,r_1)  &amp; V(r_2)     &amp;\cdots &amp; C(r_2,r_N) \\
-.           &amp; .          &amp;\cdots &amp; .          \\
-.           &amp; .          &amp;\cdots &amp; .          \\
+\vdots      &amp; \vdots     &amp;\ddots &amp; \vdots     \\
 C(r_N,r_1)  &amp; C(r_N,r_2) &amp;\cdots &amp; V(r_N)     \\
 \end{bmatrix}
 \end{split}\]</div>
@@ -920,9 +918,12 @@ For example,</p>
 The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level <span class="math notranslate nohighlight">\(σ_P\)</span>, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
 For example,</p>
 <div class="math notranslate nohighlight">
-\[
-\max\limits_w w^\top\mu\text{ s.t. } w^\top\Sigma w = \sigma_P \text{ or } \min\limits_w w^\top\Sigma w\text{ s.t. } w^\top\mu = \mu_P.
-\]</div>
+\[\begin{split}
+\begin{aligned}
+&amp; \max\limits_w w^\top\mu\quad &amp;\text{s.t.} \quad &amp; w^\top\Sigma w = \sigma_P, \quad \text{or}\\ 
+&amp; \min\limits_w w^\top\Sigma w &amp;\text{s.t.} \quad &amp; w^\top\mu = \mu_P.
+\end{aligned}
+\end{split}\]</div>
 <p>In cases where the portfolio manager has neither a target risk nor a target expected return, the mean-variance optimization can be expressed in terms of risk-adjusted expected return. This can be achieved by adjusting the expected return for the risk, which is done by subtracting some multiple of the risk, i.e., <span class="math notranslate nohighlight">\(μ_P - Aσ^2\)</span>. Here, A is the risk-aversion parameter, and a high value of A indicates that the portfolio manager considers the risk to be very costly.</p>
 <p>For instance, if the value of A is 2, it means that the portfolio manager equates a 1% increase in the variance with a 2% decrease in the expected return. Once the value of the risk-aversion parameter is determined, the mean-variance problem can be formulated as follows:</p>
 <div class="math notranslate nohighlight">
@@ -935,13 +936,13 @@ For example,</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="benchmark">
 <h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">#</a></h1>
-<p>Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. <strong>The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it</strong>. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as ad hoc methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.</p>
+<p>Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. <strong>The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it</strong>. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as informal methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.</p>
 <section id="informal">
 <h2>Informal<a class="headerlink" href="#informal" title="Permalink to this headline">#</a></h2>
-<p>A straightforward way to ensure that a benchmarked portfolio closely tracks its benchmark is by using a simple weighting approach. This involves selecting the largest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to include 50 stocks, the 50 stocks with the largest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be computed based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.</p>
-<p>Several approaches exist for adjusting weights to favor preferred stocks. Assuming that the portfolio manager has used the aggregate z-score methodology explained earlier to rank stocks, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) equals zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as <span class="math notranslate nohighlight">\(z_\text{max}\)</span>. Third, compute the z-score multiplier <span class="math notranslate nohighlight">\(m = η/z_\text{max}\)</span>. Finally, compute the new weights of the portfolio using the formula <span class="math notranslate nohighlight">\((w_i + mz_i)\)</span>, where <span class="math notranslate nohighlight">\(w_i\)</span> represents the relative market capitalization weight within the benchmark. After completing these steps, the adjusted portfolio is ready.</p>
-<p>While selecting the largest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the optimal solution. This method does not consider minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark’s total market capitalization, making it an inefficient approach.</p>
-<p>While other informal methods exist, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
+<p>One way to make sure that a benchmarked portfolio closely follows its benchmark is to use a simple weighting approach. This involves selecting the biggest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to have 50 stocks, the 50 stocks with the biggest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be calculated based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.</p>
+<p>There are various methods to adjust the weights to favor preferred stocks. Assuming that the portfolio manager has ranked stocks using the aggregate z-score methodology explained earlier, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) is equal to zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, the manager should identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as <span class="math notranslate nohighlight">\(z_\text{max}\)</span>. Third, the z-score multiplier should be computed as <span class="math notranslate nohighlight">\(m = η/z_\text{max}\)</span>. Finally, the new weights of the portfolio can be calculated using the formula <span class="math notranslate nohighlight">\((w_i + mz_i)\)</span>, where <span class="math notranslate nohighlight">\(w_i\)</span> represents the relative market capitalization weight within the benchmark. After following these steps, the adjusted portfolio is ready. Note that this procedure works as <span class="math notranslate nohighlight">\(\sum\limits_i(w_i + mz_i)=\sum\limits_i(w_i) + (η/z_\text{max})\sum\limits_iz_i=1\)</span>.</p>
+<p>Although selecting the biggest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the best solution. This method does not take into account the minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark’s total market capitalization, making it an inefficient approach.</p>
+<p>While there are other informal methods, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
 </section>
 <section id="stratification">
 <h2>Stratification<a class="headerlink" href="#stratification" title="Permalink to this headline">#</a></h2>
