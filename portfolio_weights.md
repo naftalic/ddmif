@@ -256,7 +256,7 @@ $$
 If we assume that the covariance between the residuals of the stocks is 0, then we can express the variance-covariance matrix of all stock returns as:
 
 $$
-\begin{align}
+\begin{aligned}
 \Sigma &= 
 \begin{bmatrix}
 \beta_{1,1} & \cdots & \beta_{1,K} \\
@@ -280,7 +280,7 @@ V(\epsilon_1)     & \cdots & 0 \\
 0 & \cdots & V(\epsilon_N)     \\
 \end{bmatrix}\\
 &=B V(f) B^\top +V(\epsilon)
-\end{align}
+\end{aligned}
 $$
 
 where $B$ is an $N\times K$ matrix of factor exposures, $V(f)$ is a $K\times K$ matrix of factor premium variances and covariances, and $V(ε)$ is an $N\times N$ diagonal matrix of error variances.
@@ -427,9 +427,9 @@ $$
 It follows that
 
 $$
-\begin{align*}
+\begin{aligned}
 w &= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
-\end{align*}
+\end{aligned}
 $$
 
 To provide a detailed illustration of the application, let's consider a simple portfolio consisting of six stocks. The annualized mean returns for these stocks are as follows: $μ_1$ = 14.4, $μ_2$ = 10.19, $μ_3$ = 9.87, $μ_4$ = 7.52, $μ_5$ = 20.05, and $μ_6$ = 2.66. The variances and covariances are expressed in percentage terms. For instance, the annualized variance for stock 1 is 452.33, which is equivalent to a variance of 452% per year (or a standard deviation of 21.26% per year). Finally, we select the value of $μ_P$ to reflect an annualized return of 8%.
@@ -546,10 +546,10 @@ In portfolio optimization, it may be beneficial to use binary variables as optim
 To incorporate binary variables as optimization weights, one can create $v_i^+$ and $v_i^-$ binary variables for each of the $N$ stocks. By adding the constraint
 
 $$
-\begin{align*}
+\begin{aligned}
 & v_i^+\kappa_l \le b_i \le v_i^+\kappa_h \\
 & v_i^-\gamma_l \le s_i \le v_i^-\gamma_h \\
-\end{align*}
+\end{aligned}
 $$
 
 and setting $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, the weights can fluctuate between 0 and 1, and the constraint $v_i^++v_i^-\le 1$ ensures that the phantom weights are orthogonal. If $b_i>0$, then $s_i=0$ and vice versa for every stock $i$. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.
@@ -559,13 +559,13 @@ and setting $\kappa_l = \gamma_l = 0$ and $\kappa_h = \gamma_h = 1$, the weights
 Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:
 
 $$
-\begin{align*}
+\begin{aligned}
 & w_i = w_i^{+} - w_i^{-} \\
 & \sum\limits_{i=1}^N w_i^+ = \sum\limits_{i=1}^N w_i^-\\
 & w_i^+ \ge 0\\
 & w_i^- \ge 0\\
 & \sum\limits_{i=1}^N w_i^+ + \sum\limits_{i=1}^N w_i^- \le 2\\
-\end{align*}
+\end{aligned}
 $$
 
 where $w_i^{+}=b_i$ and $w_i^{-}=s_i$.
@@ -574,10 +574,10 @@ These constraints ensure that the sum of the weights of the long stocks equals t
 If the market-neutral manager wanted to increase the leverage, they could adjust the constraints on the sum of the phantom long and short weights. For example, to create a 130-30 long-short portfolio, one could set $L_l = 1.3$ and $L_s = 0.3$ in the following constraints:
 
 $$
-\begin{align*}
+\begin{aligned}
 & \sum\limits_{i=1}^N w_i^+=L_l\\
 & \sum\limits_{i=1}^N w_i^-=L_s
-\end{align*}
+\end{aligned}
 $$
 
 This would result in a portfolio with long exposure of 130% and short exposure of 30%.
@@ -692,9 +692,9 @@ Continuing from the previous example, our goal is to construct a portfolio with 
 As before we condense the quadratic programming problem to 
 
 $$
-\begin{align*}
+\begin{aligned}
 \min\limits_w 0.5 w^T \Sigma w\quad\text{s.t}\quad Ax \le b
-\end{align*}
+\end{aligned}
 $$
 
 
