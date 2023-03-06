@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# 8) Rebalancing and transactions costs
+# 9) Rebalancing and transactions costs
 In April 2020, Invesco made a costly rebalancing error with its Equally-Weighted S&P 500 Fund, which resulted in a loss of $105 million over five days. Even without such errors, transaction costs associated with rebalancing can significantly affect a fund's returns. For instance, small-cap growth managers who traded frequently in 2019 incurred annual trading costs of over 2.5%, while those who traded more cautiously had trading costs below 1%, ultimately affecting their net returns. This illustrates the importance of rebalancing decisions and the need to consider transaction costs when adjusting portfolios.
 
 Rebalancing decisions may be triggered by cash inflows, outflows, or changes in underlying stock-return model parameters. While cash inflows and outflows require adjustments to the portfolio's positions, changes in parameters do not necessarily require rebalancing. When the decision to rebalance is made, transactions costs become a significant consideration in determining the optimal portfolio composition. However, transactions costs are often ignored during the initial creation of the portfolio, as they do not have a significant impact.
