@@ -478,9 +478,6 @@ model.addConstrs(gp.quicksum(A[j,i] * w[i] for i in range(12)) <= b[0,j] for j i
 risk = 0.5 * gp.quicksum(Sigma[i,j]*w[i]*w[j] for i in range(6) for j in range(6))
 model.setObjective(risk, gp.GRB.MINIMIZE)
 
-# Set the objective function to zero (since this is a feasibility problem)
-model.setObjective(risk, sense=gp.GRB.MINIMIZE)
-
 # Solve the model
 model.optimize()
 
