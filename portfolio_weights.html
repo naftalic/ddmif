@@ -1001,23 +1001,23 @@ V(r_i)=\beta_i^\top V(f)\beta_i+V(\epsilon_i).
 \Sigma &amp;= 
 \begin{bmatrix}
 \beta_{1,1} &amp; \cdots &amp; \beta_{1,K} \\
-\vdots     &amp; \vdots &amp; \vdots     \\
+\vdots     &amp; \ddots &amp; \vdots     \\
 \beta_{N,1} &amp; \cdots &amp; \beta_{N,K} \\
 \end{bmatrix}
 \begin{bmatrix}
 V(f_1)     &amp; \cdots &amp; C(f_1,f_K) \\
-\vdots     &amp; \vdots &amp; \vdots     \\
+\vdots     &amp; \ddots &amp; \vdots     \\
 C(f_K,f_1) &amp; \cdots &amp; V(f_K)     \\
 \end{bmatrix}
 \begin{bmatrix}
 \beta_{1,1} &amp; \cdots &amp; \beta_{1,K} \\
-\vdots     &amp; \vdots &amp; \vdots     \\
+\vdots     &amp; \ddots &amp; \vdots     \\
 \beta_{N,1} &amp; \cdots &amp; \beta_{N,K} \\
 \end{bmatrix}\\
 &amp;+
 \begin{bmatrix}
 V(\epsilon_1)     &amp; \cdots &amp; 0 \\
-\vdots     &amp; \vdots &amp; \vdots     \\
+\vdots     &amp; \ddots &amp; \vdots     \\
 0 &amp; \cdots &amp; V(\epsilon_N)     \\
 \end{bmatrix}\\
 &amp;=B V(f) B^\top +V(\epsilon)
