@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# 7) Portfolio Weights
+# 7) Portfolio Construction
 
 In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.
 
@@ -304,10 +304,10 @@ Ghost benchmark tracking refers to a scenario where the portfolio manager lacks 
 Risk-adjusted tracking error is a common constraint that portfolio managers use to limit tracking error within a certain percentage, such as 3% per annum. To achieve this constraint, the portfolio manager can increase the expected excess return until the desired tracking error level is reached. This process is similar to what we discussed earlier, with the objective function being the expected return of the portfolio and the constraint being the tracking error. In example,
 
 $$
-\begin{aliged}
+\begin{aligned}
 &\max\limits_w w^\top\mu\\
 &\text{s.t. } V(r_P-r_B)=\sigma_x^2
-\end{aliged}
+\end{aligned}
 $$
 
 given the target tracking error of $\sigma_x$.
