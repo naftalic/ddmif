@@ -187,8 +187,8 @@ $$
 \begin{aligned}
 x_{i,t+1}=s^a_{i,t+1}-s^b_{i,t+1}=\frac{w^a_{i,t}}{p_{i,t+1}}(V_{t+1}+C_{t+1})-s^b_{i,t+1}
 \end{aligned}
-
 $$
+
 Here, $C_{t+1}$ represents any monetary contribution to or withdrawal from the portfolio at time $t+1$. The excess shares $x_{i,t+1}$ are negative if shares need to be sold and positive if shares need to be bought. It's important to note that these formulas do not account for bid-ask spreads or price impact, which can introduce additional costs to the rebalancing process.
 
 # Using Cash Flows to Rebalance without Selling
@@ -231,8 +231,8 @@ $$
 \begin{aligned}
 c_i=
 \begin{cases}
-c\quad &\text{if}\quad w^*_i>w^b_i\\
--c\quad &\text{if}\quad w^*_i<w^b_i
+c  \quad &\text{if}\quad w^*_i>w^b_i\\
+-c \quad &\text{if}\quad w^*_i<w^b_i
 \end{cases}
 \end{aligned}
 $$
