@@ -223,7 +223,7 @@ The optimal portfolio problem to maximize the effective risk-adjusted return or 
 
 Nonlinearity arises because we do not know beforehand which stock to sell and which stock to buy. To avoid nonlinearity, we need to determine which stocks to buy and sell before solving the optimization problem. Here's how it works:
 
-First, we solve the problem ignoring transaction costs, i.e., we maximize $w^a\mu - A(w^a)^T\Sigma w^a$ subject to $(w^a)^TI = 1$ and any other relevant constraints. Let the solution to this problem be denoted as $w^=(w^_1,\cdots, w^*_N)$.
+First, we solve the problem ignoring transaction costs, i.e., we maximize $w^a\mu - A(w^a)^T\Sigma w^a$ subject to $(w^a)^TI = 1$ and any other relevant constraints. Let the solution to this problem be denoted as $w^*=(w^*_1,\cdots, w^*_N)$.
 
 Next, we determine which stocks to buy and sell based on the optimization without considering transaction costs. To do this, we define the transaction cost vector $c = (c_1,\cdots, c_N)$ using the weights $w^*$ as follows:
 
