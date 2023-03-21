@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# 9) Rebalancing and t-cost
+# 9) Rebalancing and Transaction Costs
 In April 2020, Invesco made a costly rebalancing error with its Equally-Weighted S&P 500 Fund, which resulted in a loss of $105 million over five days. Invesco misinterpreted the altered schedule by S&P Dow Jones Indices, which had delayed and separated the quarterly rebalancing dates for its indexes due to market volatility. Invesco failed to rebalance the funds on April 24, the scheduled date for S&P Dow Jones Indices to rebalance the index.
 
 On April 29, Invesco discovered the omission and rebalanced the funds, injecting approximately $105 million into the funds to compensate investors for the performance difference between April 24 and April 29. Although Invesco does not expect this matter to have a material impact on its financial condition, the rebalancing error illustrates the importance of rebalancing decisions and the need to consider transaction costs when making portfolio adjustments.
