@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # A2) Theory of linear programing and the Simplex method
+# # A2) Theory of Linear Programing and the Simplex Method
 # 
 # In this section, we will discuss the theory of linear programming and the simplex method. Linear programming is a mathematical technique used to optimize a linear objective function subject to linear equality and inequality constraints. The simplex method is an algorithm used to solve linear programming problems.
 # 
