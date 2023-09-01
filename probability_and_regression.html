@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Probability and Regression Review &#8212; Data-Driven Methods in Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,55 +63,85 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'probability_and_regression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="14) Portfolio Performance" href="portfolio_performance.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data-Driven Methods in Finance</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -109,409 +150,299 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
-   1) Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_models.html">
-   2) Basic Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="factors.html">
-   3) Factors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="screening_and_ranking.html">
-   4) Stock Screening and Ranking
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fundamental_factors.html">
-   5) The Fundamental Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="economic_factors.html">
-   6) The Economic Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_weights.html">
-   7) Portfolio Weights
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="tax_management.html">
-   8) Tax Management
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="leverage.html">
-   9) Leverage
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="market_neutral.html">
-   10) Market Neutral
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian_alpha.html">
-   11) Bayesian Alpha
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="performance_measurement_and_attribution.html">
-   12) Performance Measurement and Attribution
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="backtesting.html">
-   13) Backtesting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_performance.html">
-   14) Portfolio Performance
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Probability and Regression Review
-  </a>
- </li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1) Introduction</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basic_models.html">2) Basic Models</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="factors.html">3) Factors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="screening_and_ranking.html">4) Stock Screening and Ranking</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="fundamental_factors.html">5) The Fundamental Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="economic_factors.html">6) The Economic Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="portfolio_construction.html">7) Portfolio Construction</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="quadratic_programming.html">8) Quadratic Programming</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="rebalancing_and_transactions_costs.html">9) Rebalancing and Transaction Costs</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_optimization.html">A1) Hands-on Optimization</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lp_and_simplex.html">A2) Theory of Linear Programing and the Simplex Method</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/probability_and_regression.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fprobability_and_regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/probability_and_regression.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/naftalic/ddmif"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fprobability_and_regression.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/probability_and_regression.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/probability_and_regression.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
-   Expected value, variance, and covariance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#population-model">
-   Population model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ordinary-least-squares-ols">
-   Ordinary least squares (OLS)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expected-value-of-ols">
-   Expected value of OLS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#law-of-iterated-expectations-lie">
-   Law of iterated expectations (LIE)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cef-decomposition-property">
-   CEF decomposition property
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cef-prediction-property">
-   CEF prediction property
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Probability and Regression Review</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expected-value-variance-and-covariance">
-   Expected value, variance, and covariance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#population-model">
-   Population model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ordinary-least-squares-ols">
-   Ordinary least squares (OLS)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expected-value-of-ols">
-   Expected value of OLS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#law-of-iterated-expectations-lie">
-   Law of iterated expectations (LIE)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cef-decomposition-property">
-   CEF decomposition property
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cef-prediction-property">
-   CEF prediction property
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Probability and Regression Review</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-variance-and-covariance">Expected value, variance, and covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-model">Population model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinary-least-squares-ols">Ordinary least squares (OLS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-ols">Expected value of OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-iterated-expectations-lie">Law of iterated expectations (LIE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cef-decomposition-property">CEF decomposition property</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cef-prediction-property">CEF prediction property</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="probability-and-regression-review">
-<h1>Probability and Regression Review<a class="headerlink" href="#probability-and-regression-review" title="Permalink to this headline">#</a></h1>
+<h1>Probability and Regression Review<a class="headerlink" href="#probability-and-regression-review" title="Permalink to this heading">#</a></h1>
 <p>In this section, we cover the topic of probability and linear regression by first presenting the fundamental probability concepts such as expected value, variance, and covariance. Then, we examine how these concepts are applied in the context of linear regression. We delve into the underlying assumptions of the regression model and explore its statistical and distributional characteristics.</p>
 <section id="expected-value-variance-and-covariance">
-<h2>Expected value, variance, and covariance<a class="headerlink" href="#expected-value-variance-and-covariance" title="Permalink to this headline">#</a></h2>
+<h2>Expected value, variance, and covariance<a class="headerlink" href="#expected-value-variance-and-covariance" title="Permalink to this heading">#</a></h2>
 <p>The expected value, also known as the population mean, of a random variable is calculated as the weighted average of all possible values that the variable can take, where the weights are given by the probabilities of each value’s occurrence in the population.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -558,7 +489,7 @@ C(X,Y) = E(XY) - E(X)E(Y).
 \]</div>
 </section>
 <section id="population-model">
-<h2>Population model<a class="headerlink" href="#population-model" title="Permalink to this headline">#</a></h2>
+<h2>Population model<a class="headerlink" href="#population-model" title="Permalink to this heading">#</a></h2>
 <p>This section focuses on cross-sectional analysis, where we collect a random sample from the population of interest. We consider two variables, X and Y, and aim to examine the relationship between them. The model we use</p>
 <div class="math notranslate nohighlight">
 \[
@@ -592,7 +523,7 @@ E(y\mid x)=\beta_0+\beta_1x.
 <p>which shows the population regression function is a linear function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </section>
 <section id="ordinary-least-squares-ols">
-<h2>Ordinary least squares (OLS)<a class="headerlink" href="#ordinary-least-squares-ols" title="Permalink to this headline">#</a></h2>
+<h2>Ordinary least squares (OLS)<a class="headerlink" href="#ordinary-least-squares-ols" title="Permalink to this heading">#</a></h2>
 <p>Given data on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, can we estimate the population parameters, <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>? Let the pairs of <span class="math notranslate nohighlight">\(\{(x_i,y_i): i=1,2,\dots,n\}\)</span> be random samples of size <span class="math notranslate nohighlight">\(n\)</span> from the population. Plug any observation <span class="math notranslate nohighlight">\(i\)</span> into the population equation to get <span class="math notranslate nohighlight">\(y_i=\beta_0+\beta_1x_i+u_i\)</span> where we observe <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> but not <span class="math notranslate nohighlight">\(u_i\)</span>.</p>
 <p>We now use the two population restrictions <span class="math notranslate nohighlight">\(E(u)=0\)</span> and <span class="math notranslate nohighlight">\(E(u\mid x)=0\)</span> to estimate <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -645,7 +576,7 @@ the sample averages. Pluging <span class="math notranslate nohighlight">\(\wideh
 \]</div>
 </section>
 <section id="expected-value-of-ols">
-<h2>Expected value of OLS<a class="headerlink" href="#expected-value-of-ols" title="Permalink to this headline">#</a></h2>
+<h2>Expected value of OLS<a class="headerlink" href="#expected-value-of-ols" title="Permalink to this heading">#</a></h2>
 <p>So far, we have used a population model to explain simple regression, but our analysis has only been based on a sample of data. The OLS estimator is used to calculate residuals, which average to zero in the sample, regardless of any underlying model. Now, we need to study the statistical properties of the OLS estimator in the context of a population model and random sampling.</p>
 <p>Mathematical statistics is concerned with the behavior of estimators across different samples of data. For example, if we repeat the sample multiple times, will we get the correct answer on average? The expected value of the OLS estimators, which represents the average outcome across all possible random samples, must be determined to determine whether the estimators are unbiased.</p>
 <div class="math notranslate nohighlight">
@@ -704,7 +635,7 @@ It follows that,</p>
 Again, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the fixed constant in the population. The estimator, <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span>, varies across samples and is the random outcome: before we collect our data, we do not know what <span class="math notranslate nohighlight">\(\widehat{\beta}_1\)</span> will be. Under the four aforementioned assumptions we know that <span class="math notranslate nohighlight">\(E(\widehat{\beta}_0)=E(\widehat{\beta}_1)=0\)</span>.</p>
 </section>
 <section id="law-of-iterated-expectations-lie">
-<h2>Law of iterated expectations (LIE)<a class="headerlink" href="#law-of-iterated-expectations-lie" title="Permalink to this headline">#</a></h2>
+<h2>Law of iterated expectations (LIE)<a class="headerlink" href="#law-of-iterated-expectations-lie" title="Permalink to this heading">#</a></h2>
 <p>The conditional expectation function (CEF) is a statistical tool that represents the mean outcome of a random variable for a given set of covariates. The CEF is denoted as E(Y|X), where Y is the outcome and X is the set of covariates. The CEF is a random variable as it depends on the value of the covariates X, which are also random.</p>
 <p>The CEF is a useful tool for modeling the relationship between the outcome and covariates, and it can take on different values for different values of X. In some special cases, such as when there are treatment variables, the CEF may take on two values.</p>
 <p>The law of iterated expectations (LIE) is a complementary concept to the CEF. The LIE states that the unconditional expectation of a random variable can be calculated as the weighted average of the CEFs for all possible values of the covariates. Mathematically, this can be written as</p>
@@ -715,7 +646,7 @@ E(Y) = E(E(Y|X)).
 <p>The LIE allows us to calculate the unconditional expectation of a variable by considering the expected value of the variable given different values of the covariates.</p>
 </section>
 <section id="cef-decomposition-property">
-<h2>CEF decomposition property<a class="headerlink" href="#cef-decomposition-property" title="Permalink to this headline">#</a></h2>
+<h2>CEF decomposition property<a class="headerlink" href="#cef-decomposition-property" title="Permalink to this heading">#</a></h2>
 <p>The CEF decomposition theorem states that any random variable <span class="math notranslate nohighlight">\(Y\)</span> can be decomposed into a piece that is explained by <span class="math notranslate nohighlight">\(X\)</span> (the CEF) and a piece that is left over and orthogonal to it.
 For example, consider <span class="math notranslate nohighlight">\(y_i=E(y_i\mid x_i)+\epsilon_i\$, then the theorem argues that \)</span>\epsilon_i<span class="math notranslate nohighlight">\( is mean independent of \)</span>x_i<span class="math notranslate nohighlight">\(: \)</span>E(\epsilon_i\mid x_i)=0<span class="math notranslate nohighlight">\(, and that \)</span>\epsilon_i<span class="math notranslate nohighlight">\( is not correlated with any function of \)</span>x_i$. The first argument follows because</p>
 <div class="math notranslate nohighlight">
@@ -741,7 +672,7 @@ E\[ h(x_i) \epsilon_i\]
 \end{split}\]</div>
 </section>
 <section id="cef-prediction-property">
-<h2>CEF prediction property<a class="headerlink" href="#cef-prediction-property" title="Permalink to this headline">#</a></h2>
+<h2>CEF prediction property<a class="headerlink" href="#cef-prediction-property" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -765,43 +696,93 @@ E\[ h(x_i) \epsilon_i\]
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="portfolio_performance.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">14) Portfolio Performance</p>
-        </div>
-    </a>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-variance-and-covariance">Expected value, variance, and covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-model">Population model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinary-least-squares-ols">Ordinary least squares (OLS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-ols">Expected value of OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-iterated-expectations-lie">Law of iterated expectations (LIE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cef-decomposition-property">CEF decomposition property</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cef-prediction-property">CEF prediction property</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Naftali Cohen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Naftali Cohen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

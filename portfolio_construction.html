@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>7) Portfolio Construction &#8212; Data-Driven Methods in Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,56 +63,87 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'portfolio_construction';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="8) Quadratic Programming" href="quadratic_programming.html" />
     <link rel="prev" title="6) The Economic Factor Model" href="economic_factors.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data-Driven Methods in Finance</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,543 +153,329 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
-   1) Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_models.html">
-   2) Basic Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="factors.html">
-   3) Factors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="screening_and_ranking.html">
-   4) Stock Screening and Ranking
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fundamental_factors.html">
-   5) The Fundamental Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="economic_factors.html">
-   6) The Economic Factor Model
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   7) Portfolio Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="quadratic_programming.html">
-   8) Quadratic Programming
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rebalancing_and_transactions_costs.html">
-   9) Rebalancing and transactions costs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="practical_optimization.html">
-   A1) Hands-on Optimization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lp_and_simplex.html">
-   A2) Theory of linear programing and the Simplex method
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1) Introduction</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basic_models.html">2) Basic Models</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="factors.html">3) Factors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="screening_and_ranking.html">4) Stock Screening and Ranking</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="fundamental_factors.html">5) The Fundamental Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="economic_factors.html">6) The Economic Factor Model</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7) Portfolio Construction</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="quadratic_programming.html">8) Quadratic Programming</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="rebalancing_and_transactions_costs.html">9) Rebalancing and Transaction Costs</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_optimization.html">A1) Hands-on Optimization</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lp_and_simplex.html">A2) Theory of Linear Programing and the Simplex Method</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/portfolio_construction.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fportfolio_construction.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/portfolio_construction.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/naftalic/ddmif"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fportfolio_construction.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/portfolio_construction.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/portfolio_construction.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   7) Portfolio Construction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#risk-of-portfolio-measure">
-   Risk of Portfolio Measure
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-one-stock">
-     Portfolio of one stock:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-two-stocks">
-     Portfolio of two stocks:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-three-stocks">
-     Portfolio of three stocks:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#informal-methods">
-   Informal methods
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-variance-optimization-method">
-   Mean-variance optimization method
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#no-constraints">
-     No constraints
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#short-sale-and-diversification-constraints">
-     Short-Sale and Diversification Constraints
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sector-or-industry-constraints">
-   Sector or Industry Constraints
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trading-volume-constraint">
-     Trading-Volume Constraint
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#risk-adjusted-return">
-     Risk-Adjusted Return
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#benchmark">
-   Benchmark
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#informal">
-     Informal
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stratification">
-     Stratification
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#factor-exposure-targeting">
-   Factor exposure targeting
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tracking-error-minimization">
-   Tracking-error minimization
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tracking-by-factor-exposure">
-   Tracking by factor exposure
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ghost-benchmark-tracking">
-   Ghost benchmark tracking
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#risk-adjusted-tracking-error">
-   Risk-adjusted tracking error
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>7) Portfolio Construction</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   7) Portfolio Construction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#risk-of-portfolio-measure">
-   Risk of Portfolio Measure
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-one-stock">
-     Portfolio of one stock:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-two-stocks">
-     Portfolio of two stocks:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#portfolio-of-three-stocks">
-     Portfolio of three stocks:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#informal-methods">
-   Informal methods
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-variance-optimization-method">
-   Mean-variance optimization method
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#no-constraints">
-     No constraints
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#short-sale-and-diversification-constraints">
-     Short-Sale and Diversification Constraints
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sector-or-industry-constraints">
-   Sector or Industry Constraints
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trading-volume-constraint">
-     Trading-Volume Constraint
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#risk-adjusted-return">
-     Risk-Adjusted Return
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#benchmark">
-   Benchmark
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#informal">
-     Informal
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stratification">
-     Stratification
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#factor-exposure-targeting">
-   Factor exposure targeting
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tracking-error-minimization">
-   Tracking-error minimization
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tracking-by-factor-exposure">
-   Tracking by factor exposure
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ghost-benchmark-tracking">
-   Ghost benchmark tracking
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#risk-adjusted-tracking-error">
-   Risk-adjusted tracking error
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7) Portfolio Construction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">7) Portfolio Construction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-of-portfolio-measure">Risk of Portfolio Measure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-one-stock">Portfolio of one stock:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-two-stocks">Portfolio of two stocks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-three-stocks">Portfolio of three stocks:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#informal-methods">Informal methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-variance-optimization-method">Mean-variance optimization method</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-constraints">No constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#short-sale-and-diversification-constraints">Short-Sale and Diversification Constraints</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sector-or-industry-constraints">Sector or Industry Constraints</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trading-volume-constraint">Trading-Volume Constraint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-return">Risk-Adjusted Return</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark">Benchmark</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informal">Informal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stratification">Stratification</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-exposure-targeting">Factor exposure targeting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-error-minimization">Tracking-error minimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-by-factor-exposure">Tracking by factor exposure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ghost-benchmark-tracking">Ghost benchmark tracking</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-tracking-error">Risk-adjusted tracking error</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="portfolio-construction">
-<h1>7) Portfolio Construction<a class="headerlink" href="#portfolio-construction" title="Permalink to this headline">#</a></h1>
+<h1>7) Portfolio Construction<a class="headerlink" href="#portfolio-construction" title="Permalink to this heading">#</a></h1>
 <p>In the previous chapters, we discussed various ideas for stock selection that are crucial in identifying good and bad stocks. However, constructing a portfolio requires more than just identifying individual stocks. A skilled manager needs to assign relative weights to the stocks to create a cohesive portfolio.</p>
 <p>There are several ways to generate stock weights, ranging from simple methods like equal weighting or market capitalization weighting to more complex techniques based on modern portfolio theory. For portfolio managers who manage against a benchmark, there are additional weighting possibilities, such as ensuring the weighted-average factor exposures of the portfolio match those of the benchmark or maximizing excess expected return while limiting tracking error.</p>
 <p>To minimize tracking error or risk when weighting stocks, the manager needs to know each stock’s expected return, risk or variance, and covariances among stocks. Additionally, the manager may want to impose constraints on the portfolio creation process, such as prohibiting short sales or upholding diversification rules. The manager can then use a quadratic optimizer to determine the optimal weights for the portfolio.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="risk-of-portfolio-measure">
-<h1>Risk of Portfolio Measure<a class="headerlink" href="#risk-of-portfolio-measure" title="Permalink to this headline">#</a></h1>
+<h1>Risk of Portfolio Measure<a class="headerlink" href="#risk-of-portfolio-measure" title="Permalink to this heading">#</a></h1>
 <p>In finance, the risk of an investment is typically defined as the likelihood of losing money or not achieving the expected return. One way to quantify the risk of a portfolio of stocks is by using the variance or standard deviation of the portfolio returns, which reflects the degree of dispersion or variability of those returns around their mean.</p>
 <p>The covariance matrix, Σ, represents the pairwise relationships between the returns of the individual stocks in the portfolio. Specifically, the <span class="math notranslate nohighlight">\((i,j)\)</span>th element of Σ is the covariance between the returns of stocks <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(w\)</span> is a vector of portfolio weights, where <span class="math notranslate nohighlight">\(w_i\)</span> is the weight of stock <span class="math notranslate nohighlight">\(i\)</span> in the portfolio. The product <span class="math notranslate nohighlight">\(w^TΣw\)</span> gives the portfolio variance, which is a measure of the risk of the portfolio.</p>
 <p>Here are some examples of why <span class="math notranslate nohighlight">\(w^TΣw\)</span> is a measure of risk for portfolios of 1, 2, and 3 stocks:</p>
 <section id="portfolio-of-one-stock">
-<h2>Portfolio of one stock:<a class="headerlink" href="#portfolio-of-one-stock" title="Permalink to this headline">#</a></h2>
+<h2>Portfolio of one stock:<a class="headerlink" href="#portfolio-of-one-stock" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have a portfolio consisting of only one stock. In this case, the portfolio variance simplifies to the variance of the single stock multiplied by the square of its weight in the portfolio. That is,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -657,7 +485,7 @@ w^TΣw = w_1^2σ_1^2
 The higher the variance of the stock, the higher the risk of the portfolio. Similarly, if the weight of the stock in the portfolio is high, then the portfolio variance will be higher and the risk will also be higher.</p>
 </section>
 <section id="portfolio-of-two-stocks">
-<h2>Portfolio of two stocks:<a class="headerlink" href="#portfolio-of-two-stocks" title="Permalink to this headline">#</a></h2>
+<h2>Portfolio of two stocks:<a class="headerlink" href="#portfolio-of-two-stocks" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have a portfolio consisting of two stocks with weights <span class="math notranslate nohighlight">\(w_1\)</span> and <span class="math notranslate nohighlight">\(w_2\)</span>. In this case, the portfolio variance is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -670,7 +498,7 @@ w^TΣw &amp;= w_1^2σ_1^2 + w_2^2σ_2^2 + 2w_1w_2σ_{1,2}\\
 The portfolio variance depends on the variances of the individual stocks as well as the covariance between them. If the two stocks are highly positively correlated (i.e., the covariance between them is positive), then the portfolio variance will be higher, indicating higher risk. Conversely, if the two stocks are highly negatively correlated (i.e., the covariance between them is negative), then the portfolio variance will be lower, indicating lower risk.</p>
 </section>
 <section id="portfolio-of-three-stocks">
-<h2>Portfolio of three stocks:<a class="headerlink" href="#portfolio-of-three-stocks" title="Permalink to this headline">#</a></h2>
+<h2>Portfolio of three stocks:<a class="headerlink" href="#portfolio-of-three-stocks" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have a portfolio consisting of three stocks with weights <span class="math notranslate nohighlight">\(w_1\)</span>, <span class="math notranslate nohighlight">\(w_2\)</span>, and <span class="math notranslate nohighlight">\(w_3\)</span>. In this case, the portfolio variance is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -685,7 +513,7 @@ The portfolio variance now depends on the variances of the individual stocks as 
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="informal-methods">
-<h1>Informal methods<a class="headerlink" href="#informal-methods" title="Permalink to this headline">#</a></h1>
+<h1>Informal methods<a class="headerlink" href="#informal-methods" title="Permalink to this heading">#</a></h1>
 <p>After selecting the stocks for a portfolio, there are several informal methods for determining the portfolio weights. The two most common are equal weighting and value weighting.</p>
 <p>Equal weighting assigns the same weight to every stock, regardless of market capitalization or other factors. For example, if there are 10 stocks in the portfolio, each stock will have a weight of 0.1 (= 1/10). While this approach is simple and quick, it does not consider the expected returns or risks of the stocks and may not be suitable for portfolios where such information is available.</p>
 <p>Value weighting, on the other hand, assigns weights proportional to the stocks’ market capitalizations. For example, if the market capitalization of stock A is twice as great as that of stock B, then the weight of stock A will also be twice the weight of stock B. This method ensures that the portfolio’s performance matches that of the market average, but it still does not reflect the expected returns or risks of individual stocks.</p>
@@ -693,12 +521,12 @@ The portfolio variance now depends on the variances of the individual stocks as 
 <p>Other informal weighting methods may be used for benchmarked portfolios, which will be discussed later. Ultimately, the choice of weighting method will depend on the portfolio manager’s information and objectives.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mean-variance-optimization-method">
-<h1>Mean-variance optimization method<a class="headerlink" href="#mean-variance-optimization-method" title="Permalink to this headline">#</a></h1>
+<h1>Mean-variance optimization method<a class="headerlink" href="#mean-variance-optimization-method" title="Permalink to this heading">#</a></h1>
 <p>Standard Mean-Variance Optimization (MVO) is a technique used to identify the portfolio with the lowest risk given the mean and variance of future stock returns. To accomplish this, we theoretically compare the <strong>ex-ante</strong> risks and <strong>expected</strong> returns of all potential portfolios with identical expected returns, computed from the variances and covariances of the returns of all stocks. Quadratic programming is then used to find the minimum-risk portfolio without the need to calculate every portfolio’s risk and return explicitly.</p>
 <p>However, MVO has its limitations, as estimation errors could result in overweighting certain outlier stocks with low variances or high means. To mitigate this risk, additional portfolio constraints, such as short-sale, diversification, or sector constraints, may be imposed to limit the maximum and minimum stock weights. It is crucial to strike a balance between the constraints to avoid contradiction.</p>
 <p>The portfolio manager’s role is to carefully evaluate the estimation errors and decide on the necessary constraints, while allowing the optimizer to handle the rest. Nonetheless, caution must be taken not to over-constrain the portfolio and avoid hindering the full investment of the portfolio.</p>
 <section id="no-constraints">
-<h2>No constraints<a class="headerlink" href="#no-constraints" title="Permalink to this headline">#</a></h2>
+<h2>No constraints<a class="headerlink" href="#no-constraints" title="Permalink to this heading">#</a></h2>
 <p>Using MVO without any additional constraints requires building a model of expected stock returns and risk, either by utilizing previously discussed models or by using commercial software models in combination with excess-return models. The portfolio manager begins by incorporating all relevant information about individual stock returns into a column vector μ and a matrix Σ, where μ represents the expected returns of individual stocks and Σ represents the variances and covariances of individual stock returns.
 Thus,</p>
 <div class="math notranslate nohighlight">
@@ -727,7 +555,7 @@ C(r_N,r_1)  &amp; C(r_N,r_2) &amp;\cdots &amp; V(r_N)     \\
 <p>To create a minimal-risk portfolio for a given level of expected return, we begin the optimization procedure using the expected return of the lowest expected return stock. We increment the mean return and repeat the optimization until we reach the expected return of the security with the highest mean return. We plot all the points in the diagram and connect them to produce the efficient frontier. The expected-return–expected-risk profile we desire can then be selected from the efficient frontier, and we can pick the weights of the corresponding stocks.</p>
 </section>
 <section id="short-sale-and-diversification-constraints">
-<h2>Short-Sale and Diversification Constraints<a class="headerlink" href="#short-sale-and-diversification-constraints" title="Permalink to this headline">#</a></h2>
+<h2>Short-Sale and Diversification Constraints<a class="headerlink" href="#short-sale-and-diversification-constraints" title="Permalink to this heading">#</a></h2>
 <p>Investment portfolio managers may face various constraints, such as legal restrictions or prospectus mandates, that limit their investment options. One of the main constraints faced by long-only portfolio managers is the short-sale restriction, which prohibits shorting securities. Mathematically, this restriction can be represented as the condition that each stock has a weight of at least zero:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -745,14 +573,14 @@ For example,</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="sector-or-industry-constraints">
-<h1>Sector or Industry Constraints<a class="headerlink" href="#sector-or-industry-constraints" title="Permalink to this headline">#</a></h1>
+<h1>Sector or Industry Constraints<a class="headerlink" href="#sector-or-industry-constraints" title="Permalink to this heading">#</a></h1>
 <p>Portfolio managers, particularly those who manage against a benchmark, often aim to limit the sector weightings of their portfolio. To achieve this, a straightforward modification can be made to the framework by constraining the sector weightings using the following formula:</p>
 <div class="math notranslate nohighlight">
 \[
 \underline w_j \le w_j \le \overline w_j
 \]</div>
 <section id="trading-volume-constraint">
-<h2>Trading-Volume Constraint<a class="headerlink" href="#trading-volume-constraint" title="Permalink to this headline">#</a></h2>
+<h2>Trading-Volume Constraint<a class="headerlink" href="#trading-volume-constraint" title="Permalink to this heading">#</a></h2>
 <p>One common constraint added to optimization by portfolio managers is the trading-volume constraint, which is particularly relevant when managing large portfolios that could have a significant price impact on the market. To avoid negative price impact, portfolio managers may restrict the holdings of each stock to a certain threshold amount, often a fraction of the average trading volume of each stock.</p>
 <p>For example, if a portfolio is valued at $500 million and the manager wishes to keep the holding of one stock below 10% of its average daily trading volume (ADV), the constraint can be expressed as</p>
 <div class="math notranslate nohighlight">
@@ -762,7 +590,7 @@ For example,</p>
 <p>where <span class="math notranslate nohighlight">\(w_i\)</span> is the portfolio weight of stock <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(x_i\)</span> is the average trading volume of stock <span class="math notranslate nohighlight">\(i\)</span> measured in millions of dollars.</p>
 </section>
 <section id="risk-adjusted-return">
-<h2>Risk-Adjusted Return<a class="headerlink" href="#risk-adjusted-return" title="Permalink to this headline">#</a></h2>
+<h2>Risk-Adjusted Return<a class="headerlink" href="#risk-adjusted-return" title="Permalink to this heading">#</a></h2>
 <p>In the previous section, we presented the mean-variance optimization problem as a risk minimization problem. However, some portfolio managers may prefer an alternative formulation that focuses on expected return maximization instead. This can be expressed as follows: maximize <span class="math notranslate nohighlight">\(μ_P\)</span> subject to other constraints.
 The expected return maximization formulation may be more useful if the portfolio manager has a specific target risk level <span class="math notranslate nohighlight">\(σ_P\)</span>, while the risk minimization may be more appropriate if the portfolio manager has a target expected return.
 For example,</p>
@@ -784,24 +612,24 @@ For example,</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="benchmark">
-<h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">#</a></h1>
+<h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this heading">#</a></h1>
 <p>Benchmarking is a common practice for portfolio managers. While some managers strictly adhere to the benchmark, known as index managers, others take a more flexible approach and are called active or enhanced index managers. <strong>The aim of active managers is to generate returns that exceed the benchmark while maintaining a portfolio that is broadly similar to it</strong>. Striking a balance between outperforming the benchmark and adhering to it can be challenging, but it becomes easier when the benchmark is not efficient. To achieve outperformance, managers can utilize various techniques such as informal methods, stratification, factor exposure targeting, and tracking error minimization. Among these, the most popular method is tracking error minimization, as it offers the highest level of risk control while still giving the manager the freedom to select preferred stocks.</p>
 <section id="informal">
-<h2>Informal<a class="headerlink" href="#informal" title="Permalink to this headline">#</a></h2>
+<h2>Informal<a class="headerlink" href="#informal" title="Permalink to this heading">#</a></h2>
 <p>One way to make sure that a benchmarked portfolio closely follows its benchmark is to use a simple weighting approach. This involves selecting the biggest holdings in the benchmark and including them in the portfolio. For example, if the portfolio is meant to have 50 stocks, the 50 stocks with the biggest market capitalization in the benchmark could be chosen. The weights of these 50 stocks can then be calculated based on their relative market capitalizations. If desired, a manager could adjust the weights slightly to favor their preferred stocks.</p>
 <p>There are various methods to adjust the weights to favor preferred stocks. Assuming that the portfolio manager has ranked stocks using the aggregate z-score methodology explained earlier, the manager should renormalize the aggregate z-scores such that the sum of the z-scores of the chosen subset of 50 stocks (or any number of stocks selected) is equal to zero. To modify the relative market capitalization weighting, the following steps should be taken: First, the manager must determine the maximum percentage deviation in weight that they are willing to allow from the market-cap weighting for the highest absolute z-score value. This value is denoted as η. Second, the manager should identify the highest absolute z-score of all the stocks within the 50-stock universe by taking the absolute value of all individual z-scores and finding the maximum, which is denoted as <span class="math notranslate nohighlight">\(z_\text{max}\)</span>. Third, the z-score multiplier should be computed as <span class="math notranslate nohighlight">\(m = η/z_\text{max}\)</span>. Finally, the new weights of the portfolio can be calculated using the formula <span class="math notranslate nohighlight">\((w_i + mz_i)\)</span>, where <span class="math notranslate nohighlight">\(w_i\)</span> represents the relative market capitalization weight within the benchmark. After following these steps, the adjusted portfolio is ready. Note that this procedure works as <span class="math notranslate nohighlight">\(\sum\limits_i(w_i + mz_i)=\sum\limits_i(w_i) + (η/z_\text{max})\sum\limits_iz_i=1\)</span>.</p>
 <p>Although selecting the biggest holdings of the benchmark for a portfolio is one way to track the benchmark, it is not the best solution. This method does not take into account the minimum tracking error versus the index, nor does it control for other risk factors or asset-specific risk. Additionally, the small number of stocks in the portfolio represents only a fraction of the benchmark’s total market capitalization, making it an inefficient approach.</p>
 <p>While there are other informal methods, a professional portfolio manager would likely find them unsatisfactory due to their amateurish nature. Ultimately, a manager seeks to quantify their risk versus the benchmark, something that these other methods cannot achieve.</p>
 </section>
 <section id="stratification">
-<h2>Stratification<a class="headerlink" href="#stratification" title="Permalink to this headline">#</a></h2>
+<h2>Stratification<a class="headerlink" href="#stratification" title="Permalink to this heading">#</a></h2>
 <p>Stratification, also known as stratified sampling, is a simple method for building portfolios while maintaining a basic risk control mechanism. It was originally developed for statisticians who wanted to understand the characteristics of a population without having to observe every member. The method involves dividing the stock universe into nonoverlapping groups, or strata, based on certain characteristics, such as industry or size. From each stratum, a proportion of stocks is chosen to create a representative sample of the universe, while minimizing risk exposure across multiple dimensions.</p>
 <p>To use stratification for portfolio management, the portfolio manager would first predict the excess returns of all stocks in the universe and then aim to choose high-alpha stocks while controlling risk versus the benchmark. After dividing the stock universe into strata, the manager would select representative stocks from each stratum based on some criterion, such as z-score or expected return. Suppose the stock universe is categorized by sectors and the portfolio manager needs to select four stocks from the transportation sector. In that case, the manager may opt to choose the stocks with the highest ranking based on future risk-adjusted returns.</p>
 <p>Although stratification provides a simple way to control risk through broad diversification, it lacks a precise, quantitative control mechanism. Professional portfolio managers may be hesitant to use stratification as it does not allow them to precisely quantify the risks they are taking. Overall, while stratification can be an effective method for some portfolio managers, it may not be the best solution for all.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="factor-exposure-targeting">
-<h1>Factor exposure targeting<a class="headerlink" href="#factor-exposure-targeting" title="Permalink to this headline">#</a></h1>
+<h1>Factor exposure targeting<a class="headerlink" href="#factor-exposure-targeting" title="Permalink to this heading">#</a></h1>
 <p>One method of aligning the portfolio with the benchmark is to target the benchmark’s factor exposures as the desired factor exposures for the portfolio. Alternatively, the portfolio’s overall beta relative to the benchmark can be set to approximately 1. This ensures that the portfolio closely tracks the benchmark’s performance.</p>
 <p>The beta of a portfolio relative to its benchmark is calculated as the weighted average of the betas of the individual stocks in the portfolio. Specifically, let β be an <span class="math notranslate nohighlight">\(N\)</span>-dimensional column vector representing the benchmark beta of each stock, where <span class="math notranslate nohighlight">\(β_i\)</span> is the beta of stock <span class="math notranslate nohighlight">\(i\)</span> with respect to the benchmark. The portfolio beta is then given by the product of the transpose of the portfolio weight vector, <span class="math notranslate nohighlight">\(w^\top\)</span>, and <span class="math notranslate nohighlight">\(β\)</span>. To ensure that the portfolio beta aligns with the benchmark, one approach is to set a constraint on the portfolio beta, such as requiring it to fall within a specified range: <span class="math notranslate nohighlight">\(0.9 \le w^\top β\le 1.1\)</span>. Alternatively, we could add a constraint to the optimization problem directly: <span class="math notranslate nohighlight">\( w^\top β=1\)</span>.</p>
 <p>To expand on the concept of targeting a portfolio’s benchmark beta, we can also specify a range for each of the portfolio’s other factor exposures. This is known as <strong>factor tilting</strong>, where the portfolio is adjusted to increase exposure to certain factors and decrease exposure to others based on market conditions and our view on the factors. For example, if a portfolio manager believes the market will rally, they may wish to have a higher market beta than the benchmark while keeping other factor exposures equal to the benchmark, thus tilting the portfolio towards the market factor.</p>
@@ -809,7 +637,7 @@ For example,</p>
 <p>By assigning a minimum exposure value (such as 0.9) to a particular factor, the portfolio manager can express their management style and orient the portfolio towards certain types of investments. For example, setting the first element of β to 0.9 for the growth factor would tilt the portfolio towards growth investments.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tracking-error-minimization">
-<h1>Tracking-error minimization<a class="headerlink" href="#tracking-error-minimization" title="Permalink to this headline">#</a></h1>
+<h1>Tracking-error minimization<a class="headerlink" href="#tracking-error-minimization" title="Permalink to this heading">#</a></h1>
 <p>Portfolio managers who use benchmarks often use the minimization of tracking error (TE) approach to construct their portfolios. There are two methods to formulate this optimization problem:</p>
 <ul class="simple">
 <li><p>one approach minimizes the TE given an expected excess return over the benchmark,</p></li>
@@ -837,7 +665,7 @@ Hence,</p>
 Finally, we can add various additional constraints, such as the short-sale, diversification, and style constraints, as in the case of a portfolio with no benchmark.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tracking-by-factor-exposure">
-<h1>Tracking by factor exposure<a class="headerlink" href="#tracking-by-factor-exposure" title="Permalink to this headline">#</a></h1>
+<h1>Tracking by factor exposure<a class="headerlink" href="#tracking-by-factor-exposure" title="Permalink to this heading">#</a></h1>
 <p>There exists an alternative, yet equivalent method to represent the tracking-error minimization issue. Recall that an individual stock <span class="math notranslate nohighlight">\(i\)</span>’s variance can be estimated as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -883,11 +711,11 @@ TE^2 = (w^P-w^B)^\top B V(f) B^\top (w^P-w^B)+(w^P-w^B)^\top V(\epsilon)^\top (w
 <p>Suppose the portfolio manager desires to shift the portfolio towards small growth stocks while maintaining all other factor exposures identical to those of the benchmark. They may achieve this by setting the portfolio’s exposures to the size and growth factors higher than those of the benchmark while keeping the other factor exposures equal to the benchmark’s.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="ghost-benchmark-tracking">
-<h1>Ghost benchmark tracking<a class="headerlink" href="#ghost-benchmark-tracking" title="Permalink to this headline">#</a></h1>
+<h1>Ghost benchmark tracking<a class="headerlink" href="#ghost-benchmark-tracking" title="Permalink to this heading">#</a></h1>
 <p>Ghost benchmark tracking refers to a scenario where the portfolio manager lacks knowledge of the weights of the benchmark’s underlying securities or cannot estimate all the benchmark’s factor exposures. In such cases, the objective of minimizing tracking error involves minimizing the deviation of the portfolio’s historical returns from that of the benchmark.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="risk-adjusted-tracking-error">
-<h1>Risk-adjusted tracking error<a class="headerlink" href="#risk-adjusted-tracking-error" title="Permalink to this headline">#</a></h1>
+<h1>Risk-adjusted tracking error<a class="headerlink" href="#risk-adjusted-tracking-error" title="Permalink to this heading">#</a></h1>
 <p>Risk-adjusted tracking error is a common constraint that portfolio managers use to limit tracking error within a certain percentage, such as 3% per annum. To achieve this constraint, the portfolio manager can increase the expected excess return until the desired tracking error level is reached. This process is similar to what we discussed earlier, with the objective function being the expected return of the portfolio and the constraint being the tracking error. In example,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -925,50 +753,133 @@ If there is no specific target tracking error or expected return, the problem ca
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="economic_factors.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">6) The Economic Factor Model</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="economic_factors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6) The Economic Factor Model</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="quadratic_programming.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="quadratic_programming.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">8) Quadratic Programming</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Naftali Cohen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">7) Portfolio Construction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-of-portfolio-measure">Risk of Portfolio Measure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-one-stock">Portfolio of one stock:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-two-stocks">Portfolio of two stocks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-of-three-stocks">Portfolio of three stocks:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#informal-methods">Informal methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-variance-optimization-method">Mean-variance optimization method</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-constraints">No constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#short-sale-and-diversification-constraints">Short-Sale and Diversification Constraints</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sector-or-industry-constraints">Sector or Industry Constraints</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trading-volume-constraint">Trading-Volume Constraint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-return">Risk-Adjusted Return</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark">Benchmark</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informal">Informal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stratification">Stratification</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-exposure-targeting">Factor exposure targeting</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-error-minimization">Tracking-error minimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-by-factor-exposure">Tracking by factor exposure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ghost-benchmark-tracking">Ghost benchmark tracking</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-tracking-error">Risk-adjusted tracking error</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Naftali Cohen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>8) Quadratic Programming &#8212; Data-Driven Methods in Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,56 +63,87 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quadratic_programming';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9) Rebalancing and transactions costs" href="rebalancing_and_transactions_costs.html" />
-    <link rel="prev" title="7) Portfolio Weights" href="portfolio_weights.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="9) Rebalancing and Transaction Costs" href="rebalancing_and_transactions_costs.html" />
+    <link rel="prev" title="7) Portfolio Construction" href="portfolio_construction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data-Driven Methods in Finance</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,471 +153,311 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
-   1) Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_models.html">
-   2) Basic Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="factors.html">
-   3) Factors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="screening_and_ranking.html">
-   4) Stock Screening and Ranking
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fundamental_factors.html">
-   5) The Fundamental Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="economic_factors.html">
-   6) The Economic Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_weights.html">
-   7) Portfolio Weights
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   8) Quadratic Programming
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="rebalancing_and_transactions_costs.html">
-   9) Rebalancing and transactions costs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="practical_optimization.html">
-   A1) Hands-on Optimization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lp_and_simplex.html">
-   A2) Theory of linear programing and the Simplex method
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1) Introduction</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basic_models.html">2) Basic Models</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="factors.html">3) Factors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="screening_and_ranking.html">4) Stock Screening and Ranking</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="fundamental_factors.html">5) The Fundamental Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="economic_factors.html">6) The Economic Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="portfolio_construction.html">7) Portfolio Construction</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8) Quadratic Programming</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="rebalancing_and_transactions_costs.html">9) Rebalancing and Transaction Costs</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_optimization.html">A1) Hands-on Optimization</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lp_and_simplex.html">A2) Theory of Linear Programing and the Simplex Method</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/quadratic_programming.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fquadratic_programming.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/quadratic_programming.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/naftalic/ddmif"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Fquadratic_programming.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/quadratic_programming.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/quadratic_programming.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   8) Quadratic Programming
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">
-     Quadraric programming with equality constraints
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-numerical-example">
-       A Numerical Example
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
-     Quadraric programming with inequality constraints
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       A Numerical Example
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">
-   Advanced Techniques for Quadratic Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#phantom-weights">
-     Phantom weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binary-weights">
-     Binary weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">
-     Market neutrality with leverage constraints
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transactions-costs">
-     Transactions costs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">
-     Elimination of small-weight stocks
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     A numerical example
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#limiting-the-number-of-stocks-in-a-portfolio">
-     Limiting the Number of Stocks in a Portfolio
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     A numerical example
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>8) Quadratic Programming</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   8) Quadratic Programming
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">
-     Quadraric programming with equality constraints
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-numerical-example">
-       A Numerical Example
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">
-     Quadraric programming with inequality constraints
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       A Numerical Example
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">
-   Advanced Techniques for Quadratic Optimization
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#phantom-weights">
-     Phantom weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#binary-weights">
-     Binary weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">
-     Market neutrality with leverage constraints
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transactions-costs">
-     Transactions costs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">
-     Elimination of small-weight stocks
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     A numerical example
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#limiting-the-number-of-stocks-in-a-portfolio">
-     Limiting the Number of Stocks in a Portfolio
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     A numerical example
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8) Quadratic Programming</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8) Quadratic Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">Quadraric programming with equality constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-numerical-example">A Numerical Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">Quadraric programming with inequality constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A Numerical Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">Advanced Techniques for Quadratic Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phantom-weights">Phantom weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-weights">Binary weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">Market neutrality with leverage constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transactions-costs">Transactions costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">Elimination of small-weight stocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">A numerical example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-the-number-of-stocks-in-a-portfolio">Limiting the Number of Stocks in a Portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">A numerical example</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="quadratic-programming">
-<h1>8) Quadratic Programming<a class="headerlink" href="#quadratic-programming" title="Permalink to this headline">#</a></h1>
+<h1>8) Quadratic Programming<a class="headerlink" href="#quadratic-programming" title="Permalink to this heading">#</a></h1>
 <p>The general quadratic programming problem can be expressed as minimizing the function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -585,7 +467,7 @@ title="Print to PDF"
 <p>This general quadratic optimization problem works for both quadratic and linear optimization problems. For linear optimization problems, <span class="math notranslate nohighlight">\(\Sigma\)</span> can be set to 0, and the problem becomes a linear programming problem. In contrast, for quadratic optimizations, the appropriate <span class="math notranslate nohighlight">\(\Sigma\)</span> is used.</p>
 <p>Let’s examine two special cases of the general quadratic optimization program. One case only involves equality constraints, while the other case includes both inequality and equality constraints. We separate these into two categories because with equality constraints, we can solve for the optimal weights using a closed-form solution. Although the objective function and constraints are abstract mathematical concepts in the general optimization problem, they become more meaningful when applied to real-world problems. In the next section of this appendix, we will demonstrate this.</p>
 <section id="quadraric-programming-with-equality-constraints">
-<h2>Quadraric programming with equality constraints<a class="headerlink" href="#quadraric-programming-with-equality-constraints" title="Permalink to this headline">#</a></h2>
+<h2>Quadraric programming with equality constraints<a class="headerlink" href="#quadraric-programming-with-equality-constraints" title="Permalink to this heading">#</a></h2>
 <p>In the case of quadratic optimization problems with only equality constraints, a closed-form solution can be obtained. Specifically, the problem can be formulated as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -652,7 +534,7 @@ w &amp;= -\Sigma^{-1}A^\top \lambda - \Sigma^{-1}c \\
 <p>The identity matrix is a square matrix with ones on the diagonal and zeros elsewhere.</p>
 </div>
 <section id="a-numerical-example">
-<h3>A Numerical Example<a class="headerlink" href="#a-numerical-example" title="Permalink to this headline">#</a></h3>
+<h3>A Numerical Example<a class="headerlink" href="#a-numerical-example" title="Permalink to this heading">#</a></h3>
 <p>In a portfolio risk-minimization problem, the objective is to minimize the variance of the portfolio for a given expected return level, subject to an equality constraint that the weights of the portfolio sum to 1. This can be translated into a quadratic optimization problem, where the risk of a portfolio is given by the variance-covariance matrix of the stock returns and the vector of stock weights. The mean return of the portfolio can be expressed as the dot product of the vector of mean returns and the vector of stock weights.</p>
 <p>To illustrate this, let’s consider a six-stock portfolio with known annualized mean returns and a variance-covariance matrix. We can construct the matrix A and vector b to reflect the equality constraint of summing to 1 by solve the following quadratic optimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -778,7 +660,7 @@ w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.30522103  0.05727213  0.20349516  0.27367711 -0.08463628  0.24497084] 152.22377354724495
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.30522103  0.05727213  0.20349516  0.27367711 -0.08463628  0.24497084] 152.22377354724497
 </pre></div>
 </div>
 </div>
@@ -787,12 +669,12 @@ w &amp;= \Sigma^{-1}A^\top(A\Sigma^{-1}A^\top)^{-1}b\\
 </section>
 </section>
 <section id="quadraric-programming-with-inequality-constraints">
-<h2>Quadraric programming with inequality constraints<a class="headerlink" href="#quadraric-programming-with-inequality-constraints" title="Permalink to this headline">#</a></h2>
+<h2>Quadraric programming with inequality constraints<a class="headerlink" href="#quadraric-programming-with-inequality-constraints" title="Permalink to this heading">#</a></h2>
 <p>The quadratic optimization problem with inequality constraints is generally more complex than the case of only equality constraints, and a closed-form solution may not be available. Therefore, numerical solution methods are often used to solve this type of problem. With the advances in computing power and optimization algorithms, numerical methods have become more reliable and efficient for solving quadratic programming problems with inequality constraints.</p>
 <p>One commonly used approach is the active-set method or projection method, which involves iteratively updating a set of active constraints and solving a linear system of equations to find a new candidate solution. Another popular method is the interior-point method, which involves transforming the original problem into a sequence of barrier problems and solving a sequence of smaller optimization problems to approximate the solution to the original problem.</p>
 <p>While these numerical methods can be quite effective, they do require a good understanding of the underlying mathematics and may be computationally intensive for large-scale problems. Fortunately, many software packages and optimization libraries are available that implement these methods and make it easier for portfolio managers and researchers to solve quadratic programming problems with inequality constraints. Therefore, it is not necessary to delve into the technical details of each method, but it is important to understand their underlying principles and limitations in order to use them effectively in practice.</p>
 <section id="id1">
-<h3>A Numerical Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>A Numerical Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>To further illustrate the application, we will continue with the previous numerical example and introduce some inequality constraints. We will use the active-set method to solve the problem. Specifically, we will add three inequality constraints that specify that the weights of each individual stock cannot be less than zero, except for stock 2, which cannot have a weight less than 0.10. Therefore, we have <span class="math notranslate nohighlight">\(w ≥ 0\)</span> and <span class="math notranslate nohighlight">\(w_2 ≥ 0.10\)</span>. These inequality constraints can be easily incorporated into the matrix <span class="math notranslate nohighlight">\(A\)</span>.
 The resulting optimization problem has the first two rows of <span class="math notranslate nohighlight">\(A\)</span> representing equality constraints and the last seven rows representing inequality constraints. The formulation of the problem is as follows:</p>
 <div class="cell docutils container">
@@ -862,14 +744,14 @@ The resulting optimization problem has the first two rows of <span class="math n
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="advanced-techniques-for-quadratic-optimization">
-<h1>Advanced Techniques for Quadratic Optimization<a class="headerlink" href="#advanced-techniques-for-quadratic-optimization" title="Permalink to this headline">#</a></h1>
+<h1>Advanced Techniques for Quadratic Optimization<a class="headerlink" href="#advanced-techniques-for-quadratic-optimization" title="Permalink to this heading">#</a></h1>
 <p>While the basic techniques covered in this chapter address most portfolio optimization problems, there are scenarios where the optimization setup needs to be expanded. For instance, a portfolio manager may need to factor in transaction costs or create a market-neutral portfolio with leverage constraints. Other situations may involve restrictions on the number of stocks in the portfolio, where the number falls between a minimum and maximum or where the weights of any security are either zero or within a minimum and maximum weight. These and other preferences in the optimization require an expanded optimization framework. Additionally, some portfolio optimization problems may involve quadratic constraints, which are not part of the typical optimization framework. In this section, we will discuss the fundamental building blocks for expanding the optimization framework to address these advanced optimization scenarios.</p>
 <section id="phantom-weights">
-<h2>Phantom weights<a class="headerlink" href="#phantom-weights" title="Permalink to this headline">#</a></h2>
+<h2>Phantom weights<a class="headerlink" href="#phantom-weights" title="Permalink to this heading">#</a></h2>
 <p>In standard portfolio optimization problems, we typically only have <span class="math notranslate nohighlight">\(N\)</span> unknowns, which are the portfolio weights. However, in certain nonstandard portfolio problems, it can be useful to introduce what we call “phantom weights.” The idea of phantom weights is to create additional weights, in addition to the actual weights of the portfolio, that the optimizer will also find optimal values for. These additional weights can be used for various purposes, such as creating a set of buy and sell weights. For example, if the optimization problem has <span class="math notranslate nohighlight">\(N\)</span> stocks, we can create an additional <span class="math notranslate nohighlight">\(2N\)</span> weights, denoted as <span class="math notranslate nohighlight">\(b_1\)</span> to <span class="math notranslate nohighlight">\(b_N\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> to <span class="math notranslate nohighlight">\(s_N\)</span>. With these additional weights, the new optimization problem becomes more complex, as we now have <span class="math notranslate nohighlight">\(3N\)</span> weights to choose from. However, phantom weights offer many benefits in portfolio optimization. Often, the phantom weights have a specific relationship to the underlying weights, such as <span class="math notranslate nohighlight">\(b + s = 1\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(s\)</span> are the buy and sell weights, respectively.</p>
 </section>
 <section id="binary-weights">
-<h2>Binary weights<a class="headerlink" href="#binary-weights" title="Permalink to this headline">#</a></h2>
+<h2>Binary weights<a class="headerlink" href="#binary-weights" title="Permalink to this heading">#</a></h2>
 <p>In portfolio optimization, it may be beneficial to use binary variables as optimization weights in addition to phantom weights. Binary variables are weights that are constrained to have a value of either 0 or 1. One practical application of binary variables is to ensure that phantom weights are orthogonal. This is important because having both a long position and a short position on the same stock (i.e., <span class="math notranslate nohighlight">\(b&gt;0\)</span> and <span class="math notranslate nohighlight">\(s&gt;0\)</span>) is a wasteful solution. By creating binary variables and for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks, we can add a constraint to force the phantom weights to be orthogonal. The constraint can be formulated as follows:</p>
 <p>To incorporate binary variables as optimization weights, one can create <span class="math notranslate nohighlight">\(v_i^+\)</span> and <span class="math notranslate nohighlight">\(v_i^-\)</span> binary variables for each of the <span class="math notranslate nohighlight">\(N\)</span> stocks. By adding the constraint</p>
 <div class="math notranslate nohighlight">
@@ -882,7 +764,7 @@ The resulting optimization problem has the first two rows of <span class="math n
 <p>and setting <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, the weights can fluctuate between 0 and 1, and the constraint <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> ensures that the phantom weights are orthogonal. If <span class="math notranslate nohighlight">\(b_i&gt;0\)</span>, then <span class="math notranslate nohighlight">\(s_i=0\)</span> and vice versa for every stock <span class="math notranslate nohighlight">\(i\)</span>. However, the addition of binary and phantom weights and their associated constraints makes the optimization problem more complex and challenging to solve.</p>
 </section>
 <section id="market-neutrality-with-leverage-constraints">
-<h2>Market neutrality with leverage constraints<a class="headerlink" href="#market-neutrality-with-leverage-constraints" title="Permalink to this headline">#</a></h2>
+<h2>Market neutrality with leverage constraints<a class="headerlink" href="#market-neutrality-with-leverage-constraints" title="Permalink to this heading">#</a></h2>
 <p>Adding the following constraints to the optimization problem will create a market-neutral portfolio that is dollar neutral and has limited leverage:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -907,7 +789,7 @@ These constraints ensure that the sum of the weights of the long stocks equals t
 <p>This would result in a portfolio with long exposure of 130% and short exposure of 30%.</p>
 </section>
 <section id="transactions-costs">
-<h2>Transactions costs<a class="headerlink" href="#transactions-costs" title="Permalink to this headline">#</a></h2>
+<h2>Transactions costs<a class="headerlink" href="#transactions-costs" title="Permalink to this heading">#</a></h2>
 <p>When we want to rebalance a portfolio while considering transaction costs (or market impact), we can use phantom weights and binary variables to find an exact solution to the portfolio optimization problem. To do this, we need to add constraints to the optimization problem that consider the current weights of the portfolio represented by <span class="math notranslate nohighlight">\(w_b\)</span> and the target weights after rebalancing represented by <span class="math notranslate nohighlight">\(w_a\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -916,18 +798,29 @@ w_i^a = w_i^b+w_i^+-w_i^-
 <p>The relationship between the binary variables and the phantom weights is set such that <span class="math notranslate nohighlight">\(\kappa_l = \gamma_l = 0\)</span> and <span class="math notranslate nohighlight">\(\kappa_h = \gamma_h = 1\)</span>, which allows the weights to fluctuate between 0 and 1. We also add the constraint that <span class="math notranslate nohighlight">\(v_i^++v_i^-\le 1\)</span> to ensure the phantom weights are orthogonal. Stocks that have reduced weight from the prior portfolio will have negative net weights but positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^-\)</span>. We can multiply the transactions cost vector by their value. Conversely, stocks that have increased weight will have positive phantom weights, denoted by <span class="math notranslate nohighlight">\(w_i^+\)</span>, and can also be multiplied by the transactions cost vector. The final optimized weights of the portfolio will be <span class="math notranslate nohighlight">\(w_i\)</span>. In the case of transaction costs, the phantom weights serve as a mechanism to denote the change to the current weights, storing the positive changes in the positive phantom weights and the negative changes in the negative phantom weights. Both positive and negative phantom weights are positive, so the transaction cost vector remains positive, and the transaction cost rebalance problem is resolved.</p>
 </section>
 <section id="elimination-of-small-weight-stocks">
-<h2>Elimination of small-weight stocks<a class="headerlink" href="#elimination-of-small-weight-stocks" title="Permalink to this headline">#</a></h2>
+<h2>Elimination of small-weight stocks<a class="headerlink" href="#elimination-of-small-weight-stocks" title="Permalink to this heading">#</a></h2>
 <p>Portfolio managers may want to reduce the number of securities in their portfolio, which can be achieved by constructing an optimized portfolio that forces individual stock weights to be above a minimum or below a maximum weight. However, the traditional method of adding inequality constraints to optimize weights may not always result in a solution, as it forces all stocks to be within a given range, which may not be optimal. The use of binary variables can create an optimization that limits the optimizer to find weights between the minimum and maximum or forces the weight of a particular stock to zero. This results in more successful optimizations and aligns better with the portfolio manager’s thought process.</p>
 <p>To illustrate, we will focus on the situation where all stock weights should be between a lower bound (<span class="math notranslate nohighlight">\(\kappa_l\)</span>) and an upper bound (<span class="math notranslate nohighlight">\(\kappa_h\)</span>) for the long portion of the portfolio. Using the inequality relationship of the binary variables and phantom weights, we can set <span class="math notranslate nohighlight">\(v_i^+\kappa_l \le b_i \le v_i^+\kappa_h\)</span> and <span class="math notranslate nohighlight">\(v_i^-\gamma_l \le s_i \le v_i^-\gamma_h\)</span>. Once we specify the values for <span class="math notranslate nohighlight">\(\kappa_l\)</span>, <span class="math notranslate nohighlight">\(\gamma_l\)</span>, <span class="math notranslate nohighlight">\(\kappa_h\)</span>, and <span class="math notranslate nohighlight">\(\gamma_h\)</span>, we can effectively achieve our goal. If the portfolio is only a long portfolio, phantom weights are not needed, and we should construct one set of binary variables with respect to the actual weights, <span class="math notranslate nohighlight">\(w_i\)</span>. The binary variables can be either 0 or 1, and the weights of the portfolio will be selected to be within the minimum and maximum weights or set to zero.</p>
 </section>
 <section id="id2">
-<h2>A numerical example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>A numerical example<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Building upon the previous numerical example, we aim to construct a portfolio that delivers an average annualized return of 8% without short sales and with the restriction that the weights of the portfolio must sum to 1. We further impose the constraint that the weight of each stock can only be greater than 0.03 (i.e., 3%) or less than 0.30 (i.e., 30%), or it must be 0.</p>
 <p>To represent these constraints mathematically, we construct the matrix A, where the first two rows denote equality constraints that the sum of weights should equal 1 and that the target mean return is 8%. Since binary weights are not relevant for these constraints, we place 0 in the corresponding matrix elements. The remaining rows of the matrix are inequality constraints that restrict the weights of each stock to lie between 0.03 and 0.30 or be 0. We use the values of <span class="math notranslate nohighlight">\(\kappa_l\)</span> and <span class="math notranslate nohighlight">\(\kappa_h\)</span> to ensure that <span class="math notranslate nohighlight">\(0.03v_i^+ \le w_i \le 0.3v_i^+\)</span>, where <span class="math notranslate nohighlight">\(v_i^+\)</span> is a binary variable. If <span class="math notranslate nohighlight">\(v_i^+\)</span> equals 1, the weight of stock <span class="math notranslate nohighlight">\(i\)</span> must lie within the range of 0.03 to 0.30. Otherwise, if it is more optimal for the weight of stock <span class="math notranslate nohighlight">\(i\)</span> to be 0, then <span class="math notranslate nohighlight">\(v_i^+= 0\)</span>, and <span class="math notranslate nohighlight">\(w_i\)</span> is also equal to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gurobipy</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;gurobipy&#39;
 </pre></div>
 </div>
 </div>
@@ -941,16 +834,6 @@ w_i^a = w_i^b+w_i^+-w_i^-
                   <span class="p">[</span><span class="mf">481.14</span><span class="p">,</span> <span class="mf">1216.91</span><span class="p">,</span> <span class="mf">1304.29</span><span class="p">,</span> <span class="mf">462.57</span><span class="p">,</span> <span class="mf">5658.42</span><span class="p">,</span> <span class="mf">425.35</span><span class="p">],</span>
                   <span class="p">[</span><span class="mf">106.5</span> <span class="p">,</span> <span class="mf">135.05</span><span class="p">,</span>  <span class="mf">110.74</span><span class="p">,</span> <span class="mf">107.52</span><span class="p">,</span> <span class="mf">425.35</span> <span class="p">,</span> <span class="mf">244.31</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 452.33  249.33  189.23   70.75  481.14  106.5 ]
- [ 249.33 1094.09  356.85   93.51 1216.91  135.05]
- [ 189.23  356.85  617.57  161.82 1304.29  110.74]
- [  70.75   93.51  161.82  372.35  462.57  107.52]
- [ 481.14 1216.91 1304.29  462.57 5658.42  425.35]
- [ 106.5   135.05  110.74  107.52  425.35  244.31]]
 </pre></div>
 </div>
 </div>
@@ -976,24 +859,6 @@ w_i^a = w_i^b+w_i^+-w_i^-
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.    1.    1.    1.    1.    0.    0.    0.    0.    0.    0.  ]
- [14.4  10.19  9.87  7.52 20.05  2.66  0.    0.    0.    0.    0.    0.  ]
- [ 1.    0.    0.    0.    0.    0.   -0.3   0.    0.    0.    0.    0.  ]
- [ 0.    1.    0.    0.    0.    0.    0.   -0.3   0.    0.    0.    0.  ]
- [ 0.    0.    1.    0.    0.    0.    0.    0.   -0.3   0.    0.    0.  ]
- [ 0.    0.    0.    1.    0.    0.    0.    0.    0.   -0.3   0.    0.  ]
- [ 0.    0.    0.    0.    1.    0.    0.    0.    0.    0.   -0.3   0.  ]
- [ 0.    0.    0.    0.    0.    1.    0.    0.    0.    0.    0.   -0.3 ]
- [-1.    0.    0.    0.    0.    0.    0.03  0.    0.    0.    0.    0.  ]
- [ 0.   -1.    0.    0.    0.    0.    0.    0.03  0.    0.    0.    0.  ]
- [ 0.    0.   -1.    0.    0.    0.    0.    0.    0.03  0.    0.    0.  ]
- [ 0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.03  0.    0.  ]
- [ 0.    0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.03  0.  ]
- [ 0.    0.    0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.03]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1002,20 +867,10 @@ w_i^a = w_i^b+w_i^+-w_i^-
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 8 0 0 0 0 0 0 0 0 0 0 0 0]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 6) (14, 12) (1, 14)
 </pre></div>
 </div>
 </div>
@@ -1051,35 +906,15 @@ w_i^a = w_i^b+w_i^+-w_i^-
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Restricted license - for non-production use only - expires 2024-10-28
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution found!
-w[0] = 0.217
-w[1] = 0.045
-w[2] = 0.137
-w[3] = 0.3
-w[4] = 0.0
-w[5] = 0.3
-w[6] = 1.0
-w[7] = 1.0
-w[8] = 1.0
-w[9] = 1.0
-w[10] = -0.0
-w[11] = 1.0
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="limiting-the-number-of-stocks-in-a-portfolio">
-<h2>Limiting the Number of Stocks in a Portfolio<a class="headerlink" href="#limiting-the-number-of-stocks-in-a-portfolio" title="Permalink to this headline">#</a></h2>
+<h2>Limiting the Number of Stocks in a Portfolio<a class="headerlink" href="#limiting-the-number-of-stocks-in-a-portfolio" title="Permalink to this heading">#</a></h2>
 <p>Portfolio managers may choose to limit the number of stocks in their portfolio for various reasons. For instance, it might be more manageable to handle a portfolio with fewer stocks, especially when using a regularly rebalanced quantitative model. To achieve this, portfolio optimization can be performed, allowing managers to restrict the number of stocks within a range of <span class="math notranslate nohighlight">\(n_l\)</span> to <span class="math notranslate nohighlight">\(n_h\)</span>. Here, phantom weights are not necessary unless the managers are working with a long-short portfolio.</p>
 <p>If the managers are only limiting the number of stocks, binary variables will suffice. For a long-only portfolio, the managers should create a set of <span class="math notranslate nohighlight">\(N\)</span> binary variables, <span class="math notranslate nohighlight">\(v_i^+\)</span>, while for a long-short portfolio, they should create two sets of binary variables, <span class="math notranslate nohighlight">\(v_i^+\)</span> and <span class="math notranslate nohighlight">\(v_i^-,\)</span> allowing them to specify the range of stocks in both the long and short portfolios, respectively. To ensure that the number of stocks in the long portfolio is within the specified range, two inequality constraints should be added. The first constraint is that <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^Nv_i^+ \leq n_h\)</span>, while the second constraint is that <span class="math notranslate nohighlight">\(n_l \leq \sum\limits_{i=1}^Nv_i^+\)</span>. For optimization frameworks that require it, the second inequality can be transformed into <span class="math notranslate nohighlight">\(-\sum\limits_{i=1}^Nv_i^+ \leq -n_l\)</span>. Similarly, for a long-short portfolio, the portfolio manager should add similar constraints on the short portfolio using the corresponding binary variables.</p>
 </section>
 <section id="id3">
-<h2>A numerical example<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h2>A numerical example<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>Continuing from the previous example, our goal is to construct a portfolio with an average annualized return of 8%, without short sales and with the portfolio weights summing to 1. However, we want to restrict the portfolio to have no more than three stocks, despite having six stocks available for purchase.</p>
 <p>As before we condense the quadratic programming problem to</p>
 <div class="math notranslate nohighlight">
@@ -1108,16 +943,6 @@ w[11] = 1.0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 452.33  249.33  189.23   70.75  481.14  106.5 ]
- [ 249.33 1094.09  356.85   93.51 1216.91  135.05]
- [ 189.23  356.85  617.57  161.82 1304.29  110.74]
- [  70.75   93.51  161.82  372.35  462.57  107.52]
- [ 481.14 1216.91 1304.29  462.57 5658.42  425.35]
- [ 106.5   135.05  110.74  107.52  425.35  244.31]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1141,26 +966,6 @@ w[11] = 1.0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.    1.    1.    1.    1.    1.    0.    0.    0.    0.    0.    0.  ]
- [14.4  10.19  9.87  7.52 20.05  2.66  0.    0.    0.    0.    0.    0.  ]
- [ 1.    0.    0.    0.    0.    0.   -1.    0.    0.    0.    0.    0.  ]
- [ 0.    1.    0.    0.    0.    0.    0.   -1.    0.    0.    0.    0.  ]
- [ 0.    0.    1.    0.    0.    0.    0.    0.   -1.    0.    0.    0.  ]
- [ 0.    0.    0.    1.    0.    0.    0.    0.    0.   -1.    0.    0.  ]
- [ 0.    0.    0.    0.    1.    0.    0.    0.    0.    0.   -1.    0.  ]
- [ 0.    0.    0.    0.    0.    1.    0.    0.    0.    0.    0.   -1.  ]
- [-1.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.  ]
- [ 0.   -1.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.  ]
- [ 0.    0.   -1.    0.    0.    0.    0.    0.    0.    0.    0.    0.  ]
- [ 0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.    0.    0.  ]
- [ 0.    0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.    0.  ]
- [ 0.    0.    0.    0.    0.   -1.    0.    0.    0.    0.    0.    0.  ]
- [ 0.    0.    0.    0.    0.    0.    1.    1.    1.    1.    1.    1.  ]
- [ 0.    0.    0.    0.    0.    0.   -1.   -1.   -1.   -1.   -1.   -1.  ]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1169,20 +974,10 @@ w[11] = 1.0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 8 0 0 0 0 0 0 0 0 0 0 0 0 3 0]]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 6) (16, 12) (1, 16)
 </pre></div>
 </div>
 </div>
@@ -1220,23 +1015,6 @@ w[11] = 1.0
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution found!
-w[0] = 0.326
-w[1] = 0.0
-w[2] = 0.0
-w[3] = 0.311
-w[4] = 0.0
-w[5] = 0.363
-w[6] = 1.0
-w[7] = 0.0
-w[8] = 0.0
-w[9] = 1.0
-w[10] = 0.0
-w[11] = 1.0
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -1261,50 +1039,127 @@ w[11] = 1.0
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="portfolio_weights.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">7) Portfolio Weights</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="rebalancing_and_transactions_costs.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">9) Rebalancing and transactions costs</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Naftali Cohen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="portfolio_construction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7) Portfolio Construction</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="rebalancing_and_transactions_costs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9) Rebalancing and Transaction Costs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8) Quadratic Programming</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quadraric-programming-with-equality-constraints">Quadraric programming with equality constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-numerical-example">A Numerical Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quadraric-programming-with-inequality-constraints">Quadraric programming with inequality constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A Numerical Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-techniques-for-quadratic-optimization">Advanced Techniques for Quadratic Optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phantom-weights">Phantom weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-weights">Binary weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#market-neutrality-with-leverage-constraints">Market neutrality with leverage constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transactions-costs">Transactions costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-small-weight-stocks">Elimination of small-weight stocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">A numerical example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-the-number-of-stocks-in-a-portfolio">Limiting the Number of Stocks in a Portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">A numerical example</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Naftali Cohen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

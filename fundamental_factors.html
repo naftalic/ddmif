@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>5) The Fundamental Factor Model &#8212; Data-Driven Methods in Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,56 +63,87 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fundamental_factors';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="6) The Economic Factor Model" href="economic_factors.html" />
     <link rel="prev" title="4) Stock Screening and Ranking" href="screening_and_ranking.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data-Driven Methods in Finance</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,467 +153,318 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
-   1) Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_models.html">
-   2) Basic Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="factors.html">
-   3) Factors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="screening_and_ranking.html">
-   4) Stock Screening and Ranking
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   5) The Fundamental Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="economic_factors.html">
-   6) The Economic Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_weights.html">
-   7) Portfolio Weights
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="tax_management.html">
-   8) Tax Management
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="leverage.html">
-   9) Leverage
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="market_neutral.html">
-   10) Market Neutral
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian_alpha.html">
-   11) Bayesian Alpha
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="performance_measurement_and_attribution.html">
-   12) Performance Measurement and Attribution
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="backtesting.html">
-   13) Backtesting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_performance.html">
-   14) Portfolio Performance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="probability_and_regression.html">
-   Probability and Regression Review
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1) Introduction</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basic_models.html">2) Basic Models</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="factors.html">3) Factors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="screening_and_ranking.html">4) Stock Screening and Ranking</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5) The Fundamental Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="economic_factors.html">6) The Economic Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="portfolio_construction.html">7) Portfolio Construction</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="quadratic_programming.html">8) Quadratic Programming</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="rebalancing_and_transactions_costs.html">9) Rebalancing and Transaction Costs</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_optimization.html">A1) Hands-on Optimization</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lp_and_simplex.html">A2) Theory of Linear Programing and the Simplex Method</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/fundamental_factors.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Ffundamental_factors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/fundamental_factors.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/naftalic/ddmif"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Ffundamental_factors.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/fundamental_factors.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/fundamental_factors.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   5) The Fundamental Factor Model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#return">
-     Return
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#risk">
-     Risk
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-model">
-   The model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pre-analysis">
-     Pre analysis
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
-     Benchmark and residual return
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factor-exposure">
-     Factor exposure
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factor-premium">
-     Factor premium
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mad-estimator">
-     MAD Estimator
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hac-standard-error">
-     HAC standard error
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-risk">
-     Decomposition of risk
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>5) The Fundamental Factor Model</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   5) The Fundamental Factor Model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#return">
-     Return
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#risk">
-     Risk
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-model">
-   The model
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pre-analysis">
-     Pre analysis
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#benchmark-and-residual-return">
-     Benchmark and residual return
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factor-exposure">
-     Factor exposure
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#factor-premium">
-     Factor premium
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mad-estimator">
-     MAD Estimator
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hac-standard-error">
-     HAC standard error
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-risk">
-     Decomposition of risk
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5) The Fundamental Factor Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">5) The Fundamental Factor Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return">Return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">Risk</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">The model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-analysis">Pre analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-and-residual-return">Benchmark and residual return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-exposure">Factor exposure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-premium">Factor premium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mad-estimator">MAD Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hac-standard-error">HAC standard error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-of-risk">Decomposition of risk</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="the-fundamental-factor-model">
-<h1>5) The Fundamental Factor Model<a class="headerlink" href="#the-fundamental-factor-model" title="Permalink to this headline">#</a></h1>
+<h1>5) The Fundamental Factor Model<a class="headerlink" href="#the-fundamental-factor-model" title="Permalink to this heading">#</a></h1>
 <p>In financial economics, the average return of a stock is believed to be the reward for taking on risk. In a factor model, the risk exposure of a stock is represented by its factor exposure vector <span class="math notranslate nohighlight">\(\beta_i = (\beta_{i,1},...,\beta_{i,K})\)</span>. The factor premium vector <span class="math notranslate nohighlight">\(f = (f_1,...,f_K)\)</span> represents the reward to an investor who takes on the risk by buying the stock.</p>
 <p>The return on stock i can be expressed as:</p>
 <p><span class="math notranslate nohighlight">\(r_i = \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i = \alpha + \beta_i^T f + \epsilon_i\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the constant term, <span class="math notranslate nohighlight">\(\beta_i\)</span> and <span class="math notranslate nohighlight">\(f\)</span> are the vector notations for the factor exposure and premium, and <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error term, representing the part of the stock return that does not depend on the K factors.</p>
 <p>The fundamental factor model assumes that a stock’s factor exposure, which is a measure of its exposure to a specific type of risk, can be represented by an <strong>observable</strong> characteristic such as market capitalization or book-to-market ratio. However, the factor premium, which represents the reward for taking on that risk, must be <strong>estimated</strong> through observation of the relationship between the average stock return and the factor exposure.</p>
 <section id="return">
-<h2>Return<a class="headerlink" href="#return" title="Permalink to this headline">#</a></h2>
+<h2>Return<a class="headerlink" href="#return" title="Permalink to this heading">#</a></h2>
 <p>Using the assumption that the average <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is zero, we calculate the average stock return as</p>
 <div class="math notranslate nohighlight">
 \[E(r_i) = E(\alpha) + E(β_if)+E(\epsilon_i)=\alpha + β_iE(f)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span>, and <span class="math notranslate nohighlight">\(β_i\)</span> are constants and <span class="math notranslate nohighlight">\(E(\epsilon_i)=0\)</span>. Hence, the average stock return is simply the product of the factor exposure and the factor premium.</p>
 </section>
 <section id="risk">
-<h2>Risk<a class="headerlink" href="#risk" title="Permalink to this headline">#</a></h2>
+<h2>Risk<a class="headerlink" href="#risk" title="Permalink to this heading">#</a></h2>
 <p>The average stock return represents the reward for taking risk, but what exactly is this risk? Stock risk is composed of two parts: nondiversifiable risk and diversifiable risk.</p>
 <p>Total risk  = Nondiversifiable risk + Diversifiable risk</p>
 <p>Since diversifiable risk can be removed from a portfolio through diversification, the market only rewards exposure to nondiversifiable risk. Therefore, we can conclude that: <strong>The average stock return is a reward for taking on nondiversifiable risk</strong>.</p>
@@ -590,16 +483,16 @@ V(r_i) &amp;= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newlin
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-model">
-<h1>The model<a class="headerlink" href="#the-model" title="Permalink to this headline">#</a></h1>
+<h1>The model<a class="headerlink" href="#the-model" title="Permalink to this heading">#</a></h1>
 <p>The fundamental factor model is a tool for predicting the returns and risks of stocks, helping portfolio managers make informed investment decisions. The process of formulating this model involves four steps:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>pre-analysis work, including choosing the factors, treating the risk-free rate, defining the data time frame and investment universe,</p></li>
 <li><p>determining the factor exposures of each stock,</p></li>
 <li><p>estimating the factor premium and constant α from the factor exposure and returns, and</p></li>
 <li><p>evaluating total risk by estimating both the factor risk (nondiversifiable risk) and diversifiable risk.</p></li>
 </ol>
 <section id="pre-analysis">
-<h2>Pre analysis<a class="headerlink" href="#pre-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Pre analysis<a class="headerlink" href="#pre-analysis" title="Permalink to this heading">#</a></h2>
 <p>The preliminary work in constructing a sound portfolio model involves making crucial decisions that serve as the foundation of the model. The most important decision is choosing the factors that represent risk, which can be fundamental (e.g. dividend yield, debt-to-equity ratio), technical (e.g. 12-month momentum), or analyst (e.g. analyst rating changes) and are selected based on their ability to capture the characteristics of the stock or market conditions accurately.</p>
 <p>In addition to choosing the factors, the portfolio manager must also decide on the shape of the data set, including the nature of stock returns, the interval between data points, and the overall time horizon. These decisions significantly impact the accuracy of the factor model.</p>
 <p>The treatment of the risk-free rate is another key decision that must be made in the preliminary stage. The objective is to focus on the portion of the stock return that rewards risk. To achieve this, some portfolio managers subtract a risk-free rate from the stock return. Although it’s a theoretically sound move, finding a truly risk-free asset to use as the risk-free rate is challenging. Despite this difficulty, subtracting an estimated risk-free rate is believed to provide more accurate results.</p>
@@ -608,18 +501,18 @@ V(r_i) &amp;= V( \alpha + β_1f_1 + β_2f_2 + ... + β_Kf_K + \epsilon_i)\newlin
 <p>In the absence of external restrictions, the number of stocks is not a technological issue given the current state of computing technology. A personal computer can handle thousands of stocks without much difficulty. However, the size of the stock universe does affect some aspects of implementation. A large investment universe provides a vast pool of stocks to select from, but calculation of stock correlations becomes less precise as the number of stocks increases, making the model less reliable. For this reason, we do not recommend starting with an investment universe of more than a few thousand stocks.</p>
 </section>
 <section id="benchmark-and-residual-return">
-<h2>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this headline">#</a></h2>
+<h2>Benchmark and residual return<a class="headerlink" href="#benchmark-and-residual-return" title="Permalink to this heading">#</a></h2>
 <p>Portfolio managers use a benchmark to measure the performance of their portfolios. To incorporate the benchmark into the fundamental factor model, one approach is to use the model to predict only the residual return, which is the part of the stock return not correlated with the benchmark. This can be achieved by running a regression of the stock return on the benchmark. The portfolio manager’s value-added is wrapped up in the term <span class="math notranslate nohighlight">\(\alpha\)</span>. Alternatively, the benchmark can be added to the model as one of the factors. Accounting for the benchmark at this stage is not necessary, and some portfolio managers prefer to deal with it later in the process by controlling for tracking error.</p>
 </section>
 <section id="factor-exposure">
-<h2>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this headline">#</a></h2>
+<h2>Factor exposure<a class="headerlink" href="#factor-exposure" title="Permalink to this heading">#</a></h2>
 <p>Factor exposure measures a stock’s risk exposure in the fundamental factor model based on an observable or easily calculable characteristic found on a price-volume chart or in a company’s financial statements. The calculation of factor exposure is straightforward once the factors have been selected. Commonly used factors include the E/P ratio, B/P ratio, D/E ratio, LogSize (log of market cap), and momentum.</p>
 <p>To ensure accurate factor exposure values, it’s crucial to update them as they change over time. For monthly intervals (and to avoid look-ahead bias), factor exposure recorded at the start of the month, or at the end of the previous month, is commonly used.</p>
 <p>However, when using financial statement data, caution must be exercised as companies may not immediately release statements after the fiscal quarter ends. For instance, the most recently available financial statements as of December 2022 may represent the second or third quarter of 2022.</p>
 <p>In calculating financial ratios such as the E/P ratio, we use quarterly data. For example, as of December 2022, we use earnings from the 12-month period ending in August, July, or June, depending on the company’s fiscal quarter end date. If the fiscal quarter ends in September, we exclude the earnings for the July-September quarter from our calculation. Similarly, we use figures for fiscal quarters ending on or before August to calculate the B/P and D/E ratios. In general, a two- to three-month lag is advisable between the end of a fiscal period and the availability of the corresponding data.</p>
 </section>
 <section id="factor-premium">
-<h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this headline">#</a></h2>
+<h2>Factor premium<a class="headerlink" href="#factor-premium" title="Permalink to this heading">#</a></h2>
 <p>In the fundamental factor model, the factor premium represents the payoff for each unit of factor exposure or risk that a stock holds. The factor premium is typically estimated using a panel regression of the stock return on the factor exposure. This estimation is possible because the premium is expected to remain relatively constant across stocks and over several years.</p>
 <p>We can estimate the following equation using the returns of <span class="math notranslate nohighlight">\(N\)</span> stocks over <span class="math notranslate nohighlight">\(T\)</span> time periods, <span class="math notranslate nohighlight">\({(r_{1,1}, ..., r_{N,1}), ..., (r_{1,T}, ..., r_{N,T})}\)</span>, and the factor exposures of <span class="math notranslate nohighlight">\(N\)</span> stocks over <span class="math notranslate nohighlight">\(T\)</span> time periods, <span class="math notranslate nohighlight">\({(β_{1,1}, ..., β_{N,1}), ..., (β_{1,T}, ..., β_{N,T})}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -640,18 +533,18 @@ r_{it}=\alpha+f\beta_{i,t}+\epsilon_{i,t}
 <p>To perform a robustness check, it is possible to partition the dataset into several subsets based on different criteria such as time, sector, among others. By comparing the estimates obtained from these subsets, we can determine if the estimation is robust. Specifically, if the estimates are consistent across all subsets, we can conclude that the estimation is robust. One way to create these subsets is by dividing the dataset along the time dimension to evaluate the stability of the estimation over time.</p>
 </section>
 <section id="mad-estimator">
-<h2>MAD Estimator<a class="headerlink" href="#mad-estimator" title="Permalink to this headline">#</a></h2>
+<h2>MAD Estimator<a class="headerlink" href="#mad-estimator" title="Permalink to this heading">#</a></h2>
 <p>The ordinary least squares (OLS) method is susceptible to outliers because it seeks to minimize the sum of the squared residuals. If a robustness check reveals that the OLS estimator is highly unstable, an alternative estimation technique that is less vulnerable to outliers may be necessary.</p>
 <p>The minimum absolute deviation (MAD) estimation, also referred to as median estimation, is one such alternative. MAD minimizes the sum of the absolute values of residuals instead of the squared residuals. This approach is less affected by outliers since it avoids squaring the residuals. Standard statistical software supports the MAD approach, making it easily implementable.</p>
 </section>
 <section id="hac-standard-error">
-<h2>HAC standard error<a class="headerlink" href="#hac-standard-error" title="Permalink to this headline">#</a></h2>
+<h2>HAC standard error<a class="headerlink" href="#hac-standard-error" title="Permalink to this heading">#</a></h2>
 <p>Despite its limitations, OLS estimation has been the standard empirical tool for many generations of empirical analysts. While adopting alternative estimation techniques may introduce additional errors, as each technique is based on its own set of assumptions, which may not be more realistic than the assumptions driving OLS. Therefore, a popular approach is to continue reporting the OLS estimates while adjusting for standard errors to relax certain OLS assumptions.</p>
 <p>Specifically, when calculating standard errors, we can relax two OLS assumptions: (1) that all error terms of different stocks have the same variance (homoscedasticity assumption), and (2) that the error terms of different time periods are independent (no autocorrelation assumption). Heteroscedasticity- and autocorrelation-consistent (HAC) standard errors are the standard errors we obtain after relaxing these assumptions. However, certain restrictions on error terms still apply even with HAC standard errors. For instance, we do not allow error terms of different stocks to be correlated, although we allow error terms of one stock for different periods to be correlated. Additionally, HAC requires error terms of one stock for different periods to have the same variance, although we allow error terms of different stocks to have different variances.</p>
 <p>These maintained assumptions ensure that the OLS estimates remain consistent, meaning they are correct if the sample size is large enough, though they may not be the most efficient estimates, and other estimates may be more precise.</p>
 </section>
 <section id="decomposition-of-risk">
-<h2>Decomposition of risk<a class="headerlink" href="#decomposition-of-risk" title="Permalink to this headline">#</a></h2>
+<h2>Decomposition of risk<a class="headerlink" href="#decomposition-of-risk" title="Permalink to this heading">#</a></h2>
 <p>To construct an optimal portfolio, it is important to consider the risk of the stock return. In the fundamental factor model, the risk of the stock return has two components: nondiversifiable risk captured by the factor premium estimate <span class="math notranslate nohighlight">\(\hat f\beta_i\)</span> and diversifiable risk captured by the error term <span class="math notranslate nohighlight">\(ε_i\)</span>. The total risk of the stock return is the sum of these two risks.</p>
 <p>Nondiversifiable risk arises from the randomness of the factor premium, and it can be measured by the sample variance obtained from a time series of factor premium and constant estimates. The diversifiable risk represents the part of the variation in the stock return that the variation in the model’s factors cannot explain and can be measured by the variance of the error term.</p>
 <p>When finding the optimal portfolio, it is also important to consider the correlations between stock returns. The correlation between the returns on a pair of stocks consists of the correlation between their nondiversifiable components and the correlation between their diversifiable components. However, estimating the diversifiable component of the return can be challenging due to the large number of parameters to estimate and the minimal impact it has on the stock return for investors.</p>
@@ -679,50 +572,120 @@ r_{it}=\alpha+f\beta_{i,t}+\epsilon_{i,t}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="screening_and_ranking.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">4) Stock Screening and Ranking</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="screening_and_ranking.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4) Stock Screening and Ranking</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="economic_factors.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="economic_factors.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">6) The Economic Factor Model</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Naftali Cohen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">5) The Fundamental Factor Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#return">Return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">Risk</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">The model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-analysis">Pre analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-and-residual-return">Benchmark and residual return</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-exposure">Factor exposure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-premium">Factor premium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mad-estimator">MAD Estimator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hac-standard-error">HAC standard error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposition-of-risk">Decomposition of risk</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Naftali Cohen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

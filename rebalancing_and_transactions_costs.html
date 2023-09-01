@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>9) Rebalancing and Transaction Costs &#8212; Data-Driven Methods in Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,56 +63,87 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rebalancing_and_transactions_costs';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="A1) Hands-on Optimization" href="practical_optimization.html" />
     <link rel="prev" title="8) Quadratic Programming" href="quadratic_programming.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Data-Driven Methods in Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Data-Driven Methods in Finance</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,506 +153,330 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
-   1) Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_models.html">
-   2) Basic Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="factors.html">
-   3) Factors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="screening_and_ranking.html">
-   4) Stock Screening and Ranking
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="fundamental_factors.html">
-   5) The Fundamental Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="economic_factors.html">
-   6) The Economic Factor Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="portfolio_construction.html">
-   7) Portfolio Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="quadratic_programming.html">
-   8) Quadratic Programming
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   9) Rebalancing and Transaction Costs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="practical_optimization.html">
-   A1) Hands-on Optimization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lp_and_simplex.html">
-   A2) Theory of Linear Programing and the Simplex Method
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1) Introduction</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basic_models.html">2) Basic Models</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="factors.html">3) Factors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="screening_and_ranking.html">4) Stock Screening and Ranking</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="fundamental_factors.html">5) The Fundamental Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="economic_factors.html">6) The Economic Factor Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="portfolio_construction.html">7) Portfolio Construction</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="quadratic_programming.html">8) Quadratic Programming</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9) Rebalancing and Transaction Costs</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="practical_optimization.html">A1) Hands-on Optimization</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="lp_and_simplex.html">A2) Theory of Linear Programing and the Simplex Method</a></li>
+
+
+
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/naftalic/ddmif/master?urlpath=tree/docs/rebalancing_and_transactions_costs.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Frebalancing_and_transactions_costs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/rebalancing_and_transactions_costs.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/naftalic/ddmif"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/naftalic/ddmif/issues/new?title=Issue%20on%20page%20%2Frebalancing_and_transactions_costs.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/rebalancing_and_transactions_costs.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/rebalancing_and_transactions_costs.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   9) Rebalancing and Transaction Costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#when-and-how-to-make-the-right-decisions">
-   When and how to make the right decisions
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets">
-     Rebalancing and the importance of model periodicity in financial markets
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adjusting-and-other-parameters">
-     Adjusting α and other parameters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#understanding-transactions-costs">
-   Understanding transactions costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modeling-transaction-costs">
-   Modeling transaction costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#portfolio-construction">
-   Portfolio Construction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-optimal-portfolio-with-transactions-costs">
-     The Optimal Portfolio with Transactions Costs
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-tracking-portfolio-with-transactions-costs">
-   The Tracking Portfolio with Transactions Costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dealing-with-cash-flow">
-   Dealing with Cash Flow
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reducing-transaction-costs-with-futures-and-etfs">
-     Reducing Transaction Costs with Futures and ETFs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rebalancing-toward-optimal-target-weights">
-     Rebalancing toward Optimal Target Weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-rebalancing">
-     Standard Rebalancing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-cash-flows-to-rebalance-without-selling">
-   Using Cash Flows to Rebalance without Selling
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rebalancing-by-purchasing-only-deficient-stocks">
-   Rebalancing by Purchasing Only Deficient Stocks
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#approximate-solution-to-the-optimal-portfolio-problem">
-   Approximate Solution to the Optimal Portfolio Problem
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>9) Rebalancing and Transaction Costs</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   9) Rebalancing and Transaction Costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#when-and-how-to-make-the-right-decisions">
-   When and how to make the right decisions
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets">
-     Rebalancing and the importance of model periodicity in financial markets
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adjusting-and-other-parameters">
-     Adjusting α and other parameters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#understanding-transactions-costs">
-   Understanding transactions costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modeling-transaction-costs">
-   Modeling transaction costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#portfolio-construction">
-   Portfolio Construction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-optimal-portfolio-with-transactions-costs">
-     The Optimal Portfolio with Transactions Costs
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-tracking-portfolio-with-transactions-costs">
-   The Tracking Portfolio with Transactions Costs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dealing-with-cash-flow">
-   Dealing with Cash Flow
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reducing-transaction-costs-with-futures-and-etfs">
-     Reducing Transaction Costs with Futures and ETFs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rebalancing-toward-optimal-target-weights">
-     Rebalancing toward Optimal Target Weights
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-rebalancing">
-     Standard Rebalancing
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-cash-flows-to-rebalance-without-selling">
-   Using Cash Flows to Rebalance without Selling
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rebalancing-by-purchasing-only-deficient-stocks">
-   Rebalancing by Purchasing Only Deficient Stocks
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#approximate-solution-to-the-optimal-portfolio-problem">
-   Approximate Solution to the Optimal Portfolio Problem
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9) Rebalancing and Transaction Costs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9) Rebalancing and Transaction Costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-and-how-to-make-the-right-decisions">When and how to make the right decisions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets">Rebalancing and the importance of model periodicity in financial markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-and-other-parameters">Adjusting α and other parameters</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-transactions-costs">Understanding transactions costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-transaction-costs">Modeling transaction costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-construction">Portfolio Construction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimal-portfolio-with-transactions-costs">The Optimal Portfolio with Transactions Costs</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tracking-portfolio-with-transactions-costs">The Tracking Portfolio with Transactions Costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-cash-flow">Dealing with Cash Flow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-transaction-costs-with-futures-and-etfs">Reducing Transaction Costs with Futures and ETFs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-toward-optimal-target-weights">Rebalancing toward Optimal Target Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-rebalancing">Standard Rebalancing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cash-flows-to-rebalance-without-selling">Using Cash Flows to Rebalance without Selling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-by-purchasing-only-deficient-stocks">Rebalancing by Purchasing Only Deficient Stocks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#approximate-solution-to-the-optimal-portfolio-problem">Approximate Solution to the Optimal Portfolio Problem</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="rebalancing-and-transaction-costs">
-<h1>9) Rebalancing and Transaction Costs<a class="headerlink" href="#rebalancing-and-transaction-costs" title="Permalink to this headline">#</a></h1>
+<h1>9) Rebalancing and Transaction Costs<a class="headerlink" href="#rebalancing-and-transaction-costs" title="Permalink to this heading">#</a></h1>
 <p>In April 2020, Invesco made a costly rebalancing error with its Equally-Weighted S&amp;P 500 Fund, which resulted in a loss of $105 million over five days. Invesco misinterpreted the altered schedule by S&amp;P Dow Jones Indices, which had delayed and separated the quarterly rebalancing dates for its indexes due to market volatility. Invesco failed to rebalance the funds on April 24, the scheduled date for S&amp;P Dow Jones Indices to rebalance the index.</p>
 <p>On April 29, Invesco discovered the omission and rebalanced the funds, injecting approximately $105 million into the funds to compensate investors for the performance difference between April 24 and April 29. Although Invesco does not expect this matter to have a material impact on its financial condition, the rebalancing error illustrates the importance of rebalancing decisions and the need to consider transaction costs when making portfolio adjustments.</p>
 <p>Rebalancing decisions can be triggered by various factors, such as changes in market conditions, asset prices, or investor preferences. When the decision to rebalance is made, transaction costs become a significant consideration in determining the optimal portfolio composition. However, transaction costs are often overlooked during the initial creation of the portfolio, as they do not have an immediate impact.</p>
 <p>As a result of this rebalancing error, Invesco had to compensate investors for the performance difference between April 24 and April 29, resulting in a significant financial loss. Understanding and managing transaction costs is crucial for portfolio managers in ensuring investment success and avoiding costly errors.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="when-and-how-to-make-the-right-decisions">
-<h1>When and how to make the right decisions<a class="headerlink" href="#when-and-how-to-make-the-right-decisions" title="Permalink to this headline">#</a></h1>
+<h1>When and how to make the right decisions<a class="headerlink" href="#when-and-how-to-make-the-right-decisions" title="Permalink to this heading">#</a></h1>
 <p>Determining the optimal time and method for rebalancing a portfolio is crucial for investment success. Rebalancing decisions involve two key considerations: when to rebalance and how to do it.</p>
 <p>The optimal rebalancing period can be determined relatively easily from an econometric perspective. The factor model used to select stocks specifies a particular rebalancing frequency. For example, if monthly returns were used to estimate the model, then the optimal portfolio is only valid for one month. If quarterly returns were used, then the portfolio would be optimal for one quarter. The rebalancing period is simply the model’s periodicity, which is discussed in the first part of this section.</p>
 <p>The more complex aspect of rebalancing involves deciding how to adjust the model’s parameters, such as α, to update the portfolio. This can be a challenging task, as it requires balancing the potential benefits of improving the portfolio’s performance against the costs associated with incurring transactions costs. In the second part of this section, we will explore different strategies for adjusting the portfolio’s parameters to effectively rebalance the portfolio while minimizing costs.</p>
 <p>Overall, effective rebalancing requires a careful consideration of both the optimal rebalancing period and the appropriate adjustment of the model’s parameters. By carefully managing these factors, portfolio managers can maximize returns while minimizing costs, ultimately leading to investment success.</p>
 <section id="rebalancing-and-the-importance-of-model-periodicity-in-financial-markets">
-<h2>Rebalancing and the importance of model periodicity in financial markets<a class="headerlink" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets" title="Permalink to this headline">#</a></h2>
+<h2>Rebalancing and the importance of model periodicity in financial markets<a class="headerlink" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets" title="Permalink to this heading">#</a></h2>
 <p>The accuracy of models in predicting daily stock returns has long been recognized as limited by financial experts. While models can capture patterns that emerge over time, they often fail to consider specific news and events that heavily influence daily returns. For hourly returns, a model’s predictive power is close to zero. While some researchers have found moderate success in applying their models to weekly returns, such returns remain too susceptible to the influence of specific events.</p>
 <p>Most financial research is conducted using monthly returns as a viable middle-of-the-road solution to the tradeoff between predictive power and parameter stability. While longer periods such as annual or quarterly returns offer a larger sample size, the risk of unstable parameters and changing market conditions make monthly returns a more reliable option.</p>
 <p>The decision to rebalance a portfolio depends on several factors, including market stability and external restrictions on the portfolio manager. The general recommendation is to update the estimation of models at least once a month to ensure the most current information is available, and from there, decide whether to rebalance. Model periodicity is crucial to understanding when to rebalance and how to go about it. The timing of rebalancing is relatively straightforward, while the adjustment of parameters to update the portfolio requires careful consideration. In the following section, we will discuss different strategies for adjusting the model’s parameters to effectively rebalance the portfolio while minimizing costs.</p>
 </section>
 <section id="adjusting-and-other-parameters">
-<h2>Adjusting α and other parameters<a class="headerlink" href="#adjusting-and-other-parameters" title="Permalink to this headline">#</a></h2>
+<h2>Adjusting α and other parameters<a class="headerlink" href="#adjusting-and-other-parameters" title="Permalink to this heading">#</a></h2>
 <p>Modifying the parameters of a stock-return model may trigger the need to rebalance a portfolio. As previously discussed in the factor model, the stock return can be represented as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -623,7 +489,7 @@ r_i = \alpha_i+\beta_{i,1}f_1+\cdots+\beta_{i,K}f_K+\epsilon_i
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="understanding-transactions-costs">
-<h1>Understanding transactions costs<a class="headerlink" href="#understanding-transactions-costs" title="Permalink to this headline">#</a></h1>
+<h1>Understanding transactions costs<a class="headerlink" href="#understanding-transactions-costs" title="Permalink to this heading">#</a></h1>
 <p>Transaction costs refer to the expenses incurred when buying or selling financial assets. These costs go beyond the commission charged by brokers and include other hidden expenses that investors should be aware of.</p>
 <p>One of these costs is the bid-ask spread, which is the difference between the highest price a buyer is willing to pay (the bid price) and the lowest price a seller is willing to accept (the ask price). The spread varies depending on the asset’s liquidity, with less liquid assets having a wider spread. For instance, a small-cap stock with low trading volume may have a wider bid-ask spread than a large-cap stock with high trading volume.</p>
 <p>Another hidden cost is the price impact, which refers to the effect of a large buy or sell order on the asset’s market price. When a large order is placed, it can move the market price, causing the investor to pay more when buying or receive less when selling than the price quoted before the trade. The price impact depends on the order’s size relative to the asset’s market size or daily trading volume.</p>
@@ -636,7 +502,7 @@ r_i = \alpha_i+\beta_{i,1}f_1+\cdots+\beta_{i,K}f_K+\epsilon_i
 <p>In summary, understanding transaction costs is an essential aspect of investing, and by estimating and minimizing these costs, investors can increase their chances of achieving their financial goals.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="modeling-transaction-costs">
-<h1>Modeling transaction costs<a class="headerlink" href="#modeling-transaction-costs" title="Permalink to this headline">#</a></h1>
+<h1>Modeling transaction costs<a class="headerlink" href="#modeling-transaction-costs" title="Permalink to this heading">#</a></h1>
 <p>Modeling transaction costs can be a challenging task because they are complex and unpredictable. Typically, a fixed proportion of the total transaction value is used to approximate transaction costs, represented by a constant denoted as <span class="math notranslate nohighlight">\(c\)</span>. For instance, if <span class="math notranslate nohighlight">\(c\)</span> is set to 5 or 10 basis points, the transaction cost per dollar transaction would be <span class="math notranslate nohighlight">\(10 \times c\)</span> for a transaction value of $10.</p>
 <p>To calculate the total transaction value (TV), use the weights of stocks in the current portfolio (<span class="math notranslate nohighlight">\(w_1^b,\cdots,w_N^b\)</span>) and the weights of stocks in the future portfolio (<span class="math notranslate nohighlight">\(w_1^a,\cdots,w_N^a\)</span>) to determine the current portfolio’s dollar value (<span class="math notranslate nohighlight">\(V_t\)</span>). The superscripts ‘b’ and ‘a’ denote ‘before’ and ‘after’, respectively. If <span class="math notranslate nohighlight">\(V_tw_i^a\)</span> is greater than <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, buying stock <span class="math notranslate nohighlight">\(i\)</span> is recommended; otherwise, selling stock <span class="math notranslate nohighlight">\(i\)</span> is recommended. The difference between <span class="math notranslate nohighlight">\(V_tw_i^a\)</span> and <span class="math notranslate nohighlight">\(V_tw_i^b\)</span>, represented as <span class="math notranslate nohighlight">\(V_tw_i^a-V_tw_i^b\)</span>, is the amount to buy or sell in dollar terms. Therefore, the transaction value is the sum of this difference across all stocks, which is given by</p>
 <div class="math notranslate nohighlight">
@@ -656,10 +522,10 @@ r_i = \alpha_i+\beta_{i,1}f_1+\cdots+\beta_{i,K}f_K+\epsilon_i
 <p>To account for different stocks having varying transaction costs, modeling transaction costs can be proportional to the liquidity of each stock, considering the bid-ask spread and the price impact. Assume that the trading cost is inversely proportional to the average trading volume of each stock. In this case, elements of <span class="math notranslate nohighlight">\(c\)</span> would have different signs and absolute values.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="portfolio-construction">
-<h1>Portfolio Construction<a class="headerlink" href="#portfolio-construction" title="Permalink to this headline">#</a></h1>
+<h1>Portfolio Construction<a class="headerlink" href="#portfolio-construction" title="Permalink to this heading">#</a></h1>
 <p>Portfolio construction involves selecting a portfolio with an optimal balance of expected return and risk, irrespective of any limitations or expenses that may arise. When managing against a benchmark, the aim is to achieve the best combination of expected excess return and tracking error. While transaction costs are a new factor to consider when determining the optimal portfolio or tracking portfolio, they do not alter the underlying principle of selection.</p>
 <section id="the-optimal-portfolio-with-transactions-costs">
-<h2>The Optimal Portfolio with Transactions Costs<a class="headerlink" href="#the-optimal-portfolio-with-transactions-costs" title="Permalink to this headline">#</a></h2>
+<h2>The Optimal Portfolio with Transactions Costs<a class="headerlink" href="#the-optimal-portfolio-with-transactions-costs" title="Permalink to this heading">#</a></h2>
 <p>When optimizing a portfolio that incurs transaction costs, we can approach the problem by minimizing the risk for a given expected return or maximizing the risk-adjusted return, which is the expected return minus the variance. Accounting for transaction costs requires recalculating the expected return of the portfolio, which now includes subtracting the cost from the ending portfolio value and the expected return. The effective expected return has three components: the gross expected return, the transactions cost expressed as a fraction of the portfolio value, and the time value of the transactions cost. However, the time value is often negligible and can be ignored for realistic values of transaction costs and expected return.</p>
 <p>To calculate the risk-adjusted return, we use additional notation, such as the expected return vector (<span class="math notranslate nohighlight">\(μ\)</span>) and the variance-covariance matrix of stock returns (<span class="math notranslate nohighlight">\(Σ\)</span>). The risk-aversion parameter (<span class="math notranslate nohighlight">\(A\)</span>) is denoted as the level of tolerance for an increase in variance if the expected return increases by 2%. For example, a value of 2 means that the portfolio manager would tolerate a 1% increase in variance. The risk-adjusted return is then calculated as the expected return minus <span class="math notranslate nohighlight">\(A\)</span> times the variance of the prospective portfolio return.</p>
 <p>When incorporating transaction costs, the effective risk-adjusted return is expressed as the expected return of the prospective portfolio minus the transactions costs, minus <span class="math notranslate nohighlight">\(A\)</span> times the variance of the prospective portfolio return.</p>
@@ -675,7 +541,7 @@ r_i = \alpha_i+\beta_{i,1}f_1+\cdots+\beta_{i,K}f_K+\epsilon_i
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-tracking-portfolio-with-transactions-costs">
-<h1>The Tracking Portfolio with Transactions Costs<a class="headerlink" href="#the-tracking-portfolio-with-transactions-costs" title="Permalink to this headline">#</a></h1>
+<h1>The Tracking Portfolio with Transactions Costs<a class="headerlink" href="#the-tracking-portfolio-with-transactions-costs" title="Permalink to this heading">#</a></h1>
 <p>To minimize tracking error instead of overall risk, a portfolio manager should aim to maximize the effective tracking-error-adjusted return rather than the effective risk-adjusted return.</p>
 <p>The tracking error (TE) of a portfolio is defined as the standard deviation of the difference between the portfolio return <span class="math notranslate nohighlight">\(r_P\)</span> and the benchmark return <span class="math notranslate nohighlight">\(r_B\)</span>. The TE can be expressed as:</p>
 <div class="math notranslate nohighlight">
@@ -699,21 +565,21 @@ r_i = \alpha_i+\beta_{i,1}f_1+\cdots+\beta_{i,K}f_K+\epsilon_i
 <p>subject to the constraint that the sum of weights should be 1 and any other constraints. However, conventional quadratic optimization techniques cannot be used to solve this problem because <span class="math notranslate nohighlight">\(c\)</span> is a function of <span class="math notranslate nohighlight">\(w\)</span>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="dealing-with-cash-flow">
-<h1>Dealing with Cash Flow<a class="headerlink" href="#dealing-with-cash-flow" title="Permalink to this headline">#</a></h1>
+<h1>Dealing with Cash Flow<a class="headerlink" href="#dealing-with-cash-flow" title="Permalink to this heading">#</a></h1>
 <p>This section discusses strategies that portfolio managers can implement to minimize transaction costs when dealing with cash inflows or outflows. One such approach is to invest cash temporarily in index futures or ETFs until a more suitable time arises to return it to the portfolio. This method can help managers avoid making rushed investment decisions in response to cash movements.</p>
 <p>Another strategy is to purchase specific stocks that are more liquid, enabling the manager to achieve target portfolio weights with fewer transactions. This approach can help reduce transaction costs and minimize the impact of cash flows on the portfolio’s performance.</p>
 <section id="reducing-transaction-costs-with-futures-and-etfs">
-<h2>Reducing Transaction Costs with Futures and ETFs<a class="headerlink" href="#reducing-transaction-costs-with-futures-and-etfs" title="Permalink to this headline">#</a></h2>
+<h2>Reducing Transaction Costs with Futures and ETFs<a class="headerlink" href="#reducing-transaction-costs-with-futures-and-etfs" title="Permalink to this heading">#</a></h2>
 <p>When managing a portfolio with daily cash inflows and outflows, adjusting the portfolio with every cash movement can be impractical. For small daily flows, managers can temporarily invest net inflows in cash or rely on a cash buffer to handle small redemptions without significantly impacting portfolio returns. However, for funds with large daily net flows, a large cash reserve can negatively affect portfolio returns, particularly in a low interest rate environment. In such cases, managers may need to adjust their exposure using either index futures or ETFs that invest in the same sector or a highly correlated sector.</p>
 <p>ETFs that focus on specific sectors are widely available, but futures offer several advantages over ETFs. Futures are more liquid during normal trading hours, can be traded after hours on GLOBEX, and gains are treated as partly long-term and partly short-term for tax purposes. However, managers may face challenges rolling over futures contracts if the horizon for using futures is longer than a few days. Therefore, portfolio managers should carefully consider their options and choose the method that best suits their needs.</p>
 </section>
 <section id="rebalancing-toward-optimal-target-weights">
-<h2>Rebalancing toward Optimal Target Weights<a class="headerlink" href="#rebalancing-toward-optimal-target-weights" title="Permalink to this headline">#</a></h2>
+<h2>Rebalancing toward Optimal Target Weights<a class="headerlink" href="#rebalancing-toward-optimal-target-weights" title="Permalink to this heading">#</a></h2>
 <p>To maintain an optimal mix of stock weights, portfolio managers may need to rebalance the portfolio during periods of cash flows or at regular rebalancing periods. For instance, if a portfolio is rebalanced monthly and experiences cash flows at the end of the month, the manager can adjust the portfolio to maintain the original optimal portfolio weights or update the model to achieve new optimal weights. When faced with end-of-month cash flows, the manager can trade to redirect the portfolio towards the original or new optimal target weights.</p>
 <p>To facilitate optimal trades, we outline the algorithm in the following subsections. While our analysis does not incorporate trading costs, we demonstrate that reducing the amount of trading can help minimize tax and direct trading costs.</p>
 </section>
 <section id="standard-rebalancing">
-<h2>Standard Rebalancing<a class="headerlink" href="#standard-rebalancing" title="Permalink to this headline">#</a></h2>
+<h2>Standard Rebalancing<a class="headerlink" href="#standard-rebalancing" title="Permalink to this heading">#</a></h2>
 <p>Standard rebalancing is a crucial process for portfolio managers to maintain the desired asset allocation in their portfolios. This involves adjusting the weights of stocks in the portfolio back to a target set of weights, which are typically the same as those in the benchmark index that the portfolio tracks. The current weight of stock <span class="math notranslate nohighlight">\(i\)</span> in the portfolio before rebalancing is denoted by <span class="math notranslate nohighlight">\(w^b_i\)</span>, and the target weight is denoted by <span class="math notranslate nohighlight">\(w^a_i\)</span>. The price per share of stock <span class="math notranslate nohighlight">\(i\)</span> is denoted by <span class="math notranslate nohighlight">\(p_i\)</span>, and the number of shares held in stock <span class="math notranslate nohighlight">\(i\)</span> before rebalancing is denoted by <span class="math notranslate nohighlight">\(s^b_i\)</span>. The optimal number of shares to hold in stock <span class="math notranslate nohighlight">\(i\)</span> is denoted by <span class="math notranslate nohighlight">\(s^a_i\)</span>.</p>
 <p>To rebalance the portfolio, the difference between the target weights and the current weights is calculated. This difference is then used to determine the number of shares to buy or sell at time <span class="math notranslate nohighlight">\(t+1\)</span>. The weights of the target and current portfolios at time <span class="math notranslate nohighlight">\(t+1\)</span> are given by:</p>
 <div class="math notranslate nohighlight">
@@ -737,7 +603,7 @@ x_{i,t+1}=s^a_{i,t+1}-s^b_{i,t+1}=\frac{w^a_{i,t}}{p_{i,t+1}}(V_{t+1}+C_{t+1})-s
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="using-cash-flows-to-rebalance-without-selling">
-<h1>Using Cash Flows to Rebalance without Selling<a class="headerlink" href="#using-cash-flows-to-rebalance-without-selling" title="Permalink to this headline">#</a></h1>
+<h1>Using Cash Flows to Rebalance without Selling<a class="headerlink" href="#using-cash-flows-to-rebalance-without-selling" title="Permalink to this heading">#</a></h1>
 <p>To reduce costs associated with rebalancing a portfolio, portfolio managers can use cash inflows to bring the portfolio closer to its target weights without selling securities. Selling securities to rebalance can result in tax costs and transaction costs, so buying more shares of securities whose weights have fallen below target can be a more cost-effective approach.</p>
 <p>One simple method is to invest cash inflows proportionally to the target weights of all the securities in the portfolio. A more sophisticated algorithm can be used to invest the cash inflows in a way that brings the portfolio closer to its optimal weights more quickly. If the portfolio receives a cash inflow of <span class="math notranslate nohighlight">\(C_{t+1}\)</span> at time <span class="math notranslate nohighlight">\(t+1\)</span>, the manager can buy <span class="math notranslate nohighlight">\(x_{i,t+1}\)</span> shares of each security, where:</p>
 <div class="math notranslate nohighlight">
@@ -747,7 +613,7 @@ x_{i,t+1}=C_{t+1}w^a_{i,t+1}/p_{i,t+1}
 <p>Here, <span class="math notranslate nohighlight">\(w^a_{i,t+1}\)</span> is the target weight for security <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t+1\)</span>, and <span class="math notranslate nohighlight">\(p_{i,t+1}\)</span> is the price per share of security <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t+1\)</span>. The resulting weights of the portfolio will fall between the original weights and the optimal target weights, and the proximity to the target weights will depend on the ratio of <span class="math notranslate nohighlight">\(C_{t+1}\)</span> to <span class="math notranslate nohighlight">\(V_{t+1}\)</span>, where <span class="math notranslate nohighlight">\(V_{t+1}\)</span> is the total value of the portfolio at time <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="rebalancing-by-purchasing-only-deficient-stocks">
-<h1>Rebalancing by Purchasing Only Deficient Stocks<a class="headerlink" href="#rebalancing-by-purchasing-only-deficient-stocks" title="Permalink to this headline">#</a></h1>
+<h1>Rebalancing by Purchasing Only Deficient Stocks<a class="headerlink" href="#rebalancing-by-purchasing-only-deficient-stocks" title="Permalink to this heading">#</a></h1>
 <p>A way to quickly align a portfolio with its benchmark weights is by investing new cash only in stocks that are below their target weights. The portfolio is divided into two groups: those that exceed their target weights and those that fall short. To determine these weights, the symbol <span class="math notranslate nohighlight">\(\tilde w^b\)</span> is used to represent the portfolio’s weights considering the current value of the portfolio and the cash inflow. The weight of each stock with the cash inflow is calculated using the formula:</p>
 <div class="math notranslate nohighlight">
 \[\tilde w^b_{i,t+1}=\frac{s^b_{i,t+1}p_{i,t+1}}{V_{t+1}+C_{t+1}}\]</div>
@@ -760,7 +626,7 @@ x_{i,t+1}=C_{t+1}w^a_{i,t+1}/p_{i,t+1}
 <p>This “buy” system for rebalancing helps the portfolio converge toward the optimal target weights at a faster rate than if new cash were invested in stocks in proportion to their target weights. To calculate the minimum amount of cash inflow required to perfectly rebalance the portfolio without selling, the ratio of the weight of each stock before rebalancing and before new money has been added to the target weight minus one is calculated for each stock. The maximum of these values is then multiplied by the total value of the portfolio <span class="math notranslate nohighlight">\(V_{t+1}\)</span> at time <span class="math notranslate nohighlight">\(t+1\)</span>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="approximate-solution-to-the-optimal-portfolio-problem">
-<h1>Approximate Solution to the Optimal Portfolio Problem<a class="headerlink" href="#approximate-solution-to-the-optimal-portfolio-problem" title="Permalink to this headline">#</a></h1>
+<h1>Approximate Solution to the Optimal Portfolio Problem<a class="headerlink" href="#approximate-solution-to-the-optimal-portfolio-problem" title="Permalink to this heading">#</a></h1>
 <p>The optimal portfolio problem to maximize the effective risk-adjusted return or effective tracking-error-adjusted return is not quadratic in <span class="math notranslate nohighlight">\(w^a\)</span>, which makes it difficult to solve with conventional quadratic optimizers. To address this issue, we present an approximate solution that works well for most situations.</p>
 <p>Nonlinearity arises because we do not know beforehand which stock to sell and which stock to buy. To avoid nonlinearity, we need to determine which stocks to buy and sell before solving the optimization problem. Here’s how it works:</p>
 <p>First, we solve the problem ignoring transaction costs, i.e., we maximize <span class="math notranslate nohighlight">\(w^a\mu - A(w^a)^T\Sigma w^a\)</span> subject to <span class="math notranslate nohighlight">\((w^a)^TI = 1\)</span> and any other relevant constraints. Let the solution to this problem be denoted as <span class="math notranslate nohighlight">\(w^*=(w^*_1,\cdots, w^*_N)\)</span>.</p>
@@ -807,50 +673,127 @@ Since <span class="math notranslate nohighlight">\(c\)</span> is a fixed constra
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="quadratic_programming.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">8) Quadratic Programming</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="quadratic_programming.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">8) Quadratic Programming</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="practical_optimization.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="practical_optimization.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">A1) Hands-on Optimization</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Naftali Cohen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9) Rebalancing and Transaction Costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-and-how-to-make-the-right-decisions">When and how to make the right decisions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-and-the-importance-of-model-periodicity-in-financial-markets">Rebalancing and the importance of model periodicity in financial markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-and-other-parameters">Adjusting α and other parameters</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-transactions-costs">Understanding transactions costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-transaction-costs">Modeling transaction costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-construction">Portfolio Construction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimal-portfolio-with-transactions-costs">The Optimal Portfolio with Transactions Costs</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tracking-portfolio-with-transactions-costs">The Tracking Portfolio with Transactions Costs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-cash-flow">Dealing with Cash Flow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-transaction-costs-with-futures-and-etfs">Reducing Transaction Costs with Futures and ETFs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-toward-optimal-target-weights">Rebalancing toward Optimal Target Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-rebalancing">Standard Rebalancing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cash-flows-to-rebalance-without-selling">Using Cash Flows to Rebalance without Selling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rebalancing-by-purchasing-only-deficient-stocks">Rebalancing by Purchasing Only Deficient Stocks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#approximate-solution-to-the-optimal-portfolio-problem">Approximate Solution to the Optimal Portfolio Problem</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Naftali Cohen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
